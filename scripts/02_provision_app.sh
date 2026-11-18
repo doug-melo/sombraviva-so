@@ -131,20 +131,31 @@ SQL
   audit "MYSQL banco=$DB_NAME usuario=$DB_USER"
 }
 
-# Integração ESP32 + VM (POST /api/v1/medicoes, /health, migração 004).
-# Enquanto ela não estiver na main do repositório de SOA, o patch versionado
-# em patches/ é aplicado sobre o clone. Se a main já tiver, nada é feito.
+# Patches sobre a API de SOA, aplicados em ordem enquanto não estiverem na main:
+#   0001 integração ESP32 + VM (POST /api/v1/medicoes, /health, migração 004)
+#   0002 redesenho do painel e da central de segurança com Apache ECharts
+# Cada patch é idempotente: se já estiver no código (git apply -R --check), é pulado.
 aplicar_patch_integracao() {
-  local patch="$REPO_DIR/patches/0001-integracao-iot-vm.patch"
-  if [[ -f "$APP_DIR/repo/app/routers/medicoes.py" ]]; then
-    log_ok "API já contém a integração ESP32 (/api/v1/medicoes)"
-  elif [[ -f "$patch" ]]; then
-    run git -C "$APP_DIR/repo" apply --whitespace=nowarn "$patch"
-    audit "PATCH_APLICADO $(basename "$patch")"
-    log_ok "Patch de integração aplicado: $(basename "$patch")"
-  else
-    log_warn "API sem /api/v1/medicoes e sem patch em $patch"
+  local patch nome
+  shopt -s nullglob
+  local patches=("$REPO_DIR"/patches/[0-9][0-9][0-9][0-9]-*.patch)
+  shopt -u nullglob
+  if (( ${#patches[@]} == 0 )); then
+    log_warn "Nenhum patch em $REPO_DIR/patches"
+    return 0
   fi
+  for patch in "${patches[@]}"; do
+    nome=$(basename "$patch")
+    if git -C "$APP_DIR/repo" apply -R --check "$patch" >/dev/null 2>&1; then
+      log_ok "Patch já presente na API: $nome"
+    elif git -C "$APP_DIR/repo" apply --check --whitespace=nowarn "$patch" >/dev/null 2>&1; then
+      run git -C "$APP_DIR/repo" apply --whitespace=nowarn "$patch"
+      audit "PATCH_APLICADO $nome"
+      log_ok "Patch aplicado: $nome"
+    else
+      die "Patch $nome não se aplica sobre $APP_GIT_BRANCH (a main da API mudou?)"
+    fi
+  done
 }
 
 # ------------------------------------------------------------------ 3 --------

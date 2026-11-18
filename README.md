@@ -80,7 +80,9 @@ O código da API **não fica neste repositório**: ele é o entregável de SOA e
 | `GET` | `/api/v1/medicoes/resumo` | Diferença Calçadão × zona arborizada e nível de risco atual |
 | `GET` | `/docs` | Swagger (documentação automática) |
 
-O que o `02_provision_app.sh` faz com ela, em ordem: instala Python, MySQL e Nginx → cria banco e usuário com menor privilégio → clona a API e cria o `venv` → gera `/etc/sombraviva/sombraviva.env` (chmod 600, segredos aleatórios) → `alembic upgrade head` → `python -m app.seed` → serviço systemd → Nginx → health check.
+Enquanto as mudanças não entram na `main` da API, o script aplica em ordem os patches de `patches/` sobre o clone: `0001` (integração ESP32 + VM: `/api/v1/medicoes`, `/health`, migração 004) e `0002` (novo painel e central de segurança com gráficos Apache ECharts servidos localmente). Cada patch é pulado se já estiver no código, então rodar o script de novo é seguro.
+
+O que o `02_provision_app.sh` faz com ela, em ordem: instala Python, MySQL e Nginx → cria banco e usuário com menor privilégio → clona a API e aplica os patches → cria o `venv` → gera `/etc/sombraviva/sombraviva.env` (chmod 600, segredos aleatórios) → `alembic upgrade head` → `python -m app.seed` → serviço systemd → Nginx → health check.
 
 ## 4. Requisitos
 
@@ -245,6 +247,7 @@ sombraviva-so/
 ├── systemd/     sombraviva-api.service · sombraviva-monitor.service · guard .service/.timer
 ├── nginx/sombraviva.conf  ·  auditd/sombraviva.rules  ·  logrotate/sombraviva
 ├── docs/roteiro_video_os.md     # roteiro do vídeo de 7 min
+├── patches/                     # mudanças na API de SOA aplicadas pelo 02 (0001 integração, 0002 painel ECharts)
 ├── evidencias/                  # prints e logs exportados
 └── prompts.md                   # registro dos prompts de IA (regra da GS)
 ```

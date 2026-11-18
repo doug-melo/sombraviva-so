@@ -1,13 +1,13 @@
 SombraViva — Inteligência Climática Urbana
 Global Solution FIAP 2026 — Operating Systems
-Turma: PREENCHER
+Engenharia de Software — 3º ano
 
 Integrantes:
-1. NOME COMPLETO - RM00000
-2. NOME COMPLETO - RM00000
-3. NOME COMPLETO - RM00000
-4. NOME COMPLETO - RM00000
-5. NOME COMPLETO - RM00000
+1. Douglas dos Santos Melo - RM556439
+2. Henrique Sanches - RM557959
+3. João Pedro Kraide Máximo - RM563166
+4. Matheus Marcelino Dantas da Silva - RM556332
+5. Nicolas Caciolato Reis - RM556506
 
 Repositório: https://github.com/doug-melo/sombraviva-so
 Link do vídeo: PREENCHER

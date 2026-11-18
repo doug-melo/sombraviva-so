@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| **Grupo** | _Nome 1 (RM00000) · Nome 2 (RM00000) · Nome 3 (RM00000) · Nome 4 (RM00000) · Nome 5 (RM00000)_ |
+| **Grupo** | Douglas dos Santos Melo (RM556439) · Henrique Sanches (RM557959) · João Pedro Kraide Máximo (RM563166) · Matheus Marcelino Dantas da Silva (RM556332) · Nicolas Caciolato Reis (RM556506) |
 | **Vídeo (até 7 min)** | _cole aqui o link do YouTube_ |
 | **Sistema** | Ubuntu Server 26.04 LTS no VirtualBox 7.2 (também funciona no 24.04) |
 | **Aplicação hospedada** | API do SombraViva, do repositório de SOA: <https://github.com/JoaoKraideM/Global-Solution---2-semestre---Cyber-Soa> |

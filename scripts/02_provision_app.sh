@@ -6,7 +6,7 @@
 #  O que faz (idempotente):
 #   1. Instala dependências: python3-venv, mysql-server, nginx, git, curl...
 #   2. Cria o banco e o usuário MySQL (senha gerada ou vinda do app.conf)
-#   3. Clona a API de SOA (repositório sombraviva-soa) para /opt/sombraviva/src e cria o venv
+#   3. Clona a API de SOA (repositório Global-Solution---2-semestre---Cyber-Soa) para /opt/sombraviva/src e cria o venv
 #   4. Gera /etc/sombraviva/sombraviva.env (chmod 600) com segredos aleatórios
 #   5. Roda as migrações Alembic (alembic upgrade head) e o seed
 #   6. Cria o serviço systemd sombraviva-api.service (Uvicorn, Restart=always)
@@ -32,7 +32,7 @@ log_banner "02 · Dependências, MySQL, API, systemd e Nginx"
 APP_DIR="/opt/sombraviva"
 USUARIO_APP="sombraviva"
 APP_ORIGEM="git"
-APP_GIT_URL="https://github.com/doug-melo/sombraviva-soa.git"
+APP_GIT_URL="https://github.com/JoaoKraideM/Global-Solution---2-semestre---Cyber-Soa.git"
 APP_GIT_BRANCH="main"
 APP_MODULO="app.main:app"
 API_HOST="0.0.0.0"
@@ -47,9 +47,11 @@ SOMBRAVIVA_DEVICE_TOKENS="esp32-osasco-calcadao-01:sv-dev-TROQUE-ESTE-TOKEN"
 ADMIN_EMAIL="admin@sombraviva.local"
 ADMIN_PASSWORD=""
 OPENAI_MODEL="gpt-4.1-mini"
+APP_ENV="vm"
+SEED_DEMO_DATA="true"
 NGINX_SERVER_NAME="sombraviva.local _"
 # APP_ORIGEM=local: pasta da API já clonada ao lado deste repositório
-APP_FONTE="$(cd "$REPO_DIR/.." && pwd)/sombraviva-soa"
+APP_FONTE="$(cd "$REPO_DIR/.." && pwd)/Global-Solution---2-semestre---Cyber-Soa"
 load_conf "${APP_CONF:-$REPO_DIR/config/app.conf}"
 
 ENV_ARQ="/etc/sombraviva/sombraviva.env"
@@ -184,7 +186,8 @@ escrever_env() {
   esp_token="${SOMBRAVIVA_DEVICE_TOKENS#*:}"
   [[ -n "$esp_id" && -n "$esp_token" && "$esp_id" != "$esp_token" ]] || die "SOMBRAVIVA_DEVICE_TOKENS deve ter o formato device_id:token"
   conteudo="# SombraViva — gerado por 02_provision_app.sh. NÃO versionar (contém segredos).
-APP_ENV=production
+APP_ENV=${APP_ENV}
+SEED_DEMO_DATA=${SEED_DEMO_DATA}
 DB_HOST=${DB_HOST}
 DB_PORT=${DB_PORT}
 DB_NAME=${DB_NAME}
@@ -222,9 +225,14 @@ migrar_e_popular() {
     source "$ENV_ARQ"
     set +a
     cd "$APP_DIR/src"
-    run "$APP_DIR/venv/bin/alembic" upgrade head
+    if [[ -f app/bootstrap.py ]]; then
+      # bootstrap da API: alembic upgrade head -> seed -> verificação das tabelas
+      run "$APP_DIR/venv/bin/python" -m app.bootstrap
+    else
+      run "$APP_DIR/venv/bin/alembic" upgrade head
+      run "$APP_DIR/venv/bin/python" -m app.seed
+    fi
     log_ok "Esquema do MySQL na revisão: $("$APP_DIR/venv/bin/alembic" current 2>/dev/null | tail -n1)"
-    run "$APP_DIR/venv/bin/python" -m app.seed
   )
   chown -R "$USUARIO_APP:$USUARIO_APP" "$APP_DIR"
   audit "ALEMBIC_UPGRADE_HEAD + SEED"

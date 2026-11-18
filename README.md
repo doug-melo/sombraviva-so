@@ -9,7 +9,7 @@
 | **Grupo** | _Nome 1 (RM00000) · Nome 2 (RM00000) · Nome 3 (RM00000) · Nome 4 (RM00000) · Nome 5 (RM00000)_ |
 | **Vídeo (até 7 min)** | _cole aqui o link do YouTube_ |
 | **Sistema** | Ubuntu Server 26.04 LTS no VirtualBox 7.2 (também funciona no 24.04) |
-| **Aplicação hospedada** | API do SombraViva, do repositório de SOA: <https://github.com/doug-melo/sombraviva-soa> |
+| **Aplicação hospedada** | API do SombraViva, do repositório de SOA: <https://github.com/JoaoKraideM/Global-Solution---2-semestre---Cyber-Soa> |
 | **Circuito IoT** | <https://github.com/doug-melo/sombraviva-iot> |
 | **Comando único** | `sudo ./provision.sh` |
 
@@ -65,7 +65,7 @@ flowchart LR
 | Disciplina | Ligação com este repositório |
 |---|---|
 | **Physical Computing (IoT)** | O ESP32 do Wokwi faz `POST /api/v1/medicoes` nesta API (mesmo JSON e cabeçalhos do `sketch.ino`). Basta trocar o `API_URL` do sketch pela URL pública do túnel. |
-| **SOA / Web Services** | A aplicação hospedada é o backend de SOA ([sombraviva-soa](https://github.com/doug-melo/sombraviva-soa)): o `02_provision_app.sh` clona o repositório, roda as migrações Alembic e o seed e sobe a API no systemd. |
+| **SOA / Web Services** | A aplicação hospedada é o backend de SOA ([Global-Solution---2-semestre---Cyber-Soa](https://github.com/JoaoKraideM/Global-Solution---2-semestre---Cyber-Soa)): o `02_provision_app.sh` clona o repositório, roda as migrações Alembic e o seed e sobe a API no systemd. |
 | **Cybersecurity** | Autenticação dos dispositivos por token (comparação em tempo constante), **401 + registro de auditoria** em toda tentativa inválida (log + tabela `eventos_auditoria`), firewall, segredos em arquivo `600`, serviços com *hardening* do systemd, auditd e trilha de quem executou cada script. |
 
 ## 3. A aplicação hospedada (repositório de SOA)

@@ -92,9 +92,15 @@ estado() {
   printf '   Health:     http://%s/health   |   API direta: http://%s:8000/health\n' "${IP:-IP-DA-VM}" "${IP:-IP-DA-VM}"
   printf '   ESP32:      POST http://%s/api/v1/medicoes  (público: sudo ./scripts/06_tunnel.sh)\n' "${IP:-IP-DA-VM}"
   printf '\n  %sServiços:%s\n' "$C_NEGRITO" "$C_RESET"
-  for svc in sombraviva-api nginx mysql sombraviva-monitor sombraviva-monitor-guard.timer auditd ufw; do
+  for svc in sombraviva-api nginx mysql sombraviva-monitor sombraviva-monitor-guard.timer auditd; do
     printf '   '; estado "$svc"
   done
+  # ufw.service é oneshot: o estado real vem do próprio ufw
+  if ufw status 2>/dev/null | grep -q '^Status: active'; then
+    printf '   %s●%s %-28s %s\n' "$C_VERDE" "$C_RESET" "ufw (firewall)" "active"
+  else
+    printf '   %s●%s %-28s %s\n' "$C_VERMELHO" "$C_RESET" "ufw (firewall)" "inactive"
+  fi
   printf '\n  %sHealth check:%s %s\n' "$C_NEGRITO" "$C_RESET" "$(curl -s --max-time 3 http://127.0.0.1/health || echo 'sem resposta')"
   printf '\n  %sLogs e evidências:%s %s/\n' "$C_NEGRITO" "$C_RESET" "$LOG_DIR"
   find "$LOG_DIR" -maxdepth 1 -type f -printf '     - %f\n' 2>/dev/null | sort

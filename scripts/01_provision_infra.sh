@@ -241,6 +241,33 @@ configurar_fuso() {
 }
 
 # ------------------------------------------------------------------ 7 --------
+# Imagens Ubuntu da Oracle Cloud trazem regras próprias de iptables
+# (/etc/iptables/rules.v4) com um REJECT no fim da cadeia INPUT/FORWARD que
+# fica ANTES das cadeias do ufw: tudo além da porta 22 é recusado, mesmo com
+# o ufw liberando 80/8000. Removemos só esse REJECT (na hora e no arquivo
+# persistido) para que o ufw seja o único firewall da VM.
+remover_reject_nuvem() {
+  local regra cadeia removeu=0
+  for cadeia in INPUT FORWARD; do
+    regra="-A $cadeia -j REJECT --reject-with icmp-host-prohibited"
+    while iptables -S "$cadeia" 2>/dev/null | grep -qxF -- "$regra"; do
+      run iptables -D "$cadeia" -j REJECT --reject-with icmp-host-prohibited
+      removeu=1
+    done
+  done
+  if [[ -f /etc/iptables/rules.v4 ]] && grep -q -- "-j REJECT --reject-with icmp-host-prohibited" /etc/iptables/rules.v4; then
+    cp -a /etc/iptables/rules.v4 "/etc/iptables/rules.v4.bak.$(date +%Y%m%d%H%M%S)"
+    sed -i '/-j REJECT --reject-with icmp-host-prohibited/d' /etc/iptables/rules.v4
+    removeu=1
+  fi
+  if ((removeu)); then
+    audit "FIREWALL_NUVEM REJECT padrão da imagem removido (ufw passa a controlar a entrada)"
+    log_ok "REJECT da imagem da nuvem removido; o ufw controla as portas"
+  else
+    log_ok "Sem regras REJECT da imagem da nuvem"
+  fi
+}
+
 configurar_firewall() {
   log_step "7/8 Firewall (ufw)"
   instalar_pacotes ufw
@@ -254,6 +281,7 @@ configurar_firewall() {
   done
   run ufw logging on
   run ufw --force enable
+  remover_reject_nuvem
   audit "FIREWALL ssh=$PORTA_SSH portas='$PORTAS_LIBERADAS'"
   log_ok "Firewall ativo. Regras:"
   ufw status numbered | sed 's/^/      /' >&2

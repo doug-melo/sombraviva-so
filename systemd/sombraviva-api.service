@@ -1,0 +1,41 @@
+# =============================================================================
+#  SombraViva API — unidade systemd (modelo)
+#  Os marcadores @...@ são preenchidos pelo scripts/02_provision_app.sh, que
+#  instala o resultado em /etc/systemd/system/sombraviva-api.service
+# =============================================================================
+[Unit]
+Description=SombraViva API (FastAPI + Uvicorn)
+Documentation=https://github.com/doug-melo/sombraviva-so
+After=network-online.target mysql.service
+Wants=network-online.target mysql.service
+# Tolerância a falhas: até 10 reinícios em 5 minutos antes de desistir
+StartLimitIntervalSec=300
+StartLimitBurst=10
+
+[Service]
+Type=simple
+User=@USUARIO_APP@
+Group=@USUARIO_APP@
+WorkingDirectory=@APP_DIR@
+EnvironmentFile=/etc/sombraviva/sombraviva.env
+ExecStart=@APP_DIR@/venv/bin/uvicorn @APP_MODULO@ --host @API_HOST@ --port @API_PORTA@ --workers @UVICORN_WORKERS@ --proxy-headers --forwarded-allow-ips 127.0.0.1
+# Reinicia SEMPRE que o processo morrer (inclusive kill -9 no teste de falha)
+Restart=always
+RestartSec=3
+TimeoutStopSec=15
+# Logs da aplicação (também rotacionados pelo logrotate)
+StandardOutput=append:/var/log/sombraviva/api.log
+StandardError=append:/var/log/sombraviva/api.log
+SyslogIdentifier=sombraviva-api
+
+# ---- Endurecimento (hardening) -------------------------------------------
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+
+[Install]
+WantedBy=multi-user.target

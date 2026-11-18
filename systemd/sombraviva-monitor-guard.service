@@ -1,0 +1,11 @@
+# =============================================================================
+#  SombraViva — guardião do monitor (executado pelo timer a cada 2 minutos)
+#  Se o sombraviva-monitor estiver parado/falho (ex.: estourou o StartLimit),
+#  limpa o estado de falha, reinicia e registra o evento no syslog.
+# =============================================================================
+[Unit]
+Description=SombraViva - Guardiao do servico de monitoramento
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'if ! systemctl is-active --quiet sombraviva-monitor.service; then systemctl reset-failed sombraviva-monitor.service; systemctl start sombraviva-monitor.service; logger -t sombraviva-audit -p user.warning "GUARDIAO reiniciou sombraviva-monitor"; fi'

@@ -1,0 +1,44 @@
+# =============================================================================
+#  SombraViva — serviço de monitoramento (CPU, memória, disco, API, MySQL)
+#  Rubrica: "Monitoramento como serviço systemd com tolerância a falhas" (1 pt)
+#  Instalado em /etc/systemd/system/ pelo scripts/04_setup_monitoring.sh
+# =============================================================================
+[Unit]
+Description=SombraViva - Monitor de recursos e saude da aplicacao
+Documentation=file:///opt/sombraviva/scripts/03_monitor.sh
+After=network-online.target sombraviva-api.service
+Wants=network-online.target
+# ---- Tolerância a falhas ---------------------------------------------------
+# Até 10 reinícios em 5 min; se estourar, o timer sombraviva-monitor-guard
+# (a cada 2 min) faz reset-failed e sobe o monitor de novo.
+StartLimitIntervalSec=300
+StartLimitBurst=10
+
+[Service]
+Type=simple
+ExecStart=/opt/sombraviva/scripts/03_monitor.sh --loop
+Environment=LOG_DIR=/var/log/sombraviva
+Environment=NO_COLOR=1
+# Reinicia SEMPRE: crash, kill -9, OOM ou saída normal
+Restart=always
+RestartSec=5
+# SIGTERM -> o script registra "monitor encerrado" e sai limpo
+KillSignal=SIGTERM
+TimeoutStopSec=10
+# Prioridade baixa: o monitor não pode competir com a aplicação
+Nice=10
+# Se o kernel precisar matar algo por falta de memória, que não seja o monitor
+OOMScoreAdjust=-500
+SyslogIdentifier=sombraviva-monitor
+
+# ---- Endurecimento ---------------------------------------------------------
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/log/sombraviva
+ProtectKernelTunables=true
+ProtectControlGroups=true
+
+[Install]
+WantedBy=multi-user.target

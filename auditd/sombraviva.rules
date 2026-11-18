@@ -1,0 +1,29 @@
+## =============================================================================
+##  SombraViva — regras do auditd (instaladas em /etc/audit/rules.d/)
+##  Consultar:  sudo ausearch -k sombraviva_config -i
+##              sudo aureport -k --summary
+## =============================================================================
+
+## Configurações e segredos da aplicação (escrita, alteração de atributos)
+-w /etc/sombraviva/ -p wa -k sombraviva_config
+
+## Scripts instalados (escrita, execução e atributos)
+-w /opt/sombraviva/scripts/ -p wxa -k sombraviva_scripts
+
+## Unidades systemd da solução
+-w /etc/systemd/system/sombraviva-api.service -p wa -k sombraviva_systemd
+-w /etc/systemd/system/sombraviva-monitor.service -p wa -k sombraviva_systemd
+
+## Proxy reverso
+-w /etc/nginx/sites-available/sombraviva -p wa -k sombraviva_nginx
+
+## Rede / DNS / identidade do servidor
+-w /etc/hosts -p wa -k sombraviva_rede
+-w /etc/hostname -p wa -k sombraviva_rede
+-w /etc/netplan/ -p wa -k sombraviva_rede
+-w /etc/systemd/resolved.conf.d/ -p wa -k sombraviva_rede
+
+## Firewall e contas
+-w /etc/ufw/ -p wa -k sombraviva_firewall
+-w /etc/passwd -p wa -k sombraviva_contas
+-w /etc/sudoers -p wa -k sombraviva_contas

@@ -1,0 +1,17 @@
+# =============================================================================
+#  SombraViva — rotação dos logs (instalado em /etc/logrotate.d/sombraviva)
+#  Testar:  sudo logrotate -d /etc/logrotate.d/sombraviva
+# =============================================================================
+/var/log/sombraviva/*.log {
+    daily
+    rotate 14
+    maxsize 20M
+    missingok
+    notifempty
+    compress
+    delaycompress
+    # copytruncate: os serviços continuam escrevendo no mesmo arquivo sem reinício
+    copytruncate
+    dateext
+    su root adm
+}

@@ -27,6 +27,7 @@ Neste repositório essa API é hospedada em uma VM Linux configurada **apenas po
 - **monitor como serviço systemd tolerante a falhas + auditoria** → `scripts/04_setup_monitoring.sh`
 - **testes de falha** (kill -9, CPU, disco, MySQL) → `scripts/05_teste_falha.sh`
 - **túnel público para o Wokwi** (opcional) → `scripts/06_tunnel.sh`
+- **deploy automático** (a VM busca o GitHub a cada 2 min e reimplanta) → `scripts/07_auto_deploy.sh`
 
 ## 2. Arquitetura
 
@@ -80,9 +81,20 @@ O código da API **não fica neste repositório**: ele é o entregável de SOA e
 | `GET` | `/api/v1/medicoes/resumo` | Diferença Calçadão × zona arborizada e nível de risco atual |
 | `GET` | `/docs` | Swagger (documentação automática) |
 
-Enquanto as mudanças não entram na `main` da API, o script aplica em ordem os patches de `patches/` sobre o clone: `0001` (integração ESP32 + VM: `/api/v1/medicoes`, `/health`, migração 004) e `0002` (novo painel e central de segurança com gráficos Apache ECharts servidos localmente). Cada patch é pulado se já estiver no código, então rodar o script de novo é seguro.
+Enquanto as mudanças não entram na `main` da API, o script aplica em ordem os patches de `patches/` sobre o clone: `0001` (integração ESP32 + VM: `/api/v1/medicoes`, `/health`, migração 004) `0002` (novo painel e central de segurança com gráficos Apache ECharts servidos localmente) e `0003` (redesenho final do painel público e da central, com a fonte Public Sans servida localmente). Cada patch é pulado se já estiver no código, então rodar o script de novo é seguro.
 
 O que o `02_provision_app.sh` faz com ela, em ordem: instala Python, MySQL e Nginx → cria banco e usuário com menor privilégio → clona a API e aplica os patches → cria o `venv` → gera `/etc/sombraviva/sombraviva.env` (chmod 600, segredos aleatórios) → `alembic upgrade head` → `python -m app.seed` → serviço systemd → Nginx → health check.
+
+### Deploy automático
+
+Depois do primeiro provisionamento, `sudo ./scripts/07_auto_deploy.sh --install` liga o `sombraviva-deploy.timer`. A cada 2 minutos a VM compara o último commit implantado com o GitHub, nas duas fontes: este repositório (scripts, configuração e patches) e a `main` da API de SOA. Se algo mudou, ela atualiza este clone com fast-forward e roda o `02_provision_app.sh`, que reaplica os patches, migra o banco, reinicia a API e testa o `/health`. Se o deploy falhar, o script volta este repositório para o commit anterior e reimplanta, para o site não ficar fora do ar. A VM só busca do GitHub; nenhuma chave ou porta extra é aberta para o GitHub entrar nela.
+
+```bash
+sudo ./scripts/07_auto_deploy.sh --install   # liga o timer
+sudo ./scripts/07_auto_deploy.sh --status    # último deploy e próximo disparo
+sudo ./scripts/07_auto_deploy.sh --force     # reimplanta agora
+journalctl -t sombraviva-audit | grep DEPLOY # histórico de deploys
+```
 
 ## 4. Requisitos
 
@@ -243,11 +255,12 @@ sombraviva-so/
 │   ├── 04_setup_monitoring.sh   # serviço do monitor, auditd, logrotate
 │   ├── 05_teste_falha.sh        # testes de falha
 │   ├── 06_tunnel.sh             # URL pública para o Wokwi (opcional)
+│   ├── 07_auto_deploy.sh        # deploy contínuo: verifica o GitHub a cada 2 min
 │   └── simular_esp32.sh         # envia medições falsas com token
 ├── systemd/     sombraviva-api.service · sombraviva-monitor.service · guard .service/.timer
 ├── nginx/sombraviva.conf  ·  auditd/sombraviva.rules  ·  logrotate/sombraviva
 ├── docs/roteiro_video_os.md     # roteiro do vídeo de 7 min
-├── patches/                     # mudanças na API de SOA aplicadas pelo 02 (0001 integração, 0002 painel ECharts)
+├── patches/                     # mudanças na API de SOA aplicadas pelo 02 (0001 integração, 0002 painel ECharts, 0003 redesenho final)
 ├── evidencias/                  # prints e logs exportados
 └── prompts.md                   # registro dos prompts de IA (regra da GS)
 ```

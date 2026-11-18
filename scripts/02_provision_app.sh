@@ -134,6 +134,7 @@ SQL
 # Patches sobre a API de SOA, aplicados em ordem enquanto não estiverem na main:
 #   0001 integração ESP32 + VM (POST /api/v1/medicoes, /health, migração 004)
 #   0002 redesenho do painel e da central de segurança com Apache ECharts
+#   0003 redesenho final (canvas) do painel público e da central
 # Cada patch é idempotente: se já estiver no código (git apply -R --check), é pulado.
 aplicar_patch_integracao() {
   local patch nome

@@ -1,0 +1,15 @@
+# =============================================================================
+#  SombraViva — deploy contínuo (disparado pelo sombraviva-deploy.timer)
+#  Busca novidades no repositório sombraviva-so e na main da API e reimplanta.
+#  @REPO_DIR@ é trocado pelo caminho do clone em 07_auto_deploy.sh --install.
+# =============================================================================
+[Unit]
+Description=SombraViva - Deploy automatico a partir do GitHub
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=@REPO_DIR@/scripts/07_auto_deploy.sh
+TimeoutStartSec=20min
+Nice=10

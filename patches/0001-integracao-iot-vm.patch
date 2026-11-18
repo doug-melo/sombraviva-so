@@ -1,0 +1,682 @@
+From f25b72e96ac39c4202a6bd625961ae96ee2272a0 Mon Sep 17 00:00:00 2001
+From: Douglas Melo <161658032+doug-melo@users.noreply.github.com>
+Date: Tue, 17 Nov 2026 22:21:14 -0300
+Subject: [PATCH] =?UTF-8?q?Integra=20ESP32=20(Wokwi)=20e=20VM=20Linux:=20P?=
+ =?UTF-8?q?OST=20/api/v1/medicoes,=20migra=C3=A7=C3=A3o=20004,=20/health?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- iot_devices + campos de telemetria em readings (Alembic 004)
+- routers/medicoes.py e services/medicoes.py: Bearer + X-Device-Id, 401/403 auditados
+- GET /api/v1/medicoes e /api/v1/medicoes/resumo (ilha de calor)
+- GET /health para o monitor e o teste de falha da VM
+- seed cadastra o dispositivo e as estações das zonas também em produção
+- 9 testes novos (125 no total, todos passando sobre a main atual)
+---
+ .env.example                      |   4 ++
+ README.md                         |  18 ++++++
+ alembic/versions/004_iot_esp32.py |  46 ++++++++++++++
+ app/bootstrap.py                  |   2 +-
+ app/config.py                     |   3 +
+ app/main.py                       |  12 ++++
+ app/models.py                     |  21 ++++++
+ app/routers/__init__.py           |   0
+ app/routers/medicoes.py           |  49 ++++++++++++++
+ app/schemas.py                    |  71 +++++++++++++++++++++
+ app/seed.py                       |  20 +++++-
+ app/services/__init__.py          |   0
+ app/services/medicoes.py          | 102 ++++++++++++++++++++++++++++++
+ pytest.ini                        |   1 +
+ tests/conftest.py                 |   3 +-
+ tests/test_bootstrap_fiap.py      |   5 +-
+ tests/test_medicoes_esp32.py      |  76 ++++++++++++++++++++++
+ tests/test_mysql_config.py        |   2 +-
+ 18 files changed, 429 insertions(+), 6 deletions(-)
+ create mode 100644 alembic/versions/004_iot_esp32.py
+ create mode 100644 app/routers/__init__.py
+ create mode 100644 app/routers/medicoes.py
+ create mode 100644 app/services/__init__.py
+ create mode 100644 app/services/medicoes.py
+ create mode 100644 tests/test_medicoes_esp32.py
+
+diff --git a/.env.example b/.env.example
+index 963cc11..fd8797b 100644
+--- a/.env.example
++++ b/.env.example
+@@ -29,3 +29,7 @@ OPENAI_MODEL=gpt-4.1-mini
+ # Dados acadêmicos de demonstração em MySQL (desabilite em produção).
+ APP_ENV=development
+ SEED_DEMO_DATA=true
++
++# ESP32 do Wokwi (POST /api/v1/medicoes). Sem token próprio, usa SENSOR_A_KEY.
++ESP32_DEVICE_ID=esp32-osasco-calcadao-01
++ESP32_DEVICE_TOKEN=
+diff --git a/README.md b/README.md
+index c6ecec4..bc9c586 100644
+--- a/README.md
++++ b/README.md
+@@ -194,6 +194,9 @@ O script de demonstração não envia ataques e não executa chamadas pagas à O
+ 
+ | Método | Rota | Uso |
+ |---|---|---|
++| `POST` | `/medicoes` | **Medição do ESP32 (Wokwi)** com `Authorization: Bearer <token>` + `X-Device-Id` |
++| `GET` | `/medicoes?zona=&limit=` | Últimas medições do ESP32 |
++| `GET` | `/medicoes/resumo` | Ilha de calor: Calçadão × zona arborizada, delta e risco atual |
+ | `GET` | `/stations` | Estações e últimas leituras |
+ | `GET` | `/stations/{code}/readings` | Leituras de uma estação |
+ | `POST` | `/stations/{code}/readings` | Receber leitura autenticada com `X-Device-Key` |
+@@ -225,6 +228,21 @@ X-Device-Key: SUA_CHAVE_DO_SENSOR_A
+ 
+ A API valida a chave e os campos, persiste a leitura e retorna `201` em caso de sucesso. A ausência de autorização é rejeitada. Consulte também `scripts/simulate_iot.py` e o circuito em `wokwi/`.
+ 
++### Integração com o ESP32 (Wokwi) e com a VM Linux
++
++O circuito do repositório [sombraviva-iot](https://github.com/doug-melo/sombraviva-iot) (2 × DHT22, LDR, OLED, LEDs e buzzer) envia a cada 30 s uma medição por zona para `POST /api/v1/medicoes`:
++
++```json
++{"device_id": "esp32-osasco-calcadao-01", "zona": "sem_vegetacao", "temperatura": 34.6, "umidade": 48.0,
++ "indice_calor": 36.9, "luminosidade": 52000, "nivel_risco": "alerta", "delta_ilha_calor": 4.1,
++ "temperatura_oficial": 31.2, "timestamp": "2026-11-17T14:30:00-03:00"}
++```
++
++- Cada zona alimenta uma estação do portal (`sem_vegetacao` → `centro-demo`, `arborizada` → `verde-demo`), então o ESP32 aparece nos gráficos sem mudanças no frontend.
++- Token inválido → `401` e evento `iot_auth` no `/admin` (o token nunca é gravado); `device_id` diferente do token → `403`.
++- O dispositivo é cadastrado pelo seed com `ESP32_DEVICE_ID` e `ESP32_DEVICE_TOKEN` (`.env`). A migração **004** cria a tabela `iot_devices` e os campos de risco térmico em `readings`.
++- `GET /health` responde 200 com o MySQL no ar e 503 sem ele. É usado pelo monitoramento e pelo teste de falha da VM do repositório [sombraviva-so](https://github.com/doug-melo/sombraviva-so), que clona esta API, roda `python -m app.bootstrap` e a publica com systemd + Nginx.
++
+ ## Demonstração de Cybersecurity
+ 
+ 1. Inicie a aplicação com `SEED_DEMO_DATA=true` em ambiente de desenvolvimento e abra `/admin`.
+diff --git a/alembic/versions/004_iot_esp32.py b/alembic/versions/004_iot_esp32.py
+new file mode 100644
+index 0000000..a1bdc11
+--- /dev/null
++++ b/alembic/versions/004_iot_esp32.py
+@@ -0,0 +1,46 @@
++"""Telemetria do ESP32 (Wokwi): dispositivos IoT e campos de risco térmico nas leituras.
++
++Revision ID: 004
++Revises: 003
++"""
++from alembic import op
++import sqlalchemy as sa
++
++revision = "004"
++down_revision = "003"
++branch_labels = None
++depends_on = None
++
++
++def upgrade():
++    op.create_table(
++        "iot_devices",
++        sa.Column("id", sa.Integer(), primary_key=True),
++        sa.Column("device_id", sa.String(64), nullable=False),
++        sa.Column("name", sa.String(150), nullable=False),
++        sa.Column("token_hash", sa.String(128), nullable=False),
++        sa.Column("active", sa.Boolean(), nullable=False, server_default=sa.true()),
++        sa.Column("last_seen_at", sa.DateTime(timezone=True), nullable=True),
++        sa.Column("created_at", sa.DateTime(timezone=True), nullable=False),
++    )
++    op.create_index("ix_iot_devices_device_id", "iot_devices", ["device_id"], unique=True)
++    with op.batch_alter_table("readings") as batch:
++        batch.add_column(sa.Column("source", sa.String(20), nullable=False, server_default="api"))
++        batch.add_column(sa.Column("device_id", sa.String(64), nullable=True))
++        batch.add_column(sa.Column("zone", sa.String(30), nullable=True))
++        batch.add_column(sa.Column("heat_index_c", sa.Float(), nullable=True))
++        batch.add_column(sa.Column("luminosity_lux", sa.Float(), nullable=True))
++        batch.add_column(sa.Column("risk_level", sa.String(20), nullable=True))
++        batch.add_column(sa.Column("heat_island_delta_c", sa.Float(), nullable=True))
++        batch.add_column(sa.Column("official_temp_c", sa.Float(), nullable=True))
++    op.create_index("ix_readings_device_id", "readings", ["device_id"])
++
++
++def downgrade():
++    op.drop_index("ix_readings_device_id", table_name="readings")
++    with op.batch_alter_table("readings") as batch:
++        for col in ("official_temp_c", "heat_island_delta_c", "risk_level", "luminosity_lux",
++                    "heat_index_c", "zone", "device_id", "source"):
++            batch.drop_column(col)
++    op.drop_index("ix_iot_devices_device_id", table_name="iot_devices")
++    op.drop_table("iot_devices")
+diff --git a/app/bootstrap.py b/app/bootstrap.py
+index ed42f1c..ae1dd48 100644
+--- a/app/bootstrap.py
++++ b/app/bootstrap.py
+@@ -10,7 +10,7 @@ from app.seed import main as seed_main
+ 
+ ROOT = Path(__file__).resolve().parent.parent
+ REQUIRED_TABLES = {"alembic_version", "users", "stations", "readings", "security_events",
+-                   "audit_findings", "security_triage_actions"}
++                   "audit_findings", "security_triage_actions", "iot_devices"}
+ 
+ 
+ def bootstrap():
+diff --git a/app/config.py b/app/config.py
+index 1c11788..e02ef69 100644
+--- a/app/config.py
++++ b/app/config.py
+@@ -34,6 +34,9 @@ ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "admin@sombraviva.local")
+ ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "")
+ SENSOR_A_KEY = os.getenv("SENSOR_A_KEY", "")
+ SENSOR_B_KEY = os.getenv("SENSOR_B_KEY", "")
++# Dispositivo ESP32 do Wokwi. Sem token próprio, reutiliza a chave do sensor A.
++ESP32_DEVICE_ID = os.getenv("ESP32_DEVICE_ID", "esp32-osasco-calcadao-01")
++ESP32_DEVICE_TOKEN = os.getenv("ESP32_DEVICE_TOKEN", "") or SENSOR_A_KEY
+ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+ OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
+ 
+diff --git a/app/main.py b/app/main.py
+index ad26e15..1e9cdd1 100644
+--- a/app/main.py
++++ b/app/main.py
+@@ -24,10 +24,12 @@ from app.seed import ensure_soc_scenarios
+ from app.demo import snapshot, weather_snapshot, history_snapshot, search_snapshot
+ from app.heatmap import build_heatmap
+ from app.weather_history import archive_for_location, search_cities
++from app.routers import medicoes as medicoes_router
+ 
+ app = FastAPI(title="SombraViva CitizenTech API", version="0.1.0", description="Monitoramento climático urbano: IoT + SOA + Cybersecurity. Dados de demonstração identificados como simulados.")
+ app.add_middleware(GZipMiddleware, minimum_size=1400)  # bundle CSS/JS e respostas grandes
+ ROOT = Path(__file__).resolve().parent.parent
++app.include_router(medicoes_router.router)
+ app.mount("/static", StaticFiles(directory=ROOT / "static"), name="static")
+ failed_logins: dict[str, deque] = defaultdict(deque)
+ failed_iot_keys: dict[str, deque] = defaultdict(deque)  # limite local de demonstração, não distribuído
+@@ -86,6 +88,16 @@ def admin_page():
+ def health():
+     return {"status": "ok", "service": "sombraviva", "version": "0.1.0"}
+ 
++@app.get("/health", tags=["infra"], summary="Health check usado pelo monitor e pelo Nginx da VM")
++def health_root(db: Session = Depends(get_db)):
++    """Responde 200 com o MySQL acessível e 503 quando o banco cai (usado no teste de falha da VM)."""
++    try:
++        db.execute(text("SELECT 1"))
++    except SQLAlchemyError:
++        raise HTTPException(status_code=503, detail="Banco de dados indisponível")
++    return {"status": "ok", "service": "sombraviva", "banco": "ok", "horario": datetime.now(timezone.utc).isoformat()}
++
++
+ @app.get("/api/v1/health/db", tags=["infra"])
+ def database_health(db: Session = Depends(get_db)):
+     """Verifica efetivamente a conexão com o banco MySQL."""
+diff --git a/app/models.py b/app/models.py
+index de173b1..c746dce 100644
+--- a/app/models.py
++++ b/app/models.py
+@@ -33,8 +33,29 @@ class Reading(Base):
+     humidity_pct: Mapped[float] = mapped_column(Float)
+     is_simulated: Mapped[bool] = mapped_column(Boolean, default=True)
+     measured_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, index=True)
++    # Campos da telemetria do ESP32 (migração 004). Nulos para leituras antigas/seed.
++    source: Mapped[str] = mapped_column(String(20), default="api", nullable=False)
++    device_id: Mapped[str | None] = mapped_column(String(64), nullable=True, index=True)
++    zone: Mapped[str | None] = mapped_column(String(30), nullable=True)
++    heat_index_c: Mapped[float | None] = mapped_column(Float, nullable=True)
++    luminosity_lux: Mapped[float | None] = mapped_column(Float, nullable=True)
++    risk_level: Mapped[str | None] = mapped_column(String(20), nullable=True)
++    heat_island_delta_c: Mapped[float | None] = mapped_column(Float, nullable=True)
++    official_temp_c: Mapped[float | None] = mapped_column(Float, nullable=True)
+     station: Mapped[Station] = relationship(back_populates="readings")
+ 
++
++class IotDevice(Base):
++    """Dispositivo IoT (ESP32) autorizado a enviar medições com token Bearer próprio."""
++    __tablename__ = "iot_devices"
++    id: Mapped[int] = mapped_column(Integer, primary_key=True)
++    device_id: Mapped[str] = mapped_column(String(64), unique=True, index=True)
++    name: Mapped[str] = mapped_column(String(150))
++    token_hash: Mapped[str] = mapped_column(String(128))
++    active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
++    last_seen_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
++    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
++
+ class SecurityEvent(Base):
+     __tablename__ = "security_events"
+     id: Mapped[int] = mapped_column(Integer, primary_key=True)
+diff --git a/app/routers/__init__.py b/app/routers/__init__.py
+new file mode 100644
+index 0000000..e69de29
+diff --git a/app/routers/medicoes.py b/app/routers/medicoes.py
+new file mode 100644
+index 0000000..45fa0a1
+--- /dev/null
++++ b/app/routers/medicoes.py
+@@ -0,0 +1,49 @@
++"""Endpoints REST da telemetria IoT (ESP32 + DHT22 + LDR no Wokwi)."""
++from fastapi import APIRouter, Depends, Header, HTTPException, Query, status
++from sqlalchemy.orm import Session
++from app.database import get_db
++from app.schemas import MedicaoIn, MedicaoOut, ResumoIlhaCalor, Zona
++from app.services import medicoes as service
++
++router = APIRouter(prefix="/api/v1/medicoes", tags=["iot"])
++
++
++def _bearer(authorization: str | None) -> str | None:
++    if not authorization:
++        return None
++    scheme, _, value = authorization.partition(" ")
++    return value.strip() if scheme.lower() == "bearer" and value.strip() else None
++
++
++@router.post("", response_model=MedicaoOut, status_code=status.HTTP_201_CREATED,
++             summary="Recebe uma medição do ESP32",
++             responses={401: {"description": "Token do dispositivo ausente ou inválido"},
++                        403: {"description": "device_id não corresponde ao token"}})
++def criar_medicao(medicao: MedicaoIn, db: Session = Depends(get_db),
++                  authorization: str | None = Header(default=None, description="Bearer <token do dispositivo>"),
++                  x_device_id: str | None = Header(default=None, description="Identificador do ESP32")):
++    try:
++        device = service.autenticar(db, _bearer(authorization))
++    except service.DispositivoNaoAutorizado:
++        service.registrar_evento(db, "medium", "blocked", "Medição IoT recusada: token de dispositivo inválido")
++        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Credencial de dispositivo inválida")
++    try:
++        reading = service.registrar_medicao(db, device, medicao, x_device_id)
++    except service.DispositivoDivergente:
++        service.registrar_evento(db, "high", "blocked", f"device_id divergente do token ({device.device_id})")
++        raise HTTPException(status.HTTP_403_FORBIDDEN, "device_id não corresponde ao token")
++    except LookupError as exc:
++        raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE, str(exc))
++    return service.para_saida(reading, service.ZONA_PARA_ESTACAO[medicao.zona])
++
++
++@router.get("", response_model=list[MedicaoOut], summary="Lista as últimas medições do ESP32")
++def listar_medicoes(zona: Zona | None = Query(None), limit: int = Query(50, ge=1, le=500),
++                    db: Session = Depends(get_db)):
++    return service.listar(db, zona, limit)
++
++
++@router.get("/resumo", response_model=ResumoIlhaCalor,
++            summary="Resumo da ilha de calor: Calçadão x zona arborizada")
++def resumo_ilha_calor(db: Session = Depends(get_db)):
++    return service.resumo(db)
+diff --git a/app/schemas.py b/app/schemas.py
+index 4e1b0a7..ff95558 100644
+--- a/app/schemas.py
++++ b/app/schemas.py
+@@ -18,3 +18,74 @@ class AuditIn(BaseModel):
+ class EventTriageIn(BaseModel):
+     status: Literal["new", "investigating", "resolved"]
+     note: str = Field(default="", max_length=300)
++
++
++# ---------------------------------------------------------------------------
++# Telemetria IoT (ESP32 no Wokwi) — contrato idêntico ao JSON do sketch.ino
++# ---------------------------------------------------------------------------
++from datetime import datetime
++from enum import Enum
++from pydantic import ConfigDict
++
++
++class Zona(str, Enum):
++    arborizada = "arborizada"
++    sem_vegetacao = "sem_vegetacao"
++
++
++class NivelRisco(str, Enum):
++    normal = "normal"
++    atencao = "atencao"
++    alerta = "alerta"
++    perigo = "perigo"
++
++
++class MedicaoIn(BaseModel):
++    """Medição enviada pelo ESP32 a cada 30 s (uma por zona)."""
++    device_id: str = Field(max_length=64, examples=["esp32-osasco-calcadao-01"])
++    zona: Zona
++    temperatura: float = Field(ge=-40, le=80, description="Temperatura do DHT22, em °C")
++    umidade: float = Field(ge=0, le=100, description="Umidade relativa, em %")
++    indice_calor: float = Field(ge=-40, le=90, description="Índice de calor (NOAA), em °C")
++    luminosidade: float = Field(ge=0, le=200000, description="Luminosidade estimada pelo LDR, em lux")
++    nivel_risco: NivelRisco
++    delta_ilha_calor: float | None = Field(None, ge=-30, le=30, description="Calçadão menos zona arborizada, em °C")
++    temperatura_oficial: float | None = Field(None, ge=-40, le=80, description="Temperatura da Open-Meteo para Osasco, em °C")
++    timestamp: datetime | None = Field(None, description="ISO 8601; se ausente, vale a hora do servidor")
++
++    model_config = ConfigDict(json_schema_extra={"example": {
++        "device_id": "esp32-osasco-calcadao-01", "zona": "sem_vegetacao", "temperatura": 34.6,
++        "umidade": 48.0, "indice_calor": 36.9, "luminosidade": 52000, "nivel_risco": "alerta",
++        "delta_ilha_calor": 4.1, "temperatura_oficial": 31.2, "timestamp": "2026-11-17T14:30:00-03:00"}})
++
++
++class MedicaoOut(BaseModel):
++    id: int
++    device_id: str | None
++    estacao: str
++    zona: Zona | None
++    temperatura: float
++    umidade: float
++    indice_calor: float | None
++    luminosidade: float | None
++    nivel_risco: NivelRisco | None
++    delta_ilha_calor: float | None
++    temperatura_oficial: float | None
++    medido_em: datetime
++    origem: str
++    simulado: bool
++
++
++class ResumoZona(BaseModel):
++    zona: Zona
++    estacao: str
++    total_medicoes: int
++    ultima: MedicaoOut | None
++
++
++class ResumoIlhaCalor(BaseModel):
++    zonas: list[ResumoZona]
++    delta_ilha_calor_c: float | None = Field(description="Última temperatura do Calçadão menos a da zona arborizada")
++    ilha_de_calor: bool = Field(description="Verdadeiro quando o delta é de 3 °C ou mais")
++    nivel_risco_atual: NivelRisco | None
++    aviso: str
+diff --git a/app/seed.py b/app/seed.py
+index eaf35cc..6e5c014 100644
+--- a/app/seed.py
++++ b/app/seed.py
+@@ -11,7 +11,7 @@ from sqlalchemy import select
+ from app import config
+ from app.auth import hash_password, hash_device_key
+ from app.database import SessionLocal
+-from app.models import User, Station, Reading, SecurityEvent, AuditFinding
++from app.models import User, Station, Reading, SecurityEvent, AuditFinding, IotDevice
+ from app.taint import audit_flow
+ 
+ 
+@@ -114,6 +114,23 @@ def seed_demo(db) -> dict:
+     return counters
+ 
+ 
++def ensure_iot(db) -> None:
++    """Estações das duas zonas do ESP32 e o próprio dispositivo (sempre, inclusive em produção).
++    Não grava leituras: elas só chegam pelo POST /api/v1/medicoes."""
++    for code, name, setting, key in (
++        ("centro-demo", "Centro — área exposta (SIMULAÇÃO)", "Hipótese: pouca sombra", config.SENSOR_A_KEY),
++        ("verde-demo", "Área arborizada (SIMULAÇÃO)", "Hipótese: vegetação urbana", config.SENSOR_B_KEY),
++    ):
++        if db.scalar(select(Station).where(Station.code == code)) is None:
++            db.add(Station(code=code, name=name, setting=setting, simulated=True, api_key_hash=hash_device_key(key)))
++    if db.scalar(select(IotDevice).where(IotDevice.device_id == config.ESP32_DEVICE_ID)) is None:
++        db.add(IotDevice(device_id=config.ESP32_DEVICE_ID,
++                         name="ESP32 Wokwi — Calçadão x zona arborizada (SIMULADOR)",
++                         token_hash=hash_device_key(config.ESP32_DEVICE_TOKEN)))
++        print(f"Dispositivo IoT cadastrado: {config.ESP32_DEVICE_ID}")
++    db.flush()
++
++
+ def main():
+     config.require_secrets()
+     with SessionLocal() as db:
+@@ -122,6 +139,7 @@ def main():
+             if user is None:
+                 db.add(User(email=config.ADMIN_EMAIL, password_hash=hash_password(config.ADMIN_PASSWORD), role="admin"))
+                 print("Administrador inicial cadastrado usando credenciais do .env")
++            ensure_iot(db)
+             if demo_seed_enabled():
+                 counts = seed_demo(db)
+                 print("Dados sintéticos habilitados — novos registros:", counts)
+diff --git a/app/services/__init__.py b/app/services/__init__.py
+new file mode 100644
+index 0000000..e69de29
+diff --git a/app/services/medicoes.py b/app/services/medicoes.py
+new file mode 100644
+index 0000000..e0d3136
+--- /dev/null
++++ b/app/services/medicoes.py
+@@ -0,0 +1,102 @@
++"""Regras de domínio da telemetria IoT: autenticação do dispositivo, mapeamento
++zona -> estação e cálculo do resumo de ilha de calor."""
++from datetime import datetime, timezone
++import hmac
++from sqlalchemy import select, func
++from sqlalchemy.orm import Session
++from app.auth import hash_device_key
++from app.models import IotDevice, Reading, Station, SecurityEvent
++from app.schemas import MedicaoIn, Zona, NivelRisco
++
++# Cada zona monitorada pelo ESP32 alimenta uma estação já exibida no portal.
++ZONA_PARA_ESTACAO = {Zona.sem_vegetacao: "centro-demo", Zona.arborizada: "verde-demo"}
++LIMIAR_ILHA_CALOR_C = 3.0
++
++
++class DispositivoNaoAutorizado(Exception):
++    """Token ausente, desconhecido ou de dispositivo desativado."""
++
++
++class DispositivoDivergente(Exception):
++    """O device_id do corpo/cabeçalho não corresponde ao token apresentado."""
++
++
++def registrar_evento(db: Session, severity: str, outcome: str, summary: str) -> None:
++    # Nunca grava o token, IP ou corpo da requisição.
++    db.add(SecurityEvent(category="iot_auth", severity=severity, outcome=outcome, summary=summary[:300]))
++    db.commit()
++
++
++def autenticar(db: Session, token: str | None) -> IotDevice:
++    if not token:
++        raise DispositivoNaoAutorizado("Token ausente")
++    digest = hash_device_key(token)
++    for device in db.scalars(select(IotDevice).where(IotDevice.active.is_(True))).all():
++        if hmac.compare_digest(device.token_hash, digest):
++            return device
++    raise DispositivoNaoAutorizado("Token inválido")
++
++
++def registrar_medicao(db: Session, device: IotDevice, medicao: MedicaoIn, header_device_id: str | None) -> Reading:
++    if medicao.device_id != device.device_id or (header_device_id and header_device_id != device.device_id):
++        raise DispositivoDivergente(device.device_id)
++    station = db.scalar(select(Station).where(Station.code == ZONA_PARA_ESTACAO[medicao.zona]))
++    if station is None:
++        raise LookupError("Estação da zona não cadastrada; execute python -m app.seed")
++    medido_em = medicao.timestamp or datetime.now(timezone.utc)
++    if medido_em.tzinfo is None:
++        medido_em = medido_em.replace(tzinfo=timezone.utc)
++    reading = Reading(
++        station_id=station.id, temperature_c=medicao.temperatura, humidity_pct=medicao.umidade,
++        measured_at=medido_em.astimezone(timezone.utc), is_simulated=True, source="esp32-wokwi",
++        device_id=device.device_id, zone=medicao.zona.value, heat_index_c=medicao.indice_calor,
++        luminosity_lux=medicao.luminosidade, risk_level=medicao.nivel_risco.value,
++        heat_island_delta_c=medicao.delta_ilha_calor, official_temp_c=medicao.temperatura_oficial)
++    device.last_seen_at = datetime.now(timezone.utc)
++    db.add(reading)
++    db.commit()
++    db.refresh(reading)
++    return reading
++
++
++def para_saida(reading: Reading, station_code: str) -> dict:
++    dt = reading.measured_at
++    if dt.tzinfo is None:
++        dt = dt.replace(tzinfo=timezone.utc)
++    return {"id": reading.id, "device_id": reading.device_id, "estacao": station_code,
++            "zona": reading.zone, "temperatura": reading.temperature_c, "umidade": reading.humidity_pct,
++            "indice_calor": reading.heat_index_c, "luminosidade": reading.luminosity_lux,
++            "nivel_risco": reading.risk_level, "delta_ilha_calor": reading.heat_island_delta_c,
++            "temperatura_oficial": reading.official_temp_c, "medido_em": dt,
++            "origem": reading.source, "simulado": reading.is_simulated}
++
++
++def listar(db: Session, zona: Zona | None, limit: int) -> list[dict]:
++    stmt = (select(Reading, Station.code).join(Station, Reading.station_id == Station.id)
++            .where(Reading.source == "esp32-wokwi"))
++    if zona is not None:
++        stmt = stmt.where(Reading.zone == zona.value)
++    rows = db.execute(stmt.order_by(Reading.measured_at.desc(), Reading.id.desc()).limit(limit)).all()
++    return [para_saida(r, code) for r, code in rows]
++
++
++def resumo(db: Session) -> dict:
++    zonas, ultimas = [], {}
++    for zona, code in ZONA_PARA_ESTACAO.items():
++        base = select(Reading).where(Reading.source == "esp32-wokwi", Reading.zone == zona.value)
++        total = db.scalar(select(func.count()).select_from(base.subquery())) or 0
++        last = db.scalars(base.order_by(Reading.measured_at.desc(), Reading.id.desc()).limit(1)).first()
++        ultimas[zona] = last
++        zonas.append({"zona": zona, "estacao": code, "total_medicoes": total,
++                      "ultima": para_saida(last, code) if last else None})
++    delta = None
++    a, b = ultimas[Zona.sem_vegetacao], ultimas[Zona.arborizada]
++    if a and b:
++        delta = round(a.temperature_c - b.temperature_c, 1)
++    ordem = ["normal", "atencao", "alerta", "perigo"]
++    niveis = [r.risk_level for r in (a, b) if r and r.risk_level in ordem]
++    atual = max(niveis, key=ordem.index) if niveis else None
++    return {"zonas": zonas, "delta_ilha_calor_c": delta,
++            "ilha_de_calor": delta is not None and delta >= LIMIAR_ILHA_CALOR_C,
++            "nivel_risco_atual": NivelRisco(atual) if atual else None,
++            "aviso": "Leituras do ESP32 simulado no Wokwi; não são medições físicas no Calçadão."}
+diff --git a/pytest.ini b/pytest.ini
+index 8a13573..9254af7 100644
+--- a/pytest.ini
++++ b/pytest.ini
+@@ -1,4 +1,5 @@
+ [pytest]
++pythonpath = .
+ addopts = -m "not mysql_integration"
+ markers =
+     mysql_integration: testes de integração optativos; exigem banco MySQL isolado com sufixo _test
+diff --git a/tests/conftest.py b/tests/conftest.py
+index 96b28a0..95b428f 100644
+--- a/tests/conftest.py
++++ b/tests/conftest.py
+@@ -13,7 +13,7 @@ from sqlalchemy.pool import StaticPool
+ from app.auth import hash_device_key, hash_password
+ from app.database import Base, get_db
+ from app.main import app, failed_logins, failed_iot_keys
+-from app.models import User, Station, Reading
++from app.models import User, Station, Reading, IotDevice
+ from datetime import datetime, timezone
+ 
+ @pytest.fixture
+@@ -24,6 +24,7 @@ def client():
+         db.add(User(email='admin@sombraviva.local',password_hash=hash_password(os.environ['ADMIN_PASSWORD']),role='admin'))
+         db.add(Station(code='centro-demo',name='Centro (TESTE)',setting='Exposto',simulated=True,api_key_hash=hash_device_key(os.environ['SENSOR_A_KEY'])))
+         db.add(Station(code='verde-demo',name='Verde (TESTE)',setting='Arborizado',simulated=True,api_key_hash=hash_device_key(os.environ['SENSOR_B_KEY'])))
++        db.add(IotDevice(device_id='esp32-osasco-calcadao-01',name='ESP32 (TESTE)',token_hash=hash_device_key(os.environ['SENSOR_A_KEY'])))
+         db.commit()
+     def override_db():
+         with Session(engine) as db:
+diff --git a/tests/test_bootstrap_fiap.py b/tests/test_bootstrap_fiap.py
+index fdc213f..b37fe64 100644
+--- a/tests/test_bootstrap_fiap.py
++++ b/tests/test_bootstrap_fiap.py
+@@ -58,7 +58,8 @@ def test_bootstrap_does_not_insert_fake_evidence_in_production(tmp_path, monkeyp
+     monkeypatch.setenv('SEED_DEMO_DATA', 'true')  # produção prevalece sobre configuração
+     seed.main()
+     with Session(engine) as session:
+-        assert _counts(session) == {'users':1,'stations':0,'readings':0,'security_events':0,
++        # Em produção só existem as 2 estações que recebem o ESP32 — sem leituras nem eventos fictícios.
++        assert _counts(session) == {'users':1,'stations':2,'readings':0,'security_events':0,
+                                     'audit_findings':0,'security_triage_actions':0}
+     engine.dispose()
+ 
+@@ -75,7 +76,7 @@ def test_fresh_database_migrations_and_seed_twice(tmp_path):
+         assert done.returncode == 0, done.stderr + done.stdout
+         assert 'Esquema verificado' in done.stdout
+     with create_engine('sqlite:///' + str(path)).connect() as conn:
+-        assert conn.execute(text('SELECT version_num FROM alembic_version')).scalar() == '003'
++        assert conn.execute(text('SELECT version_num FROM alembic_version')).scalar() == '004'
+         assert conn.execute(text('SELECT COUNT(*) FROM security_events')).scalar() == 6
+         assert conn.execute(text('SELECT COUNT(*) FROM audit_findings')).scalar() == 3
+         assert conn.execute(text('SELECT COUNT(*) FROM readings')).scalar() == 48
+diff --git a/tests/test_medicoes_esp32.py b/tests/test_medicoes_esp32.py
+new file mode 100644
+index 0000000..38ca838
+--- /dev/null
++++ b/tests/test_medicoes_esp32.py
+@@ -0,0 +1,76 @@
++"""Contrato ESP32 (Wokwi) -> API: POST /api/v1/medicoes com Bearer + X-Device-Id."""
++import os
++
++DEVICE = "esp32-osasco-calcadao-01"
++
++
++def payload(zona="sem_vegetacao", temp=34.6, **extra):
++    body = {"device_id": DEVICE, "zona": zona, "temperatura": temp, "umidade": 48.0,
++            "indice_calor": 36.9, "luminosidade": 52000, "nivel_risco": "alerta",
++            "delta_ilha_calor": 4.1, "temperatura_oficial": 31.2, "timestamp": "2026-11-17T14:30:00-03:00"}
++    body.update(extra)
++    return body
++
++
++def headers(token=None, device=DEVICE):
++    return {"Authorization": f"Bearer {token or os.environ['SENSOR_A_KEY']}", "X-Device-Id": device}
++
++
++def test_esp32_cria_medicao(client):
++    r = client.post("/api/v1/medicoes", json=payload(), headers=headers())
++    assert r.status_code == 201, r.text
++    body = r.json()
++    assert body["estacao"] == "centro-demo" and body["zona"] == "sem_vegetacao"
++    assert body["nivel_risco"] == "alerta" and body["origem"] == "esp32-wokwi" and body["simulado"] is True
++
++
++def test_medicao_aparece_na_estacao_do_portal(client):
++    client.post("/api/v1/medicoes", json=payload("arborizada", 30.1), headers=headers())
++    readings = client.get("/api/v1/stations/verde-demo/readings").json()
++    assert readings[-1]["temperature_c"] == 30.1
++
++
++def test_token_invalido_retorna_401_e_audita(client, token):
++    r = client.post("/api/v1/medicoes", json=payload(), headers=headers(token="token-falso-qualquer"))
++    assert r.status_code == 401
++    events = client.get("/api/v1/admin/events", headers={"Authorization": f"Bearer {token}"}).json()
++    texto = str(events)
++    assert "token de dispositivo inválido" in texto and "token-falso-qualquer" not in texto
++
++
++def test_sem_token_retorna_401(client):
++    assert client.post("/api/v1/medicoes", json=payload()).status_code == 401
++
++
++def test_device_id_divergente_retorna_403(client):
++    r = client.post("/api/v1/medicoes", json=payload(device_id="esp32-intruso"), headers=headers())
++    assert r.status_code == 403
++    r = client.post("/api/v1/medicoes", json=payload(), headers=headers(device="esp32-intruso"))
++    assert r.status_code == 403
++
++
++def test_validacao_de_faixa(client):
++    r = client.post("/api/v1/medicoes", json=payload(temp=120), headers=headers())
++    assert r.status_code == 422
++
++
++def test_listagem_e_resumo_ilha_de_calor(client):
++    client.post("/api/v1/medicoes", json=payload("arborizada", 30.0, nivel_risco="atencao"), headers=headers())
++    client.post("/api/v1/medicoes", json=payload("sem_vegetacao", 34.5), headers=headers())
++    lista = client.get("/api/v1/medicoes?zona=arborizada").json()
++    assert len(lista) == 1 and lista[0]["temperatura"] == 30.0
++    resumo = client.get("/api/v1/medicoes/resumo").json()
++    assert resumo["delta_ilha_calor_c"] == 4.5
++    assert resumo["ilha_de_calor"] is True
++    assert resumo["nivel_risco_atual"] == "alerta"
++
++
++def test_swagger_documenta_contrato_esp32(client):
++    spec = client.get("/openapi.json").json()
++    assert "/api/v1/medicoes" in spec["paths"]
++    assert "MedicaoIn" in spec["components"]["schemas"] and "MedicaoOut" in spec["components"]["schemas"]
++
++
++def test_health_raiz_para_monitor_da_vm(client):
++    r = client.get("/health")
++    assert r.status_code == 200 and r.json()["banco"] == "ok"
+diff --git a/tests/test_mysql_config.py b/tests/test_mysql_config.py
+index 0d62d19..2ca3cac 100644
+--- a/tests/test_mysql_config.py
++++ b/tests/test_mysql_config.py
+@@ -18,7 +18,7 @@ def test_mysql_url_escapes_special_characters(monkeypatch):
+ 
+ 
+ def test_mysql_schema_can_compile():
+-    assert set(Base.metadata.tables) == {"users", "stations", "readings", "security_events", "audit_findings", "security_triage_actions"}
++    assert set(Base.metadata.tables) == {"users", "stations", "readings", "security_events", "audit_findings", "security_triage_actions", "iot_devices"}
+     for table in Base.metadata.sorted_tables:
+         ddl = str(CreateTable(table).compile(dialect=mysql.dialect()))
+         assert "CREATE TABLE" in ddl
+-- 
+2.43.0
+

@@ -131,6 +131,22 @@ SQL
   audit "MYSQL banco=$DB_NAME usuario=$DB_USER"
 }
 
+# Integração ESP32 + VM (POST /api/v1/medicoes, /health, migração 004).
+# Enquanto ela não estiver na main do repositório de SOA, o patch versionado
+# em patches/ é aplicado sobre o clone. Se a main já tiver, nada é feito.
+aplicar_patch_integracao() {
+  local patch="$REPO_DIR/patches/0001-integracao-iot-vm.patch"
+  if [[ -f "$APP_DIR/repo/app/routers/medicoes.py" ]]; then
+    log_ok "API já contém a integração ESP32 (/api/v1/medicoes)"
+  elif [[ -f "$patch" ]]; then
+    run git -C "$APP_DIR/repo" apply --whitespace=nowarn "$patch"
+    audit "PATCH_APLICADO $(basename "$patch")"
+    log_ok "Patch de integração aplicado: $(basename "$patch")"
+  else
+    log_warn "API sem /api/v1/medicoes e sem patch em $patch"
+  fi
+}
+
 # ------------------------------------------------------------------ 3 --------
 implantar_codigo() {
   log_step "3/8 Código da API (SOA) e ambiente virtual Python"
@@ -146,6 +162,7 @@ implantar_codigo() {
     fi
     APP_FONTE="$APP_DIR/repo"
     log_ok "Código clonado de $APP_GIT_URL ($APP_GIT_BRANCH)"
+    aplicar_patch_integracao
   fi
   [[ -f "$APP_FONTE/app/main.py" && -f "$APP_FONTE/alembic.ini" ]] || die "API não encontrada em $APP_FONTE (esperado app/main.py e alembic.ini)"
   # Copia só o necessário para produção: sem testes, docs, .env ou caches

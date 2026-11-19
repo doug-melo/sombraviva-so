@@ -1,0 +1,456 @@
+From cfbae0b917d34e91bfd5e22f4436760b9ef4b2bf Mon Sep 17 00:00:00 2001
+From: Douglas Melo <161658032+doug-melo@users.noreply.github.com>
+Date: Wed, 18 Nov 2026 21:30:02 -0300
+Subject: [PATCH] =?UTF-8?q?Volta=20as=20fotografias=20documentais=20origin?=
+ =?UTF-8?q?ais=20do=20Cal=C3=A7ad=C3=A3o?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+O redesign tinha trocado as fotos reais por ilustrações. Voltam as cinco
+fotografias do site original, cada uma com crédito e link para a fonte:
+Calçadão em 2022 (Visão Oeste), Parque Jardim Piratininga (Wikimedia,
+CC BY-SA 3.0), Calçadão em 2021 (Agência Mural), o Calçadão com coqueiros
+(O Anhanguera) e a perspectiva vencedora do concurso de 2019 (AEAO).
+O media.js volta a mostrar um aviso legível se a fonte externa cair, sem
+trocar a foto por arte sintética. Testes cobrem hosts, CSP, créditos e avisos.
+---
+ static/admin-bundle.css        |  2 ++
+ static/admin.html              |  4 ++-
+ static/index.html              | 65 ++++++++++++++++++++++++++--------
+ static/media.js                | 20 +++++++++++
+ static/public-bundle.css       | 42 +++++++++++++++-------
+ static/sv-admin.css            |  2 ++
+ static/sv-public.css           | 42 +++++++++++++++-------
+ tests/test_ui_public_page.py   | 48 +++++++++++++++++++++----
+ tests/test_ui_visual_system.py |  4 +--
+ 9 files changed, 180 insertions(+), 49 deletions(-)
+ create mode 100644 static/media.js
+
+diff --git a/static/admin-bundle.css b/static/admin-bundle.css
+index 562026c..e3c0d85 100644
+--- a/static/admin-bundle.css
++++ b/static/admin-bundle.css
+@@ -197,6 +197,8 @@ a.sv-kpi:hover { border-color: var(--green); color: var(--ink); }
+ .sv-login-pitch ul { padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 15px; color: #DDEBE6; }
+ .sv-login-pitch li { display: flex; gap: 10px; align-items: center; }
+ .sv-login-pitch svg { width: 22px; height: 22px; flex: none; }
++.sv-login-credit { font-size: 12px; color: var(--on-green-2); }
++.sv-login-credit a { color: #fff; }
+ .sv-login-form { flex: 1 1 440px; min-width: 0; display: flex; align-items: center; justify-content: center; padding: 48px 32px; }
+ .sv-login-form form { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 20px; }
+ .sv-login-head { display: flex; flex-direction: column; gap: 6px; }
+diff --git a/static/admin.html b/static/admin.html
+index e39f84c..e5dc826 100644
+--- a/static/admin.html
++++ b/static/admin.html
+@@ -14,7 +14,7 @@
+   <main id="conteudo">
+     <section id="login-section" class="sv-login" aria-labelledby="login-title">
+       <div class="sv-login-art">
+-        <img src="/static/assets/cidade-ilustrativa.webp" alt="" width="900" height="900" />
++        <img class="documentary-media" src="https://www.visaooeste.com.br/wp-content/uploads/2022/03/calcadao-osasco-1.jpg" data-credit-id="login-photo-note" alt="" width="1200" height="800" referrerpolicy="no-referrer" decoding="async" />
+         <div class="sv-login-art-in">
+           <a class="sv-brand" href="/">
+             <svg aria-hidden="true" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#F2EFE8"/><path d="M26 10C16 11 10 16 11 24c9 2 16-5 15-14Z" stroke="#0F3D3A" stroke-width="2.4"/><path d="M12 27c2-6 7-10 12-13" stroke="#0F3D3A" stroke-width="2.4" stroke-linecap="round"/></svg>
+@@ -29,6 +29,7 @@
+               <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#7DDB8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg>Todo acesso entra na trilha de auditoria</li>
+             </ul>
+           </div>
++          <p class="sv-login-credit">Calçadão de Osasco, 2022 · Imagem: Visão Oeste · <a href="https://visaooeste.com.br/osasco-recebe-programa-cidadania-itinerante/" target="_blank" rel="noopener noreferrer">Ver publicação original</a><span id="login-photo-note" hidden role="status"> · Fotografia indisponível no momento.</span></p>
+         </div>
+       </div>
+       <div class="sv-login-form">
+@@ -359,5 +360,6 @@
+   <script src="/static/vendor/echarts.min.js?v=5.6.0" defer></script>
+   <script src="/static/admin-charts.js?v=20261118.3" defer></script>
+   <script src="/static/admin.js?v=20261118.3" defer></script>
++  <script src="/static/media.js?v=20261118.3" defer></script>
+ </body>
+ </html>
+diff --git a/static/index.html b/static/index.html
+index 6d262c6..c54b73c 100644
+--- a/static/index.html
++++ b/static/index.html
+@@ -58,18 +58,22 @@
+         <p id="data-notice" class="sv-notice" role="status">Carregando leituras…</p>
+       </div>
+       <figure class="sv-hero-figure">
+-        <img src="/static/assets/cidade-conceitual.webp" alt="Ilustração de um quarteirão com árvores no canto inferior e calçada exposta ao sol no alto" width="900" height="900" />
+-        <div class="sv-hero-card is-shade">
+-          <span>Sob as árvores</span>
+-          <strong id="temp-shade">--</strong>
+-          <small id="hum-shade">Umidade --</small>
+-        </div>
+-        <div class="sv-hero-card is-sun">
+-          <span>No Calçadão, ao sol</span>
+-          <strong id="temp-sun">--</strong>
+-          <small id="hum-sun">Umidade --</small>
++        <div class="sv-hero-photo">
++          <img class="documentary-media" src="https://www.visaooeste.com.br/wp-content/uploads/2022/03/calcadao-osasco-1.jpg" data-credit-id="hero-photo-note" alt="Fotografia de 2022 do Calçadão de Osasco com a estrutura branca de cobertura, circulação e comércio da Rua Antônio Agú" width="1200" height="800" referrerpolicy="no-referrer" decoding="async" fetchpriority="high" />
++          <p class="sv-media-note" id="hero-photo-note" hidden role="status">Fotografia documental temporariamente indisponível. Consulte a fonte original no crédito.</p>
++          <div class="sv-hero-card is-shade">
++            <span>Sob as árvores</span>
++            <strong id="temp-shade">--</strong>
++            <small id="hum-shade">Umidade --</small>
++          </div>
++          <div class="sv-hero-card is-sun">
++            <span>No Calçadão, ao sol</span>
++            <strong id="temp-sun">--</strong>
++            <small id="hum-sun">Umidade --</small>
++          </div>
++          <span class="sv-hero-stamp" id="hero-updated">Última leitura · --</span>
+         </div>
+-        <figcaption id="hero-updated">Última leitura · --</figcaption>
++        <figcaption class="sv-credit">Calçadão de Osasco, fotografia documental de 2022 · Imagem: Visão Oeste · <a href="https://visaooeste.com.br/osasco-recebe-programa-cidadania-itinerante/" target="_blank" rel="noopener noreferrer">Consultar publicação original</a></figcaption>
+       </figure>
+     </section>
+ 
+@@ -81,12 +85,20 @@
+         </div>
+         <div class="sv-duo">
+           <figure class="sv-duo-item is-shade">
+-            <img src="/static/assets/paisagem-conceitual.webp" alt="Gramado e árvores altas sob céu azul" width="1672" height="941" loading="lazy" />
+-            <figcaption><span>Com vegetação</span><strong id="prob-shade">--</strong></figcaption>
++            <div class="sv-duo-photo">
++              <img class="documentary-media" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Parque_Ecol%C3%B3gico_Jardim_Piratininga_-_panoramio.jpg/1024px-Parque_Ecol%C3%B3gico_Jardim_Piratininga_-_panoramio.jpg" data-credit-id="park-photo-note" alt="Fotografia documental do Parque Ecológico Jardim Piratininga, Osasco, registrada em 2010" width="1024" height="680" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
++              <p class="sv-media-note" id="park-photo-note" hidden role="status">Fotografia documental indisponível. Consulte o registro original do Parque Jardim Piratininga.</p>
++              <div class="sv-duo-label"><span>Com vegetação · Parque Jardim Piratininga</span><strong id="prob-shade">--</strong></div>
++            </div>
++            <figcaption class="sv-credit">Fotografia de 2010 · BêS · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Parque_Ecol%C3%B3gico_Jardim_Piratininga_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">Consultar imagem e licença</a></figcaption>
+           </figure>
+           <figure class="sv-duo-item is-sun">
+-            <img src="/static/assets/cidade-ilustrativa.webp" alt="Ilustração de cruzamento com calçada clara exposta ao sol" width="900" height="900" loading="lazy" />
+-            <figcaption><span>Piso exposto</span><strong id="prob-sun">--</strong></figcaption>
++            <div class="sv-duo-photo">
++              <img class="documentary-media" src="https://agenciamural.org.br/wp-content/uploads/2021/12/IMG-20211206-WA0045-1024x755.jpg" data-credit-id="after-photo-note" alt="Fotografia de 2021 do Calçadão de Osasco durante a revitalização, sem os coqueiros, com estruturas de cobertura e lojas no entorno" width="1024" height="755" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
++              <p class="sv-media-note" id="after-photo-note" hidden role="status">Fotografia jornalística indisponível. Consulte a reportagem na fonte.</p>
++              <div class="sv-duo-label"><span>Piso exposto · Calçadão em 2021</span><strong id="prob-sun">--</strong></div>
++            </div>
++            <figcaption class="sv-credit">Durante a intervenção, 2021 · Foto: Agência Mural · <a href="https://agenciamural.org.br/calcadao-de-osasco-perde-coqueiros-e-divide-opiniao-de-moradores/" target="_blank" rel="noopener noreferrer">Ver reportagem</a></figcaption>
+           </figure>
+         </div>
+         <dl class="sv-facts">
+@@ -94,6 +106,28 @@
+           <div><dt>Diferença a partir da qual o ponto vira ilha de calor</dt><dd>3 °C</dd></div>
+           <div><dt>Das últimas leituras acima desse limite</dt><dd id="prob-over">--</dd></div>
+         </dl>
++        <div class="sv-archive" aria-labelledby="archive-title">
++          <div class="sv-archive-head">
++            <h3 id="archive-title">O Calçadão antes e o projeto que venceu o concurso</h3>
++            <p>Registros de momentos diferentes, não um experimento térmico controlado. Em 2019, a proposta de Letícia Juliana Pazian e Marina Vasarini Lopes venceu o concurso de revitalização com cobertura, vegetação, mobiliário e drenagem. Os elementos descritos são propostas do concurso, não confirmação de execução integral da obra.</p>
++          </div>
++          <div class="sv-archive-grid">
++            <figure>
++              <div class="sv-archive-photo">
++                <img class="documentary-media" src="https://www.oanhanguera.com.br/arquivos_personalizados/gera_foto/noticias_conteudo_destacado/arquivos_personalizados/uploads/noticias/fotos/caladao_de_Osasco_5da3247be10c4.jpg" data-credit-id="before-photo-note" alt="Fotografia histórica do Calçadão de Osasco antes da reforma, com coqueiros, lojas e pessoas caminhando" width="950" height="950" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
++                <p class="sv-media-note" id="before-photo-note" hidden role="status">Imagem de arquivo indisponível. Consulte a publicação original.</p>
++              </div>
++              <figcaption class="sv-credit"><strong>Antes: o Calçadão com coqueiros</strong> Foto: O Anhanguera · <a href="https://www.oanhanguera.com.br/noticias/479-calcadao-de-osasco-sera-revitalizado-coberto-e-funcionara-24h" target="_blank" rel="noopener noreferrer">Consultar origem</a></figcaption>
++            </figure>
++            <figure>
++              <div class="sv-archive-photo">
++                <img class="documentary-media" src="https://www.aeaosasco.org.br/wp-content/uploads/2019/10/IMAGEM-03-1024x556.jpg" data-credit-id="competition-photo-note" alt="Perspectiva arquitetônica de 2019 do projeto vencedor do Calçadão de Osasco, com praças arborizadas, assentos, pessoas e uma cobertura metálica branca" width="1024" height="556" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
++                <p class="sv-media-note" id="competition-photo-note" hidden role="status">Perspectiva do concurso indisponível. Acesse a prancha completa no link do crédito.</p>
++              </div>
++              <figcaption class="sv-credit"><strong>Projeto vencedor, 2019 (imagem de projeto, não foto da obra)</strong> Autoria: Letícia Juliana Pazian e Marina Vasarini Lopes · Reprodução da AEAO · <a href="https://www.aeaosasco.org.br/wp-content/uploads/2019/12/concurso_revitalizacao_osasco.pdf" target="_blank" rel="noopener noreferrer">Examinar as pranchas originais</a></figcaption>
++            </figure>
++          </div>
++        </div>
+       </div>
+     </section>
+ 
+@@ -379,6 +413,7 @@
+ 
+   <script src="/static/vendor/echarts.min.js?v=5.6.0" defer></script>
+   <script src="/static/navigation.js?v=20261118.3" defer></script>
++  <script src="/static/media.js?v=20261118.3" defer></script>
+   <script src="/static/dashboard.js?v=20261118.3" defer></script>
+ </body>
+ </html>
+diff --git a/static/media.js b/static/media.js
+new file mode 100644
+index 0000000..8c86462
+--- /dev/null
++++ b/static/media.js
+@@ -0,0 +1,20 @@
++/* SombraViva · fotografias documentais vindas de sites externos (com crédito na legenda).
++   Se uma foto não carregar, mostra o aviso da própria figura e esconde a imagem quebrada:
++   nunca troca uma fotografia do lugar por arte sintética sem identificação. */
++(() => {
++  'use strict';
++  document.querySelectorAll('img.documentary-media').forEach(image => {
++    const note = document.getElementById(image.getAttribute('data-credit-id') || '');
++    let failed = false;
++    const showNote = () => {
++      if (failed) return;
++      failed = true;
++      image.closest('figure')?.classList.add('media-fallback-visible');
++      if (note) note.hidden = false;
++      image.hidden = true;
++      image.removeAttribute('src');
++    };
++    image.addEventListener('error', showNote);
++    if (image.complete && image.naturalWidth === 0) showNote();
++  });
++})();
+diff --git a/static/public-bundle.css b/static/public-bundle.css
+index f3c65ea..27b108f 100644
+--- a/static/public-bundle.css
++++ b/static/public-bundle.css
+@@ -206,8 +206,9 @@ a.sv-kpi:hover { border-color: var(--green); color: var(--ink); }
+ .sv-notice { font-size: 13px; color: var(--ink-3); }
+ .sv-notice.is-demo { color: #7A4D00; }
+ .sv-notice.is-error { color: var(--wine); }
+-.sv-hero-figure { flex: 1.25 1 520px; min-width: 0; position: relative; height: 540px; border-radius: 20px; overflow: hidden; background: #DCD6C8; }
+-.sv-hero-figure img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
++.sv-hero-figure { flex: 1.25 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
++.sv-hero-photo { position: relative; height: 540px; border-radius: 20px; overflow: hidden; background: #DCD6C8; }
++.sv-hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
+ .sv-hero-card { position: absolute; border-radius: 14px; padding: 14px 18px; display: flex; flex-direction: column; gap: 2px; min-width: 190px; color: #fff; }
+ .sv-hero-card span { font-size: 13px; }
+ .sv-hero-card strong { font-size: 44px; font-weight: 800; letter-spacing: -1px; line-height: 1.05; }
+@@ -216,21 +217,37 @@ a.sv-kpi:hover { border-color: var(--green); color: var(--ink); }
+ .sv-hero-card.is-shade span, .sv-hero-card.is-shade small { color: var(--mint); }
+ .sv-hero-card.is-sun { right: 24px; top: 24px; background: var(--brick); }
+ .sv-hero-card.is-sun span, .sv-hero-card.is-sun small { color: #FFE1D8; }
+-.sv-hero-figure figcaption { position: absolute; right: 24px; bottom: 24px; background: rgba(242,239,232,.94); color: var(--ink-2); font-size: 12px; padding: 6px 12px; border-radius: 999px; }
++.sv-hero-stamp { position: absolute; right: 24px; bottom: 24px; background: rgba(242,239,232,.94); color: var(--ink-2); font-size: 12px; padding: 6px 12px; border-radius: 999px; }
++
++/* Fotografias documentais: crédito sempre visível e aviso legível se a fonte externa cair */
++.sv-credit { font-size: 12px; line-height: 1.5; color: var(--ink-3); }
++.sv-credit a { color: inherit; font-weight: 600; }
++.sv-credit strong { display: block; color: var(--ink); font-size: 13px; }
++.sv-band-dark .sv-credit { color: var(--on-green-2); }
++.sv-band-dark .sv-credit strong { color: #fff; }
++.sv-hero-photo .sv-media-note { right: 240px; }
++.sv-media-note { position: absolute; left: 24px; right: 24px; top: 24px; background: var(--paper); color: var(--ink-2); font-size: 13px; padding: 10px 14px; border-radius: 10px; }
+ 
+ /* O problema */
+ .sv-duo { display: flex; flex-wrap: wrap; gap: 24px; }
+-.sv-duo-item { flex: 1 1 380px; min-width: 0; position: relative; height: 380px; border-radius: 20px; overflow: hidden; }
+-.sv-duo-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+-.sv-duo-item.is-shade img { object-position: 70% center; }
+-.sv-duo-item.is-sun img { object-position: center 30%; }
+-.sv-duo-item figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 22px; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+-.sv-duo-item.is-shade figcaption { background: linear-gradient(0deg, rgba(10,40,38,.92), rgba(10,40,38,0)); }
+-.sv-duo-item.is-sun figcaption { background: linear-gradient(0deg, rgba(110,32,18,.92), rgba(110,32,18,0)); }
++.sv-duo-item { flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
++.sv-duo-photo { position: relative; height: 380px; border-radius: 20px; overflow: hidden; background: #164F4B; }
++.sv-duo-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
++.sv-duo-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 22px; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
++.sv-duo-item.is-shade .sv-duo-label { background: linear-gradient(0deg, rgba(10,40,38,.92), rgba(10,40,38,0)); }
++.sv-duo-item.is-sun .sv-duo-label { background: linear-gradient(0deg, rgba(110,32,18,.92), rgba(110,32,18,0)); }
+ .sv-duo-item span { font-size: 16px; font-weight: 600; }
+ .sv-duo-item strong { font-size: 34px; font-weight: 800; letter-spacing: -.8px; }
+ .sv-duo-item.is-shade strong { color: var(--mint); }
+ .sv-duo-item.is-sun strong { color: #FFD2C5; }
++.sv-archive { display: flex; flex-direction: column; gap: 20px; border-top: 1px solid rgba(242,239,232,.2); padding-top: 32px; }
++.sv-archive-head { display: flex; flex-direction: column; gap: 10px; max-width: 760px; }
++.sv-archive-head h3 { font-size: 26px; line-height: 1.2; letter-spacing: -.5px; }
++.sv-archive-head p { font-size: 16px; line-height: 1.65; color: var(--on-green); }
++.sv-archive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
++.sv-archive-grid figure { display: flex; flex-direction: column; gap: 10px; }
++.sv-archive-photo { position: relative; height: 300px; border-radius: 16px; overflow: hidden; background: #164F4B; }
++.sv-archive-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+ .sv-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+ .sv-facts div { display: flex; flex-direction: column-reverse; gap: 6px; border-top: 2px solid rgba(242,239,232,.4); padding-top: 16px; }
+ .sv-facts div.is-hot { border-top-color: var(--brick); }
+@@ -317,10 +334,11 @@ a.sv-kpi:hover { border-color: var(--green); color: var(--ink); }
+   .sv-section { padding-top: 56px; padding-bottom: 56px; }
+   .sv-hero h1 { font-size: 38px; letter-spacing: -1px; }
+   .sv-section-head h2, .sv-purpose h2 { font-size: 34px; letter-spacing: -.8px; }
+-  .sv-hero-figure { height: 420px; }
++  .sv-hero-photo { height: 420px; }
++  .sv-duo-photo, .sv-archive-photo { height: 280px; }
+   .sv-hero-card { min-width: 0; padding: 10px 14px; }
+   .sv-hero-card strong { font-size: 32px; }
+-  .sv-hero-figure figcaption { display: none; }
++  .sv-hero-stamp { display: none; }
+   .sv-facts dd { font-size: 34px; }
+   .sv-chart-heatmap { height: 340px; }
+ }
+diff --git a/static/sv-admin.css b/static/sv-admin.css
+index af9c7f2..b53754d 100644
+--- a/static/sv-admin.css
++++ b/static/sv-admin.css
+@@ -17,6 +17,8 @@
+ .sv-login-pitch ul { padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 15px; color: #DDEBE6; }
+ .sv-login-pitch li { display: flex; gap: 10px; align-items: center; }
+ .sv-login-pitch svg { width: 22px; height: 22px; flex: none; }
++.sv-login-credit { font-size: 12px; color: var(--on-green-2); }
++.sv-login-credit a { color: #fff; }
+ .sv-login-form { flex: 1 1 440px; min-width: 0; display: flex; align-items: center; justify-content: center; padding: 48px 32px; }
+ .sv-login-form form { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 20px; }
+ .sv-login-head { display: flex; flex-direction: column; gap: 6px; }
+diff --git a/static/sv-public.css b/static/sv-public.css
+index 21c51de..2fde065 100644
+--- a/static/sv-public.css
++++ b/static/sv-public.css
+@@ -26,8 +26,9 @@
+ .sv-notice { font-size: 13px; color: var(--ink-3); }
+ .sv-notice.is-demo { color: #7A4D00; }
+ .sv-notice.is-error { color: var(--wine); }
+-.sv-hero-figure { flex: 1.25 1 520px; min-width: 0; position: relative; height: 540px; border-radius: 20px; overflow: hidden; background: #DCD6C8; }
+-.sv-hero-figure img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
++.sv-hero-figure { flex: 1.25 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
++.sv-hero-photo { position: relative; height: 540px; border-radius: 20px; overflow: hidden; background: #DCD6C8; }
++.sv-hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
+ .sv-hero-card { position: absolute; border-radius: 14px; padding: 14px 18px; display: flex; flex-direction: column; gap: 2px; min-width: 190px; color: #fff; }
+ .sv-hero-card span { font-size: 13px; }
+ .sv-hero-card strong { font-size: 44px; font-weight: 800; letter-spacing: -1px; line-height: 1.05; }
+@@ -36,21 +37,37 @@
+ .sv-hero-card.is-shade span, .sv-hero-card.is-shade small { color: var(--mint); }
+ .sv-hero-card.is-sun { right: 24px; top: 24px; background: var(--brick); }
+ .sv-hero-card.is-sun span, .sv-hero-card.is-sun small { color: #FFE1D8; }
+-.sv-hero-figure figcaption { position: absolute; right: 24px; bottom: 24px; background: rgba(242,239,232,.94); color: var(--ink-2); font-size: 12px; padding: 6px 12px; border-radius: 999px; }
++.sv-hero-stamp { position: absolute; right: 24px; bottom: 24px; background: rgba(242,239,232,.94); color: var(--ink-2); font-size: 12px; padding: 6px 12px; border-radius: 999px; }
++
++/* Fotografias documentais: crédito sempre visível e aviso legível se a fonte externa cair */
++.sv-credit { font-size: 12px; line-height: 1.5; color: var(--ink-3); }
++.sv-credit a { color: inherit; font-weight: 600; }
++.sv-credit strong { display: block; color: var(--ink); font-size: 13px; }
++.sv-band-dark .sv-credit { color: var(--on-green-2); }
++.sv-band-dark .sv-credit strong { color: #fff; }
++.sv-hero-photo .sv-media-note { right: 240px; }
++.sv-media-note { position: absolute; left: 24px; right: 24px; top: 24px; background: var(--paper); color: var(--ink-2); font-size: 13px; padding: 10px 14px; border-radius: 10px; }
+ 
+ /* O problema */
+ .sv-duo { display: flex; flex-wrap: wrap; gap: 24px; }
+-.sv-duo-item { flex: 1 1 380px; min-width: 0; position: relative; height: 380px; border-radius: 20px; overflow: hidden; }
+-.sv-duo-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+-.sv-duo-item.is-shade img { object-position: 70% center; }
+-.sv-duo-item.is-sun img { object-position: center 30%; }
+-.sv-duo-item figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 22px; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+-.sv-duo-item.is-shade figcaption { background: linear-gradient(0deg, rgba(10,40,38,.92), rgba(10,40,38,0)); }
+-.sv-duo-item.is-sun figcaption { background: linear-gradient(0deg, rgba(110,32,18,.92), rgba(110,32,18,0)); }
++.sv-duo-item { flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
++.sv-duo-photo { position: relative; height: 380px; border-radius: 20px; overflow: hidden; background: #164F4B; }
++.sv-duo-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
++.sv-duo-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 22px; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
++.sv-duo-item.is-shade .sv-duo-label { background: linear-gradient(0deg, rgba(10,40,38,.92), rgba(10,40,38,0)); }
++.sv-duo-item.is-sun .sv-duo-label { background: linear-gradient(0deg, rgba(110,32,18,.92), rgba(110,32,18,0)); }
+ .sv-duo-item span { font-size: 16px; font-weight: 600; }
+ .sv-duo-item strong { font-size: 34px; font-weight: 800; letter-spacing: -.8px; }
+ .sv-duo-item.is-shade strong { color: var(--mint); }
+ .sv-duo-item.is-sun strong { color: #FFD2C5; }
++.sv-archive { display: flex; flex-direction: column; gap: 20px; border-top: 1px solid rgba(242,239,232,.2); padding-top: 32px; }
++.sv-archive-head { display: flex; flex-direction: column; gap: 10px; max-width: 760px; }
++.sv-archive-head h3 { font-size: 26px; line-height: 1.2; letter-spacing: -.5px; }
++.sv-archive-head p { font-size: 16px; line-height: 1.65; color: var(--on-green); }
++.sv-archive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
++.sv-archive-grid figure { display: flex; flex-direction: column; gap: 10px; }
++.sv-archive-photo { position: relative; height: 300px; border-radius: 16px; overflow: hidden; background: #164F4B; }
++.sv-archive-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+ .sv-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+ .sv-facts div { display: flex; flex-direction: column-reverse; gap: 6px; border-top: 2px solid rgba(242,239,232,.4); padding-top: 16px; }
+ .sv-facts div.is-hot { border-top-color: var(--brick); }
+@@ -137,10 +154,11 @@
+   .sv-section { padding-top: 56px; padding-bottom: 56px; }
+   .sv-hero h1 { font-size: 38px; letter-spacing: -1px; }
+   .sv-section-head h2, .sv-purpose h2 { font-size: 34px; letter-spacing: -.8px; }
+-  .sv-hero-figure { height: 420px; }
++  .sv-hero-photo { height: 420px; }
++  .sv-duo-photo, .sv-archive-photo { height: 280px; }
+   .sv-hero-card { min-width: 0; padding: 10px 14px; }
+   .sv-hero-card strong { font-size: 32px; }
+-  .sv-hero-figure figcaption { display: none; }
++  .sv-hero-stamp { display: none; }
+   .sv-facts dd { font-size: 34px; }
+   .sv-chart-heatmap { height: 340px; }
+ }
+diff --git a/tests/test_ui_public_page.py b/tests/test_ui_public_page.py
+index 23c60ce..5ef4239 100644
+--- a/tests/test_ui_public_page.py
++++ b/tests/test_ui_public_page.py
+@@ -6,6 +6,7 @@ com id que o JavaScript preenche e cada imagem e link externo segue as regras de
+ """
+ import re
+ from html.parser import HTMLParser
++from urllib.parse import urlparse
+ from pathlib import Path
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+@@ -175,18 +176,51 @@ def test_map_iframe_is_titled_and_does_not_leak_the_referrer():
+ 
+ def test_every_image_has_alt_text_and_reserved_size():
+     images = PAGE.find('img')
+-    assert len(images) == 4
++    assert len(images) == 6
+     for img in images:
+         assert img.get('alt'), img
+         assert img.get('width') and img.get('height'), img
+ 
+ 
+-def test_images_come_from_the_original_repository_assets(client):
+-    for img in PAGE.find('img'):
+-        src = img['src']
+-        assert src.startswith('/static/assets/')
+-        assert (ROOT / src.lstrip('/')).is_file(), src
+-        assert client.get(src).status_code == 200
++DOCUMENTARY = [img for img in PAGE.find('img') if 'documentary-media' in img.get('class', '')]
++
++
++def test_the_five_original_documentary_photos_are_back():
++    hosts = sorted(urlparse(img['src']).hostname for img in DOCUMENTARY)
++    assert hosts == ['agenciamural.org.br', 'upload.wikimedia.org', 'www.aeaosasco.org.br',
++                     'www.oanhanguera.com.br', 'www.visaooeste.com.br']
++
++
++def test_documentary_photos_are_allowed_by_the_csp(client):
++    csp = client.get('/').headers['content-security-policy']
++    img_src = csp.split('img-src')[1].split(';')[0].split()
++    for img in DOCUMENTARY:
++        assert f"https://{urlparse(img['src']).hostname}" in img_src, img['src']
++        assert img.get('referrerpolicy') == 'no-referrer'
++
++
++def test_every_documentary_photo_has_a_credit_link_and_a_fallback_note():
++    for img in DOCUMENTARY:
++        note = img['data-credit-id']
++        assert PAGE.find('p', id=note)[0].get('role') == 'status'
++        assert f'id="{note}" hidden' in HTML
++        figure = HTML.split(img['src'])[1].split('</figure>')[0]
++        caption = figure.split('<figcaption class="sv-credit">')[1]
++        assert 'href="https://' in caption and 'target="_blank"' in caption
++
++
++def test_media_script_shows_the_note_instead_of_a_synthetic_image():
++    media = (STATIC / 'media.js').read_text(encoding='utf-8')
++    assert "querySelectorAll('img.documentary-media')" in media and "addEventListener('error'" in media
++    assert 'note.hidden = false' in media and 'image.hidden = true' in media
++    assert '/static/media.js' in HTML
++
++
++def test_local_images_come_from_the_repository_assets(client):
++    local = [img['src'] for img in PAGE.find('img') if img['src'].startswith('/')]
++    assert local == ['/static/assets/osasco-orientation.svg']
++    for src in local:
++        assert (ROOT / src.lstrip('/')).is_file() and client.get(src).status_code == 200
+ 
+ 
+ def test_footer_states_that_the_readings_are_simulated():
+diff --git a/tests/test_ui_visual_system.py b/tests/test_ui_visual_system.py
+index 8f756e3..877dff6 100644
+--- a/tests/test_ui_visual_system.py
++++ b/tests/test_ui_visual_system.py
+@@ -90,14 +90,14 @@ def test_styles_load_nothing_from_other_domains():
+ def test_every_class_in_the_public_page_has_a_style():
+     html = (STATIC / 'index.html').read_text(encoding='utf-8')
+     # Classes que só servem de gancho para estados ou para o JavaScript.
+-    hooks = {'skip-link', 'menu-toggle'}
++    hooks = {'skip-link', 'menu-toggle', 'documentary-media'}  # documentary-media: gancho do media.js
+     missing = sorted(c for c in classes_in(html) - hooks if f'.{c}' not in PUBLIC_CSS)
+     assert not missing, f'classes sem estilo no painel público: {missing}'
+ 
+ 
+ def test_every_class_in_the_admin_page_has_a_style():
+     html = (STATIC / 'admin.html').read_text(encoding='utf-8')
+-    hooks = {'skip-link', 'admin-page'}
++    hooks = {'skip-link', 'admin-page', 'documentary-media'}
+     missing = sorted(c for c in classes_in(html) - hooks if f'.{c}' not in ADMIN_CSS)
+     assert not missing, f'classes sem estilo na central: {missing}'
+ 
+-- 
+2.43.0
+

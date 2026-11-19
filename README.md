@@ -10,9 +10,23 @@
 | **Vídeo (6:51)** | <https://youtu.be/LVk2nFlhMOc> |
 | **Sistema** | Ubuntu Server 24.04 LTS na **Oracle Cloud** (região São Paulo, Always Free) — os scripts também funcionam numa VM local (VirtualBox), seção 4 |
 | **VM no ar** | <http://163.176.235.6/> (dashboard) · <http://163.176.235.6/docs> (Swagger) |
-| **Aplicação hospedada** | API do SombraViva, do repositório de SOA: <https://github.com/JoaoKraideM/Global-Solution---2-semestre---Cyber-Soa> |
+| **Aplicação hospedada** | API do SombraViva, do repositório de SOA: <https://github.com/JoaoKraideM/Global-Solution---4-semestre---Cyber-Soa> |
 | **Circuito IoT** | <https://github.com/doug-melo/sombraviva-iot> |
 | **Comando único** | `sudo ./provision.sh` |
+
+
+## Ficha da CitizenTech
+
+| | |
+|---|---|
+| **Nome** | SombraViva — Inteligência Climática Urbana |
+| **Cidade e bairro** | Osasco (SP), Centro — Calçadão da Rua Antônio Agú |
+| **Cidadão beneficiado** | Pedestres, trabalhadores de rua, comerciantes e idosos que passam pelo Calçadão; e a prefeitura, que decide onde plantar e sombrear |
+| **Problema, em uma frase** | Depois da retirada das árvores do Calçadão, quem passa por ali fica exposto a uma ilha de calor sem saber quando o calor vira risco, e a cidade não tem dados locais para decidir onde devolver a sombra. |
+| **Como funciona** | Um ESP32 mede a temperatura na sombra e no piso exposto, calcula o índice de calor e o risco, e envia as leituras para uma API na nuvem; o painel web mostra a diferença em tempo real e o histórico. |
+| **O que cada parte faz** | **Operating Systems:** VM Linux na Oracle Cloud provisionada por Shell Script, que hospeda a API com monitoramento, auditoria e recuperação de falhas ([sombraviva-so](https://github.com/doug-melo/sombraviva-so)). **Physical Computing:** circuito ESP32 no Wokwi que mede sombra × sol, sinaliza o risco com LEDs, display e buzzer e envia à API ([sombraviva-iot](https://github.com/doug-melo/sombraviva-iot)). **SOA e Cybersecurity:** API FastAPI + MySQL com Swagger, autenticação dos dispositivos e proteção de dados ([API](https://github.com/JoaoKraideM/Global-Solution---4-semestre---Cyber-Soa)). |
+| **Indicador de impacto** | Diferença de temperatura (°C) entre a sombra e o piso exposto e número de horas por dia em ATENÇÃO, ALERTA ou PERIGO no Calçadão. Para ampliar: quantidade de pontos monitorados na cidade. |
+| **ODS conectados** | **ODS 3 — Saúde e bem-estar:** avisa quando o índice de calor passa de 27, 32 e 41 °C, faixas em que o NOAA indica fadiga, exaustão e insolação, protegendo quem trabalha e circula ao sol. **ODS 11 — Cidades sustentáveis:** dá à prefeitura dados locais, por ponto da cidade, para priorizar arborização e sombreamento. **ODS 13 — Ação climática:** registra ao longo do tempo a intensidade da ilha de calor, evidência para a adaptação às ondas de calor. |
 
 ---
 
@@ -67,7 +81,7 @@ flowchart LR
 | Disciplina | Ligação com este repositório |
 |---|---|
 | **Physical Computing (IoT)** | O ESP32 do Wokwi faz `POST /api/v1/medicoes` nesta API (mesmo JSON e cabeçalhos do `sketch.ino`). Basta trocar o `API_URL` do sketch pela URL pública do túnel. |
-| **SOA / Web Services** | A aplicação hospedada é o backend de SOA ([Global-Solution---2-semestre---Cyber-Soa](https://github.com/JoaoKraideM/Global-Solution---2-semestre---Cyber-Soa)): o `02_provision_app.sh` clona o repositório, roda as migrações Alembic e o seed e sobe a API no systemd. |
+| **SOA / Web Services** | A aplicação hospedada é o backend de SOA ([Global-Solution---4-semestre---Cyber-Soa](https://github.com/JoaoKraideM/Global-Solution---4-semestre---Cyber-Soa)): o `02_provision_app.sh` clona o repositório, roda as migrações Alembic e o seed e sobe a API no systemd. |
 | **Cybersecurity** | Autenticação dos dispositivos por token (comparação em tempo constante), **401 + registro de auditoria** em toda tentativa inválida (log + tabela `eventos_auditoria`), firewall, segredos em arquivo `600`, serviços com *hardening* do systemd, auditd e trilha de quem executou cada script. |
 
 ## 3. A aplicação hospedada (repositório de SOA)
@@ -306,4 +320,4 @@ LOG_DIR=/tmp/svlogs HEALTH_URL=http://localhost:8000/health ./scripts/03_monitor
 - Somente **dados simulados**: nenhum dado pessoal real é coletado.
 - Segredos (senha do banco, tokens) **nunca** vão para o Git — ficam em `/etc/sombraviva/sombraviva.env` (`chmod 600`).
 - Uso de IA registrado em [`prompts.md`](prompts.md).
-- ODS 3, 11 e 13.
+- ODS 3, 11 e 13 — como o projeto contribui para cada um está na [Ficha da CitizenTech](#ficha-da-citizentech).

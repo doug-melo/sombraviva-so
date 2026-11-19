@@ -153,6 +153,8 @@ aplicar_patch_integracao() {
       audit "PATCH_APLICADO $nome"
       log_ok "Patch aplicado: $nome"
     else
+      log_error "git apply recusou $nome:"
+      git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" apply --check --whitespace=nowarn "$patch" 2>&1 | head -n 8 | tee -a "$LOG_FILE" >&2 || true
       die "Patch $nome não se aplica sobre $APP_GIT_BRANCH (a main da API mudou?)"
     fi
   done
@@ -170,6 +172,8 @@ implantar_codigo() {
     if [[ -d "$APP_DIR/repo/.git" ]]; then
       run git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" fetch --depth 1 origin "$APP_GIT_BRANCH"
       run git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" reset --hard "origin/$APP_GIT_BRANCH"
+      # reset --hard não apaga arquivos soltos; sobras de patches antigos impediriam os novos
+      run git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" clean -ffdx
     else
       rm -rf "$APP_DIR/repo"
       run git clone --depth 1 --branch "$APP_GIT_BRANCH" "$APP_GIT_URL" "$APP_DIR/repo"

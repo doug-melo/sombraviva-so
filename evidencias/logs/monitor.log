@@ -1,0 +1,2000 @@
+2026-11-19 07:32:57 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:32:57 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:33:28 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.03 0.13 0.19 nucleos=2
+2026-11-19 07:33:28 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:33:28 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:33:28 -0300 [INFO] API      health OK (HTTP 200 em 0.003247s) http://127.0.0.1:8000/health
+2026-11-19 07:33:28 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:33:28 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:33:29 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:33:29 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:33:29 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:34:00 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.22 0.16 0.20 nucleos=2
+2026-11-19 07:34:00 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:34:00 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:34:00 -0300 [INFO] API      health OK (HTTP 200 em 0.003144s) http://127.0.0.1:8000/health
+2026-11-19 07:34:00 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:34:00 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:34:00 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:34:00 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:34:00 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:34:31 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.12 0.14 0.19 nucleos=2
+2026-11-19 07:34:31 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:34:31 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:34:31 -0300 [INFO] API      health OK (HTTP 200 em 0.003096s) http://127.0.0.1:8000/health
+2026-11-19 07:34:31 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:34:31 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:34:31 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:34:31 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:34:31 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:35:02 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.07 0.13 0.18 nucleos=2
+2026-11-19 07:35:02 -0300 [INFO] MEMORIA  uso=71% livre=272MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:35:02 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:35:03 -0300 [INFO] API      health OK (HTTP 200 em 0.003125s) http://127.0.0.1:8000/health
+2026-11-19 07:35:03 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:35:03 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:35:03 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:35:03 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:35:03 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:35:34 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.12 0.13 0.18 nucleos=2
+2026-11-19 07:35:34 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:35:34 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:35:34 -0300 [INFO] API      health OK (HTTP 200 em 0.003075s) http://127.0.0.1:8000/health
+2026-11-19 07:35:34 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:35:34 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:35:34 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:35:34 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:35:34 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:36:05 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.07 0.11 0.17 nucleos=2
+2026-11-19 07:36:05 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:36:05 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:36:05 -0300 [INFO] API      health OK (HTTP 200 em 0.003134s) http://127.0.0.1:8000/health
+2026-11-19 07:36:05 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:36:05 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:36:05 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:36:05 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:36:05 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:36:36 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.16 0.14 0.18 nucleos=2
+2026-11-19 07:36:36 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:36:36 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:36:36 -0300 [INFO] API      health OK (HTTP 200 em 0.003002s) http://127.0.0.1:8000/health
+2026-11-19 07:36:37 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:36:37 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:36:37 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:36:37 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:36:37 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:37:08 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.10 0.12 0.17 nucleos=2
+2026-11-19 07:37:08 -0300 [INFO] MEMORIA  uso=70% livre=276MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:37:08 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:37:08 -0300 [INFO] API      health OK (HTTP 200 em 0.003190s) http://127.0.0.1:8000/health
+2026-11-19 07:37:08 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:37:08 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:37:08 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:37:08 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:37:08 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:37:39 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.11 0.12 0.17 nucleos=2
+2026-11-19 07:37:39 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:37:39 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:37:39 -0300 [INFO] API      health OK (HTTP 200 em 0.003264s) http://127.0.0.1:8000/health
+2026-11-19 07:37:39 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:37:39 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:37:39 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:37:39 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:37:39 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:38:10 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.06 0.11 0.17 nucleos=2
+2026-11-19 07:38:10 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:38:11 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:38:11 -0300 [INFO] API      health OK (HTTP 200 em 0.003130s) http://127.0.0.1:8000/health
+2026-11-19 07:38:11 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:38:11 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:38:11 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:38:11 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:38:11 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:38:42 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.04 0.10 0.16 nucleos=2
+2026-11-19 07:38:42 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:38:42 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:38:42 -0300 [INFO] API      health OK (HTTP 200 em 0.003067s) http://127.0.0.1:8000/health
+2026-11-19 07:38:42 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:38:42 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:38:42 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:38:42 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:38:42 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:39:13 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.22 0.13 0.17 nucleos=2
+2026-11-19 07:39:13 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:39:13 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:39:13 -0300 [INFO] API      health OK (HTTP 200 em 0.003172s) http://127.0.0.1:8000/health
+2026-11-19 07:39:13 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:39:13 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:39:13 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:39:13 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:39:13 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:39:44 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.14 0.12 0.17 nucleos=2
+2026-11-19 07:39:44 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:39:44 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:39:44 -0300 [INFO] API      health OK (HTTP 200 em 0.003103s) http://127.0.0.1:8000/health
+2026-11-19 07:39:45 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:39:45 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:39:45 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:39:45 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:39:45 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:40:16 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.07 0.11 0.16 nucleos=2
+2026-11-19 07:40:16 -0300 [INFO] MEMORIA  uso=70% livre=280MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:40:16 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:40:16 -0300 [INFO] API      health OK (HTTP 200 em 0.003471s) http://127.0.0.1:8000/health
+2026-11-19 07:40:16 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:40:16 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:40:16 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:40:16 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:40:16 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:40:47 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.04 0.09 0.15 nucleos=2
+2026-11-19 07:40:47 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:40:47 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:40:47 -0300 [INFO] API      health OK (HTTP 200 em 0.003070s) http://127.0.0.1:8000/health
+2026-11-19 07:40:47 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:40:47 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:40:47 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:40:47 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:40:47 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:41:18 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.14 0.12 0.16 nucleos=2
+2026-11-19 07:41:18 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:41:18 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:41:18 -0300 [INFO] API      health OK (HTTP 200 em 0.003225s) http://127.0.0.1:8000/health
+2026-11-19 07:41:19 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:41:19 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:41:19 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:41:19 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:41:19 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:41:50 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.09 0.10 0.15 nucleos=2
+2026-11-19 07:41:50 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:41:50 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:41:50 -0300 [INFO] API      health OK (HTTP 200 em 0.003153s) http://127.0.0.1:8000/health
+2026-11-19 07:41:50 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:41:50 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:41:50 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:41:50 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:41:50 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:42:21 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.10 0.11 0.15 nucleos=2
+2026-11-19 07:42:21 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:42:21 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:42:21 -0300 [INFO] API      health OK (HTTP 200 em 0.003072s) http://127.0.0.1:8000/health
+2026-11-19 07:42:21 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:42:21 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:42:21 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:42:21 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:42:21 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:42:52 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.06 0.09 0.15 nucleos=2
+2026-11-19 07:42:52 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:42:52 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:42:52 -0300 [INFO] API      health OK (HTTP 200 em 0.003164s) http://127.0.0.1:8000/health
+2026-11-19 07:42:53 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:42:53 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:42:53 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:42:53 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:42:53 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:43:24 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.11 0.10 0.15 nucleos=2
+2026-11-19 07:43:24 -0300 [INFO] MEMORIA  uso=71% livre=273MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:43:24 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:43:24 -0300 [INFO] API      health OK (HTTP 200 em 0.002913s) http://127.0.0.1:8000/health
+2026-11-19 07:43:24 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:43:24 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:43:24 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:43:24 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:43:24 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:43:55 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.12 0.11 0.15 nucleos=2
+2026-11-19 07:43:55 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:43:55 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:43:55 -0300 [INFO] API      health OK (HTTP 200 em 0.003006s) http://127.0.0.1:8000/health
+2026-11-19 07:43:55 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:43:55 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:43:55 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:43:55 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:43:55 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:44:26 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.07 0.09 0.14 nucleos=2
+2026-11-19 07:44:26 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:44:26 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:44:26 -0300 [INFO] API      health OK (HTTP 200 em 0.002933s) http://127.0.0.1:8000/health
+2026-11-19 07:44:26 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:44:26 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:44:27 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:44:27 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:44:27 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:44:58 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.04 0.08 0.13 nucleos=2
+2026-11-19 07:44:58 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:44:58 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:44:58 -0300 [INFO] API      health OK (HTTP 200 em 0.002980s) http://127.0.0.1:8000/health
+2026-11-19 07:44:58 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:44:58 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:44:58 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:44:58 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:44:58 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:45:29 -0300 [INFO] CPU      uso=11% (warn 75% / crit 90%) load=0.09 0.09 0.13 nucleos=2
+2026-11-19 07:45:29 -0300 [INFO] MEMORIA  uso=71% livre=272MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:45:29 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:45:29 -0300 [INFO] API      health OK (HTTP 200 em 0.003159s) http://127.0.0.1:8000/health
+2026-11-19 07:45:29 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:45:29 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:45:29 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:45:29 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:45:29 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:46:00 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.05 0.08 0.13 nucleos=2
+2026-11-19 07:46:00 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:46:01 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:46:01 -0300 [INFO] API      health OK (HTTP 200 em 0.003375s) http://127.0.0.1:8000/health
+2026-11-19 07:46:01 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:46:01 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:46:01 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:46:01 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:46:01 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:46:32 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.03 0.07 0.12 nucleos=2
+2026-11-19 07:46:32 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:46:32 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:46:32 -0300 [INFO] API      health OK (HTTP 200 em 0.002917s) http://127.0.0.1:8000/health
+2026-11-19 07:46:32 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:46:32 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:46:32 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:46:32 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:46:32 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:47:03 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.02 0.06 0.11 nucleos=2
+2026-11-19 07:47:03 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:47:03 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:47:03 -0300 [INFO] API      health OK (HTTP 200 em 0.003071s) http://127.0.0.1:8000/health
+2026-11-19 07:47:03 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:47:03 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:47:03 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:47:03 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:47:03 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:47:34 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.07 0.07 0.11 nucleos=2
+2026-11-19 07:47:34 -0300 [INFO] MEMORIA  uso=70% livre=276MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:47:35 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:47:35 -0300 [INFO] API      health OK (HTTP 200 em 0.004905s) http://127.0.0.1:8000/health
+2026-11-19 07:47:35 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:47:35 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:47:35 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:47:35 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:47:35 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:48:06 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.14 0.09 0.12 nucleos=2
+2026-11-19 07:48:06 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:48:06 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:48:06 -0300 [INFO] API      health OK (HTTP 200 em 0.003051s) http://127.0.0.1:8000/health
+2026-11-19 07:48:06 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:48:06 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:48:06 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:48:06 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:48:06 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:48:37 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.08 0.08 0.11 nucleos=2
+2026-11-19 07:48:37 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:48:37 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:48:37 -0300 [INFO] API      health OK (HTTP 200 em 0.003522s) http://127.0.0.1:8000/health
+2026-11-19 07:48:37 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:48:37 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:48:38 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:48:38 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:48:38 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:49:09 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.05 0.07 0.11 nucleos=2
+2026-11-19 07:49:09 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:49:09 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:49:09 -0300 [INFO] API      health OK (HTTP 200 em 0.002932s) http://127.0.0.1:8000/health
+2026-11-19 07:49:09 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:49:09 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:49:09 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:49:09 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:49:09 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:49:40 -0300 [INFO] CPU      uso=17% (warn 75% / crit 90%) load=0.18 0.10 0.11 nucleos=2
+2026-11-19 07:49:40 -0300 [INFO] MEMORIA  uso=71% livre=268MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:49:40 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:49:40 -0300 [INFO] API      health OK (HTTP 200 em 0.003144s) http://127.0.0.1:8000/health
+2026-11-19 07:49:40 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:49:40 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:49:40 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:49:40 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:49:40 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:50:11 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.28 0.13 0.12 nucleos=2
+2026-11-19 07:50:11 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:50:12 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:50:12 -0300 [INFO] API      health OK (HTTP 200 em 0.003109s) http://127.0.0.1:8000/health
+2026-11-19 07:50:12 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:50:12 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:50:12 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:50:12 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:50:12 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:50:43 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.28 0.15 0.13 nucleos=2
+2026-11-19 07:50:43 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:50:43 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:50:43 -0300 [INFO] API      health OK (HTTP 200 em 0.003148s) http://127.0.0.1:8000/health
+2026-11-19 07:50:43 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:50:43 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:50:43 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:50:43 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:50:43 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:51:14 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.17 0.13 0.12 nucleos=2
+2026-11-19 07:51:14 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:51:14 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:51:14 -0300 [INFO] API      health OK (HTTP 200 em 0.003955s) http://127.0.0.1:8000/health
+2026-11-19 07:51:14 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:51:14 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:51:14 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:51:14 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:51:14 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:51:45 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.09 0.12 0.12 nucleos=2
+2026-11-19 07:51:46 -0300 [INFO] MEMORIA  uso=71% livre=273MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:51:46 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:51:46 -0300 [INFO] API      health OK (HTTP 200 em 0.003505s) http://127.0.0.1:8000/health
+2026-11-19 07:51:46 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:51:46 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:51:46 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:51:46 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:51:46 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:52:17 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.06 0.11 0.11 nucleos=2
+2026-11-19 07:52:17 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:52:17 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:52:17 -0300 [INFO] API      health OK (HTTP 200 em 0.003031s) http://127.0.0.1:8000/health
+2026-11-19 07:52:17 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:52:17 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:52:17 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:52:17 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:52:17 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:52:48 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.11 0.11 0.11 nucleos=2
+2026-11-19 07:52:49 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:52:49 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:52:49 -0300 [INFO] API      health OK (HTTP 200 em 0.003079s) http://127.0.0.1:8000/health
+2026-11-19 07:52:49 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:52:49 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:52:49 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:52:49 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:52:49 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:53:20 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.12 0.11 0.11 nucleos=2
+2026-11-19 07:53:20 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:53:20 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:53:20 -0300 [INFO] API      health OK (HTTP 200 em 0.003236s) http://127.0.0.1:8000/health
+2026-11-19 07:53:20 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:53:20 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:53:20 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:53:20 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:53:20 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:53:51 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.30 0.16 0.13 nucleos=2
+2026-11-19 07:53:51 -0300 [INFO] MEMORIA  uso=71% livre=271MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:53:51 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:53:51 -0300 [INFO] API      health OK (HTTP 200 em 0.002943s) http://127.0.0.1:8000/health
+2026-11-19 07:53:51 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:53:51 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:53:51 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:53:51 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:53:51 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:54:22 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.18 0.15 0.12 nucleos=2
+2026-11-19 07:54:23 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:54:23 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:54:23 -0300 [INFO] API      health OK (HTTP 200 em 0.066315s) http://127.0.0.1:8000/health
+2026-11-19 07:54:23 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:54:23 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:54:23 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:54:23 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:54:23 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:54:54 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.11 0.13 0.12 nucleos=2
+2026-11-19 07:54:54 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:54:54 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:54:54 -0300 [INFO] API      health OK (HTTP 200 em 0.002981s) http://127.0.0.1:8000/health
+2026-11-19 07:54:54 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:54:54 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:54:54 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:54:54 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:54:54 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:55:25 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.06 0.12 0.11 nucleos=2
+2026-11-19 07:55:25 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:55:25 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:55:25 -0300 [INFO] API      health OK (HTTP 200 em 0.003067s) http://127.0.0.1:8000/health
+2026-11-19 07:55:25 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:55:25 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:55:25 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:55:25 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:55:25 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:55:56 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.15 0.14 0.12 nucleos=2
+2026-11-19 07:55:57 -0300 [INFO] MEMORIA  uso=70% livre=276MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:55:57 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:55:57 -0300 [INFO] API      health OK (HTTP 200 em 0.004058s) http://127.0.0.1:8000/health
+2026-11-19 07:55:57 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:55:57 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:55:57 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:55:57 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:55:57 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:56:28 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.21 0.15 0.12 nucleos=2
+2026-11-19 07:56:28 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:56:28 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:56:28 -0300 [INFO] API      health OK (HTTP 200 em 0.002940s) http://127.0.0.1:8000/health
+2026-11-19 07:56:28 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:56:28 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:56:29 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:56:29 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:56:29 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:57:00 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.12 0.14 0.12 nucleos=2
+2026-11-19 07:57:00 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:57:00 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:57:00 -0300 [INFO] API      health OK (HTTP 200 em 0.002999s) http://127.0.0.1:8000/health
+2026-11-19 07:57:00 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:57:00 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:57:00 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:57:00 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:57:00 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:57:31 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.07 0.12 0.11 nucleos=2
+2026-11-19 07:57:31 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:57:31 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:57:31 -0300 [INFO] API      health OK (HTTP 200 em 0.003555s) http://127.0.0.1:8000/health
+2026-11-19 07:57:31 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:57:31 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:57:31 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:57:31 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:57:31 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:58:02 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.12 0.12 0.11 nucleos=2
+2026-11-19 07:58:02 -0300 [INFO] MEMORIA  uso=71% livre=270MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:58:02 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:58:02 -0300 [INFO] API      health OK (HTTP 200 em 0.003383s) http://127.0.0.1:8000/health
+2026-11-19 07:58:02 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:58:02 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:58:02 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:58:02 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:58:02 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:58:33 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.12 0.13 0.11 nucleos=2
+2026-11-19 07:58:34 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:58:34 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:58:34 -0300 [INFO] API      health OK (HTTP 200 em 0.003353s) http://127.0.0.1:8000/health
+2026-11-19 07:58:34 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:58:34 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:58:34 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:58:34 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:58:34 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:59:05 -0300 [INFO] CPU      uso=28% (warn 75% / crit 90%) load=0.07 0.11 0.10 nucleos=2
+2026-11-19 07:59:05 -0300 [INFO] MEMORIA  uso=70% livre=276MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:59:05 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:59:05 -0300 [INFO] API      health OK (HTTP 200 em 0.003190s) http://127.0.0.1:8000/health
+2026-11-19 07:59:05 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:59:05 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:59:05 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:59:05 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:59:05 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 07:59:36 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.09 0.11 0.10 nucleos=2
+2026-11-19 07:59:36 -0300 [INFO] MEMORIA  uso=70% livre=276MB total=952MB (warn 80% / crit 92%)
+2026-11-19 07:59:36 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 07:59:36 -0300 [INFO] API      health OK (HTTP 200 em 0.003135s) http://127.0.0.1:8000/health
+2026-11-19 07:59:36 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 07:59:36 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 07:59:37 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 07:59:37 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 07:59:37 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:00:08 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.05 0.10 0.10 nucleos=2
+2026-11-19 08:00:08 -0300 [INFO] MEMORIA  uso=71% livre=275MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:00:08 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:00:08 -0300 [INFO] API      health OK (HTTP 200 em 0.002916s) http://127.0.0.1:8000/health
+2026-11-19 08:00:08 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:00:08 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:00:08 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:00:08 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:00:08 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:00:39 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.11 0.11 0.10 nucleos=2
+2026-11-19 08:00:39 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:00:39 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:00:39 -0300 [INFO] API      health OK (HTTP 200 em 0.003145s) http://127.0.0.1:8000/health
+2026-11-19 08:00:39 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:00:39 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:00:39 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:00:39 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:00:39 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:01:10 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.12 0.11 0.10 nucleos=2
+2026-11-19 08:01:10 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:01:10 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:01:10 -0300 [INFO] API      health OK (HTTP 200 em 0.003142s) http://127.0.0.1:8000/health
+2026-11-19 08:01:10 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:01:10 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:01:10 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:01:10 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:01:10 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:01:41 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.16 0.13 0.10 nucleos=2
+2026-11-19 08:01:42 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:01:42 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:01:42 -0300 [INFO] API      health OK (HTTP 200 em 0.003140s) http://127.0.0.1:8000/health
+2026-11-19 08:01:42 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:01:42 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:01:42 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:01:42 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:01:42 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:02:13 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.10 0.11 0.09 nucleos=2
+2026-11-19 08:02:13 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:02:13 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:02:13 -0300 [INFO] API      health OK (HTTP 200 em 0.007208s) http://127.0.0.1:8000/health
+2026-11-19 08:02:13 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:02:13 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:02:13 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:02:13 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:02:13 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:02:44 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.06 0.10 0.09 nucleos=2
+2026-11-19 08:02:44 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:02:44 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:02:44 -0300 [INFO] API      health OK (HTTP 200 em 0.107169s) http://127.0.0.1:8000/health
+2026-11-19 08:02:44 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:02:44 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:02:44 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:02:44 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:02:44 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:03:15 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.19 0.12 0.10 nucleos=2
+2026-11-19 08:03:16 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:03:16 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:03:16 -0300 [INFO] API      health OK (HTTP 200 em 0.110405s) http://127.0.0.1:8000/health
+2026-11-19 08:03:16 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:03:16 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:03:16 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:03:16 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:03:16 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:03:47 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.11 0.11 0.09 nucleos=2
+2026-11-19 08:03:47 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:03:47 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:03:47 -0300 [INFO] API      health OK (HTTP 200 em 0.003047s) http://127.0.0.1:8000/health
+2026-11-19 08:03:47 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:03:47 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:03:47 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:03:47 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:03:47 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:04:18 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.07 0.10 0.09 nucleos=2
+2026-11-19 08:04:18 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:04:18 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:04:19 -0300 [INFO] API      health OK (HTTP 200 em 0.004884s) http://127.0.0.1:8000/health
+2026-11-19 08:04:19 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:04:19 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:04:19 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:04:19 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:04:19 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:04:50 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.11 0.10 0.09 nucleos=2
+2026-11-19 08:04:50 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:04:50 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:04:50 -0300 [INFO] API      health OK (HTTP 200 em 0.002974s) http://127.0.0.1:8000/health
+2026-11-19 08:04:50 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:04:50 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:04:50 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:04:50 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:04:50 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:05:21 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.11 0.11 0.09 nucleos=2
+2026-11-19 08:05:21 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:05:21 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:05:21 -0300 [INFO] API      health OK (HTTP 200 em 0.003101s) http://127.0.0.1:8000/health
+2026-11-19 08:05:21 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:05:21 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:05:22 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:05:22 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:05:22 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:05:53 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.29 0.15 0.10 nucleos=2
+2026-11-19 08:05:53 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:05:53 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:05:53 -0300 [INFO] API      health OK (HTTP 200 em 0.002959s) http://127.0.0.1:8000/health
+2026-11-19 08:05:53 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:05:53 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:05:53 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:05:53 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:05:53 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:06:24 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.17 0.13 0.10 nucleos=2
+2026-11-19 08:06:24 -0300 [INFO] MEMORIA  uso=71% livre=270MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:06:24 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:06:24 -0300 [INFO] API      health OK (HTTP 200 em 0.003136s) http://127.0.0.1:8000/health
+2026-11-19 08:06:24 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:06:24 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:06:24 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:06:24 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:06:24 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:06:55 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.10 0.12 0.09 nucleos=2
+2026-11-19 08:06:55 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:06:55 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:06:55 -0300 [INFO] API      health OK (HTTP 200 em 0.003153s) http://127.0.0.1:8000/health
+2026-11-19 08:06:55 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:06:55 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:06:56 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:06:56 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:06:56 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:07:27 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.11 0.12 0.09 nucleos=2
+2026-11-19 08:07:27 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:07:27 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:07:27 -0300 [INFO] API      health OK (HTTP 200 em 0.003094s) http://127.0.0.1:8000/health
+2026-11-19 08:07:27 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:07:27 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:07:27 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:07:27 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:07:27 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:07:58 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.25 0.15 0.10 nucleos=2
+2026-11-19 08:07:58 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:07:58 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:07:58 -0300 [INFO] API      health OK (HTTP 200 em 0.003166s) http://127.0.0.1:8000/health
+2026-11-19 08:07:58 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:07:58 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:07:58 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:07:58 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:07:58 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:08:29 -0300 [INFO] CPU      uso=18% (warn 75% / crit 90%) load=0.15 0.14 0.10 nucleos=2
+2026-11-19 08:08:29 -0300 [INFO] MEMORIA  uso=71% livre=267MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:08:29 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:08:29 -0300 [INFO] API      health OK (HTTP 200 em 0.003047s) http://127.0.0.1:8000/health
+2026-11-19 08:08:29 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:08:29 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:08:29 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:08:30 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:08:30 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:09:01 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.08 0.12 0.09 nucleos=2
+2026-11-19 08:09:01 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:09:01 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:09:01 -0300 [INFO] API      health OK (HTTP 200 em 0.002975s) http://127.0.0.1:8000/health
+2026-11-19 08:09:01 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:09:01 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:09:01 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:09:01 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:09:01 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:09:32 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.05 0.11 0.09 nucleos=2
+2026-11-19 08:09:32 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:09:32 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:09:32 -0300 [INFO] API      health OK (HTTP 200 em 0.003105s) http://127.0.0.1:8000/health
+2026-11-19 08:09:32 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:09:32 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:09:32 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:09:32 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:09:32 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:10:03 -0300 [INFO] CPU      uso=2% (warn 75% / crit 90%) load=0.03 0.10 0.08 nucleos=2
+2026-11-19 08:10:03 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:10:03 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:10:03 -0300 [INFO] API      health OK (HTTP 200 em 0.003021s) http://127.0.0.1:8000/health
+2026-11-19 08:10:03 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:10:03 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:10:03 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:10:03 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:10:03 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:10:34 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.22 0.14 0.10 nucleos=2
+2026-11-19 08:10:35 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:10:35 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:10:35 -0300 [INFO] API      health OK (HTTP 200 em 0.003171s) http://127.0.0.1:8000/health
+2026-11-19 08:10:35 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:10:35 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:10:35 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:10:35 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:10:35 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:11:06 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.35 0.17 0.11 nucleos=2
+2026-11-19 08:11:06 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:11:06 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:11:06 -0300 [INFO] API      health OK (HTTP 200 em 0.003129s) http://127.0.0.1:8000/health
+2026-11-19 08:11:06 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:11:06 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:11:06 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:11:06 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:11:06 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:11:37 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.21 0.15 0.10 nucleos=2
+2026-11-19 08:11:37 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:11:37 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:11:37 -0300 [INFO] API      health OK (HTTP 200 em 0.003131s) http://127.0.0.1:8000/health
+2026-11-19 08:11:37 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:11:37 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:11:37 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:11:37 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:11:37 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:12:08 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.12 0.14 0.10 nucleos=2
+2026-11-19 08:12:08 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:12:08 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:12:08 -0300 [INFO] API      health OK (HTTP 200 em 0.003301s) http://127.0.0.1:8000/health
+2026-11-19 08:12:09 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:12:09 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:12:09 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:12:09 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:12:09 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:12:40 -0300 [INFO] CPU      uso=28% (warn 75% / crit 90%) load=0.07 0.12 0.09 nucleos=2
+2026-11-19 08:12:40 -0300 [INFO] MEMORIA  uso=71% livre=268MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:12:40 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:12:40 -0300 [INFO] API      health OK (HTTP 200 em 0.066209s) http://127.0.0.1:8000/health
+2026-11-19 08:12:40 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:12:40 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:12:40 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:12:40 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:12:40 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:13:11 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.04 0.11 0.09 nucleos=2
+2026-11-19 08:13:11 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:13:11 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:13:11 -0300 [INFO] API      health OK (HTTP 200 em 0.002924s) http://127.0.0.1:8000/health
+2026-11-19 08:13:11 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:13:11 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:13:11 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:13:11 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:13:11 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:13:42 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.18 0.13 0.10 nucleos=2
+2026-11-19 08:13:42 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:13:42 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:13:42 -0300 [INFO] API      health OK (HTTP 200 em 0.003108s) http://127.0.0.1:8000/health
+2026-11-19 08:13:43 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:13:43 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:13:43 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:13:43 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:13:43 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:14:14 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.11 0.11 0.09 nucleos=2
+2026-11-19 08:14:14 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:14:14 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:14:14 -0300 [INFO] API      health OK (HTTP 200 em 0.003040s) http://127.0.0.1:8000/health
+2026-11-19 08:14:14 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:14:14 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:14:14 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:14:14 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:14:14 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:14:45 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.06 0.10 0.09 nucleos=2
+2026-11-19 08:14:45 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:14:45 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:14:45 -0300 [INFO] API      health OK (HTTP 200 em 0.003385s) http://127.0.0.1:8000/health
+2026-11-19 08:14:45 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:14:45 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:14:46 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:14:46 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:14:46 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:15:17 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.03 0.09 0.08 nucleos=2
+2026-11-19 08:15:17 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:15:17 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:15:17 -0300 [INFO] API      health OK (HTTP 200 em 0.003402s) http://127.0.0.1:8000/health
+2026-11-19 08:15:17 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:15:17 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:15:17 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:15:17 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:15:17 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:15:48 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.15 0.11 0.09 nucleos=2
+2026-11-19 08:15:48 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:15:48 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:15:48 -0300 [INFO] API      health OK (HTTP 200 em 0.003208s) http://127.0.0.1:8000/health
+2026-11-19 08:15:48 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:15:48 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:15:48 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:15:48 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:15:48 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:16:19 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.09 0.10 0.09 nucleos=2
+2026-11-19 08:16:19 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:16:19 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:16:19 -0300 [INFO] API      health OK (HTTP 200 em 0.002966s) http://127.0.0.1:8000/health
+2026-11-19 08:16:20 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:16:20 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:16:20 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:16:20 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:16:20 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:16:51 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.05 0.09 0.08 nucleos=2
+2026-11-19 08:16:51 -0300 [INFO] MEMORIA  uso=71% livre=273MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:16:51 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:16:51 -0300 [INFO] API      health OK (HTTP 200 em 0.003031s) http://127.0.0.1:8000/health
+2026-11-19 08:16:51 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:16:51 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:16:51 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:16:51 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:16:51 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:17:22 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.03 0.08 0.08 nucleos=2
+2026-11-19 08:17:22 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:17:22 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:17:22 -0300 [INFO] API      health OK (HTTP 200 em 0.003075s) http://127.0.0.1:8000/health
+2026-11-19 08:17:22 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:17:22 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:17:22 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:17:22 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:17:22 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:17:53 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.02 0.07 0.08 nucleos=2
+2026-11-19 08:17:53 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:17:53 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:17:53 -0300 [INFO] API      health OK (HTTP 200 em 0.003186s) http://127.0.0.1:8000/health
+2026-11-19 08:17:53 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:17:53 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:17:54 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:17:54 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:17:54 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:18:25 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.13 0.09 0.09 nucleos=2
+2026-11-19 08:18:25 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:18:25 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:18:25 -0300 [INFO] API      health OK (HTTP 200 em 0.003156s) http://127.0.0.1:8000/health
+2026-11-19 08:18:25 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:18:25 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:18:25 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:18:25 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:18:25 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:18:56 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.07 0.08 0.08 nucleos=2
+2026-11-19 08:18:56 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:18:56 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:18:56 -0300 [INFO] API      health OK (HTTP 200 em 0.003181s) http://127.0.0.1:8000/health
+2026-11-19 08:18:56 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:18:56 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:18:56 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:18:56 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:18:56 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:19:27 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.04 0.07 0.08 nucleos=2
+2026-11-19 08:19:27 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:19:27 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:19:27 -0300 [INFO] API      health OK (HTTP 200 em 0.002910s) http://127.0.0.1:8000/health
+2026-11-19 08:19:27 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:19:27 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:19:27 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:19:27 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:19:27 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:19:58 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.02 0.06 0.08 nucleos=2
+2026-11-19 08:19:59 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:19:59 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:19:59 -0300 [INFO] API      health OK (HTTP 200 em 0.002871s) http://127.0.0.1:8000/health
+2026-11-19 08:19:59 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:19:59 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:19:59 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:19:59 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:19:59 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:20:30 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.01 0.06 0.08 nucleos=2
+2026-11-19 08:20:30 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:20:30 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:20:30 -0300 [INFO] API      health OK (HTTP 200 em 0.003141s) http://127.0.0.1:8000/health
+2026-11-19 08:20:30 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:20:30 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:20:30 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:20:30 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:20:30 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:21:01 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.14 0.08 0.08 nucleos=2
+2026-11-19 08:21:01 -0300 [INFO] MEMORIA  uso=71% livre=267MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:21:01 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:21:01 -0300 [INFO] API      health OK (HTTP 200 em 0.003117s) http://127.0.0.1:8000/health
+2026-11-19 08:21:01 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:21:01 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:21:01 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:21:01 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:21:01 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:21:32 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.08 0.07 0.08 nucleos=2
+2026-11-19 08:21:32 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:21:32 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:21:32 -0300 [INFO] API      health OK (HTTP 200 em 0.003055s) http://127.0.0.1:8000/health
+2026-11-19 08:21:33 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:21:33 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:21:33 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:21:33 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:21:33 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:22:04 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.05 0.06 0.08 nucleos=2
+2026-11-19 08:22:04 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:22:04 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:22:04 -0300 [INFO] API      health OK (HTTP 200 em 0.003150s) http://127.0.0.1:8000/health
+2026-11-19 08:22:04 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:22:04 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:22:04 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:22:04 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:22:04 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:22:35 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.13 0.09 0.09 nucleos=2
+2026-11-19 08:22:35 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:22:35 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:22:35 -0300 [INFO] API      health OK (HTTP 200 em 0.003241s) http://127.0.0.1:8000/health
+2026-11-19 08:22:35 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:22:35 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:22:35 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:22:35 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:22:35 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:23:06 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.30 0.14 0.10 nucleos=2
+2026-11-19 08:23:06 -0300 [INFO] MEMORIA  uso=71% livre=271MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:23:06 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:23:06 -0300 [INFO] API      health OK (HTTP 200 em 0.002982s) http://127.0.0.1:8000/health
+2026-11-19 08:23:07 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:23:07 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:23:07 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:23:07 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:23:07 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:23:38 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.31 0.16 0.11 nucleos=2
+2026-11-19 08:23:38 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:23:38 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:23:38 -0300 [INFO] API      health OK (HTTP 200 em 0.003142s) http://127.0.0.1:8000/health
+2026-11-19 08:23:38 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:23:38 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:23:38 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:23:38 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:23:38 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:24:09 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.19 0.14 0.10 nucleos=2
+2026-11-19 08:24:09 -0300 [INFO] MEMORIA  uso=70% livre=276MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:24:09 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:24:09 -0300 [INFO] API      health OK (HTTP 200 em 0.003039s) http://127.0.0.1:8000/health
+2026-11-19 08:24:09 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:24:09 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:24:09 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:24:09 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:24:09 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:24:40 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.11 0.13 0.10 nucleos=2
+2026-11-19 08:24:40 -0300 [INFO] MEMORIA  uso=70% livre=276MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:24:40 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:24:41 -0300 [INFO] API      health OK (HTTP 200 em 0.003963s) http://127.0.0.1:8000/health
+2026-11-19 08:24:41 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:24:41 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:24:41 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:24:41 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:24:41 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:25:12 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.11 0.13 0.10 nucleos=2
+2026-11-19 08:25:12 -0300 [INFO] MEMORIA  uso=71% livre=268MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:25:12 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:25:12 -0300 [INFO] API      health OK (HTTP 200 em 0.003133s) http://127.0.0.1:8000/health
+2026-11-19 08:25:12 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:25:12 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:25:12 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:25:12 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:25:12 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:25:43 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.07 0.11 0.09 nucleos=2
+2026-11-19 08:25:43 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:25:43 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:25:43 -0300 [INFO] API      health OK (HTTP 200 em 0.002954s) http://127.0.0.1:8000/health
+2026-11-19 08:25:43 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:25:43 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:25:43 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:25:43 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:25:43 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:26:14 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.17 0.13 0.10 nucleos=2
+2026-11-19 08:26:14 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:26:14 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:26:14 -0300 [INFO] API      health OK (HTTP 200 em 0.003166s) http://127.0.0.1:8000/health
+2026-11-19 08:26:15 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:26:15 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:26:15 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:26:15 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:26:15 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:26:46 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.09 0.12 0.09 nucleos=2
+2026-11-19 08:26:46 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:26:46 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:26:46 -0300 [INFO] API      health OK (HTTP 200 em 0.002938s) http://127.0.0.1:8000/health
+2026-11-19 08:26:46 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:26:46 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:26:46 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:26:46 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:26:46 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:27:17 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.06 0.10 0.09 nucleos=2
+2026-11-19 08:27:17 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:27:17 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:27:17 -0300 [INFO] API      health OK (HTTP 200 em 0.004595s) http://127.0.0.1:8000/health
+2026-11-19 08:27:17 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:27:17 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:27:17 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:27:18 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:27:18 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:27:49 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.03 0.09 0.08 nucleos=2
+2026-11-19 08:27:49 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:27:49 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:27:49 -0300 [INFO] API      health OK (HTTP 200 em 0.003073s) http://127.0.0.1:8000/health
+2026-11-19 08:27:49 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:27:49 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:27:49 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:27:49 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:27:49 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:28:20 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.13 0.11 0.09 nucleos=2
+2026-11-19 08:28:20 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:28:20 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:28:20 -0300 [INFO] API      health OK (HTTP 200 em 0.002915s) http://127.0.0.1:8000/health
+2026-11-19 08:28:20 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:28:20 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:28:20 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:28:20 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:28:20 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:28:51 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.22 0.14 0.10 nucleos=2
+2026-11-19 08:28:51 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:28:51 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:28:51 -0300 [INFO] API      health OK (HTTP 200 em 0.003053s) http://127.0.0.1:8000/health
+2026-11-19 08:28:51 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:28:51 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:28:51 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:28:51 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:28:51 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:29:22 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.13 0.13 0.10 nucleos=2
+2026-11-19 08:29:23 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:29:23 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:29:23 -0300 [INFO] API      health OK (HTTP 200 em 0.003131s) http://127.0.0.1:8000/health
+2026-11-19 08:29:23 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:29:23 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:29:23 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:29:23 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:29:23 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:29:54 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.08 0.12 0.09 nucleos=2
+2026-11-19 08:29:54 -0300 [INFO] MEMORIA  uso=70% livre=280MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:29:54 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:29:54 -0300 [INFO] API      health OK (HTTP 200 em 0.002918s) http://127.0.0.1:8000/health
+2026-11-19 08:29:54 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:29:54 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:29:54 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:29:54 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:29:54 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:30:25 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.13 0.12 0.09 nucleos=2
+2026-11-19 08:30:25 -0300 [INFO] MEMORIA  uso=70% livre=280MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:30:25 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:30:25 -0300 [INFO] API      health OK (HTTP 200 em 0.003148s) http://127.0.0.1:8000/health
+2026-11-19 08:30:25 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:30:25 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:30:25 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:30:25 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:30:25 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:30:56 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.12 0.12 0.09 nucleos=2
+2026-11-19 08:30:57 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:30:57 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:30:57 -0300 [INFO] API      health OK (HTTP 200 em 0.002903s) http://127.0.0.1:8000/health
+2026-11-19 08:30:57 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:30:57 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:30:57 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:30:57 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:30:57 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:31:28 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.07 0.11 0.09 nucleos=2
+2026-11-19 08:31:28 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:31:28 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:31:28 -0300 [INFO] API      health OK (HTTP 200 em 0.076620s) http://127.0.0.1:8000/health
+2026-11-19 08:31:28 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:31:28 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:31:28 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:31:29 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:31:29 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:32:00 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.04 0.10 0.09 nucleos=2
+2026-11-19 08:32:00 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:32:00 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:32:00 -0300 [INFO] API      health OK (HTTP 200 em 0.003134s) http://127.0.0.1:8000/health
+2026-11-19 08:32:00 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:32:00 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:32:00 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:32:00 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:32:00 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:32:31 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.02 0.08 0.08 nucleos=2
+2026-11-19 08:32:31 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:32:31 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:32:31 -0300 [INFO] API      health OK (HTTP 200 em 0.003086s) http://127.0.0.1:8000/health
+2026-11-19 08:32:31 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:32:31 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:32:31 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:32:31 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:32:31 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:33:02 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.15 0.11 0.09 nucleos=2
+2026-11-19 08:33:02 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:33:02 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:33:02 -0300 [INFO] API      health OK (HTTP 200 em 0.109268s) http://127.0.0.1:8000/health
+2026-11-19 08:33:03 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:33:03 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:33:03 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:33:03 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:33:03 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:33:34 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.16 0.11 0.09 nucleos=2
+2026-11-19 08:33:34 -0300 [INFO] MEMORIA  uso=71% livre=272MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:33:34 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:33:34 -0300 [INFO] API      health OK (HTTP 200 em 0.107319s) http://127.0.0.1:8000/health
+2026-11-19 08:33:34 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:33:34 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:33:34 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:33:34 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:33:34 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:34:05 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.27 0.15 0.10 nucleos=2
+2026-11-19 08:34:05 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:34:05 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:34:05 -0300 [INFO] API      health OK (HTTP 200 em 0.003228s) http://127.0.0.1:8000/health
+2026-11-19 08:34:05 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:34:05 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:34:05 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:34:05 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:34:05 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:34:36 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.15 0.13 0.10 nucleos=2
+2026-11-19 08:34:37 -0300 [INFO] MEMORIA  uso=70% livre=280MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:34:37 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:34:37 -0300 [INFO] API      health OK (HTTP 200 em 0.003050s) http://127.0.0.1:8000/health
+2026-11-19 08:34:37 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:34:37 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:34:37 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:34:37 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:34:37 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:35:08 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.09 0.12 0.09 nucleos=2
+2026-11-19 08:35:08 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:35:08 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:35:08 -0300 [INFO] API      health OK (HTTP 200 em 0.003232s) http://127.0.0.1:8000/health
+2026-11-19 08:35:08 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:35:08 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:35:08 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:35:08 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:35:08 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:35:39 -0300 [INFO] CPU      uso=15% (warn 75% / crit 90%) load=0.21 0.14 0.10 nucleos=2
+2026-11-19 08:35:39 -0300 [INFO] MEMORIA  uso=71% livre=268MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:35:39 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:35:39 -0300 [INFO] API      health OK (HTTP 200 em 0.003344s) http://127.0.0.1:8000/health
+2026-11-19 08:35:39 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:35:39 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:35:40 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:35:40 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:35:40 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:36:11 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.19 0.14 0.10 nucleos=2
+2026-11-19 08:36:11 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:36:11 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:36:11 -0300 [INFO] API      health OK (HTTP 200 em 0.003176s) http://127.0.0.1:8000/health
+2026-11-19 08:36:11 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:36:11 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:36:11 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:36:11 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:36:11 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:36:42 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.12 0.12 0.09 nucleos=2
+2026-11-19 08:36:42 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:36:42 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:36:42 -0300 [INFO] API      health OK (HTTP 200 em 0.003168s) http://127.0.0.1:8000/health
+2026-11-19 08:36:42 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:36:42 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:36:42 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:36:42 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:36:42 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:37:13 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.07 0.11 0.09 nucleos=2
+2026-11-19 08:37:13 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:37:13 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:37:13 -0300 [INFO] API      health OK (HTTP 200 em 0.003097s) http://127.0.0.1:8000/health
+2026-11-19 08:37:13 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:37:13 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:37:14 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:37:14 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:37:14 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:37:45 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.04 0.10 0.09 nucleos=2
+2026-11-19 08:37:45 -0300 [INFO] MEMORIA  uso=70% livre=276MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:37:45 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:37:45 -0300 [INFO] API      health OK (HTTP 200 em 0.078319s) http://127.0.0.1:8000/health
+2026-11-19 08:37:45 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:37:45 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:37:45 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:37:45 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:37:45 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:38:16 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.14 0.12 0.09 nucleos=2
+2026-11-19 08:38:16 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:38:16 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:38:16 -0300 [INFO] API      health OK (HTTP 200 em 0.003120s) http://127.0.0.1:8000/health
+2026-11-19 08:38:16 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:38:17 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:38:17 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:38:17 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:38:17 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:38:48 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.08 0.11 0.09 nucleos=2
+2026-11-19 08:38:48 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:38:48 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:38:48 -0300 [INFO] API      health OK (HTTP 200 em 0.003041s) http://127.0.0.1:8000/health
+2026-11-19 08:38:48 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:38:48 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:38:48 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:38:48 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:38:48 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:39:19 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.05 0.09 0.09 nucleos=2
+2026-11-19 08:39:19 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:39:19 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:39:19 -0300 [INFO] API      health OK (HTTP 200 em 0.003151s) http://127.0.0.1:8000/health
+2026-11-19 08:39:19 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:39:19 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:39:19 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:39:19 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:39:19 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:39:50 -0300 [INFO] CPU      uso=11% (warn 75% / crit 90%) load=0.03 0.08 0.08 nucleos=2
+2026-11-19 08:39:50 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:39:50 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:39:50 -0300 [INFO] API      health OK (HTTP 200 em 0.003083s) http://127.0.0.1:8000/health
+2026-11-19 08:39:50 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:39:50 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:39:51 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:39:51 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:39:51 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:40:22 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.02 0.07 0.08 nucleos=2
+2026-11-19 08:40:22 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:40:22 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:40:22 -0300 [INFO] API      health OK (HTTP 200 em 0.002924s) http://127.0.0.1:8000/health
+2026-11-19 08:40:22 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:40:22 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:40:22 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:40:22 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:40:22 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:40:53 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.16 0.10 0.09 nucleos=2
+2026-11-19 08:40:53 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:40:53 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:40:53 -0300 [INFO] API      health OK (HTTP 200 em 0.003187s) http://127.0.0.1:8000/health
+2026-11-19 08:40:53 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:40:53 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:40:53 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:40:53 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:40:53 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:41:24 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.10 0.09 0.09 nucleos=2
+2026-11-19 08:41:24 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:41:24 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:41:24 -0300 [INFO] API      health OK (HTTP 200 em 0.002954s) http://127.0.0.1:8000/health
+2026-11-19 08:41:24 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:41:24 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:41:24 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:41:24 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:41:24 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:41:55 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.06 0.08 0.08 nucleos=2
+2026-11-19 08:41:56 -0300 [INFO] MEMORIA  uso=70% livre=276MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:41:56 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:41:56 -0300 [INFO] API      health OK (HTTP 200 em 0.003532s) http://127.0.0.1:8000/health
+2026-11-19 08:41:56 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:41:56 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:41:56 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:41:56 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:41:56 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:42:27 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.03 0.07 0.08 nucleos=2
+2026-11-19 08:42:27 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:42:27 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:42:27 -0300 [INFO] API      health OK (HTTP 200 em 0.003160s) http://127.0.0.1:8000/health
+2026-11-19 08:42:27 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:42:27 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:42:27 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:42:27 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:42:27 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:42:58 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.09 0.08 0.08 nucleos=2
+2026-11-19 08:42:59 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:42:59 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:42:59 -0300 [INFO] API      health OK (HTTP 200 em 0.003077s) http://127.0.0.1:8000/health
+2026-11-19 08:42:59 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:42:59 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:42:59 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:42:59 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:42:59 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:43:30 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.27 0.12 0.10 nucleos=2
+2026-11-19 08:43:30 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:43:30 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:43:30 -0300 [INFO] API      health OK (HTTP 200 em 0.003318s) http://127.0.0.1:8000/health
+2026-11-19 08:43:30 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:43:30 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:43:30 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:43:30 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:43:30 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:44:01 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.15 0.10 0.09 nucleos=2
+2026-11-19 08:44:01 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:44:01 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:44:01 -0300 [INFO] API      health OK (HTTP 200 em 0.003054s) http://127.0.0.1:8000/health
+2026-11-19 08:44:01 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:44:01 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:44:01 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:44:01 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:44:01 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:44:32 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.09 0.09 0.09 nucleos=2
+2026-11-19 08:44:32 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:44:32 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:44:33 -0300 [INFO] API      health OK (HTTP 200 em 0.003133s) http://127.0.0.1:8000/health
+2026-11-19 08:44:33 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:44:33 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:44:33 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:44:33 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:44:33 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:45:04 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.05 0.08 0.08 nucleos=2
+2026-11-19 08:45:04 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:45:04 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:45:04 -0300 [INFO] API      health OK (HTTP 200 em 0.003244s) http://127.0.0.1:8000/health
+2026-11-19 08:45:04 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:45:04 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:45:04 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:45:04 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:45:04 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:45:35 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.03 0.07 0.08 nucleos=2
+2026-11-19 08:45:35 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:45:35 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:45:35 -0300 [INFO] API      health OK (HTTP 200 em 0.003320s) http://127.0.0.1:8000/health
+2026-11-19 08:45:35 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:45:35 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:45:35 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:45:35 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:45:35 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:46:06 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.45 0.18 0.12 nucleos=2
+2026-11-19 08:46:06 -0300 [INFO] MEMORIA  uso=71% livre=268MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:46:06 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:46:06 -0300 [INFO] API      health OK (HTTP 200 em 0.003129s) http://127.0.0.1:8000/health
+2026-11-19 08:46:07 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:46:07 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:46:07 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:46:07 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:46:07 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:46:38 -0300 [INFO] CPU      uso=14% (warn 75% / crit 90%) load=0.35 0.18 0.12 nucleos=2
+2026-11-19 08:46:38 -0300 [INFO] MEMORIA  uso=71% livre=275MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:46:38 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:46:38 -0300 [INFO] API      health OK (HTTP 200 em 0.096275s) http://127.0.0.1:8000/health
+2026-11-19 08:46:38 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:46:38 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:46:38 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:46:38 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:46:38 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:47:09 -0300 [INFO] CPU      uso=10% (warn 75% / crit 90%) load=0.27 0.17 0.12 nucleos=2
+2026-11-19 08:47:09 -0300 [INFO] MEMORIA  uso=71% livre=275MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:47:09 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:47:09 -0300 [INFO] API      health OK (HTTP 200 em 0.003164s) http://127.0.0.1:8000/health
+2026-11-19 08:47:09 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:47:09 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:47:10 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:47:10 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:47:10 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:47:41 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.16 0.16 0.11 nucleos=2
+2026-11-19 08:47:41 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:47:41 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:47:41 -0300 [INFO] API      health OK (HTTP 200 em 0.003145s) http://127.0.0.1:8000/health
+2026-11-19 08:47:41 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:47:41 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:47:41 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:47:41 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:47:41 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:48:12 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.26 0.18 0.12 nucleos=2
+2026-11-19 08:48:12 -0300 [INFO] MEMORIA  uso=71% livre=275MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:48:12 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:48:12 -0300 [INFO] API      health OK (HTTP 200 em 0.002956s) http://127.0.0.1:8000/health
+2026-11-19 08:48:12 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:48:12 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:48:12 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:48:12 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:48:12 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:48:43 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.24 0.18 0.12 nucleos=2
+2026-11-19 08:48:43 -0300 [INFO] MEMORIA  uso=71% livre=275MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:48:43 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:48:43 -0300 [INFO] API      health OK (HTTP 200 em 0.003466s) http://127.0.0.1:8000/health
+2026-11-19 08:48:43 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:48:43 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:48:44 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:48:44 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:48:44 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:49:15 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.14 0.16 0.11 nucleos=2
+2026-11-19 08:49:15 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:49:15 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:49:15 -0300 [INFO] API      health OK (HTTP 200 em 0.003198s) http://127.0.0.1:8000/health
+2026-11-19 08:49:15 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:49:15 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:49:15 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:49:15 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:49:15 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:49:46 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.13 0.16 0.11 nucleos=2
+2026-11-19 08:49:46 -0300 [INFO] MEMORIA  uso=71% livre=273MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:49:46 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:49:46 -0300 [INFO] API      health OK (HTTP 200 em 0.003007s) http://127.0.0.1:8000/health
+2026-11-19 08:49:46 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:49:46 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:49:46 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:49:46 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:49:46 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:50:17 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.08 0.14 0.11 nucleos=2
+2026-11-19 08:50:17 -0300 [INFO] MEMORIA  uso=71% livre=271MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:50:17 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:50:17 -0300 [INFO] API      health OK (HTTP 200 em 0.003012s) http://127.0.0.1:8000/health
+2026-11-19 08:50:17 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:50:17 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:50:18 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:50:18 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:50:18 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:50:49 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.04 0.13 0.10 nucleos=2
+2026-11-19 08:50:49 -0300 [INFO] MEMORIA  uso=71% livre=273MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:50:49 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:50:49 -0300 [INFO] API      health OK (HTTP 200 em 0.003529s) http://127.0.0.1:8000/health
+2026-11-19 08:50:49 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:50:49 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:50:49 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:50:49 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:50:49 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:51:20 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.11 0.13 0.10 nucleos=2
+2026-11-19 08:51:20 -0300 [INFO] MEMORIA  uso=71% livre=275MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:51:20 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:51:20 -0300 [INFO] API      health OK (HTTP 200 em 0.003262s) http://127.0.0.1:8000/health
+2026-11-19 08:51:20 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:51:20 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:51:20 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:51:20 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:51:20 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:51:51 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.06 0.11 0.09 nucleos=2
+2026-11-19 08:51:51 -0300 [INFO] MEMORIA  uso=71% livre=275MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:51:51 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:51:51 -0300 [INFO] API      health OK (HTTP 200 em 0.003424s) http://127.0.0.1:8000/health
+2026-11-19 08:51:51 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:51:51 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:51:52 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:51:52 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:51:52 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:52:23 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.31 0.17 0.11 nucleos=2
+2026-11-19 08:52:23 -0300 [INFO] MEMORIA  uso=72% livre=266MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:52:23 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:52:23 -0300 [INFO] API      health OK (HTTP 200 em 0.003240s) http://127.0.0.1:8000/health
+2026-11-19 08:52:23 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:52:23 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:52:23 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:52:23 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:52:23 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:52:54 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.33 0.18 0.12 nucleos=2
+2026-11-19 08:52:54 -0300 [INFO] MEMORIA  uso=71% livre=268MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:52:54 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:52:54 -0300 [INFO] API      health OK (HTTP 200 em 0.003085s) http://127.0.0.1:8000/health
+2026-11-19 08:52:54 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:52:54 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:52:54 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:52:54 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:52:54 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:53:25 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.20 0.16 0.11 nucleos=2
+2026-11-19 08:53:25 -0300 [INFO] MEMORIA  uso=71% livre=268MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:53:25 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:53:25 -0300 [INFO] API      health OK (HTTP 200 em 0.003136s) http://127.0.0.1:8000/health
+2026-11-19 08:53:25 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:53:25 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:53:26 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:53:26 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:53:26 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:53:57 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.11 0.14 0.10 nucleos=2
+2026-11-19 08:53:57 -0300 [INFO] MEMORIA  uso=71% livre=268MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:53:57 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:53:57 -0300 [INFO] API      health OK (HTTP 200 em 0.003267s) http://127.0.0.1:8000/health
+2026-11-19 08:53:57 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:53:57 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:53:57 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:53:57 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:53:57 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:54:28 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.07 0.13 0.10 nucleos=2
+2026-11-19 08:54:28 -0300 [INFO] MEMORIA  uso=72% livre=266MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:54:28 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:54:28 -0300 [INFO] API      health OK (HTTP 200 em 0.004922s) http://127.0.0.1:8000/health
+2026-11-19 08:54:28 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:54:28 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:54:29 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:54:29 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:54:29 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:55:00 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.11 0.13 0.10 nucleos=2
+2026-11-19 08:55:00 -0300 [INFO] MEMORIA  uso=71% livre=268MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:55:00 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:55:00 -0300 [INFO] API      health OK (HTTP 200 em 0.003165s) http://127.0.0.1:8000/health
+2026-11-19 08:55:00 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:55:00 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:55:00 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:55:00 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:55:00 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:55:31 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.21 0.15 0.10 nucleos=2
+2026-11-19 08:55:31 -0300 [INFO] MEMORIA  uso=71% livre=275MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:55:31 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:55:31 -0300 [INFO] API      health OK (HTTP 200 em 0.003409s) http://127.0.0.1:8000/health
+2026-11-19 08:55:31 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:55:31 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:55:31 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:55:31 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:55:31 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:56:02 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.13 0.13 0.10 nucleos=2
+2026-11-19 08:56:02 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:56:02 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:56:02 -0300 [INFO] API      health OK (HTTP 200 em 0.003385s) http://127.0.0.1:8000/health
+2026-11-19 08:56:03 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:56:03 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:56:03 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:56:03 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:56:03 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:56:34 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.13 0.14 0.10 nucleos=2
+2026-11-19 08:56:34 -0300 [INFO] MEMORIA  uso=71% livre=268MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:56:34 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:56:34 -0300 [INFO] API      health OK (HTTP 200 em 0.003468s) http://127.0.0.1:8000/health
+2026-11-19 08:56:34 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:56:34 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:56:34 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:56:34 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:56:34 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:57:05 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.08 0.12 0.09 nucleos=2
+2026-11-19 08:57:05 -0300 [INFO] MEMORIA  uso=71% livre=275MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:57:05 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:57:05 -0300 [INFO] API      health OK (HTTP 200 em 0.003552s) http://127.0.0.1:8000/health
+2026-11-19 08:57:05 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:57:05 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:57:05 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:57:05 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:57:05 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:57:37 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.12 0.12 0.09 nucleos=2
+2026-11-19 08:57:37 -0300 [INFO] MEMORIA  uso=71% livre=275MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:57:37 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:57:37 -0300 [INFO] API      health OK (HTTP 200 em 0.003706s) http://127.0.0.1:8000/health
+2026-11-19 08:57:37 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:57:37 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:57:37 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:57:37 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:57:37 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:58:08 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.21 0.14 0.10 nucleos=2
+2026-11-19 08:58:08 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:58:08 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:58:08 -0300 [INFO] API      health OK (HTTP 200 em 0.003139s) http://127.0.0.1:8000/health
+2026-11-19 08:58:08 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:58:08 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:58:08 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:58:08 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:58:08 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:58:39 -0300 [INFO] CPU      uso=28% (warn 75% / crit 90%) load=0.13 0.13 0.09 nucleos=2
+2026-11-19 08:58:39 -0300 [INFO] MEMORIA  uso=72% livre=263MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:58:39 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:58:39 -0300 [INFO] API      health OK (HTTP 200 em 0.003113s) http://127.0.0.1:8000/health
+2026-11-19 08:58:39 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:58:39 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:58:39 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:58:40 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:58:40 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:59:11 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.21 0.15 0.10 nucleos=2
+2026-11-19 08:59:11 -0300 [INFO] MEMORIA  uso=71% livre=271MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:59:11 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:59:11 -0300 [INFO] API      health OK (HTTP 200 em 0.059507s) http://127.0.0.1:8000/health
+2026-11-19 08:59:11 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:59:11 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:59:11 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:59:11 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:59:11 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 08:59:42 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.12 0.13 0.09 nucleos=2
+2026-11-19 08:59:42 -0300 [INFO] MEMORIA  uso=71% livre=273MB total=952MB (warn 80% / crit 92%)
+2026-11-19 08:59:42 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 08:59:42 -0300 [INFO] API      health OK (HTTP 200 em 0.003194s) http://127.0.0.1:8000/health
+2026-11-19 08:59:42 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 08:59:42 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 08:59:42 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 08:59:42 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 08:59:42 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:00:13 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.07 0.12 0.09 nucleos=2
+2026-11-19 09:00:13 -0300 [INFO] MEMORIA  uso=71% livre=273MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:00:13 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:00:13 -0300 [INFO] API      health OK (HTTP 200 em 0.003247s) http://127.0.0.1:8000/health
+2026-11-19 09:00:14 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:00:14 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:00:14 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:00:14 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:00:14 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:00:45 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.12 0.12 0.09 nucleos=2
+2026-11-19 09:00:45 -0300 [INFO] MEMORIA  uso=71% livre=271MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:00:45 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:00:45 -0300 [INFO] API      health OK (HTTP 200 em 0.003298s) http://127.0.0.1:8000/health
+2026-11-19 09:00:45 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:00:45 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:00:45 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:00:45 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:00:45 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:01:16 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.15 0.12 0.09 nucleos=2
+2026-11-19 09:01:16 -0300 [INFO] MEMORIA  uso=71% livre=273MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:01:16 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:01:16 -0300 [INFO] API      health OK (HTTP 200 em 0.002922s) http://127.0.0.1:8000/health
+2026-11-19 09:01:16 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:01:16 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:01:17 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:01:17 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:01:17 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:01:48 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.14 0.13 0.09 nucleos=2
+2026-11-19 09:01:48 -0300 [INFO] MEMORIA  uso=71% livre=273MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:01:48 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:01:48 -0300 [INFO] API      health OK (HTTP 200 em 0.003073s) http://127.0.0.1:8000/health
+2026-11-19 09:01:48 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:01:48 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:01:48 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:01:48 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:01:48 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:02:19 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.08 0.11 0.09 nucleos=2
+2026-11-19 09:02:19 -0300 [INFO] MEMORIA  uso=71% livre=273MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:02:19 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:02:19 -0300 [INFO] API      health OK (HTTP 200 em 0.003172s) http://127.0.0.1:8000/health
+2026-11-19 09:02:19 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:02:19 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:02:19 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:02:19 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:02:19 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:02:50 -0300 [INFO] CPU      uso=11% (warn 75% / crit 90%) load=0.05 0.10 0.09 nucleos=2
+2026-11-19 09:02:50 -0300 [INFO] MEMORIA  uso=71% livre=267MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:02:50 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:02:50 -0300 [INFO] API      health OK (HTTP 200 em 0.003074s) http://127.0.0.1:8000/health
+2026-11-19 09:02:50 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:02:50 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:02:50 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:02:50 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:02:50 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:03:21 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.03 0.09 0.08 nucleos=2
+2026-11-19 09:03:22 -0300 [INFO] MEMORIA  uso=71% livre=272MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:03:22 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:03:22 -0300 [INFO] API      health OK (HTTP 200 em 0.003117s) http://127.0.0.1:8000/health
+2026-11-19 09:03:22 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:03:22 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:03:22 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:03:22 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:03:22 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:03:53 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.10 0.10 0.09 nucleos=2
+2026-11-19 09:03:53 -0300 [INFO] MEMORIA  uso=71% livre=272MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:03:53 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:03:53 -0300 [INFO] API      health OK (HTTP 200 em 0.003100s) http://127.0.0.1:8000/health
+2026-11-19 09:03:53 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:03:53 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:03:53 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:03:53 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:03:53 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:04:24 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.17 0.12 0.09 nucleos=2
+2026-11-19 09:04:24 -0300 [INFO] MEMORIA  uso=71% livre=273MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:04:24 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:04:24 -0300 [INFO] API      health OK (HTTP 200 em 0.003305s) http://127.0.0.1:8000/health
+2026-11-19 09:04:24 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:04:24 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:04:24 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:04:24 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:04:24 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:04:55 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.10 0.10 0.09 nucleos=2
+2026-11-19 09:04:55 -0300 [INFO] MEMORIA  uso=71% livre=271MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:04:56 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:04:56 -0300 [INFO] API      health OK (HTTP 200 em 0.004120s) http://127.0.0.1:8000/health
+2026-11-19 09:04:56 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:04:56 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:04:56 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:04:56 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:04:56 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:05:27 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.10 0.11 0.09 nucleos=2
+2026-11-19 09:05:27 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:05:27 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:05:27 -0300 [INFO] API      health OK (HTTP 200 em 0.003475s) http://127.0.0.1:8000/health
+2026-11-19 09:05:27 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:05:27 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:05:27 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:05:27 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:05:27 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:05:58 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.28 0.15 0.10 nucleos=2
+2026-11-19 09:05:58 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:05:59 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:05:59 -0300 [INFO] API      health OK (HTTP 200 em 0.003379s) http://127.0.0.1:8000/health
+2026-11-19 09:05:59 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:05:59 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:05:59 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:05:59 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:05:59 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:06:30 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.17 0.13 0.10 nucleos=2
+2026-11-19 09:06:30 -0300 [INFO] MEMORIA  uso=71% livre=275MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:06:30 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:06:30 -0300 [INFO] API      health OK (HTTP 200 em 0.003331s) http://127.0.0.1:8000/health
+2026-11-19 09:06:30 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:06:30 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:06:30 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:06:30 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:06:30 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:07:01 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.09 0.12 0.09 nucleos=2
+2026-11-19 09:07:01 -0300 [INFO] MEMORIA  uso=71% livre=269MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:07:01 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:07:01 -0300 [INFO] API      health OK (HTTP 200 em 0.003365s) http://127.0.0.1:8000/health
+2026-11-19 09:07:01 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:07:01 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:07:01 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:07:01 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:07:02 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:07:33 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.11 0.12 0.09 nucleos=2
+2026-11-19 09:07:33 -0300 [INFO] MEMORIA  uso=71% livre=275MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:07:33 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:07:33 -0300 [INFO] API      health OK (HTTP 200 em 0.003161s) http://127.0.0.1:8000/health
+2026-11-19 09:07:33 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:07:33 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:07:33 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:07:33 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:07:33 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:08:04 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.06 0.11 0.09 nucleos=2
+2026-11-19 09:08:04 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:08:04 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:08:04 -0300 [INFO] API      health OK (HTTP 200 em 0.003118s) http://127.0.0.1:8000/health
+2026-11-19 09:08:04 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:08:04 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:08:04 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:08:04 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:08:04 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:08:35 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.17 0.13 0.10 nucleos=2
+2026-11-19 09:08:35 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:08:35 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:08:35 -0300 [INFO] API      health OK (HTTP 200 em 0.003238s) http://127.0.0.1:8000/health
+2026-11-19 09:08:35 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:08:35 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:08:35 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:08:35 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:08:35 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:09:06 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.09 0.11 0.09 nucleos=2
+2026-11-19 09:09:07 -0300 [INFO] MEMORIA  uso=71% livre=269MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:09:07 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:09:07 -0300 [INFO] API      health OK (HTTP 200 em 0.003398s) http://127.0.0.1:8000/health
+2026-11-19 09:09:07 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:09:07 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:09:07 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:09:07 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:09:07 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:09:38 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.06 0.10 0.09 nucleos=2
+2026-11-19 09:09:38 -0300 [INFO] MEMORIA  uso=71% livre=275MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:09:38 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:09:38 -0300 [INFO] API      health OK (HTTP 200 em 0.003331s) http://127.0.0.1:8000/health
+2026-11-19 09:09:38 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:09:38 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:09:38 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:09:38 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:09:38 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:10:09 -0300 [INFO] CPU      uso=3% (warn 75% / crit 90%) load=0.03 0.09 0.08 nucleos=2
+2026-11-19 09:10:09 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:10:09 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:10:09 -0300 [INFO] API      health OK (HTTP 200 em 0.002997s) http://127.0.0.1:8000/health
+2026-11-19 09:10:09 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:10:09 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:10:09 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:10:09 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:10:09 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:10:40 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.02 0.08 0.08 nucleos=2
+2026-11-19 09:10:40 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:10:40 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:10:40 -0300 [INFO] API      health OK (HTTP 200 em 0.003073s) http://127.0.0.1:8000/health
+2026-11-19 09:10:41 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:10:41 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:10:41 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:10:41 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:10:41 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:11:12 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.27 0.13 0.10 nucleos=2
+2026-11-19 09:11:12 -0300 [INFO] MEMORIA  uso=71% livre=266MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:11:12 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:11:12 -0300 [INFO] API      health OK (HTTP 200 em 0.003019s) http://127.0.0.1:8000/health
+2026-11-19 09:11:12 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:11:12 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:11:12 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:11:12 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:11:12 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:11:43 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.22 0.14 0.10 nucleos=2
+2026-11-19 09:11:43 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:11:43 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:11:43 -0300 [INFO] API      health OK (HTTP 200 em 0.003127s) http://127.0.0.1:8000/health
+2026-11-19 09:11:43 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:11:43 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:11:43 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:11:43 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:11:43 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:12:14 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.27 0.15 0.10 nucleos=2
+2026-11-19 09:12:14 -0300 [INFO] MEMORIA  uso=71% livre=275MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:12:14 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:12:14 -0300 [INFO] API      health OK (HTTP 200 em 0.003284s) http://127.0.0.1:8000/health
+2026-11-19 09:12:14 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:12:14 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:12:15 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:12:15 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:12:15 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:12:46 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.24 0.16 0.10 nucleos=2
+2026-11-19 09:12:46 -0300 [INFO] MEMORIA  uso=71% livre=274MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:12:46 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:12:46 -0300 [INFO] API      health OK (HTTP 200 em 0.003164s) http://127.0.0.1:8000/health
+2026-11-19 09:12:46 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:12:46 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:12:46 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:12:46 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:12:46 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:13:17 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.32 0.18 0.12 nucleos=2
+2026-11-19 09:13:17 -0300 [INFO] MEMORIA  uso=71% livre=271MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:13:17 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:13:17 -0300 [INFO] API      health OK (HTTP 200 em 0.005110s) http://127.0.0.1:8000/health
+2026-11-19 09:13:17 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:13:17 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:13:17 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:13:17 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:13:17 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:13:49 -0300 [CRIT] CPU      uso=96% (warn 75% / crit 90%) load=0.71 0.28 0.15 nucleos=2
+2026-11-19 09:13:49 -0300 [INFO] MEMORIA  uso=71% livre=275MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:13:50 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:13:50 -0300 [CRIT] API      API NÃO responde em http://127.0.0.1:8000/health (timeout/conexão recusada)
+2026-11-19 09:13:51 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:13:53 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:13:53 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:13:53 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:13:53 -0300 [----] RESUMO   ciclo concluído: CRITICO
+2026-11-19 09:14:24 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.91 0.39 0.19 nucleos=2
+2026-11-19 09:14:24 -0300 [INFO] MEMORIA  uso=70% livre=280MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:14:24 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:14:24 -0300 [INFO] API      health OK (HTTP 200 em 0.054094s) http://127.0.0.1:8000/health
+2026-11-19 09:14:24 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:14:24 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:14:24 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:14:24 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:14:24 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:14:56 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.63 0.37 0.19 nucleos=2
+2026-11-19 09:14:56 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:14:56 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:14:56 -0300 [INFO] API      health OK (HTTP 200 em 0.003320s) http://127.0.0.1:8000/health
+2026-11-19 09:14:56 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:14:56 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:14:56 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:14:56 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:14:56 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:15:27 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.40 0.34 0.18 nucleos=2
+2026-11-19 09:15:27 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:15:27 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:15:27 -0300 [INFO] API      health OK (HTTP 200 em 0.003072s) http://127.0.0.1:8000/health
+2026-11-19 09:15:27 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:15:27 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:15:27 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:15:27 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:15:27 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:15:58 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.24 0.31 0.18 nucleos=2
+2026-11-19 09:15:58 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:15:58 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:15:58 -0300 [INFO] API      health OK (HTTP 200 em 0.003596s) http://127.0.0.1:8000/health
+2026-11-19 09:15:58 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:15:58 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:15:58 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:15:58 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:15:58 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:16:29 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.14 0.28 0.17 nucleos=2
+2026-11-19 09:16:30 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:16:30 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:16:30 -0300 [INFO] API      health OK (HTTP 200 em 0.003491s) http://127.0.0.1:8000/health
+2026-11-19 09:16:30 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:16:30 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:16:30 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:16:30 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:16:30 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:17:01 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.09 0.25 0.17 nucleos=2
+2026-11-19 09:17:01 -0300 [INFO] MEMORIA  uso=70% livre=281MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:17:01 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:17:01 -0300 [INFO] API      health OK (HTTP 200 em 0.003079s) http://127.0.0.1:8000/health
+2026-11-19 09:17:01 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:17:01 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:17:01 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:17:01 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:17:01 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:17:32 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.25 0.27 0.18 nucleos=2
+2026-11-19 09:17:32 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:17:32 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:17:32 -0300 [INFO] API      health OK (HTTP 200 em 0.003287s) http://127.0.0.1:8000/health
+2026-11-19 09:17:32 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:17:32 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:17:32 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:17:32 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:17:32 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:18:03 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.15 0.24 0.17 nucleos=2
+2026-11-19 09:18:04 -0300 [INFO] MEMORIA  uso=70% livre=280MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:18:04 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:18:04 -0300 [INFO] API      health OK (HTTP 200 em 0.003670s) http://127.0.0.1:8000/health
+2026-11-19 09:18:04 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:18:04 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:18:04 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:18:04 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:18:04 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:18:35 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.09 0.22 0.16 nucleos=2
+2026-11-19 09:18:35 -0300 [INFO] MEMORIA  uso=70% livre=281MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:18:35 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:18:35 -0300 [INFO] API      health OK (HTTP 200 em 0.003343s) http://127.0.0.1:8000/health
+2026-11-19 09:18:35 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:18:35 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:18:35 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:18:35 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:18:35 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:19:06 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.05 0.20 0.16 nucleos=2
+2026-11-19 09:19:06 -0300 [INFO] MEMORIA  uso=70% livre=281MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:19:06 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:19:06 -0300 [INFO] API      health OK (HTTP 200 em 0.003213s) http://127.0.0.1:8000/health
+2026-11-19 09:19:06 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:19:06 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:19:06 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:19:06 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:19:06 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:19:37 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.25 0.23 0.18 nucleos=2
+2026-11-19 09:19:37 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:19:37 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:19:37 -0300 [INFO] API      health OK (HTTP 200 em 0.003080s) http://127.0.0.1:8000/health
+2026-11-19 09:19:38 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:19:38 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:19:38 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:19:38 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:19:38 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:20:09 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.15 0.21 0.17 nucleos=2
+2026-11-19 09:20:09 -0300 [INFO] MEMORIA  uso=70% livre=282MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:20:09 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:20:09 -0300 [INFO] API      health OK (HTTP 200 em 0.003222s) http://127.0.0.1:8000/health
+2026-11-19 09:20:09 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:20:09 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:20:09 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:20:09 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:20:09 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:20:40 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.09 0.19 0.16 nucleos=2
+2026-11-19 09:20:40 -0300 [INFO] MEMORIA  uso=70% livre=281MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:20:40 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:20:40 -0300 [INFO] API      health OK (HTTP 200 em 0.003044s) http://127.0.0.1:8000/health
+2026-11-19 09:20:40 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:20:40 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:20:40 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:20:40 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:20:40 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:21:11 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.13 0.18 0.16 nucleos=2
+2026-11-19 09:21:11 -0300 [INFO] MEMORIA  uso=70% livre=281MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:21:11 -0300 [INFO] DISCO    / uso=9% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:21:11 -0300 [INFO] API      health OK (HTTP 200 em 0.002966s) http://127.0.0.1:8000/health
+2026-11-19 09:21:11 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:21:11 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:21:12 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:21:12 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:21:12 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:21:43 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.13 0.18 0.16 nucleos=2
+2026-11-19 09:21:43 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:21:43 -0300 [INFO] DISCO    / uso=10% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:21:43 -0300 [INFO] API      health OK (HTTP 200 em 0.002878s) http://127.0.0.1:8000/health
+2026-11-19 09:21:43 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:21:43 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:21:43 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:21:43 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:21:43 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:22:14 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.29 0.21 0.17 nucleos=2
+2026-11-19 09:22:14 -0300 [INFO] MEMORIA  uso=70% livre=281MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:22:14 -0300 [INFO] DISCO    / uso=10% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:22:14 -0300 [INFO] API      health OK (HTTP 200 em 0.065936s) http://127.0.0.1:8000/health
+2026-11-19 09:22:14 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:22:14 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:22:14 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:22:14 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:22:14 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:22:45 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.18 0.19 0.17 nucleos=2
+2026-11-19 09:22:45 -0300 [INFO] MEMORIA  uso=70% livre=280MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:22:45 -0300 [INFO] DISCO    / uso=10% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:22:45 -0300 [INFO] API      health OK (HTTP 200 em 0.003082s) http://127.0.0.1:8000/health
+2026-11-19 09:22:45 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:22:45 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:22:46 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:22:46 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:22:46 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:23:17 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.10 0.17 0.16 nucleos=2
+2026-11-19 09:23:17 -0300 [INFO] MEMORIA  uso=70% livre=280MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:23:17 -0300 [INFO] DISCO    / uso=10% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:23:17 -0300 [INFO] API      health OK (HTTP 200 em 0.003101s) http://127.0.0.1:8000/health
+2026-11-19 09:23:17 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:23:17 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:23:17 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:23:17 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:23:17 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:23:48 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.19 0.18 0.17 nucleos=2
+2026-11-19 09:23:48 -0300 [INFO] MEMORIA  uso=70% livre=279MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:23:48 -0300 [INFO] DISCO    / uso=10% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:23:48 -0300 [INFO] API      health OK (HTTP 200 em 0.003457s) http://127.0.0.1:8000/health
+2026-11-19 09:23:48 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:23:48 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:23:48 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:23:48 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:23:48 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:24:19 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.11 0.16 0.16 nucleos=2
+2026-11-19 09:24:19 -0300 [INFO] MEMORIA  uso=70% livre=277MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:24:19 -0300 [INFO] DISCO    / uso=10% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:24:19 -0300 [INFO] API      health OK (HTTP 200 em 0.003273s) http://127.0.0.1:8000/health
+2026-11-19 09:24:19 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:24:19 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:24:20 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:24:20 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:24:20 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:24:51 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.24 0.20 0.17 nucleos=2
+2026-11-19 09:24:51 -0300 [INFO] MEMORIA  uso=70% livre=278MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:24:51 -0300 [INFO] DISCO    / uso=10% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:24:51 -0300 [INFO] API      health OK (HTTP 200 em 0.003269s) http://127.0.0.1:8000/health
+2026-11-19 09:24:51 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:24:51 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:24:51 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:24:51 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:24:51 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:25:22 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.13 0.17 0.17 nucleos=2
+2026-11-19 09:25:22 -0300 [INFO] MEMORIA  uso=70% livre=281MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:25:22 -0300 [INFO] DISCO    / uso=10% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:25:22 -0300 [INFO] API      health OK (HTTP 200 em 0.003338s) http://127.0.0.1:8000/health
+2026-11-19 09:25:22 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:25:22 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:25:22 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:25:22 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:25:22 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:25:53 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.08 0.15 0.16 nucleos=2
+2026-11-19 09:25:53 -0300 [INFO] MEMORIA  uso=70% livre=276MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:25:53 -0300 [INFO] DISCO    / uso=10% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:25:53 -0300 [INFO] API      health OK (HTTP 200 em 0.003469s) http://127.0.0.1:8000/health
+2026-11-19 09:25:53 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:25:53 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:25:53 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:25:53 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:25:53 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:26:25 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.05 0.14 0.15 nucleos=2
+2026-11-19 09:26:25 -0300 [INFO] MEMORIA  uso=70% livre=281MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:26:25 -0300 [INFO] DISCO    / uso=10% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:26:25 -0300 [INFO] API      health OK (HTTP 200 em 0.003236s) http://127.0.0.1:8000/health
+2026-11-19 09:26:25 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:26:25 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:26:25 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:26:25 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:26:25 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:26:56 -0300 [INFO] CPU      uso=1% (warn 75% / crit 90%) load=0.03 0.12 0.15 nucleos=2
+2026-11-19 09:26:56 -0300 [INFO] MEMORIA  uso=70% livre=281MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:26:56 -0300 [INFO] DISCO    / uso=10% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:26:56 -0300 [INFO] API      health OK (HTTP 200 em 0.003340s) http://127.0.0.1:8000/health
+2026-11-19 09:26:56 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:26:56 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:26:56 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:26:56 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:26:56 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:27:27 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.27 0.17 0.17 nucleos=2
+2026-11-19 09:27:27 -0300 [INFO] MEMORIA  uso=70% livre=281MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:27:27 -0300 [INFO] DISCO    / uso=10% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:27:27 -0300 [INFO] API      health OK (HTTP 200 em 0.003572s) http://127.0.0.1:8000/health
+2026-11-19 09:27:27 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:27:27 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:27:27 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:27:27 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:27:27 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:27:58 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.16 0.16 0.16 nucleos=2
+2026-11-19 09:27:58 -0300 [INFO] MEMORIA  uso=70% livre=281MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:27:58 -0300 [INFO] DISCO    / uso=10% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:27:58 -0300 [INFO] API      health OK (HTTP 200 em 0.003306s) http://127.0.0.1:8000/health
+2026-11-19 09:27:59 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:27:59 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:27:59 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:27:59 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:27:59 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:28:30 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.10 0.14 0.15 nucleos=2
+2026-11-19 09:28:30 -0300 [INFO] MEMORIA  uso=70% livre=281MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:28:30 -0300 [INFO] DISCO    / uso=10% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:28:30 -0300 [INFO] API      health OK (HTTP 200 em 0.003285s) http://127.0.0.1:8000/health
+2026-11-19 09:28:30 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:28:30 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:28:30 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:28:30 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:28:30 -0300 [----] RESUMO   ciclo concluído: OK
+2026-11-19 09:29:01 -0300 [INFO] CPU      uso=0% (warn 75% / crit 90%) load=0.06 0.12 0.15 nucleos=2
+2026-11-19 09:29:01 -0300 [INFO] MEMORIA  uso=71% livre=272MB total=952MB (warn 80% / crit 92%)
+2026-11-19 09:29:01 -0300 [INFO] DISCO    / uso=10% livre=41G (warn 80% / crit 90%)
+2026-11-19 09:29:01 -0300 [INFO] API      health OK (HTTP 200 em 0.003295s) http://127.0.0.1:8000/health
+2026-11-19 09:29:01 -0300 [INFO] SERVICO  sombraviva-api ativo
+2026-11-19 09:29:01 -0300 [INFO] SERVICO  nginx ativo
+2026-11-19 09:29:01 -0300 [INFO] SERVICO  mysql ativo
+2026-11-19 09:29:01 -0300 [INFO] MYSQL    mysqladmin ping OK
+2026-11-19 09:29:01 -0300 [----] RESUMO   ciclo concluído: OK

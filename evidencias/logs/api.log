@@ -1,0 +1,2000 @@
+    raise exc
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/routing.py", line 683, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/routing.py", line 2886, in app
+    await route.handle(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/routing.py", line 1351, in handle
+    await super().handle(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/routing.py", line 289, in handle
+    await self.app(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/routing.py", line 174, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/routing.py", line 160, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/routing.py", line 757, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/routing.py", line 382, in run_endpoint_function
+    return await run_in_threadpool(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/anyio/to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 2779, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 1124, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/telemetry/_api.py", line 244, in _run_sync_endpoint
+    return function(**arguments)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/src/app/main.py", line 366, in public_data_source
+    return data_source.current(db)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/src/app/data_source.py", line 45, in current
+    row = db.get(AppSetting, SETTING_KEY)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 3934, in get
+    return self._get_impl(
+           ^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4121, in _get_impl
+    return db_load_fn(
+           ^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/orm/loading.py", line 704, in _load_on_pk_identity
+    session.execute(
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2555, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2432, in _execute_internal
+    conn = self._connection_for_bind(bind)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2255, in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<sqlalchemy generated _go() wrapper for sqlalchemy.orm.session.SessionTransaction._connection_for_bind>", line 2, in _connection_for_bind
+    return target(fn, self, bind, execution_options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1282, in _connection_for_bind
+    conn = bind.connect()
+           ^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3279, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 156, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2436, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 154, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3303, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 460, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 1355, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 733, in checkout
+    with util.safe_reraise():
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 166, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 731, in checkout
+    dbapi_connection = rec.get_connection()
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 879, in get_connection
+    self.__connect()
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 947, in __connect
+    with util.safe_reraise():
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 166, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 943, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 645, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 869, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/pymysql/connections.py", line 378, in __init__
+    self.connect()
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/pymysql/connections.py", line 754, in connect
+    raise exc
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on '127.0.0.1' ([Errno 111] Connection refused)")
+(Background on this error at: https://sqlalche.me/e/21/e3q8)
+INFO:     191.9.84.237:0 - "GET /api/v1/summary HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/pymysql/connections.py", line 691, in connect
+    sock = socket.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 852, in create_connection
+    raise exceptions[0]
+  File "/usr/lib/python3.12/socket.py", line 837, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 154, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3303, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 460, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 1355, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 733, in checkout
+    with util.safe_reraise():
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 166, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 731, in checkout
+    dbapi_connection = rec.get_connection()
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 879, in get_connection
+    self.__connect()
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 947, in __connect
+    with util.safe_reraise():
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 166, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 943, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 645, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 869, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/pymysql/connections.py", line 378, in __init__
+    self.connect()
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/pymysql/connections.py", line 754, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on '127.0.0.1' ([Errno 111] Connection refused)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/applications.py", line 1214, in __call__
+    await super().__call__(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/applications.py", line 96, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/telemetry/_asgi.py", line 151, in __call__
+    await self.app(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/_body_limit.py", line 80, in __call__
+    await self.app(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 203, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/src/app/main.py", line 64, in protective_headers
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 179, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 79, in __call__
+    await responder(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 104, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/routing.py", line 683, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/routing.py", line 2886, in app
+    await route.handle(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/routing.py", line 1351, in handle
+    await super().handle(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/routing.py", line 289, in handle
+    await self.app(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/routing.py", line 174, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/routing.py", line 160, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/routing.py", line 757, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/routing.py", line 382, in run_endpoint_function
+    return await run_in_threadpool(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/starlette/concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/anyio/to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 2779, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 1124, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/fastapi/telemetry/_api.py", line 244, in _run_sync_endpoint
+    return function(**arguments)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/src/app/main.py", line 192, in summary
+    stations = [station_output(db, s) for s in db.scalars(select(Station).order_by(Station.id)).all()]
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2676, in scalars
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2432, in _execute_internal
+    conn = self._connection_for_bind(bind)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2255, in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<sqlalchemy generated _go() wrapper for sqlalchemy.orm.session.SessionTransaction._connection_for_bind>", line 2, in _connection_for_bind
+    return target(fn, self, bind, execution_options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1282, in _connection_for_bind
+    conn = bind.connect()
+           ^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3279, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 156, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2436, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 154, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3303, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 460, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 1355, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 733, in checkout
+    with util.safe_reraise():
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 166, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 731, in checkout
+    dbapi_connection = rec.get_connection()
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 879, in get_connection
+    self.__connect()
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 947, in __connect
+    with util.safe_reraise():
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 166, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 943, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 645, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 869, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/pymysql/connections.py", line 378, in __init__
+    self.connect()
+  File "/opt/sombraviva/venv/lib/python3.12/site-packages/pymysql/connections.py", line 754, in connect
+    raise exc
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on '127.0.0.1' ([Errno 111] Connection refused)")
+(Background on this error at: https://sqlalche.me/e/21/e3q8)
+INFO:     191.9.84.237:0 - "GET /api/v1/demo/summary HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:0 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37406 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51622 - "GET /health HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55770 - "GET /health HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60608 - "GET /health HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40878 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50432 - "GET /health HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58028 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37116 - "GET /health HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50928 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51770 - "GET /health HTTP/1.1" 200 OK
+INFO:     45.198.224.125:0 - "GET / HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52750 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43752 - "GET /health HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60996 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33788 - "GET /health HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37190 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47792 - "GET /health HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60448 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48726 - "GET /health HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50098 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38514 - "GET /health HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55468 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59624 - "GET /health HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59332 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51932 - "GET /health HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48622 - "GET /health HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     191.9.84.237:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41566 - "GET /health HTTP/1.1" 200 OK
+INFO:     195.182.16.23:0 - "GET /SDK/webLanguage HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36888 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40908 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39554 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41552 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36848 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60018 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53842 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50372 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55980 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49148 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46666 - "GET /health HTTP/1.1" 200 OK
+INFO:     5.187.38.30:0 - "GET /SDK/webLanguage HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:43552 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56620 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36110 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58706 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34088 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53604 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43822 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53254 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55708 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51044 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42894 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42652 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58392 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46432 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44814 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42966 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51878 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60484 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33928 - "GET /health HTTP/1.1" 200 OK
+INFO:     45.79.181.251:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51506 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52666 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46388 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55204 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60428 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49404 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48150 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35550 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42942 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55774 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35606 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38854 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56526 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46814 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56114 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51762 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43500 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56364 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41474 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40972 - "GET /health HTTP/1.1" 200 OK
+INFO:     45.156.87.96:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54414 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58100 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48284 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57620 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51570 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41998 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35466 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52606 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57810 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59872 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46782 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36092 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52590 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38608 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57830 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47502 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42254 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50054 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54484 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54266 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45626 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52424 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34536 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41288 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44838 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38670 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49792 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53542 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55528 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36712 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39700 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41678 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35084 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37788 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34840 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53306 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55942 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53652 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50774 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57530 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36398 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52156 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59900 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52632 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48340 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45828 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56332 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56312 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40690 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48734 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58522 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36810 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54734 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60122 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57782 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41546 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44856 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34910 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42214 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49104 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35772 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55162 - "GET /health HTTP/1.1" 200 OK
+INFO:     187.17.228.241:0 - "GET /admin/config.php HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:56932 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.234.217.192:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41174 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48688 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54824 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49722 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47910 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57210 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35088 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50358 - "GET /health HTTP/1.1" 200 OK
+INFO:     52.201.244.70:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50110 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57674 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33038 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38414 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59460 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48522 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46440 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53650 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55276 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40106 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49588 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57138 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35918 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42942 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40044 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41900 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43098 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40564 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35434 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32794 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39240 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42926 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39866 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41328 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38216 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56934 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47380 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36774 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60100 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41608 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.104.11.46:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35802 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53412 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36882 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45396 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39824 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47268 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59378 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49602 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47250 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59922 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49016 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52042 - "GET /health HTTP/1.1" 200 OK
+INFO:     195.182.16.23:0 - "GET /SDK/webLanguage HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:40356 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59780 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41396 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42242 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54944 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55734 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38250 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46256 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37250 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34612 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50026 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40840 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47188 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49900 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45484 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60330 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60282 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37868 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35384 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45052 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48832 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57206 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48390 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36380 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36834 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42256 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45774 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45254 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39136 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36668 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34010 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57566 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40946 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54502 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55546 - "GET /health HTTP/1.1" 200 OK
+INFO:     8.211.141.140:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35242 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37106 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52698 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47762 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38878 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40096 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59134 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47950 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44452 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37032 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60378 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56636 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58272 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42464 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50332 - "GET /health HTTP/1.1" 200 OK
+INFO:     66.132.186.186:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47546 - "GET /health HTTP/1.1" 200 OK
+INFO:     66.132.186.186:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     66.132.186.186:0 - "GET /static/vendor/echarts.min.js?v=5.6.0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49656 - "GET /health HTTP/1.1" 200 OK
+INFO:     66.132.186.186:0 - "GET /static/navigation.js?v=20261118.3 HTTP/1.1" 200 OK
+INFO:     66.132.186.186:0 - "GET /static/media.js?v=20261118.3 HTTP/1.1" 200 OK
+INFO:     66.132.186.186:0 - "GET /static/motion.js?v=20261118.3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53294 - "GET /health HTTP/1.1" 200 OK
+INFO:     66.132.186.186:0 - "GET /static/dashboard.js?v=20261118.3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34546 - "GET /health HTTP/1.1" 200 OK
+INFO:     66.132.186.186:0 - "GET /static/public-bundle.css?v=20261118.3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38854 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37786 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58604 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53464 - "GET /health HTTP/1.1" 200 OK
+INFO:     66.132.186.186:0 - "GET /app-ads.txt HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51076 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57990 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39926 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37374 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43136 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50068 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59352 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58940 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39736 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40776 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41884 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51228 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36802 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40636 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45210 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41650 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57606 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54874 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35212 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50896 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50970 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38020 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57564 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34634 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44272 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45040 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47008 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46824 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58922 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38994 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60646 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37120 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38192 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46122 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52042 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35404 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49358 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35242 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35716 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46748 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44616 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53992 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46518 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43764 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55242 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42108 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54376 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44420 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47570 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48918 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47648 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60030 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37320 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58194 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53950 - "GET /health HTTP/1.1" 200 OK
+INFO:     45.33.90.118:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44654 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39744 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40906 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36892 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47118 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39780 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42174 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39826 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39320 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41018 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53452 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44408 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55922 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43992 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34634 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52198 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58104 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37564 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48664 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55640 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33998 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53416 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57272 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41600 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46590 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37886 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46954 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51692 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59714 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55178 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50640 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37652 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48122 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59670 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55162 - "GET /health HTTP/1.1" 200 OK
+INFO:     20.80.75.130:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49282 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39916 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45768 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58776 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53980 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41202 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47826 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38500 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48178 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35720 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60646 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36184 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36610 - "GET /health HTTP/1.1" 200 OK
+INFO:     147.185.133.102:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34800 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48164 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46870 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53510 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39524 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45682 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52214 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43162 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39174 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41140 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33082 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56412 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58492 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44772 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51644 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50818 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46884 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35646 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46626 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36906 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45302 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48286 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38262 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39726 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58302 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36426 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35796 - "GET /health HTTP/1.1" 200 OK
+INFO:     80.76.42.17:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44540 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56908 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37592 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57260 - "GET /health HTTP/1.1" 200 OK
+INFO:     195.184.76.156:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35102 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38012 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35070 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54964 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59556 - "GET /health HTTP/1.1" 200 OK
+INFO:     195.184.76.234:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:43326 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53088 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44376 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46632 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36486 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53150 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58902 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34834 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39276 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51700 - "GET /health HTTP/1.1" 200 OK
+INFO:     45.198.224.125:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49312 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52680 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40838 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44920 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57522 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59324 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56184 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38008 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34898 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42842 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51736 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39944 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49258 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43370 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40518 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41548 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36944 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57706 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38086 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46194 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60022 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49604 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52082 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47318 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52998 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38294 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58492 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53972 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37042 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56866 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59054 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58828 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59216 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58802 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33990 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45044 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52636 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45384 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38848 - "GET /health HTTP/1.1" 200 OK
+INFO:     5.187.38.30:0 - "GET /SDK/webLanguage HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:53426 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56362 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34280 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41688 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56392 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53418 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60560 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52440 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33002 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.236.228.193:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56926 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60974 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51900 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44980 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57930 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34678 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58606 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46594 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56772 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40376 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45696 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47810 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32998 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47676 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48596 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58930 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46376 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56428 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46520 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53578 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50712 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48100 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42798 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48048 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42416 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40132 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49642 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50208 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51512 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58808 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45332 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46380 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49150 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55088 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49942 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42376 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40240 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41360 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48206 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43000 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33148 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60570 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49200 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43748 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60520 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60760 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53090 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51440 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60122 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51936 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34696 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38158 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46220 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35798 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46480 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35566 - "GET /health HTTP/1.1" 200 OK
+INFO:     195.182.16.23:0 - "GET /SDK/webLanguage HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39704 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58358 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53142 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41708 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57520 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35160 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45238 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50824 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36040 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47688 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48320 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42328 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44916 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55010 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59094 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33432 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43034 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44208 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36622 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43092 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56036 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39696 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39042 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37702 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51356 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51440 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51794 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47388 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33366 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44726 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38072 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52992 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43316 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54940 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51632 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55560 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52298 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49770 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54568 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58976 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57068 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57652 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45532 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39438 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60206 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46128 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58966 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58674 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51040 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48318 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39684 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38130 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43840 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50350 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38314 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39030 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34440 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52486 - "GET /health HTTP/1.1" 200 OK
+INFO:     146.190.220.133:0 - "GET / HTTP/1.1" 200 OK
+INFO:     146.190.220.133:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:40916 - "GET /health HTTP/1.1" 200 OK
+INFO:     5.187.38.30:0 - "GET /SDK/webLanguage HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:33008 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46830 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43062 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46956 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59820 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45014 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43988 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40642 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51094 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45586 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46730 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47848 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40622 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50850 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35214 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42132 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36364 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55610 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56710 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57758 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35324 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34640 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49462 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34832 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50238 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45548 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48114 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54018 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43574 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38010 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55946 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51796 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50070 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41962 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54134 - "GET /health HTTP/1.1" 200 OK
+INFO:     135.233.115.176:0 - "GET /developmentserver/metadatauploader HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35108 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49168 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60872 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57298 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52726 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45868 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46546 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53644 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43950 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60154 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51830 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35570 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48616 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45340 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51468 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53820 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40952 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51982 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59732 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48180 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57128 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51600 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39198 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43634 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60432 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54760 - "GET /health HTTP/1.1" 200 OK
+INFO:     192.3.179.148:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50446 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57266 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51396 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38646 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55980 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36438 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39562 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44530 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56712 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36720 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35802 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52484 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56512 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59096 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46670 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48084 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60586 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33830 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56900 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40854 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50294 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60550 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54140 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58720 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53806 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53814 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45728 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38492 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57404 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48034 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35480 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53476 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47796 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45654 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33440 - "GET /health HTTP/1.1" 200 OK
+INFO:     52.165.83.111:0 - "GET /actuator/health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:54366 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54770 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38526 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58606 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57346 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45606 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40854 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48640 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53594 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59048 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43648 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55822 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44238 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38940 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56292 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55056 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44550 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33640 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40356 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35738 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60386 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53204 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48474 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57688 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54980 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37998 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49852 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38440 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41766 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49540 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36676 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45282 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51836 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52416 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39622 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51154 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40082 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55596 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52182 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57598 - "GET /health HTTP/1.1" 200 OK
+INFO:     71.6.155.70:0 - "GET /.well-known/pki-validation/update HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:43812 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45374 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57512 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53440 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60408 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57742 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58392 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46724 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49460 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52752 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46526 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42512 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50718 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41812 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52234 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34238 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48736 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43578 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56614 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42642 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54254 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44156 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33090 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50910 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42610 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32948 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60716 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39938 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49190 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54334 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54998 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51222 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45194 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47062 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48836 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54980 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43214 - "GET /health HTTP/1.1" 200 OK
+INFO:     89.222.92.0:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38340 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49598 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32992 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38858 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60726 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49616 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40434 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45132 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58550 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58558 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52418 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55492 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38176 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40400 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56764 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51844 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38702 - "GET /health HTTP/1.1" 200 OK
+INFO:     167.94.146.62:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50162 - "GET /health HTTP/1.1" 200 OK
+INFO:     167.94.146.62:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     167.94.146.62:0 - "GET /wiki HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51316 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59232 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48886 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60948 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60542 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39244 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57154 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43188 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53670 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53516 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46828 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33146 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37644 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45396 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50484 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51324 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45224 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46396 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59316 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60530 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55682 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41578 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35058 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51720 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39640 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40046 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47464 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46592 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50100 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38582 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39732 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39114 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46736 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50008 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51942 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36784 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42236 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55488 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37724 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58564 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60538 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37844 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40306 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46724 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56300 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55056 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51084 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57538 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43958 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41180 - "GET /health HTTP/1.1" 200 OK
+INFO:     195.182.16.23:0 - "GET /SDK/webLanguage HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:56814 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53430 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50966 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53276 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46680 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44220 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43684 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33100 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60788 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55044 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58592 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60616 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57432 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35158 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43676 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53046 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33818 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42568 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51272 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58316 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40850 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44200 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38646 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41990 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34568 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.104.215.178:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36786 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34088 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52878 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54170 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44592 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40884 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40192 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41022 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56166 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40106 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48066 - "GET /health HTTP/1.1" 200 OK
+INFO:     20.115.229.242:0 - "GET /health/liveliness HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59550 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44184 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49194 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34820 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45784 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46820 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44224 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44310 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55938 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50552 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40620 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38306 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52944 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59536 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59760 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41166 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34344 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40780 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60870 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54632 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52374 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39564 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38464 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48178 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51614 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35086 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59178 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46372 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53690 - "GET /health HTTP/1.1" 200 OK
+INFO:     45.198.224.125:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43732 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36438 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46144 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47932 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33988 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40430 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46598 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41812 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45094 - "GET /health HTTP/1.1" 200 OK
+INFO:     35.214.156.130:0 - "GET / HTTP/1.1" 200 OK
+INFO:     34.1.231.91:0 - "GET / HTTP/1.1" 206 Partial Content
+INFO:     34.1.231.91:0 - "OPTIONS / HTTP/1.1" 405 Method Not Allowed
+WARNING:  Invalid HTTP request received.
+INFO:     34.1.231.91:0 - "GET / HTTP/1.1" 200 OK
+INFO:     34.1.231.91:0 - "HEAD / HTTP/1.1" 405 Method Not Allowed
+INFO:     34.1.231.91:0 - "GET /pub/ HTTP/1.1" 404 Not Found
+INFO:     34.1.231.91:0 - "POST / HTTP/1.1" 405 Method Not Allowed
+INFO:     34.1.231.91:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     34.1.231.91:0 - "GET /files/ HTTP/1.1" 404 Not Found
+INFO:     34.1.231.91:0 - "OPTIONS / HTTP/1.1" 405 Method Not Allowed
+INFO:     34.1.231.91:0 - "GET /downloads/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:42404 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51694 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34248 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58234 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43312 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57834 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33576 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44590 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45544 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60410 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43608 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37250 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59078 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51316 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58990 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42870 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53948 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43638 - "GET /health HTTP/1.1" 200 OK
+INFO:     198.74.56.66:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49384 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34518 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46148 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47322 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53598 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60288 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43494 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38700 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39098 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54608 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38138 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55662 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42616 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58008 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41790 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58174 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52202 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43824 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46398 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34808 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42342 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56388 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45494 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49982 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58834 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41384 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47992 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40558 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60766 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52020 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39994 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50360 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36462 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51216 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33264 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51118 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54988 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54638 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50338 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59836 - "GET /health HTTP/1.1" 200 OK
+INFO:     5.187.38.30:0 - "GET /SDK/webLanguage HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41858 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54284 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34344 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44484 - "GET /health HTTP/1.1" 200 OK
+INFO:     18.213.18.228:0 - "GET /health HTTP/1.1" 200 OK
+INFO:     18.213.18.228:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49118 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56544 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58012 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54040 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35472 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45642 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44322 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50736 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36674 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39746 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58936 - "GET /health HTTP/1.1" 200 OK
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     69.164.205.137:0 - "GET /robots.txt HTTP/1.1" 404 Not Found
+INFO:     186.192.164.60:0 - "GET / HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /static/public-bundle.css?v=20261118.3 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /static/vendor/fonts/public-sans-latin-700-normal.woff2 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /static/vendor/fonts/public-sans-latin-600-normal.woff2 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /static/vendor/fonts/public-sans-latin-800-normal.woff2 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /static/vendor/fonts/public-sans-latin-400-normal.woff2 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /static/vendor/echarts.min.js?v=5.6.0 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /static/navigation.js?v=20261118.3 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /static/media.js?v=20261118.3 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /static/motion.js?v=20261118.3 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /static/dashboard.js?v=20261118.3 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /static/assets/osasco-orientation.svg HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/heatmap/demo?period=tarde HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38410 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/weather/osasco HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/weather/history?latitude=-23.5329&longitude=-46.7917&start_date=2026-10-13&end_date=2026-11-11 HTTP/1.1" 200 OK
+INFO:     69.164.205.137:0 - "GET / HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47382 - "GET /health HTTP/1.1" 200 OK
+INFO:     69.164.205.137:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43282 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60246 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/heatmap/demo?period=noite HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/heatmap/demo?period=tarde HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/heatmap/demo?period=noite HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/heatmap/demo?period=tarde HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/heatmap/demo?period=noite HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/heatmap/demo?period=tarde HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/weather/places?search=S%C3%A3o%20Paulo HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/weather/history?latitude=-23.5329&longitude=-46.7917&start_date=2026-10-13&end_date=2026-11-11 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/weather/history?latitude=-23.5475&longitude=-46.63611&start_date=2026-10-13&end_date=2026-11-11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46404 - "GET /health HTTP/1.1" 200 OK
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34446 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55788 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34340 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38264 - "GET /health HTTP/1.1" 200 OK
+INFO:     8.211.136.6:0 - "GET / HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36894 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     172.236.228.115:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35700 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35434 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59992 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46432 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41400 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34908 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34946 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46700 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56096 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45134 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50370 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36118 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59520 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57362 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37716 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55754 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51492 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     172.235.41.44:0 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37002 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43578 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56318 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46298 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58956 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56564 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59112 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47826 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42842 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.105.128.13:0 - "GET / HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49640 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37042 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52702 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51008 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55802 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53754 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50294 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33040 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33058 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51218 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40932 - "GET /health HTTP/1.1" 200 OK
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56790 - "GET /health HTTP/1.1" 200 OK
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51412 - "GET /health HTTP/1.1" 200 OK
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58664 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     127.0.0.1:53878 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [123871]
+INFO:     Started server process [227416]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:0 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41300 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39660 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52704 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53594 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54712 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48414 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55982 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59912 - "GET /health HTTP/1.1" 200 OK
+INFO:     195.182.16.23:0 - "GET /SDK/webLanguage HTTP/1.1" 404 Not Found
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44860 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54760 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59394 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56978 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43434 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56214 - "GET /health HTTP/1.1" 200 OK
+INFO:     5.187.38.30:0 - "GET /SDK/webLanguage HTTP/1.1" 404 Not Found
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41178 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38946 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53518 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48172 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53042 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51540 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45558 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52854 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45178 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36250 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52266 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40448 - "GET /health HTTP/1.1" 200 OK
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     127.0.0.1:50040 - "GET /health HTTP/1.1" 200 OK
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     127.0.0.1:56812 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     127.0.0.1:44218 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     127.0.0.1:32770 - "GET /health HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/data-source HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/summary HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/verde-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/stations/centro-demo/readings?limit=24&source=esp32 HTTP/1.1" 200 OK
+INFO:     186.192.164.60:0 - "GET /api/v1/medicoes?limit=60 HTTP/1.1" 200 OK
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     204.93.239.19:0 - "POST /api/v1/medicoes HTTP/1.1" 201 Created
+INFO:     127.0.0.1:0 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:0 - "GET /api/v1/resumo HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:0 - "GET /docs HTTP/1.1" 200 OK

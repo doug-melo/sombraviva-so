@@ -1,0 +1,24 @@
+$ ufw status verbose
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     LIMIT IN    Anywhere                   # SSH (limitado)
+80/tcp                     ALLOW IN    Anywhere                   # SombraViva
+8000/tcp                   ALLOW IN    Anywhere                   # SombraViva
+22/tcp (v6)                LIMIT IN    Anywhere (v6)              # SSH (limitado)
+80/tcp (v6)                ALLOW IN    Anywhere (v6)              # SombraViva
+8000/tcp (v6)              ALLOW IN    Anywhere (v6)              # SombraViva
+
+
+$ ss -tlnp | grep -E ':(22|80|8000|3306) '
+LISTEN 0      2048         0.0.0.0:8000       0.0.0.0:*    users:(("uvicorn",pid=227416,fd=12))                                           
+LISTEN 0      151        127.0.0.1:3306       0.0.0.0:*    users:(("mysqld",pid=124740,fd=24))                                            
+LISTEN 0      511          0.0.0.0:80         0.0.0.0:*    users:(("nginx",pid=8469,fd=5),("nginx",pid=8468,fd=5),("nginx",pid=7280,fd=5))
+LISTEN 0      4096         0.0.0.0:22         0.0.0.0:*    users:(("sshd",pid=7565,fd=3),("systemd",pid=1,fd=134))                        
+LISTEN 0      511             [::]:80            [::]:*    users:(("nginx",pid=8469,fd=6),("nginx",pid=8468,fd=6),("nginx",pid=7280,fd=6))
+LISTEN 0      4096            [::]:22            [::]:*    users:(("sshd",pid=7565,fd=4),("systemd",pid=1,fd=136))                        
+

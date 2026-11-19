@@ -1,0 +1,40 @@
+
+------------------------------------------------------------------
+2026-11-18 17:09:48 +0000 [INICIO] provision executado por ubuntu (uid efetivo 0) em instance-20261118-1350
+2026-11-18 17:09:48 +0000 [INFO ] Início do provisionamento: 18/11/2026 17:09:48 UTC por ubuntu
+2026-11-18 17:09:48 +0000 [PASSO] ==> Executando 01_provision_infra.sh
+2026-11-18 14:10:40 -0300 [OK   ] ✔ 01_provision_infra.sh concluído em 52s
+2026-11-18 14:10:40 -0300 [PASSO] ==> Executando 02_provision_app.sh
+2026-11-18 14:15:51 -0300 [OK   ] ✔ 02_provision_app.sh concluído em 311s
+2026-11-18 14:15:51 -0300 [PASSO] ==> Executando 04_setup_monitoring.sh
+2026-11-18 14:17:08 -0300 [OK   ] ✔ 04_setup_monitoring.sh concluído em 77s
+2026-11-18 14:17:08 -0300 [OK   ] ✔ Provisionamento concluído!
+
+------------------------------------------------------------------
+2026-11-19 00:00:51 -0300 [INICIO] provision executado por ubuntu (uid efetivo 0) em sombraviva-srv
+2026-11-19 00:00:51 -0300 [INFO ] Início do provisionamento: 19/11/2026 00:00:51 -03 por ubuntu
+2026-11-19 00:00:51 -0300 [PASSO] ==> Executando 01_provision_infra.sh
+2026-11-19 00:01:07 -0300 [OK   ] ✔ 01_provision_infra.sh concluído em 16s
+2026-11-19 00:01:07 -0300 [PASSO] ==> Executando 02_provision_app.sh
+2026-11-19 00:01:14 -0300 [ERRO ] ✖ Falha na linha 62: 'LOG_DIR="$LOG_DIR" "$SCRIPT_DIR/$script"' (código 1)
+2026-11-19 00:01:14 -0300 [ERRO ] ✖ Script terminou com erro (código 1). Log: /var/log/sombraviva/provision.log
+
+------------------------------------------------------------------
+2026-11-19 00:01:38 -0300 [INICIO] provision executado por ubuntu (uid efetivo 0) em sombraviva-srv
+2026-11-19 00:01:38 -0300 [INFO ] Início do provisionamento: 19/11/2026 00:01:38 -03 por ubuntu
+2026-11-19 00:01:38 -0300 [PASSO] ==> Executando 01_provision_infra.sh
+2026-11-19 00:01:48 -0300 [OK   ] ✔ 01_provision_infra.sh concluído em 10s
+2026-11-19 00:01:48 -0300 [PASSO] ==> Executando 02_provision_app.sh
+2026-11-19 00:01:56 -0300 [ERRO ] ✖ Falha na linha 62: 'LOG_DIR="$LOG_DIR" "$SCRIPT_DIR/$script"' (código 1)
+2026-11-19 00:01:56 -0300 [ERRO ] ✖ Script terminou com erro (código 1). Log: /var/log/sombraviva/provision.log
+
+------------------------------------------------------------------
+2026-11-19 00:11:50 -0300 [INICIO] provision executado por ubuntu (uid efetivo 0) em sombraviva-srv
+2026-11-19 00:11:50 -0300 [INFO ] Início do provisionamento: 19/11/2026 00:11:50 -03 por ubuntu
+2026-11-19 00:11:50 -0300 [PASSO] ==> Executando 01_provision_infra.sh
+2026-11-19 00:12:26 -0300 [OK   ] ✔ 01_provision_infra.sh concluído em 36s
+2026-11-19 00:12:26 -0300 [PASSO] ==> Executando 02_provision_app.sh
+2026-11-19 00:13:17 -0300 [OK   ] ✔ 02_provision_app.sh concluído em 51s
+2026-11-19 00:13:17 -0300 [PASSO] ==> Executando 04_setup_monitoring.sh
+2026-11-19 00:13:40 -0300 [OK   ] ✔ 04_setup_monitoring.sh concluído em 23s
+2026-11-19 00:13:41 -0300 [OK   ] ✔ Provisionamento concluído!

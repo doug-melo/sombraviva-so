@@ -37,6 +37,8 @@ Tirados das gravações do vídeo, em 1080p. O token do dispositivo no print do 
 
 ## Logs (`logs/`)
 
+Coletados em 19/11/2026 na VM `sombraviva-srv`. Nenhum token ou senha aparece: o script mascara antes de copiar, e os arquivos foram conferidos antes de entrar no repositório.
+
 Gerados na VM com um comando, que só lê (não altera nada) e mascara tokens, senhas e cabeçalhos `Bearer`:
 
 ```bash
@@ -56,4 +58,4 @@ sudo ./scripts/08_coletar_evidencias.sh      # cria ~/evidencias_sombraviva.tar.
 | `08_auditd.txt` | regras do auditd e alterações registradas no `.env` |
 | `09_logrotate.txt` | configuração e simulação do logrotate |
 | `10_auto_deploy.txt` | situação do deploy automático e últimas execuções |
-| `logs/*.log` | últimas 2000 linhas de cada log em `/var/log/sombraviva` (`monitor`, `alertas`, `auditoria`, `api`, `05_teste_falha`, `07_auto_deploy`…) |
+| `*.log` | últimas 2000 linhas de cada log em `/var/log/sombraviva` (`monitor`, `alertas`, `auditoria`, `api`, `05_teste_falha`, `07_auto_deploy`…) |

@@ -1,0 +1,31 @@
+$ getent passwd sombraviva
+sombraviva:x:997:988:SombraViva API:/opt/sombraviva:/usr/sbin/nologin
+
+$ id sombraviva
+uid=997(sombraviva) gid=988(sombraviva) groups=988(sombraviva)
+
+$ stat -c '%A %U:%G %n' /etc/sombraviva/sombraviva.env
+-rw------- root:root /etc/sombraviva/sombraviva.env
+
+$ ls -ld /opt/sombraviva /etc/sombraviva /var/log/sombraviva
+drwxr-x--- 2 root       sombraviva 4096 Nov 18 22:54 /etc/sombraviva
+drwxr-xr-x 6 sombraviva sombraviva 4096 Nov 18 14:15 /opt/sombraviva
+drwxr-x--- 2 root       adm        4096 Nov 19 09:29 /var/log/sombraviva
+
+$ ls -l /var/log/sombraviva
+total 2524
+-rw-r--r-- 1 root root   23370 Nov 19 00:12 01_provision_infra.log
+-rw-r--r-- 1 root root  193003 Nov 19 09:13 02_provision_app.log
+-rw-r--r-- 1 root root    1999 Nov 19 00:27 03_monitor.log
+-rw-r--r-- 1 root root   13501 Nov 19 00:13 04_setup_monitoring.log
+-rw-r--r-- 1 root root    3851 Nov 19 00:27 05_teste_falha.log
+-rw-r--r-- 1 root root    1565 Nov 19 00:08 06_tunnel.log
+-rw-r--r-- 1 root root  195680 Nov 19 09:27 07_auto_deploy.log
+-rw-r--r-- 1 root root     395 Nov 19 09:29 08_coletar_evidencias.log
+-rw-r--r-- 1 root root    7960 Nov 19 09:13 alertas.log
+-rw-r--r-- 1 root root  411079 Nov 19 09:29 api.log
+-rw-r--r-- 1 root root  171749 Nov 19 09:29 auditoria.log
+-rw-r--r-- 1 root root    6234 Nov 19 00:08 cloudflared.out
+-rw-r--r-- 1 root root 1501805 Nov 19 09:29 monitor.log
+-rw-r--r-- 1 root root    2981 Nov 19 00:13 provision.log
+

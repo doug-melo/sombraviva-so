@@ -1,0 +1,41 @@
+
+------------------------------------------------------------------
+2026-11-19 00:27:04 -0300 [INICIO] 05_teste_falha executado por ubuntu (uid efetivo 0) em sombraviva-srv
+2026-11-19 00:27:04 -0300 [PASSO] ==> Teste 'api': kill -9 em sombraviva-api.service
+2026-11-19 00:27:04 -0300 [INFO ] [00:27:04] PID atual: 122059 | reinícios até agora: 0
+2026-11-19 00:27:04 -0300 [WARN ] ⚠ [00:27:04] Enviando SIGKILL (kill -9 122059)…
+2026-11-19 00:27:05 -0300 [INFO ] [00:27:05] Estado logo após o kill: activating
+2026-11-19 00:27:07 -0300 [INFO ] [00:27:07] Novo PID: 123871 | reinícios: 1
+2026-11-19 00:27:11 -0300 [INFO ] [00:27:11] GET /health -> HTTP 200
+2026-11-19 00:27:11 -0300 [OK   ] ✔ [api] PID 122059 morto, systemd reiniciou como PID 123871 (NRestarts 0 -> 1)
+2026-11-19 00:27:11 -0300 [PASSO] ==> Teste 'monitor': kill -9 em sombraviva-monitor.service
+2026-11-19 00:27:11 -0300 [INFO ] [00:27:11] PID atual: 119779 | reinícios até agora: 0
+2026-11-19 00:27:11 -0300 [WARN ] ⚠ [00:27:11] Enviando SIGKILL (kill -9 119779)…
+2026-11-19 00:27:12 -0300 [INFO ] [00:27:12] Estado logo após o kill: activating
+2026-11-19 00:27:16 -0300 [INFO ] [00:27:16] Novo PID: 123954 | reinícios: 1
+2026-11-19 00:27:16 -0300 [OK   ] ✔ [monitor] PID 119779 morto, systemd reiniciou como PID 123954 (NRestarts 0 -> 1)
+2026-11-19 00:27:16 -0300 [PASSO] ==> Teste 'cpu': estresse de CPU por 25s
+2026-11-19 00:27:16 -0300 [INFO ] [00:27:16] stress-ng não instalado — usando 2 processos 'yes' (sudo apt install stress-ng para a versão completa)
+2026-11-19 00:27:21 -0300 [INFO ] [00:27:21] Rodando o monitor durante o estresse:
+2026-11-19 00:27:27 -0300 [INFO ] Aguardando o fim do estresse (o serviço de monitoramento também registra)…
+2026-11-19 00:27:42 -0300 [OK   ] ✔ [cpu] alerta de CPU registrado em monitor.log e no syslog
+2026-11-19 00:27:42 -0300 [PASSO] ==> Teste 'disco': arquivo temporário até passar o limite de alerta
+2026-11-19 00:27:42 -0300 [INFO ] [00:27:42] Disco: 8% usado, limite WARN 80%
+2026-11-19 00:27:42 -0300 [WARN ] ⚠ [00:27:42] Criando /var/tmp/sombraviva_teste_disco.img com 33152 MB (fallocate)…
+2026-11-19 00:27:45 -0300 [OK   ] ✔ [00:27:44] Arquivo removido — disco: 9%
+2026-11-19 00:27:47 -0300 [OK   ] ✔ [disco] alerta de disco registrado e arquivo temporário removido
+2026-11-19 00:27:47 -0300 [PASSO] ==> Teste 'mysql': banco fora do ar
+2026-11-19 00:27:47 -0300 [INFO ] [00:27:47] Antes: GET /health -> HTTP 200
+2026-11-19 00:27:47 -0300 [WARN ] ⚠ [00:27:47] systemctl stop mysql
+2026-11-19 00:27:53 -0300 [INFO ] [00:27:53] Com o banco parado: GET /health -> HTTP 503
+2026-11-19 00:27:55 -0300 [INFO ] [00:27:55] Restaurando: systemctl start mysql
+2026-11-19 00:27:59 -0300 [INFO ] [00:27:59] Depois: GET /health -> HTTP 200 (a API reconectou sozinha)
+2026-11-19 00:27:59 -0300 [OK   ] ✔ [mysql] /health foi 503 com o banco parado, alerta CRIT gerado e voltou a 200
+2026-11-19 00:27:59 -0300 [PASSO] ==> Resumo dos testes (19/11/2026 00:27:59)
+2026-11-19 00:27:59 -0300 [RESULT] api      PASSOU  PID 122059 morto, systemd reiniciou como PID 123871 (NRestarts 0 -> 1)
+2026-11-19 00:27:59 -0300 [RESULT] monitor  PASSOU  PID 119779 morto, systemd reiniciou como PID 123954 (NRestarts 0 -> 1)
+2026-11-19 00:27:59 -0300 [RESULT] cpu      PASSOU  alerta de CPU registrado em monitor.log e no syslog
+2026-11-19 00:27:59 -0300 [RESULT] disco    PASSOU  alerta de disco registrado e arquivo temporário removido
+2026-11-19 00:27:59 -0300 [RESULT] mysql    PASSOU  /health foi 503 com o banco parado, alerta CRIT gerado e voltou a 200
+2026-11-19 00:27:59 -0300 [INFO ] Evidências: /var/log/sombraviva/05_teste_falha.log, /var/log/sombraviva/monitor.log, /var/log/sombraviva/alertas.log
+2026-11-19 00:27:59 -0300 [INFO ] journalctl -u sombraviva-api -u sombraviva-monitor --since '-15min'

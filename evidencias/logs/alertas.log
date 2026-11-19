@@ -1,0 +1,79 @@
+2026-11-18 14:17:01 -0300 [WARN] CPU      uso=89% (warn 75% / crit 90%) load=3.57 2.48 1.26 nucleos=2
+2026-11-18 20:41:23 -0300 [CRIT] CPU      uso=95% (warn 75% / crit 90%) load=2.26 0.61 0.26 nucleos=2
+2026-11-18 20:41:23 -0300 [WARN] MEMORIA  uso=80% livre=185MB total=952MB (warn 80% / crit 92%)
+2026-11-18 20:41:57 -0300 [CRIT] CPU      uso=100% (warn 75% / crit 90%) load=4.31 1.27 0.49 nucleos=2
+2026-11-18 21:38:59 -0300 [CRIT] CPU      uso=100% (warn 75% / crit 90%) load=0.70 0.41 0.33 nucleos=2
+2026-11-18 21:39:00 -0300 [CRIT] API      API NÃO responde em http://127.0.0.1:8000/health (timeout/conexão recusada)
+2026-11-18 21:48:28 -0300 [CRIT] CPU      uso=93% (warn 75% / crit 90%) load=1.08 0.38 0.31 nucleos=2
+2026-11-18 22:24:05 -0300 [WARN] CPU      uso=77% (warn 75% / crit 90%) load=0.51 0.56 0.37 nucleos=2
+2026-11-18 22:55:29 -0300 [WARN] CPU      uso=80% (warn 75% / crit 90%) load=0.49 0.23 0.24 nucleos=2
+2026-11-18 22:55:30 -0300 [CRIT] API      API NÃO responde em http://127.0.0.1:8000/health (timeout/conexão recusada)
+2026-11-18 23:09:13 -0300 [CRIT] CPU      uso=98% (warn 75% / crit 90%) load=0.46 0.23 0.20 nucleos=2
+2026-11-18 23:29:44 -0300 [WARN] CPU      uso=79% (warn 75% / crit 90%) load=0.41 0.29 0.27 nucleos=2
+2026-11-18 23:56:25 -0300 [WARN] CPU      uso=75% (warn 75% / crit 90%) load=0.38 0.21 0.19 nucleos=2
+2026-11-19 00:01:11 -0300 [WARN] CPU      uso=80% (warn 75% / crit 90%) load=1.50 0.47 0.27 nucleos=2
+2026-11-19 00:02:47 -0300 [CRIT] CPU      uso=100% (warn 75% / crit 90%) load=0.87 0.53 0.31 nucleos=2
+2026-11-19 00:04:54 -0300 [CRIT] CPU      uso=100% (warn 75% / crit 90%) load=0.50 0.48 0.32 nucleos=2
+2026-11-19 00:04:56 -0300 [CRIT] API      API NÃO responde em http://127.0.0.1:8000/health (timeout/conexão recusada)
+2026-11-19 00:11:15 -0300 [CRIT] CPU      uso=100% (warn 75% / crit 90%) load=1.01 0.84 0.53 nucleos=2
+2026-11-19 00:11:51 -0300 [CRIT] CPU      uso=100% (warn 75% / crit 90%) load=2.02 1.10 0.63 nucleos=2
+2026-11-19 00:12:31 -0300 [CRIT] CPU      uso=96% (warn 75% / crit 90%) load=4.15 1.79 0.88 nucleos=2
+2026-11-19 00:13:06 -0300 [CRIT] API      API NÃO responde em http://127.0.0.1:8000/health (timeout/conexão recusada)
+2026-11-19 00:13:24 -0300 [CRIT] CPU      uso=100% (warn 75% / crit 90%) load=3.06 1.84 0.94 nucleos=2
+2026-11-19 00:14:03 -0300 [CRIT] CPU      uso=94% (warn 75% / crit 90%) load=2.29 1.81 0.97 nucleos=2
+2026-11-19 00:17:44 -0300 [CRIT] CPU      uso=100% (warn 75% / crit 90%) load=2.74 1.67 1.06 nucleos=2
+2026-11-19 00:18:18 -0300 [CRIT] CPU      uso=94% (warn 75% / crit 90%) load=4.32 2.20 1.27 nucleos=2
+2026-11-19 00:27:17 -0300 [CRIT] CPU      uso=96% (warn 75% / crit 90%) load=0.45 0.79 0.94 nucleos=2
+2026-11-19 00:27:24 -0300 [CRIT] CPU      uso=100% (warn 75% / crit 90%) load=0.49 0.79 0.94 nucleos=2
+2026-11-19 00:27:43 -0300 [WARN] DISCO    / uso=83% livre=8.0G (warn 80% / crit 90%)
+2026-11-19 00:27:50 -0300 [CRIT] API      API no ar mas BANCO indisponível (HTTP 503): {"detail":"Banco de dados indisponível"}
+2026-11-19 00:27:50 -0300 [CRIT] SERVICO  mysql INATIVO (estado: deactivating)
+2026-11-19 00:27:50 -0300 [CRIT] MYSQL    MySQL não responde ao ping
+2026-11-19 00:27:55 -0300 [CRIT] API      API no ar mas BANCO indisponível (HTTP 503): {"detail":"Banco de dados indisponível"}
+2026-11-19 00:27:55 -0300 [CRIT] SERVICO  mysql INATIVO (estado: inactive)
+2026-11-19 00:27:55 -0300 [CRIT] MYSQL    MySQL não responde ao ping
+2026-11-19 00:41:27 -0300 [CRIT] CPU      uso=94% (warn 75% / crit 90%) load=0.13 0.26 0.54 nucleos=2
+2026-11-19 06:07:23 -0300 [WARN] CPU      uso=85% (warn 75% / crit 90%) load=1.11 0.37 0.18 nucleos=2
+2026-11-19 06:07:57 -0300 [CRIT] CPU      uso=90% (warn 75% / crit 90%) load=2.45 0.79 0.33 nucleos=2
+2026-11-19 06:08:31 -0300 [WARN] MEMORIA  uso=81% livre=178MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:09:07 -0300 [CRIT] CPU      uso=95% (warn 75% / crit 90%) load=5.89 2.21 0.87 nucleos=2
+2026-11-19 06:09:07 -0300 [WARN] MEMORIA  uso=81% livre=177MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:09:41 -0300 [WARN] CPU      uso=82% (warn 75% / crit 90%) load=7.32 2.99 1.18 nucleos=2
+2026-11-19 06:09:42 -0300 [WARN] MEMORIA  uso=85% livre=142MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:10:18 -0300 [WARN] CPU      uso=87% (warn 75% / crit 90%) load=8.84 3.85 1.53 nucleos=2
+2026-11-19 06:10:19 -0300 [WARN] MEMORIA  uso=80% livre=183MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:10:53 -0300 [WARN] CPU      uso=81% (warn 75% / crit 90%) load=11.42 5.06 2.03 nucleos=2
+2026-11-19 06:10:54 -0300 [WARN] MEMORIA  uso=85% livre=139MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:11:31 -0300 [WARN] MEMORIA  uso=81% livre=177MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:12:05 -0300 [CRIT] CPU      uso=96% (warn 75% / crit 90%) load=9.69 6.13 2.65 nucleos=2
+2026-11-19 06:12:06 -0300 [WARN] MEMORIA  uso=82% livre=161MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:12:40 -0300 [WARN] MEMORIA  uso=82% livre=169MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:13:13 -0300 [WARN] MEMORIA  uso=82% livre=167MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:13:47 -0300 [WARN] CPU      uso=87% (warn 75% / crit 90%) load=9.26 7.00 3.32 nucleos=2
+2026-11-19 06:13:47 -0300 [WARN] MEMORIA  uso=82% livre=161MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:14:21 -0300 [WARN] CPU      uso=77% (warn 75% / crit 90%) load=10.13 7.45 3.61 nucleos=2
+2026-11-19 06:14:21 -0300 [WARN] MEMORIA  uso=81% livre=173MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:14:55 -0300 [CRIT] CPU      uso=99% (warn 75% / crit 90%) load=10.82 7.92 3.91 nucleos=2
+2026-11-19 06:14:55 -0300 [WARN] MEMORIA  uso=91% livre=85MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:15:30 -0300 [WARN] CPU      uso=77% (warn 75% / crit 90%) load=11.47 8.42 4.23 nucleos=2
+2026-11-19 06:15:30 -0300 [WARN] MEMORIA  uso=84% livre=148MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:16:03 -0300 [CRIT] CPU      uso=96% (warn 75% / crit 90%) load=11.81 8.79 4.49 nucleos=2
+2026-11-19 06:16:04 -0300 [WARN] MEMORIA  uso=80% livre=183MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:16:37 -0300 [CRIT] CPU      uso=90% (warn 75% / crit 90%) load=11.57 9.08 4.74 nucleos=2
+2026-11-19 06:17:10 -0300 [WARN] CPU      uso=80% (warn 75% / crit 90%) load=11.03 9.24 4.96 nucleos=2
+2026-11-19 06:17:11 -0300 [WARN] MEMORIA  uso=80% livre=185MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:17:45 -0300 [WARN] CPU      uso=76% (warn 75% / crit 90%) load=10.79 9.40 5.17 nucleos=2
+2026-11-19 06:17:45 -0300 [WARN] MEMORIA  uso=84% livre=149MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:18:23 -0300 [CRIT] CPU      uso=99% (warn 75% / crit 90%) load=10.62 9.53 5.38 nucleos=2
+2026-11-19 06:18:57 -0300 [CRIT] CPU      uso=94% (warn 75% / crit 90%) load=9.92 9.48 5.52 nucleos=2
+2026-11-19 06:18:58 -0300 [WARN] MEMORIA  uso=80% livre=182MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:19:32 -0300 [WARN] CPU      uso=83% (warn 75% / crit 90%) load=10.34 9.70 5.74 nucleos=2
+2026-11-19 06:19:32 -0300 [WARN] MEMORIA  uso=81% livre=178MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:20:06 -0300 [WARN] CPU      uso=84% (warn 75% / crit 90%) load=10.29 9.78 5.91 nucleos=2
+2026-11-19 06:20:07 -0300 [WARN] MEMORIA  uso=86% livre=128MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:20:43 -0300 [WARN] MEMORIA  uso=82% livre=169MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:21:17 -0300 [CRIT] CPU      uso=93% (warn 75% / crit 90%) load=8.86 9.46 6.09 nucleos=2
+2026-11-19 06:21:17 -0300 [WARN] MEMORIA  uso=83% livre=156MB total=952MB (warn 80% / crit 92%)
+2026-11-19 06:21:53 -0300 [WARN] CPU      uso=80% (warn 75% / crit 90%) load=7.63 9.09 6.09 nucleos=2
+2026-11-19 09:13:49 -0300 [CRIT] CPU      uso=96% (warn 75% / crit 90%) load=0.71 0.28 0.15 nucleos=2
+2026-11-19 09:13:50 -0300 [CRIT] API      API NÃO responde em http://127.0.0.1:8000/health (timeout/conexão recusada)

@@ -1,0 +1,50 @@
+$ ip -br a
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+ens3             UP             10.0.0.241/24 metric 100 fe80::17ff:fe02:cbad/64 
+
+$ ip route
+default via 10.0.0.1 dev ens3 proto dhcp src 10.0.0.241 metric 100 
+10.0.0.0/24 dev ens3 proto kernel scope link src 10.0.0.241 metric 100 
+10.0.0.1 dev ens3 proto dhcp scope link src 10.0.0.241 metric 100 
+169.254.0.0/16 dev ens3 proto dhcp scope link src 10.0.0.241 metric 100 
+169.254.169.254 dev ens3 proto dhcp scope link src 10.0.0.241 metric 100 
+
+$ cat /etc/hosts
+127.0.0.1	localhost
+
+# The following lines are desirable for IPv6 capable hosts
+::1	ip6-localhost	ip6-loopback
+fe00::0	ip6-localnet
+ff00::0	ip6-mcastprefix
+ff02::1	ip6-allnodes
+ff02::2	ip6-allrouters
+ff02::3	ip6-allhosts
+
+# >>> SombraViva (gerenciado por 01_provision_infra.sh) >>>
+127.0.1.1   sombraviva-srv sombraviva-srv.sombraviva.local sombraviva.local
+10.0.0.241   sombraviva.local api.sombraviva.local
+# <<< SombraViva <<<
+
+$ getent hosts sombraviva.local
+127.0.1.1       sombraviva-srv sombraviva-srv.sombraviva.local sombraviva.local api.sombraviva.local sombraviva.local
+10.0.0.241      sombraviva-srv sombraviva-srv.sombraviva.local sombraviva.local api.sombraviva.local sombraviva.local
+
+$ resolvectl status | head -30
+Global
+           Protocols: -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+    resolv.conf mode: stub
+  Current DNS Server: 1.1.1.1
+         DNS Servers: 1.1.1.1 8.8.8.8
+Fallback DNS Servers: 9.9.9.9 8.8.4.4
+          DNS Domain: sombraviva.local
+
+Link 2 (ens3)
+    Current Scopes: DNS
+         Protocols: +DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+Current DNS Server: 169.254.169.254
+       DNS Servers: 169.254.169.254
+        DNS Domain: n8nvcn.oraclevcn.com
+
+$ getent hosts api.open-meteo.com
+167.114.211.86  api.open-meteo.com
+

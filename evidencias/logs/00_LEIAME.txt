@@ -1,0 +1,2 @@
+SombraViva — evidências coletadas em 19/11/2026 09:29:11 -0300
+Host: sombraviva-srv | Usuário: ubuntu | Commit do repositório: 7ef1a78

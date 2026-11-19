@@ -1,0 +1,77 @@
+$ auditctl -l | grep -i sombraviva
+-w /etc/sombraviva -p wa -k sombraviva_config
+-w /opt/sombraviva/scripts -p wxa -k sombraviva_scripts
+-w /etc/systemd/system/sombraviva-api.service -p wa -k sombraviva_systemd
+-w /etc/systemd/system/sombraviva-monitor.service -p wa -k sombraviva_systemd
+-w /etc/nginx/sites-available/sombraviva -p wa -k sombraviva_nginx
+-w /etc/hosts -p wa -k sombraviva_rede
+-w /etc/hostname -p wa -k sombraviva_rede
+-w /etc/netplan -p wa -k sombraviva_rede
+-w /etc/systemd/resolved.conf.d -p wa -k sombraviva_rede
+-w /etc/ufw -p wa -k sombraviva_firewall
+-w /etc/passwd -p wa -k sombraviva_contas
+-w /etc/sudoers -p wa -k sombraviva_contas
+-w /home/ubuntu/sombraviva-so/scripts -p wa -k sombraviva_repo
+
+$ ausearch -k sombraviva_config -i | tail -60
+type=SYSCALL msg=audit(11/19/26 00:04:36.774:8059) : arch=x86_64 syscall=fchmodat success=yes exit=0 a0=AT_FDCWD a1=0x563700eb5170 a2=0600 a3=0x0 items=1 ppid=114568 pid=114887 auid=ubuntu uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=pts3 ses=72 comm=chmod exe=/usr/bin/chmod subj=unconfined key=sombraviva_config 
+----
+type=PROCTITLE msg=audit(11/19/26 00:11:27.269:8337) : proctitle=chown root:root /etc/sombraviva/sombraviva.env 
+type=PATH msg=audit(11/19/26 00:11:27.269:8337) : item=0 name=/etc/sombraviva/sombraviva.env inode=262171 dev=08:01 mode=file,600 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(11/19/26 00:11:27.269:8337) : cwd=/ 
+type=SYSCALL msg=audit(11/19/26 00:11:27.269:8337) : arch=x86_64 syscall=fchownat success=yes exit=0 a0=AT_FDCWD a1=0x5f75b363e770 a2=0x0 a3=0x0 items=1 ppid=116535 pid=116927 auid=unset uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=unset comm=chown exe=/usr/bin/chown subj=unconfined key=sombraviva_config 
+----
+type=PROCTITLE msg=audit(11/19/26 00:11:27.272:8338) : proctitle=chmod 600 /etc/sombraviva/sombraviva.env 
+type=PATH msg=audit(11/19/26 00:11:27.272:8338) : item=0 name=/etc/sombraviva/sombraviva.env inode=262171 dev=08:01 mode=file,600 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(11/19/26 00:11:27.272:8338) : cwd=/ 
+type=SYSCALL msg=audit(11/19/26 00:11:27.272:8338) : arch=x86_64 syscall=fchmodat success=yes exit=0 a0=AT_FDCWD a1=0x5a3c87d7b170 a2=0600 a3=0x0 items=1 ppid=116535 pid=116928 auid=unset uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=unset comm=chmod exe=/usr/bin/chmod subj=unconfined key=sombraviva_config 
+----
+type=PROCTITLE msg=audit(11/19/26 00:12:45.277:8989) : proctitle=chown root:root /etc/sombraviva/sombraviva.env 
+type=PATH msg=audit(11/19/26 00:12:45.277:8989) : item=0 name=/etc/sombraviva/sombraviva.env inode=262171 dev=08:01 mode=file,600 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(11/19/26 00:12:45.277:8989) : cwd=/home/ubuntu/sombraviva-so 
+type=SYSCALL msg=audit(11/19/26 00:12:45.277:8989) : arch=x86_64 syscall=fchownat success=yes exit=0 a0=AT_FDCWD a1=0x558daf635770 a2=0x0 a3=0x0 items=1 ppid=118743 pid=119132 auid=ubuntu uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=pts5 ses=72 comm=chown exe=/usr/bin/chown subj=unconfined key=sombraviva_config 
+----
+type=PROCTITLE msg=audit(11/19/26 00:12:45.281:8990) : proctitle=chmod 600 /etc/sombraviva/sombraviva.env 
+type=PATH msg=audit(11/19/26 00:12:45.281:8990) : item=0 name=/etc/sombraviva/sombraviva.env inode=262171 dev=08:01 mode=file,600 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(11/19/26 00:12:45.281:8990) : cwd=/home/ubuntu/sombraviva-so 
+type=SYSCALL msg=audit(11/19/26 00:12:45.281:8990) : arch=x86_64 syscall=fchmodat success=yes exit=0 a0=AT_FDCWD a1=0x562dae56e170 a2=0600 a3=0x0 items=1 ppid=118743 pid=119133 auid=ubuntu uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=pts5 ses=72 comm=chmod exe=/usr/bin/chmod subj=unconfined key=sombraviva_config 
+----
+type=PROCTITLE msg=audit(11/19/26 00:13:39.962:9312) : proctitle=/sbin/auditctl -R /etc/audit/audit.rules 
+type=SOCKADDR msg=audit(11/19/26 00:13:39.962:9312) : saddr={ saddr_fam=netlink nlnk-fam=16 nlnk-pid=0 } 
+type=SYSCALL msg=audit(11/19/26 00:13:39.962:9312) : arch=x86_64 syscall=sendto success=yes exit=1088 a0=0x3 a1=0x7ffe995fa830 a2=0x440 a3=0x0 items=0 ppid=120269 pid=120280 auid=ubuntu uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=pts5 ses=72 comm=auditctl exe=/usr/sbin/auditctl subj=unconfined key=sombraviva_config 
+type=CONFIG_CHANGE msg=audit(11/19/26 00:13:39.962:9312) : auid=ubuntu ses=72 subj=unconfined op=remove_rule key=sombraviva_config list=exit res=yes 
+----
+type=PROCTITLE msg=audit(11/19/26 00:13:39.964:9328) : proctitle=/sbin/auditctl -R /etc/audit/audit.rules 
+type=SYSCALL msg=audit(11/19/26 00:13:39.964:9328) : arch=x86_64 syscall=sendto success=yes exit=1088 a0=0x3 a1=0x7ffe995fccd0 a2=0x440 a3=0x0 items=0 ppid=120269 pid=120280 auid=ubuntu uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=pts5 ses=72 comm=auditctl exe=/usr/sbin/auditctl subj=unconfined key=sombraviva_config 
+type=CONFIG_CHANGE msg=audit(11/19/26 00:13:39.964:9328) : auid=ubuntu ses=72 subj=unconfined op=add_rule key=sombraviva_config list=exit res=yes 
+----
+type=PROCTITLE msg=audit(11/19/26 00:13:46.278:9347) : proctitle=chown root:root /etc/sombraviva/sombraviva.env 
+type=PATH msg=audit(11/19/26 00:13:46.278:9347) : item=0 name=/etc/sombraviva/sombraviva.env inode=262171 dev=08:01 mode=file,600 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(11/19/26 00:13:46.278:9347) : cwd=/ 
+type=SYSCALL msg=audit(11/19/26 00:13:46.278:9347) : arch=x86_64 syscall=fchownat success=yes exit=0 a0=AT_FDCWD a1=0x64eeea527770 a2=0x0 a3=0x0 items=1 ppid=119630 pid=120422 auid=unset uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=unset comm=chown exe=/usr/bin/chown subj=unconfined key=sombraviva_config 
+----
+type=PROCTITLE msg=audit(11/19/26 00:13:46.340:9348) : proctitle=chmod 600 /etc/sombraviva/sombraviva.env 
+type=PATH msg=audit(11/19/26 00:13:46.340:9348) : item=0 name=/etc/sombraviva/sombraviva.env inode=262171 dev=08:01 mode=file,600 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(11/19/26 00:13:46.340:9348) : cwd=/ 
+type=SYSCALL msg=audit(11/19/26 00:13:46.340:9348) : arch=x86_64 syscall=fchmodat success=yes exit=0 a0=AT_FDCWD a1=0x65038b034170 a2=0600 a3=0x0 items=1 ppid=119630 pid=120423 auid=unset uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=unset comm=chmod exe=/usr/bin/chmod subj=unconfined key=sombraviva_config 
+----
+type=PROCTITLE msg=audit(11/19/26 00:17:55.159:9640) : proctitle=chown root:root /etc/sombraviva/sombraviva.env 
+type=PATH msg=audit(11/19/26 00:17:55.159:9640) : item=0 name=/etc/sombraviva/sombraviva.env inode=262171 dev=08:01 mode=file,600 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(11/19/26 00:17:55.159:9640) : cwd=/ 
+type=SYSCALL msg=audit(11/19/26 00:17:55.159:9640) : arch=x86_64 syscall=fchownat success=yes exit=0 a0=AT_FDCWD a1=0x64f2ed000770 a2=0x0 a3=0x0 items=1 ppid=121460 pid=121888 auid=unset uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=unset comm=chown exe=/usr/bin/chown subj=unconfined key=sombraviva_config 
+----
+type=PROCTITLE msg=audit(11/19/26 00:17:55.237:9641) : proctitle=chmod 600 /etc/sombraviva/sombraviva.env 
+type=PATH msg=audit(11/19/26 00:17:55.237:9641) : item=0 name=/etc/sombraviva/sombraviva.env inode=262171 dev=08:01 mode=file,600 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(11/19/26 00:17:55.237:9641) : cwd=/ 
+type=SYSCALL msg=audit(11/19/26 00:17:55.237:9641) : arch=x86_64 syscall=fchmodat success=yes exit=0 a0=AT_FDCWD a1=0x5aaa908a7170 a2=0600 a3=0x0 items=1 ppid=121460 pid=121889 auid=unset uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=unset comm=chmod exe=/usr/bin/chmod subj=unconfined key=sombraviva_config 
+----
+type=PROCTITLE msg=audit(11/19/26 09:13:34.743:15539) : proctitle=chown root:root /etc/sombraviva/sombraviva.env 
+type=PATH msg=audit(11/19/26 09:13:34.743:15539) : item=0 name=/etc/sombraviva/sombraviva.env inode=262171 dev=08:01 mode=file,600 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(11/19/26 09:13:34.743:15539) : cwd=/ 
+type=SYSCALL msg=audit(11/19/26 09:13:34.743:15539) : arch=x86_64 syscall=fchownat success=yes exit=0 a0=AT_FDCWD a1=0x5b0b63e59770 a2=0x0 a3=0x0 items=1 ppid=227005 pid=227318 auid=unset uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=unset comm=chown exe=/usr/bin/chown subj=unconfined key=sombraviva_config 
+----
+type=PROCTITLE msg=audit(11/19/26 09:13:34.747:15540) : proctitle=chmod 600 /etc/sombraviva/sombraviva.env 
+type=PATH msg=audit(11/19/26 09:13:34.747:15540) : item=0 name=/etc/sombraviva/sombraviva.env inode=262171 dev=08:01 mode=file,600 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(11/19/26 09:13:34.747:15540) : cwd=/ 
+type=SYSCALL msg=audit(11/19/26 09:13:34.747:15540) : arch=x86_64 syscall=fchmodat success=yes exit=0 a0=AT_FDCWD a1=0x64abef19b170 a2=0600 a3=0x0 items=1 ppid=227005 pid=227319 auid=unset uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=unset comm=chmod exe=/usr/bin/chmod subj=unconfined key=sombraviva_config 
+

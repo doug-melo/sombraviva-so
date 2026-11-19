@@ -1,0 +1,130 @@
+$ journalctl -t sombraviva-monitor -p warning --since today --no-pager
+Nov 19 00:01:11 sombraviva-srv sombraviva-monitor[112155]: [WARN] CPU uso=80% (warn 75% / crit 90%) load=1.50 0.47 0.27 nucleos=2
+Nov 19 00:02:47 sombraviva-srv sombraviva-monitor[114143]: [CRIT] CPU uso=100% (warn 75% / crit 90%) load=0.87 0.53 0.31 nucleos=2
+Nov 19 00:04:54 sombraviva-srv sombraviva-monitor[115214]: [CRIT] CPU uso=100% (warn 75% / crit 90%) load=0.50 0.48 0.32 nucleos=2
+Nov 19 00:04:56 sombraviva-srv sombraviva-monitor[115243]: [CRIT] API API NÃO responde em http://127.0.0.1:8000/health (timeout/conexão recusada)
+Nov 19 00:11:15 sombraviva-srv sombraviva-monitor[116716]: [CRIT] CPU uso=100% (warn 75% / crit 90%) load=1.01 0.84 0.53 nucleos=2
+Nov 19 00:11:51 sombraviva-srv sombraviva-monitor[117023]: [CRIT] CPU uso=100% (warn 75% / crit 90%) load=2.02 1.10 0.63 nucleos=2
+Nov 19 00:12:31 sombraviva-srv sombraviva-monitor[118922]: [CRIT] CPU uso=96% (warn 75% / crit 90%) load=4.15 1.79 0.88 nucleos=2
+Nov 19 00:13:06 sombraviva-srv sombraviva-monitor[119347]: [CRIT] API API NÃO responde em http://127.0.0.1:8000/health (timeout/conexão recusada)
+Nov 19 00:13:24 sombraviva-srv sombraviva-monitor[119876]: [CRIT] CPU uso=100% (warn 75% / crit 90%) load=3.06 1.84 0.94 nucleos=2
+Nov 19 00:14:03 sombraviva-srv sombraviva-monitor[120460]: [CRIT] CPU uso=94% (warn 75% / crit 90%) load=2.29 1.81 0.97 nucleos=2
+Nov 19 00:17:44 sombraviva-srv sombraviva-monitor[121799]: [CRIT] CPU uso=100% (warn 75% / crit 90%) load=2.74 1.67 1.06 nucleos=2
+Nov 19 00:18:18 sombraviva-srv sombraviva-monitor[121922]: [CRIT] CPU uso=94% (warn 75% / crit 90%) load=4.32 2.20 1.27 nucleos=2
+Nov 19 00:27:18 sombraviva-srv sombraviva-monitor[124030]: [CRIT] CPU uso=96% (warn 75% / crit 90%) load=0.45 0.79 0.94 nucleos=2
+Nov 19 00:27:24 sombraviva-srv sombraviva-monitor[124128]: [CRIT] CPU uso=100% (warn 75% / crit 90%) load=0.49 0.79 0.94 nucleos=2
+Nov 19 00:27:43 sombraviva-srv sombraviva-monitor[124296]: [WARN] DISCO / uso=83% livre=8.0G (warn 80% / crit 90%)
+Nov 19 00:27:50 sombraviva-srv sombraviva-monitor[124583]: [CRIT] API API no ar mas BANCO indisponível (HTTP 503): {"detail":"Banco de dados indisponível"}
+Nov 19 00:27:50 sombraviva-srv sombraviva-monitor[124602]: [CRIT] SERVICO mysql INATIVO (estado: deactivating)
+Nov 19 00:27:50 sombraviva-srv sombraviva-monitor[124607]: [CRIT] MYSQL MySQL não responde ao ping
+Nov 19 00:27:55 sombraviva-srv sombraviva-monitor[124689]: [CRIT] API API no ar mas BANCO indisponível (HTTP 503): {"detail":"Banco de dados indisponível"}
+Nov 19 00:27:55 sombraviva-srv sombraviva-monitor[124708]: [CRIT] SERVICO mysql INATIVO (estado: inactive)
+Nov 19 00:27:55 sombraviva-srv sombraviva-monitor[124713]: [CRIT] MYSQL MySQL não responde ao ping
+Nov 19 00:41:27 sombraviva-srv sombraviva-monitor[127250]: [CRIT] CPU uso=94% (warn 75% / crit 90%) load=0.13 0.26 0.54 nucleos=2
+Nov 19 06:07:24 sombraviva-srv sombraviva-monitor[183759]: [WARN] CPU uso=85% (warn 75% / crit 90%) load=1.11 0.37 0.18 nucleos=2
+Nov 19 06:07:57 sombraviva-srv sombraviva-monitor[184056]: [CRIT] CPU uso=90% (warn 75% / crit 90%) load=2.45 0.79 0.33 nucleos=2
+Nov 19 06:08:31 sombraviva-srv sombraviva-monitor[184314]: [WARN] MEMORIA uso=81% livre=178MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:09:07 sombraviva-srv sombraviva-monitor[184447]: [CRIT] CPU uso=95% (warn 75% / crit 90%) load=5.89 2.21 0.87 nucleos=2
+Nov 19 06:09:07 sombraviva-srv sombraviva-monitor[184457]: [WARN] MEMORIA uso=81% livre=177MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:09:41 sombraviva-srv sombraviva-monitor[184645]: [WARN] CPU uso=82% (warn 75% / crit 90%) load=7.32 2.99 1.18 nucleos=2
+Nov 19 06:09:42 sombraviva-srv sombraviva-monitor[184654]: [WARN] MEMORIA uso=85% livre=142MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:10:18 sombraviva-srv sombraviva-monitor[184797]: [WARN] CPU uso=87% (warn 75% / crit 90%) load=8.84 3.85 1.53 nucleos=2
+Nov 19 06:10:19 sombraviva-srv sombraviva-monitor[184808]: [WARN] MEMORIA uso=80% livre=183MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:10:53 sombraviva-srv sombraviva-monitor[184969]: [WARN] CPU uso=81% (warn 75% / crit 90%) load=11.42 5.06 2.03 nucleos=2
+Nov 19 06:10:54 sombraviva-srv sombraviva-monitor[184979]: [WARN] MEMORIA uso=85% livre=139MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:11:31 sombraviva-srv sombraviva-monitor[185111]: [WARN] MEMORIA uso=81% livre=177MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:12:05 sombraviva-srv sombraviva-monitor[185248]: [CRIT] CPU uso=96% (warn 75% / crit 90%) load=9.69 6.13 2.65 nucleos=2
+Nov 19 06:12:06 sombraviva-srv sombraviva-monitor[185257]: [WARN] MEMORIA uso=82% livre=161MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:12:40 sombraviva-srv sombraviva-monitor[185332]: [WARN] MEMORIA uso=82% livre=169MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:13:13 sombraviva-srv sombraviva-monitor[185405]: [WARN] MEMORIA uso=82% livre=167MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:13:47 sombraviva-srv sombraviva-monitor[185557]: [WARN] CPU uso=87% (warn 75% / crit 90%) load=9.26 7.00 3.32 nucleos=2
+Nov 19 06:13:47 sombraviva-srv sombraviva-monitor[185566]: [WARN] MEMORIA uso=82% livre=161MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:14:21 sombraviva-srv sombraviva-monitor[185697]: [WARN] CPU uso=77% (warn 75% / crit 90%) load=10.13 7.45 3.61 nucleos=2
+Nov 19 06:14:21 sombraviva-srv sombraviva-monitor[185706]: [WARN] MEMORIA uso=81% livre=173MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:14:55 sombraviva-srv sombraviva-monitor[185768]: [CRIT] CPU uso=99% (warn 75% / crit 90%) load=10.82 7.92 3.91 nucleos=2
+Nov 19 06:14:55 sombraviva-srv sombraviva-monitor[185777]: [WARN] MEMORIA uso=91% livre=85MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:15:30 sombraviva-srv sombraviva-monitor[185850]: [WARN] CPU uso=77% (warn 75% / crit 90%) load=11.47 8.42 4.23 nucleos=2
+Nov 19 06:15:30 sombraviva-srv sombraviva-monitor[185859]: [WARN] MEMORIA uso=84% livre=148MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:16:03 sombraviva-srv sombraviva-monitor[186526]: [CRIT] CPU uso=96% (warn 75% / crit 90%) load=11.81 8.79 4.49 nucleos=2
+Nov 19 06:16:04 sombraviva-srv sombraviva-monitor[186543]: [WARN] MEMORIA uso=80% livre=183MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:16:37 sombraviva-srv sombraviva-monitor[188710]: [CRIT] CPU uso=90% (warn 75% / crit 90%) load=11.57 9.08 4.74 nucleos=2
+Nov 19 06:17:10 sombraviva-srv sombraviva-monitor[190460]: [WARN] CPU uso=80% (warn 75% / crit 90%) load=11.03 9.24 4.96 nucleos=2
+Nov 19 06:17:11 sombraviva-srv sombraviva-monitor[190469]: [WARN] MEMORIA uso=80% livre=185MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:17:45 sombraviva-srv sombraviva-monitor[191046]: [WARN] CPU uso=76% (warn 75% / crit 90%) load=10.79 9.40 5.17 nucleos=2
+Nov 19 06:17:45 sombraviva-srv sombraviva-monitor[191055]: [WARN] MEMORIA uso=84% livre=149MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:18:23 sombraviva-srv sombraviva-monitor[191185]: [CRIT] CPU uso=99% (warn 75% / crit 90%) load=10.62 9.53 5.38 nucleos=2
+Nov 19 06:18:58 sombraviva-srv sombraviva-monitor[194250]: [CRIT] CPU uso=94% (warn 75% / crit 90%) load=9.92 9.48 5.52 nucleos=2
+Nov 19 06:18:58 sombraviva-srv sombraviva-monitor[194300]: [WARN] MEMORIA uso=80% livre=182MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:19:32 sombraviva-srv sombraviva-monitor[196620]: [WARN] CPU uso=83% (warn 75% / crit 90%) load=10.34 9.70 5.74 nucleos=2
+Nov 19 06:19:32 sombraviva-srv sombraviva-monitor[196630]: [WARN] MEMORIA uso=81% livre=178MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:20:06 sombraviva-srv sombraviva-monitor[196778]: [WARN] CPU uso=84% (warn 75% / crit 90%) load=10.29 9.78 5.91 nucleos=2
+Nov 19 06:20:07 sombraviva-srv sombraviva-monitor[196787]: [WARN] MEMORIA uso=86% livre=128MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:20:43 sombraviva-srv sombraviva-monitor[196936]: [WARN] MEMORIA uso=82% livre=169MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:21:17 sombraviva-srv sombraviva-monitor[197098]: [CRIT] CPU uso=93% (warn 75% / crit 90%) load=8.86 9.46 6.09 nucleos=2
+Nov 19 06:21:17 sombraviva-srv sombraviva-monitor[197107]: [WARN] MEMORIA uso=83% livre=156MB total=952MB (warn 80% / crit 92%)
+Nov 19 06:21:53 sombraviva-srv sombraviva-monitor[197294]: [WARN] CPU uso=80% (warn 75% / crit 90%) load=7.63 9.09 6.09 nucleos=2
+Nov 19 09:13:49 sombraviva-srv sombraviva-monitor[227557]: [CRIT] CPU uso=96% (warn 75% / crit 90%) load=0.71 0.28 0.15 nucleos=2
+Nov 19 09:13:50 sombraviva-srv sombraviva-monitor[227588]: [CRIT] API API NÃO responde em http://127.0.0.1:8000/health (timeout/conexão recusada)
+
+$ journalctl -t sombraviva-audit --since today --no-pager | tail -60
+Nov 19 08:35:39 sombraviva-srv sombraviva-audit[220350]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=220329 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 08:35:40 sombraviva-srv sombraviva-audit[220462]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=220329 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 08:37:45 sombraviva-srv sombraviva-audit[220737]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=220696 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 08:37:46 sombraviva-srv sombraviva-audit[220821]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=220696 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 08:39:49 sombraviva-srv sombraviva-audit[221065]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=221044 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 08:39:50 sombraviva-srv sombraviva-audit[221114]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=221044 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 08:41:56 sombraviva-srv sombraviva-audit[221457]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=221420 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 08:41:57 sombraviva-srv sombraviva-audit[221544]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=221420 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 08:43:59 sombraviva-srv sombraviva-audit[221781]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=221760 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 08:44:00 sombraviva-srv sombraviva-audit[221826]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=221760 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 08:46:03 sombraviva-srv sombraviva-audit[222144]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=222123 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 08:46:04 sombraviva-srv sombraviva-audit[222189]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=222123 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 08:48:04 sombraviva-srv sombraviva-audit[222510]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=222489 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 08:48:05 sombraviva-srv sombraviva-audit[222555]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=222489 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 08:50:09 sombraviva-srv sombraviva-audit[222879]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=222857 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 08:50:10 sombraviva-srv sombraviva-audit[222924]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=222857 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 08:52:19 sombraviva-srv sombraviva-audit[223238]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=223217 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 08:52:20 sombraviva-srv sombraviva-audit[223285]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=223217 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 08:54:28 sombraviva-srv sombraviva-audit[223637]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=223593 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 08:54:29 sombraviva-srv sombraviva-audit[223717]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=223593 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 08:56:29 sombraviva-srv sombraviva-audit[223961]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=223940 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 08:56:30 sombraviva-srv sombraviva-audit[224006]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=223940 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 08:58:39 sombraviva-srv sombraviva-audit[224332]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=224311 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 08:58:40 sombraviva-srv sombraviva-audit[224444]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=224311 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 09:00:45 sombraviva-srv sombraviva-audit[224734]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=224684 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 09:00:46 sombraviva-srv sombraviva-audit[224810]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=224684 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 09:02:49 sombraviva-srv sombraviva-audit[225058]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=225037 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 09:02:50 sombraviva-srv sombraviva-audit[225107]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=225037 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 09:04:56 sombraviva-srv sombraviva-audit[225456]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=225411 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 09:04:57 sombraviva-srv sombraviva-audit[225536]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=225411 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 09:06:59 sombraviva-srv sombraviva-audit[225787]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=225765 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 09:07:00 sombraviva-srv sombraviva-audit[225832]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=225765 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 09:09:03 sombraviva-srv sombraviva-audit[226147]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=226126 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 09:09:04 sombraviva-srv sombraviva-audit[226192]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=226126 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 09:11:09 sombraviva-srv sombraviva-audit[226513]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=226491 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 09:11:10 sombraviva-srv sombraviva-audit[226558]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=226491 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 09:13:17 sombraviva-srv sombraviva-audit[226916]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=226868 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 09:13:21 sombraviva-srv sombraviva-audit[226999]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=226868 DEPLOY_INICIO so=7ef1a7838469 api=95557f7c7bbd
+Nov 19 09:13:22 sombraviva-srv sombraviva-audit[227024]: usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=227005 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=54bc663c3c40f48b cwd=/ args=''
+Nov 19 09:13:27 sombraviva-srv sombraviva-audit[227231]: usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=227005 MYSQL banco=sombraviva usuario=sombraviva
+Nov 19 09:13:43 sombraviva-srv sombraviva-audit[227346]: usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=227005 ALEMBIC_UPGRADE_HEAD + SEED
+Nov 19 09:13:53 sombraviva-srv sombraviva-audit[227698]: usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=227005 HEALTHCHECK ok
+Nov 19 09:13:53 sombraviva-srv sombraviva-audit[227712]: usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=227005 FIM status=sucesso codigo=0 duracao=31s
+Nov 19 09:13:53 sombraviva-srv sombraviva-audit[227722]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=226868 DEPLOY_OK so=7ef1a7838469 api=95557f7c7bbd
+Nov 19 09:13:54 sombraviva-srv sombraviva-audit[227733]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=226868 FIM status=sucesso codigo=0 duracao=37s
+Nov 19 09:15:19 sombraviva-srv sombraviva-audit[227911]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=227890 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 09:15:20 sombraviva-srv sombraviva-audit[227956]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=227890 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 09:17:28 sombraviva-srv sombraviva-audit[228280]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=228259 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 09:17:29 sombraviva-srv sombraviva-audit[228325]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=228259 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 09:19:29 sombraviva-srv sombraviva-audit[228644]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=228623 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 09:19:30 sombraviva-srv sombraviva-audit[228689]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=228623 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 09:21:33 sombraviva-srv sombraviva-audit[229006]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=228984 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 09:21:34 sombraviva-srv sombraviva-audit[229051]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=228984 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 09:23:39 sombraviva-srv sombraviva-audit[229374]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=229352 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 09:23:40 sombraviva-srv sombraviva-audit[229419]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=229352 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 09:25:46 sombraviva-srv sombraviva-audit[229742]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=229721 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 09:25:47 sombraviva-srv sombraviva-audit[229787]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=229721 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 09:27:49 sombraviva-srv sombraviva-audit[230102]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=230081 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+Nov 19 09:27:50 sombraviva-srv sombraviva-audit[230149]: usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=230081 FIM status=sucesso codigo=0 duracao=1s
+Nov 19 09:29:11 sombraviva-srv sombraviva-audit[230531]: usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=08_coletar_evidencias pid=230512 INICIO caminho=./scripts/08_coletar_evidencias.sh sha256=a4911d8c867d11a3 cwd=/home/ubuntu/sombraviva-so args=''
+

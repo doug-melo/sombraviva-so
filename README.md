@@ -85,6 +85,17 @@ As mudanças da integração ESP32 + VM, do redesenho do painel e da central, do
 
 O que o `02_provision_app.sh` faz com ela, em ordem: instala Python, MySQL e Nginx → cria banco e usuário com menor privilégio → clona a API e aplica os patches → cria o `venv` → gera `/etc/sombraviva/sombraviva.env` (chmod 600, segredos aleatórios) → `alembic upgrade head` → `python -m app.seed` → serviço systemd → Nginx → health check.
 
+### Mudar as variáveis de ambiente na VM
+
+O `/etc/sombraviva/sombraviva.env` é regerado a cada deploy a partir do `config/app.conf`, então editar esse arquivo direto não dura. Os ajustes da VM ficam em `/etc/sombraviva/app.local.conf`, fora do Git, lido depois do `app.conf`. Os segredos gerados (JWT, chaves dos sensores, senhas do admin e do banco) continuam reaproveitados do `.env` existente.
+
+```bash
+sudo cp ~/sombraviva-so/config/app.local.conf.exemplo /etc/sombraviva/app.local.conf
+sudo chmod 600 /etc/sombraviva/app.local.conf
+sudo nano /etc/sombraviva/app.local.conf      # descomente e ajuste o que precisar
+sudo ~/sombraviva-so/scripts/07_auto_deploy.sh --force
+```
+
 ### Deploy automático
 
 Depois do primeiro provisionamento, `sudo ./scripts/07_auto_deploy.sh --install` liga o `sombraviva-deploy.timer`. A cada 2 minutos a VM compara o último commit implantado com o GitHub, nas duas fontes: este repositório (scripts, configuração e patches) e a `main` da API de SOA. Se algo mudou, ela atualiza este clone com fast-forward e roda o `02_provision_app.sh`, que reaplica os patches, migra o banco, reinicia a API e testa o `/health`. Se o deploy falhar, o script volta este repositório para o commit anterior e reimplanta, para o site não ficar fora do ar. A VM só busca do GitHub; nenhuma chave ou porta extra é aberta para o GitHub entrar nela.

@@ -50,9 +50,13 @@ OPENAI_MODEL="gpt-4.1-mini"
 APP_ENV="vm"
 SEED_DEMO_DATA="true"
 NGINX_SERVER_NAME="sombraviva.local _"
+OPENAI_API_KEY=""
 # APP_ORIGEM=local: pasta da API já clonada ao lado deste repositório
 APP_FONTE="$(cd "$REPO_DIR/.." && pwd)/Global-Solution---2-semestre---Cyber-Soa"
 load_conf "${APP_CONF:-$REPO_DIR/config/app.conf}"
+# Ajustes da própria VM (fora do Git, não são apagados pelo deploy automático)
+APP_LOCAL_CONF="${APP_LOCAL_CONF:-/etc/sombraviva/app.local.conf}"
+[[ -f "$APP_LOCAL_CONF" ]] && load_conf "$APP_LOCAL_CONF"
 
 ENV_ARQ="/etc/sombraviva/sombraviva.env"
 UNIT_ARQ="/etc/systemd/system/sombraviva-api.service"
@@ -235,7 +239,7 @@ SENSOR_A_KEY=${sensor_a}
 SENSOR_B_KEY=${sensor_b}
 ESP32_DEVICE_ID=${esp_id}
 ESP32_DEVICE_TOKEN=${esp_token}
-OPENAI_API_KEY=$(ler_env OPENAI_API_KEY)
+OPENAI_API_KEY=${OPENAI_API_KEY:-$(ler_env OPENAI_API_KEY)}
 OPENAI_MODEL=${OPENAI_MODEL}
 PYTHONUNBUFFERED=1"
   if escrever_se_mudou "$ENV_ARQ" "$conteudo"; then

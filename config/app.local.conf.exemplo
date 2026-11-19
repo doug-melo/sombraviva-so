@@ -1,0 +1,18 @@
+# SombraViva — ajustes só desta VM. NÃO versionar com valores reais.
+# Copie para /etc/sombraviva/app.local.conf (sudo) e descomente o que quiser mudar.
+# Ele é lido depois do config/app.conf e sobrescreve qualquer variável de lá.
+# Depois de editar: sudo ~/sombraviva-so/scripts/07_auto_deploy.sh --force
+
+# Chave da OpenAI para a análise assistida da central (sem ela, usa regras locais)
+#OPENAI_API_KEY="sk-..."
+#OPENAI_MODEL="gpt-4.1-mini"
+
+# Token do ESP32 no formato device_id:token (o mesmo do sketch.ino no Wokwi)
+#SOMBRAVIVA_DEVICE_TOKENS="esp32-osasco-calcadao-01:troque-por-um-token-forte"
+
+# Dados de demonstração (casos fictícios na central e estações simuladas)
+#SEED_DEMO_DATA="true"
+
+# E-mail do administrador. Atenção: a senha do admin só é usada quando o usuário
+# é criado pela primeira vez; trocar ADMIN_PASSWORD depois não muda a senha no banco.
+#ADMIN_EMAIL="admin@sombraviva.local"

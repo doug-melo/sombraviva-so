@@ -35,6 +35,9 @@ APP_GIT_URL="https://github.com/JoaoKraideM/Global-Solution---2-semestre---Cyber
 APP_GIT_BRANCH="main"
 DEPLOY_BRANCH="main"
 load_conf "${APP_CONF:-$REPO_DIR/config/app.conf}"
+# Ajustes da própria VM (fora do Git, não são apagados pelo deploy automático)
+APP_LOCAL_CONF="${APP_LOCAL_CONF:-/etc/sombraviva/app.local.conf}"
+[[ -f "$APP_LOCAL_CONF" ]] && load_conf "$APP_LOCAL_CONF"
 
 ESTADO_DIR="/var/lib/sombraviva"
 ESTADO="$ESTADO_DIR/deploy.state"

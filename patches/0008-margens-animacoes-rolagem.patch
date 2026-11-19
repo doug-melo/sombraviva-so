@@ -1,0 +1,491 @@
+From 6833df38566dd0cb16a5842eebe3a5e375f3b388 Mon Sep 17 00:00:00 2001
+From: Douglas Melo <161658032+doug-melo@users.noreply.github.com>
+Date: Wed, 18 Nov 2026 22:19:03 -0300
+Subject: [PATCH] =?UTF-8?q?Margens=20laterais=20menores,=20anima=C3=A7?=
+ =?UTF-8?q?=C3=B5es=20e=20rolagem=20suave=20tamb=C3=A9m=20com=20"reduzir?=
+ =?UTF-8?q?=20movimento"?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- Coluna de conteúdo passa de 1200px para 1440px, com margem lateral de 20 a 44px
+  conforme a tela, e seções com respiro vertical de 72px.
+- Com "reduzir movimento" ligado no sistema (Windows com efeitos de animação
+  desligados), o site desligava todas as animações e a rolagem suave. Agora os
+  conteúdos surgem com fade, sem deslocamento nem zoom.
+- Links internos (#secao) rolam suavemente via JavaScript em qualquer navegador e
+  levam o foco para a seção.
+---
+ static/admin-bundle.css        | 70 ++++++++++++++++++----------------
+ static/motion.js               | 11 ++----
+ static/navigation.js           | 12 ++++++
+ static/public-bundle.css       | 65 +++++++++++++++++--------------
+ static/sv-admin.css            | 42 ++++++++++----------
+ static/sv-base.css             | 28 ++++++++------
+ static/sv-public.css           | 37 +++++++++---------
+ tests/test_ui_public_page.py   | 13 ++++++-
+ tests/test_ui_visual_system.py |  8 ++--
+ 9 files changed, 160 insertions(+), 126 deletions(-)
+
+diff --git a/static/admin-bundle.css b/static/admin-bundle.css
+index 981c8ef..1a38245 100644
+--- a/static/admin-bundle.css
++++ b/static/admin-bundle.css
+@@ -30,13 +30,12 @@
+   --on-green-2: #9FBDB4;
+   --t1: #2D2A6E; --t2: #8E2C8E; --t3: #E0533A; --t4: #F59E2B; --t5: #F9D857;
+   --text: "Public Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+-  --wrap: 1200px;
+-  --gutter: 40px;
++  --wrap: 1440px;
++  --gutter: clamp(20px, 3vw, 44px);
+   color-scheme: light;
+ }
+ *, *::before, *::after { box-sizing: border-box; }
+ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+ body { margin: 0; background: var(--page); color: var(--ink); font: 400 16px/1.5 var(--text); -webkit-font-smoothing: antialiased; }
+ h1, h2, h3, h4 { margin: 0; font-weight: 800; line-height: 1.1; }
+ p, figure, dl, dd, ol, ul { margin: 0; }
+@@ -174,14 +173,21 @@ a.sv-kpi:hover { border-color: var(--green); color: var(--ink); }
+ @keyframes sv-fade { from { opacity: 0; } to { opacity: 1; } }
+ @keyframes sv-zoom { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
+ @keyframes sv-pop { 0% { transform: scale(1); } 40% { transform: scale(1.06); } 100% { transform: scale(1); } }
+-@media (prefers-reduced-motion: no-preference) {
+-  .js-motion .sv-reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms), transform .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms); }
+-  .js-motion .sv-reveal.is-visible { opacity: 1; transform: none; }
+-  .sv-pulse { display: inline-block; animation: sv-pop .5s ease-out; }
+-  .sv-kpi, .sv-card, .ops-sees { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+-  a.sv-kpi:hover, button.sv-kpi:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(15,61,58,.10); }
+-  .sv-button, .primary-btn, .outline-btn { transition: background-color .2s ease, color .2s ease, transform .2s ease; }
+-  .sv-button:active, .primary-btn:active, .outline-btn:active { transform: translateY(1px); }
++.js-motion .sv-reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms), transform .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms); }
++.js-motion .sv-reveal.is-visible { opacity: 1; transform: none; }
++.sv-pulse { display: inline-block; animation: sv-pop .5s ease-out; }
++.sv-kpi, .sv-card, .ops-sees { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
++a.sv-kpi:hover, button.sv-kpi:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(15,61,58,.10); }
++.sv-button, .primary-btn, .outline-btn { transition: background-color .2s ease, color .2s ease, transform .2s ease; }
++.sv-button:active, .primary-btn:active, .outline-btn:active { transform: translateY(1px); }
++/* "Reduzir movimento" ligado no sistema (comum no Windows com "Efeitos de animação" desligado):
++   os conteúdos continuam surgindo, mas só com fade, sem deslocamento, zoom ou pulso. */
++@media (prefers-reduced-motion: reduce) {
++  @keyframes sv-rise { from { opacity: 0; } to { opacity: 1; } }
++  @keyframes sv-zoom { from { opacity: 0; } to { opacity: 1; } }
++  @keyframes sv-pop { from { opacity: 1; } to { opacity: 1; } }
++  .js-motion .sv-reveal { transform: none; transition-property: opacity; transition-duration: .5s; }
++  a.sv-kpi:hover, button.sv-kpi:hover, .sv-button:active, .primary-btn:active, .outline-btn:active { transform: none; }
+ }
+ 
+ @media (max-width: 960px) {
+@@ -414,26 +420,24 @@ button.sv-kpi:hover { border-color: var(--green); }
+ }
+ 
+ /* Entradas da central: login, troca de área e cartões em cascata */
+-@media (prefers-reduced-motion: no-preference) {
+-  .sv-login-art img { animation: sv-zoom 1.8s cubic-bezier(.2,.7,.2,1) both; }
+-  .sv-login-pitch > *, .sv-login-form form > * { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) both; }
+-  .sv-login-pitch > :nth-child(2), .sv-login-form form > :nth-child(2) { animation-delay: .1s; }
+-  .sv-login-pitch > :nth-child(3), .sv-login-form form > :nth-child(3) { animation-delay: .2s; }
+-  .sv-login-form form > :nth-child(4) { animation-delay: .3s; }
+-  .sv-login-form form > :nth-child(n+5) { animation-delay: .4s; }
+-  .ops-pane:not(.hidden) > * { animation: sv-rise .6s cubic-bezier(.2,.7,.2,1) both; }
+-  .ops-pane:not(.hidden) > :nth-child(2) { animation-delay: .08s; }
+-  .ops-pane:not(.hidden) > :nth-child(3) { animation-delay: .16s; }
+-  .ops-pane:not(.hidden) > :nth-child(n+4) { animation-delay: .24s; }
+-  .sv-kpis > * { animation: sv-rise .6s cubic-bezier(.2,.7,.2,1) both; }
+-  .sv-kpis > :nth-child(2) { animation-delay: .08s; } .sv-kpis > :nth-child(3) { animation-delay: .16s; } .sv-kpis > :nth-child(4) { animation-delay: .24s; }
+-  .ops-devices > *, .soc-alert-list > *, .ops-feed > * { animation: sv-rise .5s cubic-bezier(.2,.7,.2,1) both; }
+-  .ops-devices > :nth-child(2), .soc-alert-list > :nth-child(2), .ops-feed > :nth-child(2) { animation-delay: .06s; }
+-  .ops-devices > :nth-child(3), .soc-alert-list > :nth-child(3), .ops-feed > :nth-child(3) { animation-delay: .12s; }
+-  .ops-devices > :nth-child(n+4), .soc-alert-list > :nth-child(n+4), .ops-feed > :nth-child(n+4) { animation-delay: .18s; }
+-  .sv-case-dossier > * { animation: sv-fade .45s ease-out both; }
+-  .ops-result-head, .ops-result-body > * { animation: sv-rise .55s cubic-bezier(.2,.7,.2,1) both; }
+-  .ops-result-body > :nth-child(2) { animation-delay: .08s; } .ops-result-body > :nth-child(3) { animation-delay: .16s; } .ops-result-body > :nth-child(4) { animation-delay: .24s; }
+-  .ops-tab { transition: color .2s ease, box-shadow .25s ease; }
+-}
++.sv-login-art img { animation: sv-zoom 1.8s cubic-bezier(.2,.7,.2,1) both; }
++.sv-login-pitch > *, .sv-login-form form > * { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) both; }
++.sv-login-pitch > :nth-child(2), .sv-login-form form > :nth-child(2) { animation-delay: .1s; }
++.sv-login-pitch > :nth-child(3), .sv-login-form form > :nth-child(3) { animation-delay: .2s; }
++.sv-login-form form > :nth-child(4) { animation-delay: .3s; }
++.sv-login-form form > :nth-child(n+5) { animation-delay: .4s; }
++.ops-pane:not(.hidden) > * { animation: sv-rise .6s cubic-bezier(.2,.7,.2,1) both; }
++.ops-pane:not(.hidden) > :nth-child(2) { animation-delay: .08s; }
++.ops-pane:not(.hidden) > :nth-child(3) { animation-delay: .16s; }
++.ops-pane:not(.hidden) > :nth-child(n+4) { animation-delay: .24s; }
++.sv-kpis > * { animation: sv-rise .6s cubic-bezier(.2,.7,.2,1) both; }
++.sv-kpis > :nth-child(2) { animation-delay: .08s; } .sv-kpis > :nth-child(3) { animation-delay: .16s; } .sv-kpis > :nth-child(4) { animation-delay: .24s; }
++.ops-devices > *, .soc-alert-list > *, .ops-feed > * { animation: sv-rise .5s cubic-bezier(.2,.7,.2,1) both; }
++.ops-devices > :nth-child(2), .soc-alert-list > :nth-child(2), .ops-feed > :nth-child(2) { animation-delay: .06s; }
++.ops-devices > :nth-child(3), .soc-alert-list > :nth-child(3), .ops-feed > :nth-child(3) { animation-delay: .12s; }
++.ops-devices > :nth-child(n+4), .soc-alert-list > :nth-child(n+4), .ops-feed > :nth-child(n+4) { animation-delay: .18s; }
++.sv-case-dossier > * { animation: sv-fade .45s ease-out both; }
++.ops-result-head, .ops-result-body > * { animation: sv-rise .55s cubic-bezier(.2,.7,.2,1) both; }
++.ops-result-body > :nth-child(2) { animation-delay: .08s; } .ops-result-body > :nth-child(3) { animation-delay: .16s; } .ops-result-body > :nth-child(4) { animation-delay: .24s; }
++.ops-tab { transition: color .2s ease, box-shadow .25s ease; }
+ 
+diff --git a/static/motion.js b/static/motion.js
+index e9d824c..62a95d4 100644
+--- a/static/motion.js
++++ b/static/motion.js
+@@ -1,13 +1,13 @@
+ /* SombraViva · animações de entrada.
+    - Abertura: título, texto, botões e foto entram em sequência ao carregar.
+    - Ao rolar: cada bloco sobe e aparece quando entra na tela; itens de grades entram em cascata.
+-   - Respeita "reduzir movimento" do sistema: nesse caso nada é animado.
++   - Com "reduzir movimento" ligado no sistema, o CSS troca deslocamentos e zoom por fades simples.
+    Sem JavaScript, ou se o navegador não tiver IntersectionObserver, tudo aparece normalmente. */
+ (() => {
+   'use strict';
+   const root = document.documentElement;
+   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+-  if (reduce.matches || !('IntersectionObserver' in window)) return;
++  if (!('IntersectionObserver' in window)) return;
+ 
+   const groups = [
+     '.sv-section-head', '.sv-duo-item', '.sv-facts > div', '.sv-archive-head', '.sv-archive-grid > figure',
+@@ -36,15 +36,10 @@
+   targets.forEach(el => observer.observe(el));
+ 
+   // Valores que mudam com os dados (faixa ao vivo e cartões): um pulso discreto a cada atualização.
++  if (reduce.matches) return;
+   const pulse = el => { el.classList.remove('sv-pulse'); void el.offsetWidth; el.classList.add('sv-pulse'); };
+   document.querySelectorAll('.sv-strip strong, .sv-hero-card strong, .sv-kpi strong, .sv-duo-label strong, .sv-facts dd').forEach(el => {
+     new MutationObserver(() => pulse(el)).observe(el, {childList: true, characterData: true, subtree: true});
+   });
+ 
+-  // Se o usuário ativar "reduzir movimento" com a página aberta, mostra tudo na hora.
+-  reduce.addEventListener?.('change', event => {
+-    if (!event.matches) return;
+-    targets.forEach(el => el.classList.add('is-visible'));
+-    root.classList.remove('js-motion');
+-  });
+ })();
+diff --git a/static/navigation.js b/static/navigation.js
+index 81f0999..df929f1 100644
+--- a/static/navigation.js
++++ b/static/navigation.js
+@@ -1,5 +1,17 @@
+ (() => {
+   'use strict';
++  // Rolagem suave nos links internos (#secao), feita em JavaScript para funcionar em
++  // qualquer navegador; o foco vai para a seção, para quem navega pelo teclado.
++  document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', event => {
++    const id = decodeURIComponent(link.getAttribute('href').slice(1));
++    const target = id && document.getElementById(id);
++    if (!target) return;
++    event.preventDefault();
++    target.scrollIntoView({behavior: 'smooth', block: 'start'});
++    if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
++    target.focus({preventScroll: true});
++    history.pushState(null, '', '#' + id);
++  }));
+   const menu = document.getElementById('menu-toggle');
+   const nav = document.getElementById('site-navigation');
+   if (!menu || !nav) return;
+diff --git a/static/public-bundle.css b/static/public-bundle.css
+index 36ce148..a41c7e2 100644
+--- a/static/public-bundle.css
++++ b/static/public-bundle.css
+@@ -30,13 +30,12 @@
+   --on-green-2: #9FBDB4;
+   --t1: #2D2A6E; --t2: #8E2C8E; --t3: #E0533A; --t4: #F59E2B; --t5: #F9D857;
+   --text: "Public Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+-  --wrap: 1200px;
+-  --gutter: 40px;
++  --wrap: 1440px;
++  --gutter: clamp(20px, 3vw, 44px);
+   color-scheme: light;
+ }
+ *, *::before, *::after { box-sizing: border-box; }
+ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+ body { margin: 0; background: var(--page); color: var(--ink); font: 400 16px/1.5 var(--text); -webkit-font-smoothing: antialiased; }
+ h1, h2, h3, h4 { margin: 0; font-weight: 800; line-height: 1.1; }
+ p, figure, dl, dd, ol, ul { margin: 0; }
+@@ -174,14 +173,21 @@ a.sv-kpi:hover { border-color: var(--green); color: var(--ink); }
+ @keyframes sv-fade { from { opacity: 0; } to { opacity: 1; } }
+ @keyframes sv-zoom { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
+ @keyframes sv-pop { 0% { transform: scale(1); } 40% { transform: scale(1.06); } 100% { transform: scale(1); } }
+-@media (prefers-reduced-motion: no-preference) {
+-  .js-motion .sv-reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms), transform .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms); }
+-  .js-motion .sv-reveal.is-visible { opacity: 1; transform: none; }
+-  .sv-pulse { display: inline-block; animation: sv-pop .5s ease-out; }
+-  .sv-kpi, .sv-card, .ops-sees { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+-  a.sv-kpi:hover, button.sv-kpi:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(15,61,58,.10); }
+-  .sv-button, .primary-btn, .outline-btn { transition: background-color .2s ease, color .2s ease, transform .2s ease; }
+-  .sv-button:active, .primary-btn:active, .outline-btn:active { transform: translateY(1px); }
++.js-motion .sv-reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms), transform .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms); }
++.js-motion .sv-reveal.is-visible { opacity: 1; transform: none; }
++.sv-pulse { display: inline-block; animation: sv-pop .5s ease-out; }
++.sv-kpi, .sv-card, .ops-sees { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
++a.sv-kpi:hover, button.sv-kpi:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(15,61,58,.10); }
++.sv-button, .primary-btn, .outline-btn { transition: background-color .2s ease, color .2s ease, transform .2s ease; }
++.sv-button:active, .primary-btn:active, .outline-btn:active { transform: translateY(1px); }
++/* "Reduzir movimento" ligado no sistema (comum no Windows com "Efeitos de animação" desligado):
++   os conteúdos continuam surgindo, mas só com fade, sem deslocamento, zoom ou pulso. */
++@media (prefers-reduced-motion: reduce) {
++  @keyframes sv-rise { from { opacity: 0; } to { opacity: 1; } }
++  @keyframes sv-zoom { from { opacity: 0; } to { opacity: 1; } }
++  @keyframes sv-pop { from { opacity: 1; } to { opacity: 1; } }
++  .js-motion .sv-reveal { transform: none; transition-property: opacity; transition-duration: .5s; }
++  a.sv-kpi:hover, button.sv-kpi:hover, .sv-button:active, .primary-btn:active, .outline-btn:active { transform: none; }
+ }
+ 
+ @media (max-width: 960px) {
+@@ -199,7 +205,7 @@ a.sv-kpi:hover { border-color: var(--green); color: var(--ink); }
+ .sv-strip strong { color: #fff; }
+ .sv-strip .sv-pill { font-size: 13px; padding: 3px 12px; }
+ 
+-.sv-section { padding-top: 88px; padding-bottom: 88px; display: flex; flex-direction: column; gap: 32px; }
++.sv-section { padding-top: 72px; padding-bottom: 72px; display: flex; flex-direction: column; gap: 32px; }
+ .sv-section-head { display: flex; flex-direction: column; gap: 16px; max-width: 760px; }
+ .sv-section-head h2, .sv-purpose h2 { font-size: 48px; line-height: 1.08; letter-spacing: -1.4px; color: var(--green); }
+ .sv-section-head p { font-size: 18px; line-height: 1.65; color: var(--ink-2); }
+@@ -363,22 +369,23 @@ a.sv-kpi:hover { border-color: var(--green); color: var(--ink); }
+ }
+ 
+ /* Entrada da abertura ao carregar a página */
+-@media (prefers-reduced-motion: no-preference) {
+-  .sv-hero-copy > * { animation: sv-rise .8s cubic-bezier(.2,.7,.2,1) both; }
+-  .sv-hero-copy > :nth-child(1) { animation-delay: .05s; }
+-  .sv-hero-copy > :nth-child(2) { animation-delay: .15s; }
+-  .sv-hero-copy > :nth-child(3) { animation-delay: .28s; }
+-  .sv-hero-copy > :nth-child(4) { animation-delay: .4s; }
+-  .sv-hero-copy > :nth-child(5) { animation-delay: .5s; }
+-  .sv-hero-photo { animation: sv-fade .9s ease-out .1s both; }
+-  .sv-hero-photo img { animation: sv-zoom 1.6s cubic-bezier(.2,.7,.2,1) .1s both; }
+-  .sv-hero-card.is-sun { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) .55s both; }
+-  .sv-hero-card.is-shade { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) .7s both; }
+-  .sv-hero-stamp, .sv-hero-figure .sv-credit { animation: sv-fade .6s ease-out .9s both; }
+-  .sv-strip-in > p { animation: sv-fade .6s ease-out both; }
+-  .sv-steps svg { transition: transform .3s ease; }
+-  .sv-steps li:hover svg { transform: translateY(-4px); }
+-  .sv-duo-photo img, .sv-archive-photo img { transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+-  .sv-duo-item:hover .sv-duo-photo img, .sv-archive-grid figure:hover img { transform: scale(1.04); }
++.sv-hero-copy > * { animation: sv-rise .8s cubic-bezier(.2,.7,.2,1) both; }
++.sv-hero-copy > :nth-child(1) { animation-delay: .05s; }
++.sv-hero-copy > :nth-child(2) { animation-delay: .15s; }
++.sv-hero-copy > :nth-child(3) { animation-delay: .28s; }
++.sv-hero-copy > :nth-child(4) { animation-delay: .4s; }
++.sv-hero-copy > :nth-child(5) { animation-delay: .5s; }
++.sv-hero-photo { animation: sv-fade .9s ease-out .1s both; }
++.sv-hero-photo img { animation: sv-zoom 1.6s cubic-bezier(.2,.7,.2,1) .1s both; }
++.sv-hero-card.is-sun { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) .55s both; }
++.sv-hero-card.is-shade { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) .7s both; }
++.sv-hero-stamp, .sv-hero-figure .sv-credit { animation: sv-fade .6s ease-out .9s both; }
++.sv-strip-in > p { animation: sv-fade .6s ease-out both; }
++.sv-steps svg { transition: transform .3s ease; }
++.sv-steps li:hover svg { transform: translateY(-4px); }
++.sv-duo-photo img, .sv-archive-photo img { transition: transform .8s cubic-bezier(.2,.7,.2,1); }
++.sv-duo-item:hover .sv-duo-photo img, .sv-archive-grid figure:hover img { transform: scale(1.04); }
++@media (prefers-reduced-motion: reduce) {
++  .sv-steps li:hover svg, .sv-duo-item:hover .sv-duo-photo img, .sv-archive-grid figure:hover img { transform: none; }
+ }
+ 
+diff --git a/static/sv-admin.css b/static/sv-admin.css
+index 13842f1..ab711ec 100644
+--- a/static/sv-admin.css
++++ b/static/sv-admin.css
+@@ -219,25 +219,23 @@ button.sv-kpi:hover { border-color: var(--green); }
+ }
+ 
+ /* Entradas da central: login, troca de área e cartões em cascata */
+-@media (prefers-reduced-motion: no-preference) {
+-  .sv-login-art img { animation: sv-zoom 1.8s cubic-bezier(.2,.7,.2,1) both; }
+-  .sv-login-pitch > *, .sv-login-form form > * { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) both; }
+-  .sv-login-pitch > :nth-child(2), .sv-login-form form > :nth-child(2) { animation-delay: .1s; }
+-  .sv-login-pitch > :nth-child(3), .sv-login-form form > :nth-child(3) { animation-delay: .2s; }
+-  .sv-login-form form > :nth-child(4) { animation-delay: .3s; }
+-  .sv-login-form form > :nth-child(n+5) { animation-delay: .4s; }
+-  .ops-pane:not(.hidden) > * { animation: sv-rise .6s cubic-bezier(.2,.7,.2,1) both; }
+-  .ops-pane:not(.hidden) > :nth-child(2) { animation-delay: .08s; }
+-  .ops-pane:not(.hidden) > :nth-child(3) { animation-delay: .16s; }
+-  .ops-pane:not(.hidden) > :nth-child(n+4) { animation-delay: .24s; }
+-  .sv-kpis > * { animation: sv-rise .6s cubic-bezier(.2,.7,.2,1) both; }
+-  .sv-kpis > :nth-child(2) { animation-delay: .08s; } .sv-kpis > :nth-child(3) { animation-delay: .16s; } .sv-kpis > :nth-child(4) { animation-delay: .24s; }
+-  .ops-devices > *, .soc-alert-list > *, .ops-feed > * { animation: sv-rise .5s cubic-bezier(.2,.7,.2,1) both; }
+-  .ops-devices > :nth-child(2), .soc-alert-list > :nth-child(2), .ops-feed > :nth-child(2) { animation-delay: .06s; }
+-  .ops-devices > :nth-child(3), .soc-alert-list > :nth-child(3), .ops-feed > :nth-child(3) { animation-delay: .12s; }
+-  .ops-devices > :nth-child(n+4), .soc-alert-list > :nth-child(n+4), .ops-feed > :nth-child(n+4) { animation-delay: .18s; }
+-  .sv-case-dossier > * { animation: sv-fade .45s ease-out both; }
+-  .ops-result-head, .ops-result-body > * { animation: sv-rise .55s cubic-bezier(.2,.7,.2,1) both; }
+-  .ops-result-body > :nth-child(2) { animation-delay: .08s; } .ops-result-body > :nth-child(3) { animation-delay: .16s; } .ops-result-body > :nth-child(4) { animation-delay: .24s; }
+-  .ops-tab { transition: color .2s ease, box-shadow .25s ease; }
+-}
++.sv-login-art img { animation: sv-zoom 1.8s cubic-bezier(.2,.7,.2,1) both; }
++.sv-login-pitch > *, .sv-login-form form > * { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) both; }
++.sv-login-pitch > :nth-child(2), .sv-login-form form > :nth-child(2) { animation-delay: .1s; }
++.sv-login-pitch > :nth-child(3), .sv-login-form form > :nth-child(3) { animation-delay: .2s; }
++.sv-login-form form > :nth-child(4) { animation-delay: .3s; }
++.sv-login-form form > :nth-child(n+5) { animation-delay: .4s; }
++.ops-pane:not(.hidden) > * { animation: sv-rise .6s cubic-bezier(.2,.7,.2,1) both; }
++.ops-pane:not(.hidden) > :nth-child(2) { animation-delay: .08s; }
++.ops-pane:not(.hidden) > :nth-child(3) { animation-delay: .16s; }
++.ops-pane:not(.hidden) > :nth-child(n+4) { animation-delay: .24s; }
++.sv-kpis > * { animation: sv-rise .6s cubic-bezier(.2,.7,.2,1) both; }
++.sv-kpis > :nth-child(2) { animation-delay: .08s; } .sv-kpis > :nth-child(3) { animation-delay: .16s; } .sv-kpis > :nth-child(4) { animation-delay: .24s; }
++.ops-devices > *, .soc-alert-list > *, .ops-feed > * { animation: sv-rise .5s cubic-bezier(.2,.7,.2,1) both; }
++.ops-devices > :nth-child(2), .soc-alert-list > :nth-child(2), .ops-feed > :nth-child(2) { animation-delay: .06s; }
++.ops-devices > :nth-child(3), .soc-alert-list > :nth-child(3), .ops-feed > :nth-child(3) { animation-delay: .12s; }
++.ops-devices > :nth-child(n+4), .soc-alert-list > :nth-child(n+4), .ops-feed > :nth-child(n+4) { animation-delay: .18s; }
++.sv-case-dossier > * { animation: sv-fade .45s ease-out both; }
++.ops-result-head, .ops-result-body > * { animation: sv-rise .55s cubic-bezier(.2,.7,.2,1) both; }
++.ops-result-body > :nth-child(2) { animation-delay: .08s; } .ops-result-body > :nth-child(3) { animation-delay: .16s; } .ops-result-body > :nth-child(4) { animation-delay: .24s; }
++.ops-tab { transition: color .2s ease, box-shadow .25s ease; }
+diff --git a/static/sv-base.css b/static/sv-base.css
+index 6fd3392..62ff7d1 100644
+--- a/static/sv-base.css
++++ b/static/sv-base.css
+@@ -28,13 +28,12 @@
+   --on-green-2: #9FBDB4;
+   --t1: #2D2A6E; --t2: #8E2C8E; --t3: #E0533A; --t4: #F59E2B; --t5: #F9D857;
+   --text: "Public Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+-  --wrap: 1200px;
+-  --gutter: 40px;
++  --wrap: 1440px;
++  --gutter: clamp(20px, 3vw, 44px);
+   color-scheme: light;
+ }
+ *, *::before, *::after { box-sizing: border-box; }
+ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+ body { margin: 0; background: var(--page); color: var(--ink); font: 400 16px/1.5 var(--text); -webkit-font-smoothing: antialiased; }
+ h1, h2, h3, h4 { margin: 0; font-weight: 800; line-height: 1.1; }
+ p, figure, dl, dd, ol, ul { margin: 0; }
+@@ -172,14 +171,21 @@ a.sv-kpi:hover { border-color: var(--green); color: var(--ink); }
+ @keyframes sv-fade { from { opacity: 0; } to { opacity: 1; } }
+ @keyframes sv-zoom { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
+ @keyframes sv-pop { 0% { transform: scale(1); } 40% { transform: scale(1.06); } 100% { transform: scale(1); } }
+-@media (prefers-reduced-motion: no-preference) {
+-  .js-motion .sv-reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms), transform .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms); }
+-  .js-motion .sv-reveal.is-visible { opacity: 1; transform: none; }
+-  .sv-pulse { display: inline-block; animation: sv-pop .5s ease-out; }
+-  .sv-kpi, .sv-card, .ops-sees { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+-  a.sv-kpi:hover, button.sv-kpi:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(15,61,58,.10); }
+-  .sv-button, .primary-btn, .outline-btn { transition: background-color .2s ease, color .2s ease, transform .2s ease; }
+-  .sv-button:active, .primary-btn:active, .outline-btn:active { transform: translateY(1px); }
++.js-motion .sv-reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms), transform .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms); }
++.js-motion .sv-reveal.is-visible { opacity: 1; transform: none; }
++.sv-pulse { display: inline-block; animation: sv-pop .5s ease-out; }
++.sv-kpi, .sv-card, .ops-sees { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
++a.sv-kpi:hover, button.sv-kpi:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(15,61,58,.10); }
++.sv-button, .primary-btn, .outline-btn { transition: background-color .2s ease, color .2s ease, transform .2s ease; }
++.sv-button:active, .primary-btn:active, .outline-btn:active { transform: translateY(1px); }
++/* "Reduzir movimento" ligado no sistema (comum no Windows com "Efeitos de animação" desligado):
++   os conteúdos continuam surgindo, mas só com fade, sem deslocamento, zoom ou pulso. */
++@media (prefers-reduced-motion: reduce) {
++  @keyframes sv-rise { from { opacity: 0; } to { opacity: 1; } }
++  @keyframes sv-zoom { from { opacity: 0; } to { opacity: 1; } }
++  @keyframes sv-pop { from { opacity: 1; } to { opacity: 1; } }
++  .js-motion .sv-reveal { transform: none; transition-property: opacity; transition-duration: .5s; }
++  a.sv-kpi:hover, button.sv-kpi:hover, .sv-button:active, .primary-btn:active, .outline-btn:active { transform: none; }
+ }
+ 
+ @media (max-width: 960px) {
+diff --git a/static/sv-public.css b/static/sv-public.css
+index 76971e8..e04c7c6 100644
+--- a/static/sv-public.css
++++ b/static/sv-public.css
+@@ -4,7 +4,7 @@
+ .sv-strip strong { color: #fff; }
+ .sv-strip .sv-pill { font-size: 13px; padding: 3px 12px; }
+ 
+-.sv-section { padding-top: 88px; padding-bottom: 88px; display: flex; flex-direction: column; gap: 32px; }
++.sv-section { padding-top: 72px; padding-bottom: 72px; display: flex; flex-direction: column; gap: 32px; }
+ .sv-section-head { display: flex; flex-direction: column; gap: 16px; max-width: 760px; }
+ .sv-section-head h2, .sv-purpose h2 { font-size: 48px; line-height: 1.08; letter-spacing: -1.4px; color: var(--green); }
+ .sv-section-head p { font-size: 18px; line-height: 1.65; color: var(--ink-2); }
+@@ -168,21 +168,22 @@
+ }
+ 
+ /* Entrada da abertura ao carregar a página */
+-@media (prefers-reduced-motion: no-preference) {
+-  .sv-hero-copy > * { animation: sv-rise .8s cubic-bezier(.2,.7,.2,1) both; }
+-  .sv-hero-copy > :nth-child(1) { animation-delay: .05s; }
+-  .sv-hero-copy > :nth-child(2) { animation-delay: .15s; }
+-  .sv-hero-copy > :nth-child(3) { animation-delay: .28s; }
+-  .sv-hero-copy > :nth-child(4) { animation-delay: .4s; }
+-  .sv-hero-copy > :nth-child(5) { animation-delay: .5s; }
+-  .sv-hero-photo { animation: sv-fade .9s ease-out .1s both; }
+-  .sv-hero-photo img { animation: sv-zoom 1.6s cubic-bezier(.2,.7,.2,1) .1s both; }
+-  .sv-hero-card.is-sun { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) .55s both; }
+-  .sv-hero-card.is-shade { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) .7s both; }
+-  .sv-hero-stamp, .sv-hero-figure .sv-credit { animation: sv-fade .6s ease-out .9s both; }
+-  .sv-strip-in > p { animation: sv-fade .6s ease-out both; }
+-  .sv-steps svg { transition: transform .3s ease; }
+-  .sv-steps li:hover svg { transform: translateY(-4px); }
+-  .sv-duo-photo img, .sv-archive-photo img { transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+-  .sv-duo-item:hover .sv-duo-photo img, .sv-archive-grid figure:hover img { transform: scale(1.04); }
++.sv-hero-copy > * { animation: sv-rise .8s cubic-bezier(.2,.7,.2,1) both; }
++.sv-hero-copy > :nth-child(1) { animation-delay: .05s; }
++.sv-hero-copy > :nth-child(2) { animation-delay: .15s; }
++.sv-hero-copy > :nth-child(3) { animation-delay: .28s; }
++.sv-hero-copy > :nth-child(4) { animation-delay: .4s; }
++.sv-hero-copy > :nth-child(5) { animation-delay: .5s; }
++.sv-hero-photo { animation: sv-fade .9s ease-out .1s both; }
++.sv-hero-photo img { animation: sv-zoom 1.6s cubic-bezier(.2,.7,.2,1) .1s both; }
++.sv-hero-card.is-sun { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) .55s both; }
++.sv-hero-card.is-shade { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) .7s both; }
++.sv-hero-stamp, .sv-hero-figure .sv-credit { animation: sv-fade .6s ease-out .9s both; }
++.sv-strip-in > p { animation: sv-fade .6s ease-out both; }
++.sv-steps svg { transition: transform .3s ease; }
++.sv-steps li:hover svg { transform: translateY(-4px); }
++.sv-duo-photo img, .sv-archive-photo img { transition: transform .8s cubic-bezier(.2,.7,.2,1); }
++.sv-duo-item:hover .sv-duo-photo img, .sv-archive-grid figure:hover img { transform: scale(1.04); }
++@media (prefers-reduced-motion: reduce) {
++  .sv-steps li:hover svg, .sv-duo-item:hover .sv-duo-photo img, .sv-archive-grid figure:hover img { transform: none; }
+ }
+diff --git a/tests/test_ui_public_page.py b/tests/test_ui_public_page.py
+index 2727f9c..a7fcc6d 100644
+--- a/tests/test_ui_public_page.py
++++ b/tests/test_ui_public_page.py
+@@ -206,15 +206,24 @@ def test_how_to_read_labels_point_away_from_each_other():
+     assert 'hi - lo < 14' in draw  # escala mínima de 14 °C
+ 
+ 
+-def test_motion_respects_reduced_motion_and_works_without_javascript():
++def test_motion_works_without_javascript_and_softens_with_reduced_motion():
+     motion = (STATIC / 'motion.js').read_text(encoding='utf-8')
+-    assert "matchMedia('(prefers-reduced-motion: reduce)')" in motion and 'if (reduce.matches' in motion
+     assert "root.classList.add('js-motion')" in motion  # conteúdo só fica oculto quando o script roda
++    assert "matchMedia('(prefers-reduced-motion: reduce)')" in motion and 'if (reduce.matches) return;' in motion
+     css = (STATIC / 'public-bundle.css').read_text(encoding='utf-8')
+     assert '.js-motion .sv-reveal {' in css and '.js-motion .sv-reveal.is-visible' in css
++    reduced = css.split('@media (prefers-reduced-motion: reduce) {')[1]
++    assert '@keyframes sv-rise { from { opacity: 0; } to { opacity: 1; } }' in reduced  # só fade, sem deslocamento
+     assert '/static/motion.js' in HTML
+ 
+ 
++def test_internal_links_scroll_smoothly_and_move_focus():
++    nav = (STATIC / 'navigation.js').read_text(encoding='utf-8')
++    assert "querySelectorAll('a[href^=\"#\"]')" in nav
++    assert "scrollIntoView({behavior: 'smooth', block: 'start'})" in nav and 'target.focus({preventScroll: true})' in nav
++    assert 'html { scroll-behavior: smooth;' in (STATIC / 'sv-base.css').read_text(encoding='utf-8')
++
++
+ def test_documentary_photos_are_allowed_by_the_csp(client):
+     csp = client.get('/').headers['content-security-policy']
+     img_src = csp.split('img-src')[1].split(';')[0].split()
+diff --git a/tests/test_ui_visual_system.py b/tests/test_ui_visual_system.py
+index 877dff6..dcf8329 100644
+--- a/tests/test_ui_visual_system.py
++++ b/tests/test_ui_visual_system.py
+@@ -118,9 +118,11 @@ def test_focus_skip_link_and_touch_targets():
+     assert BASE.count('min-height: 48px') >= 2 and 'min-height: 44px' in BASE
+ 
+ 
+-def test_motion_is_disabled_for_users_who_ask_for_it():
+-    block = BASE.split('@media (prefers-reduced-motion: reduce)')[1].split('\n')[0]
+-    assert 'scroll-behavior: auto' in block and 'animation: none' in block and 'transition: none' in block
++def test_reduced_motion_keeps_fades_but_removes_movement():
++    block = BASE.split('@media (prefers-reduced-motion: reduce) {')[1].split('\n}\n')[0]
++    assert '@keyframes sv-rise { from { opacity: 0; } to { opacity: 1; } }' in block
++    assert '@keyframes sv-zoom { from { opacity: 0; } to { opacity: 1; } }' in block
++    assert '.js-motion .sv-reveal { transform: none;' in block
+ 
+ 
+ def test_layout_adapts_to_small_screens():
+-- 
+2.43.0
+

@@ -1,0 +1,78 @@
+From 5caa3cdd5da16b9b02b8cbca6639a6ac1f4efa48 Mon Sep 17 00:00:00 2001
+From: Douglas Melo <161658032+doug-melo@users.noreply.github.com>
+Date: Wed, 18 Nov 2026 22:44:11 -0300
+Subject: [PATCH] =?UTF-8?q?Trocar=20o=20token=20do=20ESP32=20ou=20as=20cha?=
+ =?UTF-8?q?ves=20das=20esta=C3=A7=C3=B5es=20no=20.env=20passa=20a=20valer?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+O seed só gravava o token na primeira vez; depois disso, trocar
+ESP32_DEVICE_TOKEN, SENSOR_A_KEY ou SENSOR_B_KEY deixava o ESP32 e as estações
+recebendo 401. Agora o bootstrap atualiza o hash quando o valor do .env muda.
+---
+ app/seed.py                  | 14 ++++++++++++--
+ tests/test_medicoes_esp32.py | 20 ++++++++++++++++++++
+ 2 files changed, 32 insertions(+), 2 deletions(-)
+
+diff --git a/app/seed.py b/app/seed.py
+index 6e5c014..47e277a 100644
+--- a/app/seed.py
++++ b/app/seed.py
+@@ -121,13 +121,23 @@ def ensure_iot(db) -> None:
+         ("centro-demo", "Centro — área exposta (SIMULAÇÃO)", "Hipótese: pouca sombra", config.SENSOR_A_KEY),
+         ("verde-demo", "Área arborizada (SIMULAÇÃO)", "Hipótese: vegetação urbana", config.SENSOR_B_KEY),
+     ):
+-        if db.scalar(select(Station).where(Station.code == code)) is None:
++        station = db.scalar(select(Station).where(Station.code == code))
++        if station is None:
+             db.add(Station(code=code, name=name, setting=setting, simulated=True, api_key_hash=hash_device_key(key)))
+-    if db.scalar(select(IotDevice).where(IotDevice.device_id == config.ESP32_DEVICE_ID)) is None:
++        elif station.api_key_hash != hash_device_key(key):
++            # A chave mudou no .env: a estação passa a aceitar só a chave nova.
++            station.api_key_hash = hash_device_key(key)
++            print(f"Chave da estação atualizada a partir do .env: {code}")
++    device = db.scalar(select(IotDevice).where(IotDevice.device_id == config.ESP32_DEVICE_ID))
++    if device is None:
+         db.add(IotDevice(device_id=config.ESP32_DEVICE_ID,
+                          name="ESP32 Wokwi — Calçadão x zona arborizada (SIMULADOR)",
+                          token_hash=hash_device_key(config.ESP32_DEVICE_TOKEN)))
+         print(f"Dispositivo IoT cadastrado: {config.ESP32_DEVICE_ID}")
++    elif device.token_hash != hash_device_key(config.ESP32_DEVICE_TOKEN):
++        # Token trocado no .env: o ESP32 precisa usar o mesmo valor no sketch.ino.
++        device.token_hash = hash_device_key(config.ESP32_DEVICE_TOKEN)
++        print(f"Token do dispositivo IoT atualizado a partir do .env: {config.ESP32_DEVICE_ID}")
+     db.flush()
+ 
+ 
+diff --git a/tests/test_medicoes_esp32.py b/tests/test_medicoes_esp32.py
+index 38ca838..3d86e68 100644
+--- a/tests/test_medicoes_esp32.py
++++ b/tests/test_medicoes_esp32.py
+@@ -74,3 +74,23 @@ def test_swagger_documenta_contrato_esp32(client):
+ def test_health_raiz_para_monitor_da_vm(client):
+     r = client.get("/health")
+     assert r.status_code == 200 and r.json()["banco"] == "ok"
++
++
++def test_seed_updates_the_esp32_token_and_station_keys_when_the_env_changes(client, monkeypatch):
++    """Trocar ESP32_DEVICE_TOKEN ou SENSOR_*_KEY no .env vale no próximo deploy, sem apagar o banco."""
++    from sqlalchemy import select
++    from app import config
++    from app.auth import authenticate_device
++    from app.database import get_db
++    from app.main import app
++    from app.models import IotDevice, Station
++    from app.seed import ensure_iot
++    monkeypatch.setattr(config, 'ESP32_DEVICE_TOKEN', 'token-novo-do-sketch-0123456789')
++    monkeypatch.setattr(config, 'SENSOR_A_KEY', 'chave-nova-do-sensor-a-0123456789')
++    db = next(app.dependency_overrides[get_db]())
++    ensure_iot(db)
++    db.commit()
++    device = db.scalar(select(IotDevice).where(IotDevice.device_id == config.ESP32_DEVICE_ID))
++    station = db.scalar(select(Station).where(Station.code == 'centro-demo'))
++    assert authenticate_device('token-novo-do-sketch-0123456789', device.token_hash)
++    assert authenticate_device('chave-nova-do-sensor-a-0123456789', station.api_key_hash)
+-- 
+2.43.0
+

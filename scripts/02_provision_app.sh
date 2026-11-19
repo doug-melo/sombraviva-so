@@ -131,11 +131,9 @@ SQL
   audit "MYSQL banco=$DB_NAME usuario=$DB_USER"
 }
 
-# Patches sobre a API de SOA, aplicados em ordem enquanto não estiverem na main:
-#   0001 integração ESP32 + VM (POST /api/v1/medicoes, /health, migração 004)
-#   0002 redesenho do painel e da central de segurança com Apache ECharts
-#   0003 redesenho final (canvas) do painel público e da central
-#   0004 testes do frontend redesenhado · 0005 ajustes da pipeline DevSecOps
+# Patches sobre a API de SOA: só os que estiverem soltos em patches/ (NNNN-*.patch).
+# Os patches 0001 a 0005 já entraram na main da API (PR #1) e ficam guardados em
+# patches/aplicados/ como histórico; por isso não são mais aplicados aqui.
 # Cada patch é idempotente: se já estiver no código (git apply -R --check), é pulado.
 aplicar_patch_integracao() {
   local patch nome
@@ -143,7 +141,7 @@ aplicar_patch_integracao() {
   local patches=("$REPO_DIR"/patches/[0-9][0-9][0-9][0-9]-*.patch)
   shopt -u nullglob
   if (( ${#patches[@]} == 0 )); then
-    log_warn "Nenhum patch em $REPO_DIR/patches"
+    log_info "Nenhum patch pendente: a main da API já tem todas as mudanças"
     return 0
   fi
   for patch in "${patches[@]}"; do

@@ -81,7 +81,7 @@ O código da API **não fica neste repositório**: ele é o entregável de SOA e
 | `GET` | `/api/v1/medicoes/resumo` | Diferença Calçadão × zona arborizada e nível de risco atual |
 | `GET` | `/docs` | Swagger (documentação automática) |
 
-Enquanto as mudanças não entram na `main` da API, o script aplica em ordem os patches de `patches/` sobre o clone: `0001` (integração ESP32 + VM: `/api/v1/medicoes`, `/health`, migração 004) `0002` (novo painel e central de segurança com gráficos Apache ECharts servidos localmente) `0003` (redesenho final do painel público e da central, com a fonte Public Sans servida localmente), `0004` (testes do frontend redesenhado: 145 testes no total) e `0005` (`requirements-dev.txt` e ajuste do Bandit para a pipeline DevSecOps passar). Cada patch é pulado se já estiver no código, então rodar o script de novo é seguro.
+As mudanças da integração ESP32 + VM, do redesenho do painel e da central, dos testes do frontend e da pipeline DevSecOps já estão na `main` da API (PR #1). Os patches usados até o merge ficam em `patches/aplicados/` como histórico. O `02_provision_app.sh` só aplica patches soltos em `patches/`; hoje não há nenhum, então ele implanta a `main` da API como está.
 
 O que o `02_provision_app.sh` faz com ela, em ordem: instala Python, MySQL e Nginx → cria banco e usuário com menor privilégio → clona a API e aplica os patches → cria o `venv` → gera `/etc/sombraviva/sombraviva.env` (chmod 600, segredos aleatórios) → `alembic upgrade head` → `python -m app.seed` → serviço systemd → Nginx → health check.
 
@@ -260,7 +260,7 @@ sombraviva-so/
 ├── systemd/     sombraviva-api.service · sombraviva-monitor.service · guard .service/.timer
 ├── nginx/sombraviva.conf  ·  auditd/sombraviva.rules  ·  logrotate/sombraviva
 ├── docs/roteiro_video_os.md     # roteiro do vídeo de 7 min
-├── patches/                     # mudanças na API de SOA aplicadas pelo 02 (0001 integração, 0002 painel ECharts, 0003 redesenho final, 0004 testes, 0005 pipeline)
+├── patches/aplicados/           # histórico: 0001 a 0005 já estão na main da API (PR #1)
 ├── evidencias/                  # prints e logs exportados
 └── prompts.md                   # registro dos prompts de IA (regra da GS)
 ```

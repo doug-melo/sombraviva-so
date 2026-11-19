@@ -146,10 +146,10 @@ aplicar_patch_integracao() {
   fi
   for patch in "${patches[@]}"; do
     nome=$(basename "$patch")
-    if git -C "$APP_DIR/repo" apply -R --check "$patch" >/dev/null 2>&1; then
+    if git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" apply -R --check "$patch" >/dev/null 2>&1; then
       log_ok "Patch já presente na API: $nome"
-    elif git -C "$APP_DIR/repo" apply --check --whitespace=nowarn "$patch" >/dev/null 2>&1; then
-      run git -C "$APP_DIR/repo" apply --whitespace=nowarn "$patch"
+    elif git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" apply --check --whitespace=nowarn "$patch" >/dev/null 2>&1; then
+      run git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" apply --whitespace=nowarn "$patch"
       audit "PATCH_APLICADO $nome"
       log_ok "Patch aplicado: $nome"
     else
@@ -159,14 +159,17 @@ aplicar_patch_integracao() {
 }
 
 # ------------------------------------------------------------------ 3 --------
+# O clone em $APP_DIR/repo pertence ao usuário sombraviva; o git rodando como root
+# (sudo ou systemd) recusa repositórios de outro dono ("dubious ownership") se não
+# marcarmos este caminho como seguro em cada comando (safe.directory).
 implantar_codigo() {
   log_step "3/8 Código da API (SOA) e ambiente virtual Python"
   install -d -m 755 -o "$USUARIO_APP" -g "$USUARIO_APP" "$APP_DIR"
   if [[ "$APP_ORIGEM" == "git" ]]; then
     [[ -n "$APP_GIT_URL" ]] || die "APP_ORIGEM=git exige APP_GIT_URL em config/app.conf"
     if [[ -d "$APP_DIR/repo/.git" ]]; then
-      run git -C "$APP_DIR/repo" fetch --depth 1 origin "$APP_GIT_BRANCH"
-      run git -C "$APP_DIR/repo" reset --hard "origin/$APP_GIT_BRANCH"
+      run git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" fetch --depth 1 origin "$APP_GIT_BRANCH"
+      run git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" reset --hard "origin/$APP_GIT_BRANCH"
     else
       rm -rf "$APP_DIR/repo"
       run git clone --depth 1 --branch "$APP_GIT_BRANCH" "$APP_GIT_URL" "$APP_DIR/repo"

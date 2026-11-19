@@ -136,6 +136,14 @@ verificar_e_implantar() {
     return 0
   fi
 
+  if [[ "$so_atual" == "$so_remoto" ]]; then
+    # Nada mudou neste repositório: não há versão anterior dele para voltar.
+    # O 02 falha antes de trocar o código no ar, então a versão anterior da API continua rodando.
+    gravar_estado "$so_remoto" "$api_remoto" "falha; versão anterior continua no ar"
+    audit "DEPLOY_FALHA so=${so_remoto:0:12} api=${api_remoto:0:12} sem_rollback"
+    log_error "O deploy falhou. Veja /var/log/sombraviva/02_provision_app.log; a próxima tentativa acontece no próximo commit ou com --force"
+    return 1
+  fi
   log_error "O deploy falhou. Voltando o sombraviva-so para ${so_atual:0:7} e reimplantando."
   audit "DEPLOY_FALHA so=${so_remoto:0:12} api=${api_remoto:0:12} rollback=${so_atual:0:12}"
   run g reset --hard "$so_atual"

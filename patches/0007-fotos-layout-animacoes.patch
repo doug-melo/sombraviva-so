@@ -1,0 +1,498 @@
+From 34123df0b10ea9b5dfdeb86ed8dac0b2e8dcb445 Mon Sep 17 00:00:00 2001
+From: Douglas Melo <161658032+doug-melo@users.noreply.github.com>
+Date: Wed, 18 Nov 2026 21:58:53 -0300
+Subject: [PATCH] =?UTF-8?q?Corrige=20as=20fotos=20que=20n=C3=A3o=20carrega?=
+ =?UTF-8?q?vam,=20ajusta=20o=20layout=20e=20adiciona=20anima=C3=A7=C3=B5es?=
+ =?UTF-8?q?=20de=20entrada?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- Parque Piratininga: a Wikimedia passou a recusar miniaturas fora dos tamanhos
+  padrão chamadas por outros sites; a foto agora usa a largura padrão de 1280px.
+- Calçadão em 2021: a imagem da Agência Mural não carregava; entra a foto de
+  Ana Cláudia Dantas (Jornal Comarca Paulista, 2025), com crédito, e o link da
+  reportagem da Agência Mural continua na legenda. CSP libera o novo host.
+- Fotos com proporção 16:10 e altura máxima; se uma fonte cair, o quadro encolhe
+  para o aviso em vez de ficar uma caixa vazia grande.
+- Régua "Como ler": escala mínima de 14 °C e rótulos virados para fora, sem
+  sobreposição quando sombra e sol estão próximos.
+- motion.js: abertura em sequência ao carregar, blocos que sobem ao rolar a página
+  e pulso discreto quando um valor muda; tudo desligado com "reduzir movimento".
+---
+ app/main.py                  |  2 +-
+ static/admin-bundle.css      | 39 ++++++++++++++++++++++++++++
+ static/admin.html            |  1 +
+ static/dashboard.js          |  9 +++++--
+ static/index.html            |  7 ++---
+ static/motion.js             | 50 ++++++++++++++++++++++++++++++++++++
+ static/public-bundle.css     | 49 +++++++++++++++++++++++++++++++----
+ static/sv-admin.css          | 24 +++++++++++++++++
+ static/sv-base.css           | 15 +++++++++++
+ static/sv-public.css         | 34 ++++++++++++++++++++----
+ tests/test_ui_public_page.py | 28 ++++++++++++++++++--
+ 11 files changed, 240 insertions(+), 18 deletions(-)
+ create mode 100644 static/motion.js
+
+diff --git a/app/main.py b/app/main.py
+index 1e9cdd1..196ddad 100644
+--- a/app/main.py
++++ b/app/main.py
+@@ -71,7 +71,7 @@ async def protective_headers(request: Request, call_next):
+         # Revalidação por ETag: permite 304, sem manter versões desatualizadas.
+         response.headers["Cache-Control"] = "public, max-age=0, must-revalidate"
+     if not request.url.path.startswith(("/docs", "/redoc")):
+-        response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://commons.wikimedia.org https://upload.wikimedia.org https://www.visaooeste.com.br https://www.aeaosasco.org.br https://www.oanhanguera.com.br https://agenciamural.org.br; connect-src 'self'; frame-src https://www.openstreetmap.org; frame-ancestors 'none'"
++        response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://commons.wikimedia.org https://upload.wikimedia.org https://www.visaooeste.com.br https://www.aeaosasco.org.br https://www.oanhanguera.com.br https://agenciamural.org.br https://jornalcomarcapaulista.com.br; connect-src 'self'; frame-src https://www.openstreetmap.org; frame-ancestors 'none'"
+     if request.url.scheme == "https":
+         response.headers["Strict-Transport-Security"] = "max-age=31536000"
+     return response
+diff --git a/static/admin-bundle.css b/static/admin-bundle.css
+index e3c0d85..981c8ef 100644
+--- a/static/admin-bundle.css
++++ b/static/admin-bundle.css
+@@ -169,6 +169,21 @@ a.sv-kpi:hover { border-color: var(--green); color: var(--ink); }
+ .sv-top:hover { color: var(--green); background: #fff; }
+ .sv-top svg { width: 14px; height: 14px; }
+ 
++/* Animações de entrada: só quando o sistema não pede menos movimento */
++@keyframes sv-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
++@keyframes sv-fade { from { opacity: 0; } to { opacity: 1; } }
++@keyframes sv-zoom { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
++@keyframes sv-pop { 0% { transform: scale(1); } 40% { transform: scale(1.06); } 100% { transform: scale(1); } }
++@media (prefers-reduced-motion: no-preference) {
++  .js-motion .sv-reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms), transform .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms); }
++  .js-motion .sv-reveal.is-visible { opacity: 1; transform: none; }
++  .sv-pulse { display: inline-block; animation: sv-pop .5s ease-out; }
++  .sv-kpi, .sv-card, .ops-sees { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
++  a.sv-kpi:hover, button.sv-kpi:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(15,61,58,.10); }
++  .sv-button, .primary-btn, .outline-btn { transition: background-color .2s ease, color .2s ease, transform .2s ease; }
++  .sv-button:active, .primary-btn:active, .outline-btn:active { transform: translateY(1px); }
++}
++
+ @media (max-width: 960px) {
+   :root { --gutter: 20px; }
+   .menu-toggle { display: block; }
+@@ -398,3 +413,27 @@ button.sv-kpi:hover { border-color: var(--green); }
+   .ops-result-facts { grid-template-columns: 1fr; }
+ }
+ 
++/* Entradas da central: login, troca de área e cartões em cascata */
++@media (prefers-reduced-motion: no-preference) {
++  .sv-login-art img { animation: sv-zoom 1.8s cubic-bezier(.2,.7,.2,1) both; }
++  .sv-login-pitch > *, .sv-login-form form > * { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) both; }
++  .sv-login-pitch > :nth-child(2), .sv-login-form form > :nth-child(2) { animation-delay: .1s; }
++  .sv-login-pitch > :nth-child(3), .sv-login-form form > :nth-child(3) { animation-delay: .2s; }
++  .sv-login-form form > :nth-child(4) { animation-delay: .3s; }
++  .sv-login-form form > :nth-child(n+5) { animation-delay: .4s; }
++  .ops-pane:not(.hidden) > * { animation: sv-rise .6s cubic-bezier(.2,.7,.2,1) both; }
++  .ops-pane:not(.hidden) > :nth-child(2) { animation-delay: .08s; }
++  .ops-pane:not(.hidden) > :nth-child(3) { animation-delay: .16s; }
++  .ops-pane:not(.hidden) > :nth-child(n+4) { animation-delay: .24s; }
++  .sv-kpis > * { animation: sv-rise .6s cubic-bezier(.2,.7,.2,1) both; }
++  .sv-kpis > :nth-child(2) { animation-delay: .08s; } .sv-kpis > :nth-child(3) { animation-delay: .16s; } .sv-kpis > :nth-child(4) { animation-delay: .24s; }
++  .ops-devices > *, .soc-alert-list > *, .ops-feed > * { animation: sv-rise .5s cubic-bezier(.2,.7,.2,1) both; }
++  .ops-devices > :nth-child(2), .soc-alert-list > :nth-child(2), .ops-feed > :nth-child(2) { animation-delay: .06s; }
++  .ops-devices > :nth-child(3), .soc-alert-list > :nth-child(3), .ops-feed > :nth-child(3) { animation-delay: .12s; }
++  .ops-devices > :nth-child(n+4), .soc-alert-list > :nth-child(n+4), .ops-feed > :nth-child(n+4) { animation-delay: .18s; }
++  .sv-case-dossier > * { animation: sv-fade .45s ease-out both; }
++  .ops-result-head, .ops-result-body > * { animation: sv-rise .55s cubic-bezier(.2,.7,.2,1) both; }
++  .ops-result-body > :nth-child(2) { animation-delay: .08s; } .ops-result-body > :nth-child(3) { animation-delay: .16s; } .ops-result-body > :nth-child(4) { animation-delay: .24s; }
++  .ops-tab { transition: color .2s ease, box-shadow .25s ease; }
++}
++
+diff --git a/static/admin.html b/static/admin.html
+index e5dc826..19f03de 100644
+--- a/static/admin.html
++++ b/static/admin.html
+@@ -361,5 +361,6 @@
+   <script src="/static/admin-charts.js?v=20261118.3" defer></script>
+   <script src="/static/admin.js?v=20261118.3" defer></script>
+   <script src="/static/media.js?v=20261118.3" defer></script>
++  <script src="/static/motion.js?v=20261118.3" defer></script>
+ </body>
+ </html>
+diff --git a/static/dashboard.js b/static/dashboard.js
+index 6e28a6f..d9f1225 100644
+--- a/static/dashboard.js
++++ b/static/dashboard.js
+@@ -111,12 +111,17 @@ async function loadCompare() {
+ function drawHowto(shade, sun) {
+   const sh = num(shade), su = num(sun);
+   if (sh === null || su === null) return;
+-  const lo = Math.min(sh, su) - 4, hi = Math.max(sh, su, sh + 3) + 4;
++  // Escala com no mínimo 14 °C de largura: pontos próximos não se encostam.
++  let lo = Math.min(sh, su) - 3, hi = Math.max(sh, su, sh + 3) + 3;
++  if (hi - lo < 14) { const pad = (14 - (hi - lo)) / 2; lo -= pad; hi += pad; }
+   const x = v => (40 + (v - lo) / (hi - lo) * 560).toFixed(1);
+   const xs = x(sh), xu = x(su), xl = x(sh + 3);
+   const set = (id, attrs) => { const el = $(id); if (el) Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v)); };
+   set('howto-shade', {cx: xs}); set('howto-sun', {cx: xu});
+-  set('howto-shade-label', {x: xs}); set('howto-sun-label', {x: xu});
++  // Rótulos para fora: o da esquerda termina no ponto, o da direita começa nele.
++  const shadeLeft = +xs <= +xu;
++  set('howto-shade-label', {x: shadeLeft ? +xs + 14 : +xs - 14, 'text-anchor': shadeLeft ? 'end' : 'start'});
++  set('howto-sun-label', {x: shadeLeft ? +xu - 14 : +xu + 14, 'text-anchor': shadeLeft ? 'start' : 'end'});
+   set('howto-limit', {x1: xl, x2: xl}); set('howto-limit-label', {x: xl});
+   set('howto-under', {x: Math.min(xs, xl), width: Math.abs(xl - xs).toFixed(1)});
+   const overW = Math.max(0, xu - xl);
+diff --git a/static/index.html b/static/index.html
+index c54b73c..5d994e7 100644
+--- a/static/index.html
++++ b/static/index.html
+@@ -86,7 +86,7 @@
+         <div class="sv-duo">
+           <figure class="sv-duo-item is-shade">
+             <div class="sv-duo-photo">
+-              <img class="documentary-media" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Parque_Ecol%C3%B3gico_Jardim_Piratininga_-_panoramio.jpg/1024px-Parque_Ecol%C3%B3gico_Jardim_Piratininga_-_panoramio.jpg" data-credit-id="park-photo-note" alt="Fotografia documental do Parque Ecológico Jardim Piratininga, Osasco, registrada em 2010" width="1024" height="680" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
++              <img class="documentary-media" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Parque_Ecol%C3%B3gico_Jardim_Piratininga_-_panoramio.jpg/1280px-Parque_Ecol%C3%B3gico_Jardim_Piratininga_-_panoramio.jpg" data-credit-id="park-photo-note" alt="Fotografia documental do Parque Ecológico Jardim Piratininga, Osasco, registrada em 2010" width="1280" height="959" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+               <p class="sv-media-note" id="park-photo-note" hidden role="status">Fotografia documental indisponível. Consulte o registro original do Parque Jardim Piratininga.</p>
+               <div class="sv-duo-label"><span>Com vegetação · Parque Jardim Piratininga</span><strong id="prob-shade">--</strong></div>
+             </div>
+@@ -94,11 +94,11 @@
+           </figure>
+           <figure class="sv-duo-item is-sun">
+             <div class="sv-duo-photo">
+-              <img class="documentary-media" src="https://agenciamural.org.br/wp-content/uploads/2021/12/IMG-20211206-WA0045-1024x755.jpg" data-credit-id="after-photo-note" alt="Fotografia de 2021 do Calçadão de Osasco durante a revitalização, sem os coqueiros, com estruturas de cobertura e lojas no entorno" width="1024" height="755" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
++              <img class="documentary-media" src="https://jornalcomarcapaulista.com.br/wp-content/uploads/2025/11/Calcadao-de-Osasco-Inicio-da-Reforma-769x1024.jpg" data-credit-id="after-photo-note" alt="Fotografia de 2021 do Calçadão de Osasco no início da reforma, com o piso exposto e as lojas no entorno" width="769" height="1024" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+               <p class="sv-media-note" id="after-photo-note" hidden role="status">Fotografia jornalística indisponível. Consulte a reportagem na fonte.</p>
+               <div class="sv-duo-label"><span>Piso exposto · Calçadão em 2021</span><strong id="prob-sun">--</strong></div>
+             </div>
+-            <figcaption class="sv-credit">Durante a intervenção, 2021 · Foto: Agência Mural · <a href="https://agenciamural.org.br/calcadao-de-osasco-perde-coqueiros-e-divide-opiniao-de-moradores/" target="_blank" rel="noopener noreferrer">Ver reportagem</a></figcaption>
++            <figcaption class="sv-credit">Início da reforma, 2021 · Foto: Ana Cláudia Dantas, Jornal Comarca Paulista · <a href="https://jornalcomarcapaulista.com.br/2025/11/27/calcadao-da-antonio-agu-osasco/" target="_blank" rel="noopener noreferrer">Ver reportagem</a> · Retirada dos coqueiros: <a href="https://agenciamural.org.br/calcadao-de-osasco-perde-coqueiros-e-divide-opiniao-de-moradores/" target="_blank" rel="noopener noreferrer">Agência Mural</a></figcaption>
+           </figure>
+         </div>
+         <dl class="sv-facts">
+@@ -414,6 +414,7 @@
+   <script src="/static/vendor/echarts.min.js?v=5.6.0" defer></script>
+   <script src="/static/navigation.js?v=20261118.3" defer></script>
+   <script src="/static/media.js?v=20261118.3" defer></script>
++  <script src="/static/motion.js?v=20261118.3" defer></script>
+   <script src="/static/dashboard.js?v=20261118.3" defer></script>
+ </body>
+ </html>
+diff --git a/static/motion.js b/static/motion.js
+new file mode 100644
+index 0000000..e9d824c
+--- /dev/null
++++ b/static/motion.js
+@@ -0,0 +1,50 @@
++/* SombraViva · animações de entrada.
++   - Abertura: título, texto, botões e foto entram em sequência ao carregar.
++   - Ao rolar: cada bloco sobe e aparece quando entra na tela; itens de grades entram em cascata.
++   - Respeita "reduzir movimento" do sistema: nesse caso nada é animado.
++   Sem JavaScript, ou se o navegador não tiver IntersectionObserver, tudo aparece normalmente. */
++(() => {
++  'use strict';
++  const root = document.documentElement;
++  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
++  if (reduce.matches || !('IntersectionObserver' in window)) return;
++
++  const groups = [
++    '.sv-section-head', '.sv-duo-item', '.sv-facts > div', '.sv-archive-head', '.sv-archive-grid > figure',
++    '.sv-steps > li', '.sv-howto', '.sv-kpis > *', '.sv-row > *', '.sv-map > *', '.sv-form', '.sv-summary > div',
++    '.sv-ods-grid > div', '.sv-purpose h2', '.sv-footer-cols > *', '#history-form + .sv-notice + .sv-chart-card',
++  ];
++  const targets = new Set();
++  groups.forEach(selector => document.querySelectorAll(selector).forEach(el => targets.add(el)));
++  if (!targets.size && !document.querySelector('.sv-hero, .sv-login')) return;
++
++  root.classList.add('js-motion');
++  targets.forEach(el => {
++    el.classList.add('sv-reveal');
++    // Atraso em cascata conforme a posição do item dentro do mesmo grupo (CSSOM; a CSP só bloqueia style="").
++    const siblings = el.parentElement ? [...el.parentElement.children].filter(c => targets.has(c)) : [el];
++    el.style.setProperty('--reveal-delay', `${Math.min(siblings.indexOf(el), 5) * 90}ms`);
++  });
++
++  const observer = new IntersectionObserver(entries => {
++    entries.forEach(entry => {
++      if (!entry.isIntersecting) return;
++      entry.target.classList.add('is-visible');
++      observer.unobserve(entry.target);
++    });
++  }, {rootMargin: '0px 0px -8% 0px', threshold: 0.12});
++  targets.forEach(el => observer.observe(el));
++
++  // Valores que mudam com os dados (faixa ao vivo e cartões): um pulso discreto a cada atualização.
++  const pulse = el => { el.classList.remove('sv-pulse'); void el.offsetWidth; el.classList.add('sv-pulse'); };
++  document.querySelectorAll('.sv-strip strong, .sv-hero-card strong, .sv-kpi strong, .sv-duo-label strong, .sv-facts dd').forEach(el => {
++    new MutationObserver(() => pulse(el)).observe(el, {childList: true, characterData: true, subtree: true});
++  });
++
++  // Se o usuário ativar "reduzir movimento" com a página aberta, mostra tudo na hora.
++  reduce.addEventListener?.('change', event => {
++    if (!event.matches) return;
++    targets.forEach(el => el.classList.add('is-visible'));
++    root.classList.remove('js-motion');
++  });
++})();
+diff --git a/static/public-bundle.css b/static/public-bundle.css
+index 27b108f..36ce148 100644
+--- a/static/public-bundle.css
++++ b/static/public-bundle.css
+@@ -169,6 +169,21 @@ a.sv-kpi:hover { border-color: var(--green); color: var(--ink); }
+ .sv-top:hover { color: var(--green); background: #fff; }
+ .sv-top svg { width: 14px; height: 14px; }
+ 
++/* Animações de entrada: só quando o sistema não pede menos movimento */
++@keyframes sv-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
++@keyframes sv-fade { from { opacity: 0; } to { opacity: 1; } }
++@keyframes sv-zoom { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
++@keyframes sv-pop { 0% { transform: scale(1); } 40% { transform: scale(1.06); } 100% { transform: scale(1); } }
++@media (prefers-reduced-motion: no-preference) {
++  .js-motion .sv-reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms), transform .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms); }
++  .js-motion .sv-reveal.is-visible { opacity: 1; transform: none; }
++  .sv-pulse { display: inline-block; animation: sv-pop .5s ease-out; }
++  .sv-kpi, .sv-card, .ops-sees { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
++  a.sv-kpi:hover, button.sv-kpi:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(15,61,58,.10); }
++  .sv-button, .primary-btn, .outline-btn { transition: background-color .2s ease, color .2s ease, transform .2s ease; }
++  .sv-button:active, .primary-btn:active, .outline-btn:active { transform: translateY(1px); }
++}
++
+ @media (max-width: 960px) {
+   :root { --gutter: 20px; }
+   .menu-toggle { display: block; }
+@@ -226,18 +241,21 @@ a.sv-kpi:hover { border-color: var(--green); color: var(--ink); }
+ .sv-band-dark .sv-credit { color: var(--on-green-2); }
+ .sv-band-dark .sv-credit strong { color: #fff; }
+ .sv-hero-photo .sv-media-note { right: 240px; }
++.media-fallback-visible .sv-duo-photo, .media-fallback-visible .sv-archive-photo { aspect-ratio: auto; min-height: 150px; }
++.media-fallback-visible .sv-hero-photo { background: linear-gradient(135deg, #DCD6C8, #C9C2B2); }
+ .sv-media-note { position: absolute; left: 24px; right: 24px; top: 24px; background: var(--paper); color: var(--ink-2); font-size: 13px; padding: 10px 14px; border-radius: 10px; }
+ 
+ /* O problema */
+ .sv-duo { display: flex; flex-wrap: wrap; gap: 24px; }
+ .sv-duo-item { flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+-.sv-duo-photo { position: relative; height: 380px; border-radius: 20px; overflow: hidden; background: #164F4B; }
++.sv-duo-photo { position: relative; aspect-ratio: 16 / 10; max-height: 340px; width: 100%; border-radius: 20px; overflow: hidden; background: #164F4B; }
+ .sv-duo-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+-.sv-duo-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 22px; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
++.sv-duo-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 22px 18px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 4px 16px; }
++.sv-duo-label span { flex: 1 1 180px; min-width: 0; line-height: 1.3; }
+ .sv-duo-item.is-shade .sv-duo-label { background: linear-gradient(0deg, rgba(10,40,38,.92), rgba(10,40,38,0)); }
+ .sv-duo-item.is-sun .sv-duo-label { background: linear-gradient(0deg, rgba(110,32,18,.92), rgba(110,32,18,0)); }
+ .sv-duo-item span { font-size: 16px; font-weight: 600; }
+-.sv-duo-item strong { font-size: 34px; font-weight: 800; letter-spacing: -.8px; }
++.sv-duo-item strong { font-size: 34px; font-weight: 800; letter-spacing: -.8px; line-height: 1; white-space: nowrap; }
+ .sv-duo-item.is-shade strong { color: var(--mint); }
+ .sv-duo-item.is-sun strong { color: #FFD2C5; }
+ .sv-archive { display: flex; flex-direction: column; gap: 20px; border-top: 1px solid rgba(242,239,232,.2); padding-top: 32px; }
+@@ -246,7 +264,7 @@ a.sv-kpi:hover { border-color: var(--green); color: var(--ink); }
+ .sv-archive-head p { font-size: 16px; line-height: 1.65; color: var(--on-green); }
+ .sv-archive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+ .sv-archive-grid figure { display: flex; flex-direction: column; gap: 10px; }
+-.sv-archive-photo { position: relative; height: 300px; border-radius: 16px; overflow: hidden; background: #164F4B; }
++.sv-archive-photo { position: relative; aspect-ratio: 16 / 10; max-height: 300px; width: 100%; border-radius: 16px; overflow: hidden; background: #164F4B; }
+ .sv-archive-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+ .sv-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+ .sv-facts div { display: flex; flex-direction: column-reverse; gap: 6px; border-top: 2px solid rgba(242,239,232,.4); padding-top: 16px; }
+@@ -335,7 +353,8 @@ a.sv-kpi:hover { border-color: var(--green); color: var(--ink); }
+   .sv-hero h1 { font-size: 38px; letter-spacing: -1px; }
+   .sv-section-head h2, .sv-purpose h2 { font-size: 34px; letter-spacing: -.8px; }
+   .sv-hero-photo { height: 420px; }
+-  .sv-duo-photo, .sv-archive-photo { height: 280px; }
++  .sv-duo-photo, .sv-archive-photo { aspect-ratio: 4 / 3; }
++  .sv-duo-item strong { font-size: 28px; }
+   .sv-hero-card { min-width: 0; padding: 10px 14px; }
+   .sv-hero-card strong { font-size: 32px; }
+   .sv-hero-stamp { display: none; }
+@@ -343,3 +362,23 @@ a.sv-kpi:hover { border-color: var(--green); color: var(--ink); }
+   .sv-chart-heatmap { height: 340px; }
+ }
+ 
++/* Entrada da abertura ao carregar a página */
++@media (prefers-reduced-motion: no-preference) {
++  .sv-hero-copy > * { animation: sv-rise .8s cubic-bezier(.2,.7,.2,1) both; }
++  .sv-hero-copy > :nth-child(1) { animation-delay: .05s; }
++  .sv-hero-copy > :nth-child(2) { animation-delay: .15s; }
++  .sv-hero-copy > :nth-child(3) { animation-delay: .28s; }
++  .sv-hero-copy > :nth-child(4) { animation-delay: .4s; }
++  .sv-hero-copy > :nth-child(5) { animation-delay: .5s; }
++  .sv-hero-photo { animation: sv-fade .9s ease-out .1s both; }
++  .sv-hero-photo img { animation: sv-zoom 1.6s cubic-bezier(.2,.7,.2,1) .1s both; }
++  .sv-hero-card.is-sun { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) .55s both; }
++  .sv-hero-card.is-shade { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) .7s both; }
++  .sv-hero-stamp, .sv-hero-figure .sv-credit { animation: sv-fade .6s ease-out .9s both; }
++  .sv-strip-in > p { animation: sv-fade .6s ease-out both; }
++  .sv-steps svg { transition: transform .3s ease; }
++  .sv-steps li:hover svg { transform: translateY(-4px); }
++  .sv-duo-photo img, .sv-archive-photo img { transition: transform .8s cubic-bezier(.2,.7,.2,1); }
++  .sv-duo-item:hover .sv-duo-photo img, .sv-archive-grid figure:hover img { transform: scale(1.04); }
++}
++
+diff --git a/static/sv-admin.css b/static/sv-admin.css
+index b53754d..13842f1 100644
+--- a/static/sv-admin.css
++++ b/static/sv-admin.css
+@@ -217,3 +217,27 @@ button.sv-kpi:hover { border-color: var(--green); }
+   .sv-login-pitch h1 { font-size: 34px; }
+   .ops-result-facts { grid-template-columns: 1fr; }
+ }
++
++/* Entradas da central: login, troca de área e cartões em cascata */
++@media (prefers-reduced-motion: no-preference) {
++  .sv-login-art img { animation: sv-zoom 1.8s cubic-bezier(.2,.7,.2,1) both; }
++  .sv-login-pitch > *, .sv-login-form form > * { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) both; }
++  .sv-login-pitch > :nth-child(2), .sv-login-form form > :nth-child(2) { animation-delay: .1s; }
++  .sv-login-pitch > :nth-child(3), .sv-login-form form > :nth-child(3) { animation-delay: .2s; }
++  .sv-login-form form > :nth-child(4) { animation-delay: .3s; }
++  .sv-login-form form > :nth-child(n+5) { animation-delay: .4s; }
++  .ops-pane:not(.hidden) > * { animation: sv-rise .6s cubic-bezier(.2,.7,.2,1) both; }
++  .ops-pane:not(.hidden) > :nth-child(2) { animation-delay: .08s; }
++  .ops-pane:not(.hidden) > :nth-child(3) { animation-delay: .16s; }
++  .ops-pane:not(.hidden) > :nth-child(n+4) { animation-delay: .24s; }
++  .sv-kpis > * { animation: sv-rise .6s cubic-bezier(.2,.7,.2,1) both; }
++  .sv-kpis > :nth-child(2) { animation-delay: .08s; } .sv-kpis > :nth-child(3) { animation-delay: .16s; } .sv-kpis > :nth-child(4) { animation-delay: .24s; }
++  .ops-devices > *, .soc-alert-list > *, .ops-feed > * { animation: sv-rise .5s cubic-bezier(.2,.7,.2,1) both; }
++  .ops-devices > :nth-child(2), .soc-alert-list > :nth-child(2), .ops-feed > :nth-child(2) { animation-delay: .06s; }
++  .ops-devices > :nth-child(3), .soc-alert-list > :nth-child(3), .ops-feed > :nth-child(3) { animation-delay: .12s; }
++  .ops-devices > :nth-child(n+4), .soc-alert-list > :nth-child(n+4), .ops-feed > :nth-child(n+4) { animation-delay: .18s; }
++  .sv-case-dossier > * { animation: sv-fade .45s ease-out both; }
++  .ops-result-head, .ops-result-body > * { animation: sv-rise .55s cubic-bezier(.2,.7,.2,1) both; }
++  .ops-result-body > :nth-child(2) { animation-delay: .08s; } .ops-result-body > :nth-child(3) { animation-delay: .16s; } .ops-result-body > :nth-child(4) { animation-delay: .24s; }
++  .ops-tab { transition: color .2s ease, box-shadow .25s ease; }
++}
+diff --git a/static/sv-base.css b/static/sv-base.css
+index a36b38a..6fd3392 100644
+--- a/static/sv-base.css
++++ b/static/sv-base.css
+@@ -167,6 +167,21 @@ a.sv-kpi:hover { border-color: var(--green); color: var(--ink); }
+ .sv-top:hover { color: var(--green); background: #fff; }
+ .sv-top svg { width: 14px; height: 14px; }
+ 
++/* Animações de entrada: só quando o sistema não pede menos movimento */
++@keyframes sv-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
++@keyframes sv-fade { from { opacity: 0; } to { opacity: 1; } }
++@keyframes sv-zoom { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
++@keyframes sv-pop { 0% { transform: scale(1); } 40% { transform: scale(1.06); } 100% { transform: scale(1); } }
++@media (prefers-reduced-motion: no-preference) {
++  .js-motion .sv-reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms), transform .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms); }
++  .js-motion .sv-reveal.is-visible { opacity: 1; transform: none; }
++  .sv-pulse { display: inline-block; animation: sv-pop .5s ease-out; }
++  .sv-kpi, .sv-card, .ops-sees { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
++  a.sv-kpi:hover, button.sv-kpi:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(15,61,58,.10); }
++  .sv-button, .primary-btn, .outline-btn { transition: background-color .2s ease, color .2s ease, transform .2s ease; }
++  .sv-button:active, .primary-btn:active, .outline-btn:active { transform: translateY(1px); }
++}
++
+ @media (max-width: 960px) {
+   :root { --gutter: 20px; }
+   .menu-toggle { display: block; }
+diff --git a/static/sv-public.css b/static/sv-public.css
+index 2fde065..76971e8 100644
+--- a/static/sv-public.css
++++ b/static/sv-public.css
+@@ -46,18 +46,21 @@
+ .sv-band-dark .sv-credit { color: var(--on-green-2); }
+ .sv-band-dark .sv-credit strong { color: #fff; }
+ .sv-hero-photo .sv-media-note { right: 240px; }
++.media-fallback-visible .sv-duo-photo, .media-fallback-visible .sv-archive-photo { aspect-ratio: auto; min-height: 150px; }
++.media-fallback-visible .sv-hero-photo { background: linear-gradient(135deg, #DCD6C8, #C9C2B2); }
+ .sv-media-note { position: absolute; left: 24px; right: 24px; top: 24px; background: var(--paper); color: var(--ink-2); font-size: 13px; padding: 10px 14px; border-radius: 10px; }
+ 
+ /* O problema */
+ .sv-duo { display: flex; flex-wrap: wrap; gap: 24px; }
+ .sv-duo-item { flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+-.sv-duo-photo { position: relative; height: 380px; border-radius: 20px; overflow: hidden; background: #164F4B; }
++.sv-duo-photo { position: relative; aspect-ratio: 16 / 10; max-height: 340px; width: 100%; border-radius: 20px; overflow: hidden; background: #164F4B; }
+ .sv-duo-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+-.sv-duo-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 22px; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
++.sv-duo-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 22px 18px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 4px 16px; }
++.sv-duo-label span { flex: 1 1 180px; min-width: 0; line-height: 1.3; }
+ .sv-duo-item.is-shade .sv-duo-label { background: linear-gradient(0deg, rgba(10,40,38,.92), rgba(10,40,38,0)); }
+ .sv-duo-item.is-sun .sv-duo-label { background: linear-gradient(0deg, rgba(110,32,18,.92), rgba(110,32,18,0)); }
+ .sv-duo-item span { font-size: 16px; font-weight: 600; }
+-.sv-duo-item strong { font-size: 34px; font-weight: 800; letter-spacing: -.8px; }
++.sv-duo-item strong { font-size: 34px; font-weight: 800; letter-spacing: -.8px; line-height: 1; white-space: nowrap; }
+ .sv-duo-item.is-shade strong { color: var(--mint); }
+ .sv-duo-item.is-sun strong { color: #FFD2C5; }
+ .sv-archive { display: flex; flex-direction: column; gap: 20px; border-top: 1px solid rgba(242,239,232,.2); padding-top: 32px; }
+@@ -66,7 +69,7 @@
+ .sv-archive-head p { font-size: 16px; line-height: 1.65; color: var(--on-green); }
+ .sv-archive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+ .sv-archive-grid figure { display: flex; flex-direction: column; gap: 10px; }
+-.sv-archive-photo { position: relative; height: 300px; border-radius: 16px; overflow: hidden; background: #164F4B; }
++.sv-archive-photo { position: relative; aspect-ratio: 16 / 10; max-height: 300px; width: 100%; border-radius: 16px; overflow: hidden; background: #164F4B; }
+ .sv-archive-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+ .sv-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+ .sv-facts div { display: flex; flex-direction: column-reverse; gap: 6px; border-top: 2px solid rgba(242,239,232,.4); padding-top: 16px; }
+@@ -155,10 +158,31 @@
+   .sv-hero h1 { font-size: 38px; letter-spacing: -1px; }
+   .sv-section-head h2, .sv-purpose h2 { font-size: 34px; letter-spacing: -.8px; }
+   .sv-hero-photo { height: 420px; }
+-  .sv-duo-photo, .sv-archive-photo { height: 280px; }
++  .sv-duo-photo, .sv-archive-photo { aspect-ratio: 4 / 3; }
++  .sv-duo-item strong { font-size: 28px; }
+   .sv-hero-card { min-width: 0; padding: 10px 14px; }
+   .sv-hero-card strong { font-size: 32px; }
+   .sv-hero-stamp { display: none; }
+   .sv-facts dd { font-size: 34px; }
+   .sv-chart-heatmap { height: 340px; }
+ }
++
++/* Entrada da abertura ao carregar a página */
++@media (prefers-reduced-motion: no-preference) {
++  .sv-hero-copy > * { animation: sv-rise .8s cubic-bezier(.2,.7,.2,1) both; }
++  .sv-hero-copy > :nth-child(1) { animation-delay: .05s; }
++  .sv-hero-copy > :nth-child(2) { animation-delay: .15s; }
++  .sv-hero-copy > :nth-child(3) { animation-delay: .28s; }
++  .sv-hero-copy > :nth-child(4) { animation-delay: .4s; }
++  .sv-hero-copy > :nth-child(5) { animation-delay: .5s; }
++  .sv-hero-photo { animation: sv-fade .9s ease-out .1s both; }
++  .sv-hero-photo img { animation: sv-zoom 1.6s cubic-bezier(.2,.7,.2,1) .1s both; }
++  .sv-hero-card.is-sun { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) .55s both; }
++  .sv-hero-card.is-shade { animation: sv-rise .7s cubic-bezier(.2,.7,.2,1) .7s both; }
++  .sv-hero-stamp, .sv-hero-figure .sv-credit { animation: sv-fade .6s ease-out .9s both; }
++  .sv-strip-in > p { animation: sv-fade .6s ease-out both; }
++  .sv-steps svg { transition: transform .3s ease; }
++  .sv-steps li:hover svg { transform: translateY(-4px); }
++  .sv-duo-photo img, .sv-archive-photo img { transition: transform .8s cubic-bezier(.2,.7,.2,1); }
++  .sv-duo-item:hover .sv-duo-photo img, .sv-archive-grid figure:hover img { transform: scale(1.04); }
++}
+diff --git a/tests/test_ui_public_page.py b/tests/test_ui_public_page.py
+index 5ef4239..2727f9c 100644
+--- a/tests/test_ui_public_page.py
++++ b/tests/test_ui_public_page.py
+@@ -185,12 +185,36 @@ def test_every_image_has_alt_text_and_reserved_size():
+ DOCUMENTARY = [img for img in PAGE.find('img') if 'documentary-media' in img.get('class', '')]
+ 
+ 
+-def test_the_five_original_documentary_photos_are_back():
++def test_the_five_documentary_photos_are_back():
+     hosts = sorted(urlparse(img['src']).hostname for img in DOCUMENTARY)
+-    assert hosts == ['agenciamural.org.br', 'upload.wikimedia.org', 'www.aeaosasco.org.br',
++    assert hosts == ['jornalcomarcapaulista.com.br', 'upload.wikimedia.org', 'www.aeaosasco.org.br',
+                      'www.oanhanguera.com.br', 'www.visaooeste.com.br']
+ 
+ 
++def test_wikimedia_thumbnail_uses_a_standard_width():
++    # Desde 2026 a Wikimedia recusa miniaturas fora dos tamanhos padrão quando chamadas por outro site.
++    standard = {20, 40, 60, 120, 250, 330, 500, 960, 1280, 1920, 3840}
++    for img in DOCUMENTARY:
++        match = re.search(r'/(\d+)px-', img['src'])
++        if 'upload.wikimedia.org' in img['src']:
++            assert match and int(match.group(1)) in standard, img['src']
++
++
++def test_how_to_read_labels_point_away_from_each_other():
++    draw = DASH.split('function drawHowto(shade, sun) {')[1].split('\n}\n')[0]
++    assert "'text-anchor': shadeLeft ? 'end' : 'start'" in draw
++    assert 'hi - lo < 14' in draw  # escala mínima de 14 °C
++
++
++def test_motion_respects_reduced_motion_and_works_without_javascript():
++    motion = (STATIC / 'motion.js').read_text(encoding='utf-8')
++    assert "matchMedia('(prefers-reduced-motion: reduce)')" in motion and 'if (reduce.matches' in motion
++    assert "root.classList.add('js-motion')" in motion  # conteúdo só fica oculto quando o script roda
++    css = (STATIC / 'public-bundle.css').read_text(encoding='utf-8')
++    assert '.js-motion .sv-reveal {' in css and '.js-motion .sv-reveal.is-visible' in css
++    assert '/static/motion.js' in HTML
++
++
+ def test_documentary_photos_are_allowed_by_the_csp(client):
+     csp = client.get('/').headers['content-security-policy']
+     img_src = csp.split('img-src')[1].split(';')[0].split()
+-- 
+2.43.0
+

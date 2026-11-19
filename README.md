@@ -81,7 +81,7 @@ O código da API **não fica neste repositório**: ele é o entregável de SOA e
 | `GET` | `/api/v1/medicoes/resumo` | Diferença Calçadão × zona arborizada e nível de risco atual |
 | `GET` | `/docs` | Swagger (documentação automática) |
 
-As mudanças da integração ESP32 + VM, do redesenho do painel e da central, dos testes do frontend e da pipeline DevSecOps já estão na `main` da API (PR #1). Os patches usados até o merge ficam em `patches/aplicados/` como histórico. O `02_provision_app.sh` só aplica patches soltos em `patches/`. Hoje há um: `0006` (volta as fotografias documentais originais do Calçadão, com créditos). Quando ele entrar na `main` da API, o script percebe e pula o patch.
+As mudanças da integração ESP32 + VM, do redesenho do painel e da central, dos testes do frontend e da pipeline DevSecOps já estão na `main` da API (PR #1). Os patches usados até o merge ficam em `patches/aplicados/` como histórico. O `02_provision_app.sh` só aplica patches soltos em `patches/`. Hoje há dois, aplicados em ordem: `0006` (volta as fotografias documentais do Calçadão, com créditos) e `0007` (corrige as fotos que não carregavam, ajusta o layout e adiciona animações de entrada). Quando eles entrarem na `main` da API, o script percebe e pula os patches.
 
 O que o `02_provision_app.sh` faz com ela, em ordem: instala Python, MySQL e Nginx → cria banco e usuário com menor privilégio → clona a API e aplica os patches → cria o `venv` → gera `/etc/sombraviva/sombraviva.env` (chmod 600, segredos aleatórios) → `alembic upgrade head` → `python -m app.seed` → serviço systemd → Nginx → health check.
 

@@ -58,6 +58,8 @@ SENSOR_B_KEY=""
 ESP32_DEVICE_ID=""
 ESP32_DEVICE_TOKEN=""
 DATABASE_URL=""
+# Fonte inicial do painel público (a central troca depois): estacoes ou esp32
+PANEL_DATA_SOURCE="estacoes"
 # APP_ORIGEM=local: pasta da API já clonada ao lado deste repositório
 APP_FONTE="$(cd "$REPO_DIR/.." && pwd)/Global-Solution---2-semestre---Cyber-Soa"
 load_conf "${APP_CONF:-$REPO_DIR/config/app.conf}"
@@ -255,6 +257,7 @@ ESP32_DEVICE_ID=${esp_id}
 ESP32_DEVICE_TOKEN=${esp_token}
 OPENAI_API_KEY=${OPENAI_API_KEY:-$(ler_env OPENAI_API_KEY)}
 OPENAI_MODEL=${OPENAI_MODEL}
+PANEL_DATA_SOURCE=${PANEL_DATA_SOURCE}
 PYTHONUNBUFFERED=1"
   [[ -n "$DATABASE_URL" ]] && conteudo+=$'\n'"DATABASE_URL=${DATABASE_URL}"
   if escrever_se_mudou "$ENV_ARQ" "$conteudo"; then

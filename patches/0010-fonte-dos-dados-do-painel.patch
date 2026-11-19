@@ -1,0 +1,639 @@
+From d87346c00fc2f7f86aad87e790642339884de80a Mon Sep 17 00:00:00 2001
+From: Douglas Melo <161658032+doug-melo@users.noreply.github.com>
+Date: Wed, 18 Nov 2026 22:31:17 -0300
+Subject: [PATCH] =?UTF-8?q?Central=20escolhe=20a=20fonte=20do=20painel=20p?=
+ =?UTF-8?q?=C3=BAblico:=20esta=C3=A7=C3=B5es=20cadastradas=20ou=20ESP32?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- Nova configuração panel_data_source (tabela app_settings, migração 005),
+  com padrão definido por PANEL_DATA_SOURCE (estacoes).
+- GET /api/v1/data-source (público) e GET/PUT /api/v1/admin/data-source (admin),
+  com o total e a última leitura de cada fonte e quem fez a troca.
+- GET /api/v1/stations/{code}/readings aceita source=all|estacoes|esp32; as
+  leituras do ESP32 (source esp32-wokwi) ficam separadas das estações originais.
+- Área Estações e IoT ganha o cartão "Fonte dos dados do painel público".
+- O painel lê a fonte escolhida, mostra "Fonte: …" na faixa ao vivo, e o
+  medidor e a ilha de calor seguem a mesma fonte. Sem leituras na fonte
+  escolhida, avisa e usa valores fictícios identificados.
+- 8 testes novos (161 no total).
+---
+ .env.example                         |  3 +
+ README.md                            |  5 +-
+ alembic/versions/005_app_settings.py | 26 ++++++++
+ app/bootstrap.py                     |  2 +-
+ app/data_source.py                   | 77 ++++++++++++++++++++++++
+ app/main.py                          | 30 +++++++++-
+ app/models.py                        |  9 +++
+ app/schemas.py                       |  4 ++
+ static/admin-bundle.css              | 15 +++++
+ static/admin.html                    | 25 ++++++++
+ static/admin.js                      | 33 +++++++++++
+ static/dashboard.js                  | 17 ++++--
+ static/index.html                    |  1 +
+ static/sv-admin.css                  | 15 +++++
+ tests/test_bootstrap_fiap.py         |  2 +-
+ tests/test_data_source.py            | 89 ++++++++++++++++++++++++++++
+ tests/test_mysql_config.py           |  2 +-
+ 17 files changed, 343 insertions(+), 12 deletions(-)
+ create mode 100644 alembic/versions/005_app_settings.py
+ create mode 100644 app/data_source.py
+ create mode 100644 tests/test_data_source.py
+
+diff --git a/.env.example b/.env.example
+index fd8797b..d7e2af5 100644
+--- a/.env.example
++++ b/.env.example
+@@ -33,3 +33,6 @@ SEED_DEMO_DATA=true
+ # ESP32 do Wokwi (POST /api/v1/medicoes). Sem token próprio, usa SENSOR_A_KEY.
+ ESP32_DEVICE_ID=esp32-osasco-calcadao-01
+ ESP32_DEVICE_TOKEN=
++
++# Fonte inicial do painel público (depois a central troca): estacoes (original) ou esp32
++PANEL_DATA_SOURCE=estacoes
+diff --git a/README.md b/README.md
+index bc9c586..6c4df38 100644
+--- a/README.md
++++ b/README.md
+@@ -198,6 +198,9 @@ O script de demonstração não envia ataques e não executa chamadas pagas à O
+ | `GET` | `/medicoes?zona=&limit=` | Últimas medições do ESP32 |
+ | `GET` | `/medicoes/resumo` | Ilha de calor: Calçadão × zona arborizada, delta e risco atual |
+ | `GET` | `/stations` | Estações e últimas leituras |
++| `GET` | `/stations/{code}/readings?source=` | Leituras de uma estação; `source` = `all`, `estacoes` (fonte original) ou `esp32` |
++| `GET` | `/data-source` | Fonte que o painel público está exibindo (escolhida na central) |
++| `GET`/`PUT` | `/admin/data-source` | **Admin:** consultar e trocar a fonte do painel (`estacoes` ou `esp32`), com totais de leituras de cada uma |
+ | `GET` | `/stations/{code}/readings` | Leituras de uma estação |
+ | `POST` | `/stations/{code}/readings` | Receber leitura autenticada com `X-Device-Key` |
+ | `GET` | `/summary` | Resumo climático das estações |
+@@ -240,7 +243,7 @@ O circuito do repositório [sombraviva-iot](https://github.com/doug-melo/sombrav
+ 
+ - Cada zona alimenta uma estação do portal (`sem_vegetacao` → `centro-demo`, `arborizada` → `verde-demo`), então o ESP32 aparece nos gráficos sem mudanças no frontend.
+ - Token inválido → `401` e evento `iot_auth` no `/admin` (o token nunca é gravado); `device_id` diferente do token → `403`.
+-- O dispositivo é cadastrado pelo seed com `ESP32_DEVICE_ID` e `ESP32_DEVICE_TOKEN` (`.env`). A migração **004** cria a tabela `iot_devices` e os campos de risco térmico em `readings`.
++- O dispositivo é cadastrado pelo seed com `ESP32_DEVICE_ID` e `ESP32_DEVICE_TOKEN` (`.env`). A migração **004** cria a tabela `iot_devices` e os campos de risco térmico em `readings`. A migração **005** cria `app_settings`, onde fica a fonte escolhida para o painel público.
+ - `GET /health` responde 200 com o MySQL no ar e 503 sem ele. É usado pelo monitoramento e pelo teste de falha da VM do repositório [sombraviva-so](https://github.com/doug-melo/sombraviva-so), que clona esta API, roda `python -m app.bootstrap` e a publica com systemd + Nginx.
+ 
+ ## Demonstração de Cybersecurity
+diff --git a/alembic/versions/005_app_settings.py b/alembic/versions/005_app_settings.py
+new file mode 100644
+index 0000000..e489f51
+--- /dev/null
++++ b/alembic/versions/005_app_settings.py
+@@ -0,0 +1,26 @@
++"""Configurações da aplicação editáveis pela central (fonte de dados do painel público).
++
++Revision ID: 005
++Revises: 004
++"""
++from alembic import op
++import sqlalchemy as sa
++
++revision = "005"
++down_revision = "004"
++branch_labels = None
++depends_on = None
++
++
++def upgrade():
++    op.create_table(
++        "app_settings",
++        sa.Column("key", sa.String(60), primary_key=True),
++        sa.Column("value", sa.String(255), nullable=False),
++        sa.Column("updated_at", sa.DateTime(timezone=True), nullable=False),
++        sa.Column("updated_by", sa.String(255), nullable=True),
++    )
++
++
++def downgrade():
++    op.drop_table("app_settings")
+diff --git a/app/bootstrap.py b/app/bootstrap.py
+index ae1dd48..b28dddf 100644
+--- a/app/bootstrap.py
++++ b/app/bootstrap.py
+@@ -10,7 +10,7 @@ from app.seed import main as seed_main
+ 
+ ROOT = Path(__file__).resolve().parent.parent
+ REQUIRED_TABLES = {"alembic_version", "users", "stations", "readings", "security_events",
+-                   "audit_findings", "security_triage_actions", "iot_devices"}
++                   "audit_findings", "security_triage_actions", "iot_devices", "app_settings"}
+ 
+ 
+ def bootstrap():
+diff --git a/app/data_source.py b/app/data_source.py
+new file mode 100644
+index 0000000..b1d2f9e
+--- /dev/null
++++ b/app/data_source.py
+@@ -0,0 +1,77 @@
++"""Fonte das leituras sombra x sol mostradas no painel público, escolhida na central.
++
++- "estacoes": fonte original do projeto. Leituras enviadas pelas estações cadastradas
++  (POST /api/v1/stations/{code}/readings, seed e scripts/simulate_iot.py).
++- "esp32": telemetria do ESP32 no Wokwi (POST /api/v1/medicoes), gravada com source="esp32-wokwi".
++As duas fontes ficam guardadas no banco; a escolha só muda o que o painel exibe.
++"""
++from datetime import datetime, timezone
++import os
++
++from sqlalchemy import ColumnElement, func, select
++from sqlalchemy.orm import Session
++
++from app.models import AppSetting, Reading
++
++SETTING_KEY = "panel_data_source"
++ESP32_SOURCE = "esp32-wokwi"
++SOURCES = {
++    "estacoes": {
++        "label": "Estações cadastradas",
++        "description": "Fonte original do projeto: leituras enviadas pelas estações da zona arborizada e do Calçadão (simulador e seed).",
++    },
++    "esp32": {
++        "label": "ESP32 (Wokwi)",
++        "description": "Telemetria do circuito ESP32 no Wokwi, com DHT22 na sombra e no sol, enviada para POST /api/v1/medicoes.",
++    },
++}
++
++
++def default_source() -> str:
++    value = os.getenv("PANEL_DATA_SOURCE", "estacoes").strip().lower()
++    return value if value in SOURCES else "estacoes"
++
++
++def reading_filter(source: str) -> ColumnElement[bool] | None:
++    """Condição SQL que separa as leituras de cada fonte; None = todas."""
++    if source == "esp32":
++        return Reading.source == ESP32_SOURCE
++    if source == "estacoes":
++        return Reading.source != ESP32_SOURCE
++    return None
++
++
++def current(db: Session) -> dict:
++    row = db.get(AppSetting, SETTING_KEY)
++    source = row.value if row is not None and row.value in SOURCES else default_source()
++    updated = row.updated_at if row is not None else None
++    if updated is not None and updated.tzinfo is None:
++        updated = updated.replace(tzinfo=timezone.utc)
++    return {"source": source, **SOURCES[source],
++            "updated_at": updated.isoformat() if updated else None,
++            "updated_by": row.updated_by if row is not None else None,
++            "options": [{"source": key, **meta} for key, meta in SOURCES.items()]}
++
++
++def save(db: Session, source: str, who: str) -> dict:
++    row = db.get(AppSetting, SETTING_KEY)
++    now = datetime.now(timezone.utc)
++    if row is None:
++        db.add(AppSetting(key=SETTING_KEY, value=source, updated_at=now, updated_by=who))
++    else:
++        row.value, row.updated_at, row.updated_by = source, now, who
++    db.commit()
++    return current(db)
++
++
++def stats(db: Session) -> dict:
++    """Quantidade e horário da última leitura de cada fonte, para a decisão na central."""
++    out = {}
++    for key in SOURCES:
++        cond = reading_filter(key)
++        total = db.scalar(select(func.count(Reading.id)).where(cond)) or 0
++        last = db.scalar(select(func.max(Reading.measured_at)).where(cond))
++        if last is not None and last.tzinfo is None:
++            last = last.replace(tzinfo=timezone.utc)
++        out[key] = {"readings": total, "last_reading_at": last.isoformat() if last else None}
++    return out
+diff --git a/app/main.py b/app/main.py
+index 196ddad..e7a685a 100644
+--- a/app/main.py
++++ b/app/main.py
+@@ -15,7 +15,8 @@ from app.database import get_db
+ from app import config
+ from app.models import User, Station, Reading, SecurityEvent, AuditFinding, SecurityTriageAction
+ from app.auth import authenticate_device, create_token, require_admin, verify_password
+-from app.schemas import LoginIn, SensorReadingIn, AuditIn, EventTriageIn
++from app.schemas import LoginIn, SensorReadingIn, AuditIn, EventTriageIn, DataSourceIn
++from app import data_source
+ from app.taint import audit_flow
+ from app.pii import classify
+ from app.llm import explain_findings
+@@ -114,11 +115,18 @@ def get_stations(db: Session = Depends(get_db)):
+     return [station_output(db, station) for station in stations]
+ 
+ @app.get("/api/v1/stations/{code}/readings", tags=["clima"])
+-def get_readings(code: str, limit: int = Query(24, ge=1, le=200), db: Session = Depends(get_db)):
++def get_readings(code: str, limit: int = Query(24, ge=1, le=200),
++                 source: str = Query("all", pattern="^(all|estacoes|esp32)$",
++                                     description="all, estacoes (fonte original) ou esp32 (Wokwi)"),
++                 db: Session = Depends(get_db)):
+     station = db.scalar(select(Station).where(Station.code == code))
+     if station is None:
+         raise HTTPException(404, "Sensor não encontrado")
+-    rows = db.scalars(select(Reading).where(Reading.station_id == station.id).order_by(Reading.measured_at.desc(), Reading.id.desc()).limit(limit)).all()
++    stmt = select(Reading).where(Reading.station_id == station.id)
++    cond = data_source.reading_filter(source)
++    if cond is not None:
++        stmt = stmt.where(cond)
++    rows = db.scalars(stmt.order_by(Reading.measured_at.desc(), Reading.id.desc()).limit(limit)).all()
+     return [{"temperature_c": r.temperature_c, "humidity_pct": r.humidity_pct,
+              "measured_at": iso_utc(r.measured_at), "simulated": r.is_simulated} for r in reversed(rows)]
+ 
+@@ -352,6 +360,22 @@ def admin_operations(_: User = Depends(require_admin), db: Session = Depends(get
+             "stations":stations,
+             "methodology":"Alertas: eventos reais não resolvidos de gravidade média/alta com resultado failed/blocked. Falhas e rejeições: últimas 24 horas. Estação real sem leitura recente: mais de 15 minutos; simulações não são avaliadas como equipamento físico."}
+ 
++@app.get("/api/v1/data-source", tags=["clima"])
++def public_data_source(db: Session = Depends(get_db)):
++    """Fonte escolhida na central para as leituras sombra x sol do painel público."""
++    return data_source.current(db)
++
++@app.get("/api/v1/admin/data-source", tags=["cybersecurity"])
++def admin_data_source(_: User = Depends(require_admin), db: Session = Depends(get_db)):
++    """Fonte atual e quantas leituras cada fonte tem, para decidir qual exibir."""
++    return {**data_source.current(db), "stats": data_source.stats(db)}
++
++@app.put("/api/v1/admin/data-source", tags=["cybersecurity"])
++def update_data_source(payload: DataSourceIn, user: User = Depends(require_admin), db: Session = Depends(get_db)):
++    """Troca a fonte do painel público. As duas fontes continuam sendo gravadas."""
++    result = data_source.save(db, payload.source, user.email)
++    return {**result, "stats": data_source.stats(db)}
++
+ @app.get("/api/v1/admin/events", tags=["cybersecurity"])
+ def admin_events(_: User = Depends(require_admin), db: Session = Depends(get_db),
+                  include_demo: bool = Query(False),
+diff --git a/app/models.py b/app/models.py
+index c746dce..de36344 100644
+--- a/app/models.py
++++ b/app/models.py
+@@ -93,3 +93,12 @@ class SecurityTriageAction(Base):
+     next_status: Mapped[str] = mapped_column(String(20))
+     note: Mapped[str] = mapped_column(String(300), default="")
+     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
++
++
++class AppSetting(Base):
++    """Configurações editáveis pela central (ex.: fonte de dados do painel público)."""
++    __tablename__ = "app_settings"
++    key: Mapped[str] = mapped_column(String(60), primary_key=True)
++    value: Mapped[str] = mapped_column(String(255))
++    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
++    updated_by: Mapped[str | None] = mapped_column(String(255), nullable=True)
+diff --git a/app/schemas.py b/app/schemas.py
+index ff95558..495b634 100644
+--- a/app/schemas.py
++++ b/app/schemas.py
+@@ -15,6 +15,10 @@ class AuditIn(BaseModel):
+     sink: Literal["log_bruto", "resposta_publica", "servico_externo", "log_redigido", "banco_parametrizado"] = "log_bruto"
+ 
+ 
++class DataSourceIn(BaseModel):
++    source: Literal["estacoes", "esp32"]
++
++
+ class EventTriageIn(BaseModel):
+     status: Literal["new", "investigating", "resolved"]
+     note: str = Field(default="", max_length=300)
+diff --git a/static/admin-bundle.css b/static/admin-bundle.css
+index 1a38245..11e4313 100644
+--- a/static/admin-bundle.css
++++ b/static/admin-bundle.css
+@@ -367,6 +367,21 @@ button.sv-kpi:hover { border-color: var(--green); }
+ .ops-flow { flex: 1.3 1 480px; display: flex; flex-direction: column; gap: 10px; }
+ .ops-flow svg { width: 100%; height: auto; }
+ 
++/* Fonte do painel público */
++.ops-source { display: flex; flex-direction: column; gap: 16px; }
++.ops-source .ops-card-head { align-items: flex-start; }
++.ops-source .ops-card-head > div { display: flex; flex-direction: column; gap: 6px; max-width: 760px; }
++.ops-source-options { margin: 0; padding: 0; border: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
++.ops-source-option { flex-direction: row; align-items: flex-start; gap: 12px; padding: 16px; border: 1px solid #DDD8CC; border-radius: 14px; background: #fff; cursor: pointer; font-weight: 400; }
++.ops-source-option:has(input:checked) { border-color: var(--green); background: var(--page); box-shadow: inset 0 0 0 1px var(--green); }
++.ops-source-option input { margin-top: 2px; }
++.ops-source-option span { display: flex; flex-direction: column; gap: 4px; }
++.ops-source-option strong { font-size: 16px; }
++.ops-source-option small { font-size: 14px; color: var(--ink-2); line-height: 1.5; }
++.ops-source-option em { font-style: normal; font-size: 13px; color: var(--ink-3); }
++.ops-source .ops-button-row { align-items: center; }
++.ops-source .ops-button-row a { font-weight: 700; font-size: 14px; }
++
+ /* Laboratório */
+ .ops-lab-form { flex: 1.2 1 460px; display: flex; flex-direction: column; gap: 16px; }
+ .ops-sinks { margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 8px; }
+diff --git a/static/admin.html b/static/admin.html
+index 19f03de..8bc8e41 100644
+--- a/static/admin.html
++++ b/static/admin.html
+@@ -215,6 +215,31 @@
+             <h1 id="devices-title">Estações e credenciais IoT</h1>
+             <p>Última leitura, origem de cada estação e o que a API observa dela. Estações simuladas não provam equipamento físico ligado; só as reais geram alerta quando ficam sem sinal.</p>
+           </div>
++          <section class="sv-card ops-source" aria-labelledby="source-title">
++            <div class="ops-card-head">
++              <div>
++                <h2 id="source-title">Fonte dos dados do painel público</h2>
++                <p class="ops-helper">Escolha de onde vêm as leituras de sombra e sol mostradas no site. As duas fontes continuam sendo gravadas; a troca só muda o que o painel exibe.</p>
++              </div>
++              <span id="source-current" class="sv-tag is-ok">Carregando…</span>
++            </div>
++            <fieldset class="ops-source-options">
++              <legend class="sv-visually-hidden">Fonte do painel público</legend>
++              <label class="ops-source-option" for="source-estacoes">
++                <input type="radio" name="panel-source" id="source-estacoes" value="estacoes" />
++                <span><strong>Estações cadastradas</strong><small>Fonte original do projeto: estações da zona arborizada e do Calçadão (simulador e seed).</small><em id="source-stats-estacoes">—</em></span>
++              </label>
++              <label class="ops-source-option" for="source-esp32">
++                <input type="radio" name="panel-source" id="source-esp32" value="esp32" />
++                <span><strong>ESP32 (Wokwi)</strong><small>Circuito com DHT22 na sombra e no sol, enviado para POST /api/v1/medicoes.</small><em id="source-stats-esp32">—</em></span>
++              </label>
++            </fieldset>
++            <div class="ops-button-row">
++              <button type="button" id="source-save" class="primary-btn">Usar esta fonte no painel</button>
++              <a href="/#esp32" target="_blank" rel="noopener">Ver o painel público</a>
++            </div>
++            <p id="source-status" class="form-status" role="status" aria-live="polite"></p>
++          </section>
+           <div id="device-list" class="ops-devices"><p>Carregando estações…</p></div>
+           <div class="ops-row">
+             <figure class="sv-card ops-flow">
+diff --git a/static/admin.js b/static/admin.js
+index fb2a6df..cd7d6cc 100644
+--- a/static/admin.js
++++ b/static/admin.js
+@@ -62,6 +62,7 @@ function logout(message = 'Sessão encerrada.') {
+   $('audit-text').value='';
+   $('admin-status').textContent='Sessão encerrada. Faça login para consultar eventos.';
+   $('session-email').textContent='admin';
++  $('source-current').textContent='—';
+   status('login-status', message);
+ }
+ function switchTab(name, loadData = true) {
+@@ -289,6 +290,7 @@ async function loadOperations(){
+   $('stale-stations').textContent=c.stale_real_stations;
+   $('demo-provenance').textContent=`Base demonstrativa separada: ${c.demo_events} eventos e ${c.demo_findings} achados de exemplo. ${c.simulated_stations} de ${c.stations} estações são simuladas.`;
+   renderDevices(result.stations);
++  void loadDataSource();
+   const pending=recentAlerts.slice(0,5);
+   const teaser=pending.map(item=>{
+     const node=add('button','soc-feed-button');node.type='button';
+@@ -322,6 +324,24 @@ function renderDevices(stations){
+     card.append(header,temp,dl);return card;
+   }));
+ }
++// Fonte do painel público: estações cadastradas (original) ou ESP32 (Wokwi).
++function renderDataSource(data){
++  const label=data.label||data.source;
++  $('source-current').textContent=`No painel: ${label}`;
++  const radio=document.querySelector(`input[name="panel-source"][value="${data.source}"]`);
++  if(radio)radio.checked=true;
++  for(const key of ['estacoes','esp32']){
++    const st=data.stats?.[key];
++    $(`source-stats-${key}`).textContent=st?`${st.readings} leitura(s) · última: ${fmtDate(st.last_reading_at)}`:'—';
++  }
++  const by=data.updated_by?` por ${data.updated_by}`:'';
++  status('source-status',data.updated_at?`Definida em ${fmtDate(data.updated_at)}${by}.`:'Usando a fonte padrão do servidor.');
++}
++async function loadDataSource(){
++  if(!token)return;
++  try{renderDataSource(await request('/api/v1/admin/data-source'));}
++  catch(error){status('source-status',`Não foi possível consultar a fonte: ${error.message}`,true);}
++}
+ function eventParams(){
+   return new URLSearchParams({category:$('filter-category').value,severity:$('filter-severity').value,
+     status:$('filter-status').value,include_demo:String($('include-demo').checked),offset:String(eventsOffset),limit:String(pageSize)});
+@@ -404,6 +424,19 @@ document.querySelectorAll('[data-go]').forEach(button=>button.addEventListener('
+ $('events-prev').addEventListener('click',()=>{eventsOffset=Math.max(0,eventsOffset-pageSize);void loadEvents();});
+ $('events-next').addEventListener('click',()=>{if(eventsOffset+pageSize<eventTotal){eventsOffset+=pageSize;void loadEvents();}});
+ $('findings-demo').addEventListener('change',loadFindings);
++$('source-save').addEventListener('click',async()=>{
++  const chosen=document.querySelector('input[name="panel-source"]:checked')?.value;
++  if(!chosen){status('source-status','Escolha uma das fontes.',true);return;}
++  const button=$('source-save');button.disabled=true;
++  status('source-status','Salvando a fonte do painel...');
++  try{
++    const data=await request('/api/v1/admin/data-source',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({source:chosen})});
++    renderDataSource(data);
++    const empty=(data.stats?.[chosen]?.readings||0)===0;
++    status('source-status',`Painel público agora usa: ${data.label}. ${empty?'Atenção: essa fonte ainda não tem leituras; o painel mostrará valores fictícios identificados até chegar a primeira.':'Recarregue o painel para ver a mudança.'}`,empty);
++  }catch(error){status('source-status',`Não foi possível salvar: ${error.message}`,true);}
++  finally{button.disabled=false;}
++});
+ ['soc-hours','soc-status','soc-demo'].forEach(id=>$(id).addEventListener('change',loadAlerts));
+ $('soc-search').addEventListener('input',displaySocAlerts);
+ $('demo-tour').addEventListener('click',()=>{
+diff --git a/static/dashboard.js b/static/dashboard.js
+index d9f1225..f3105da 100644
+--- a/static/dashboard.js
++++ b/static/dashboard.js
+@@ -46,14 +46,18 @@ const riskOf = hi => hi === null ? null : hi >= 41 ? 'perigo' : hi >= 32 ? 'aler
+ 
+ /* ---------- Sombra x sol ---------- */
+ let stationSeries = {shade: [], sun: []};
++// Fonte escolhida na central: 'estacoes' (original) ou 'esp32' (Wokwi).
++let panelSource = {source: 'estacoes', label: 'Estações cadastradas'};
+ async function loadCompare() {
+   let shade, sun, total = null, demo = false, reason = '';
++  try { panelSource = await get('/api/v1/data-source'); } catch { panelSource = {source: 'estacoes', label: 'Estações cadastradas'}; }
++  $('live-source').textContent = `Fonte: ${panelSource.label}`;
+   try {
+     const sum = await get('/api/v1/summary');
+     const byCode = Object.fromEntries((sum.stations || []).map(s => [s.code, s]));
+     if (!byCode['verde-demo'] || !byCode['centro-demo']) throw new Error('estações da sombra e do sol não cadastradas');
+-    [shade, sun] = await Promise.all(['verde-demo', 'centro-demo'].map(c => get(`/api/v1/stations/${c}/readings?limit=24`)));
+-    if (!shade.length && !sun.length) throw new Error('sem leituras no banco');
++    [shade, sun] = await Promise.all(['verde-demo', 'centro-demo'].map(c => get(`/api/v1/stations/${c}/readings?limit=24&source=${panelSource.source}`)));
++    if (!shade.length && !sun.length) throw new Error(panelSource.source === 'esp32' ? 'o ESP32 foi escolhido na central, mas ainda não enviou medições' : 'sem leituras no banco');
+     total = sum.readings_total;
+   } catch (err) {
+     reason = err.message; demo = true;
+@@ -90,7 +94,8 @@ async function loadCompare() {
+   const simulated = [ls, lu].some(r => r?.simulated !== false);
+   setNotice('data-notice', demo
+     ? `Sem dados no banco (${reason}). Valores fictícios gerados em memória, apenas para visualização.`
+-    : simulated ? 'Leituras de estações simuladas e do ESP32 no Wokwi: são medições de teste, não de sensores instalados no Calçadão.' : 'Leituras das estações cadastradas.', demo ? 'demo' : '');
++    : panelSource.source === 'esp32' ? 'Fonte: ESP32 no Wokwi (escolhida na central). São medições de teste, não de sensores instalados no Calçadão.'
++    : simulated ? 'Fonte: estações cadastradas (fonte original, simuladas). São medições de teste, não de sensores instalados no Calçadão.' : 'Fonte: estações cadastradas.', demo ? 'demo' : '');
+   const labels = (sun.length >= shade.length ? sun : shade).map(r => hhmm(r.measured_at));
+   const c = chart('chart-compare'); if (!c) return;
+   const area = (color) => ({color: new window.echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: color + '66'}, {offset: 1, color: color + '00'}])});
+@@ -161,7 +166,9 @@ async function loadEsp() {
+     }));
+   }
+   // Índice de calor do Calçadão: ESP32 quando houver; senão, calculado da estação do sol.
+-  const lastSun = rows.find(r => r.zona === 'sem_vegetacao');
++  // Gauge e ilha de calor seguem a fonte escolhida na central; a tabela sempre lista o ESP32.
++  const useEsp = panelSource.source === 'esp32' && rows.length > 0;
++  const lastSun = useEsp ? rows.find(r => r.zona === 'sem_vegetacao') : null;
+   const sunStation = stationSeries.sun.at(-1);
+   const hi = lastSun ? num(lastSun.indice_calor) : heatIndex(sunStation?.temperature_c, sunStation?.humidity_pct);
+   const risk = lastSun?.nivel_risco || riskOf(hi);
+@@ -171,7 +178,7 @@ async function loadEsp() {
+   drawGauge(hi);
+   // Ilha de calor: pares (sombra, sol) das leituras do ESP32 ou das estações.
+   let pairs = [];
+-  if (rows.length) {
++  if (useEsp) {
+     const ordered = [...rows].reverse(); let lastShade = null;
+     for (const r of ordered) {
+       if (r.zona === 'arborizada') lastShade = r;
+diff --git a/static/index.html b/static/index.html
+index 5d994e7..3c9b266 100644
+--- a/static/index.html
++++ b/static/index.html
+@@ -22,6 +22,7 @@
+         </p>
+         <p>
+           <span id="live-risk" class="sv-pill">Risco: --</span>
++          <span id="live-source" class="is-muted">Fonte: --</span>
+           <span id="live-updated" class="is-muted">Aguardando leitura</span>
+         </p>
+       </div>
+diff --git a/static/sv-admin.css b/static/sv-admin.css
+index ab711ec..6a07aac 100644
+--- a/static/sv-admin.css
++++ b/static/sv-admin.css
+@@ -166,6 +166,21 @@ button.sv-kpi:hover { border-color: var(--green); }
+ .ops-flow { flex: 1.3 1 480px; display: flex; flex-direction: column; gap: 10px; }
+ .ops-flow svg { width: 100%; height: auto; }
+ 
++/* Fonte do painel público */
++.ops-source { display: flex; flex-direction: column; gap: 16px; }
++.ops-source .ops-card-head { align-items: flex-start; }
++.ops-source .ops-card-head > div { display: flex; flex-direction: column; gap: 6px; max-width: 760px; }
++.ops-source-options { margin: 0; padding: 0; border: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
++.ops-source-option { flex-direction: row; align-items: flex-start; gap: 12px; padding: 16px; border: 1px solid #DDD8CC; border-radius: 14px; background: #fff; cursor: pointer; font-weight: 400; }
++.ops-source-option:has(input:checked) { border-color: var(--green); background: var(--page); box-shadow: inset 0 0 0 1px var(--green); }
++.ops-source-option input { margin-top: 2px; }
++.ops-source-option span { display: flex; flex-direction: column; gap: 4px; }
++.ops-source-option strong { font-size: 16px; }
++.ops-source-option small { font-size: 14px; color: var(--ink-2); line-height: 1.5; }
++.ops-source-option em { font-style: normal; font-size: 13px; color: var(--ink-3); }
++.ops-source .ops-button-row { align-items: center; }
++.ops-source .ops-button-row a { font-weight: 700; font-size: 14px; }
++
+ /* Laboratório */
+ .ops-lab-form { flex: 1.2 1 460px; display: flex; flex-direction: column; gap: 16px; }
+ .ops-sinks { margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 8px; }
+diff --git a/tests/test_bootstrap_fiap.py b/tests/test_bootstrap_fiap.py
+index b37fe64..2e4d016 100644
+--- a/tests/test_bootstrap_fiap.py
++++ b/tests/test_bootstrap_fiap.py
+@@ -76,7 +76,7 @@ def test_fresh_database_migrations_and_seed_twice(tmp_path):
+         assert done.returncode == 0, done.stderr + done.stdout
+         assert 'Esquema verificado' in done.stdout
+     with create_engine('sqlite:///' + str(path)).connect() as conn:
+-        assert conn.execute(text('SELECT version_num FROM alembic_version')).scalar() == '004'
++        assert conn.execute(text('SELECT version_num FROM alembic_version')).scalar() == '005'
+         assert conn.execute(text('SELECT COUNT(*) FROM security_events')).scalar() == 6
+         assert conn.execute(text('SELECT COUNT(*) FROM audit_findings')).scalar() == 3
+         assert conn.execute(text('SELECT COUNT(*) FROM readings')).scalar() == 48
+diff --git a/tests/test_data_source.py b/tests/test_data_source.py
+new file mode 100644
+index 0000000..f08c50a
+--- /dev/null
++++ b/tests/test_data_source.py
+@@ -0,0 +1,89 @@
++"""Fonte das leituras do painel público: estações cadastradas (original) ou ESP32 (Wokwi),
++trocada pela central de segurança e lida pelo dashboard."""
++import os
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parents[1]
++STATIC = ROOT / 'static'
++ESP = {'Authorization': f"Bearer {os.environ['SENSOR_A_KEY']}", 'X-Device-Id': 'esp32-osasco-calcadao-01'}
++
++
++def auth(token):
++    return {'Authorization': f'Bearer {token}'}
++
++
++def esp_reading(client, zona, temperatura):
++    body = {'device_id': 'esp32-osasco-calcadao-01', 'zona': zona, 'temperatura': temperatura, 'umidade': 55,
++            'indice_calor': temperatura + 1, 'luminosidade': 900, 'nivel_risco': 'alerta'}
++    response = client.post('/api/v1/medicoes', json=body, headers=ESP)
++    assert response.status_code == 201, response.text
++
++
++def station_reading(client, code, key, temperatura):
++    response = client.post(f'/api/v1/stations/{code}/readings', json={'temperature_c': temperatura, 'humidity_pct': 60},
++                           headers={'X-Device-Key': os.environ[key]})
++    assert response.status_code == 201, response.text
++
++
++def test_default_source_is_the_original_stations(client):
++    data = client.get('/api/v1/data-source').json()
++    assert data['source'] == 'estacoes' and data['label'] == 'Estações cadastradas'
++    assert [o['source'] for o in data['options']] == ['estacoes', 'esp32']
++    assert data['updated_at'] is None
++
++
++def test_only_admins_can_read_stats_or_change_the_source(client):
++    assert client.get('/api/v1/admin/data-source').status_code == 401
++    assert client.put('/api/v1/admin/data-source', json={'source': 'esp32'}).status_code == 401
++    assert client.get('/api/v1/data-source').json()['source'] == 'estacoes'
++
++
++def test_admin_switches_the_source_and_it_persists(client, token):
++    changed = client.put('/api/v1/admin/data-source', json={'source': 'esp32'}, headers=auth(token))
++    assert changed.status_code == 200
++    assert changed.json()['source'] == 'esp32' and changed.json()['updated_by'] == 'admin@sombraviva.local'
++    public = client.get('/api/v1/data-source').json()
++    assert public['source'] == 'esp32' and public['label'] == 'ESP32 (Wokwi)' and public['updated_at']
++    back = client.put('/api/v1/admin/data-source', json={'source': 'estacoes'}, headers=auth(token)).json()
++    assert back['source'] == 'estacoes'
++
++
++def test_unknown_sources_are_rejected(client, token):
++    assert client.put('/api/v1/admin/data-source', json={'source': 'openweather'}, headers=auth(token)).status_code == 422
++    assert client.get('/api/v1/stations/centro-demo/readings?source=planilha').status_code == 422
++
++
++def test_readings_are_separated_by_source(client):
++    station_reading(client, 'centro-demo', 'SENSOR_A_KEY', 30.0)
++    esp_reading(client, 'sem_vegetacao', 34.5)
++    esp_only = client.get('/api/v1/stations/centro-demo/readings?source=esp32').json()
++    stations_only = client.get('/api/v1/stations/centro-demo/readings?source=estacoes').json()
++    everything = client.get('/api/v1/stations/centro-demo/readings').json()
++    assert [r['temperature_c'] for r in esp_only] == [34.5]
++    assert [r['temperature_c'] for r in stations_only] == [30.0]
++    assert len(everything) == 2
++
++
++def test_admin_stats_count_each_source(client, token):
++    station_reading(client, 'verde-demo', 'SENSOR_B_KEY', 25.0)
++    esp_reading(client, 'arborizada', 26.0)
++    esp_reading(client, 'sem_vegetacao', 33.0)
++    stats = client.get('/api/v1/admin/data-source', headers=auth(token)).json()['stats']
++    assert stats['estacoes']['readings'] == 1 and stats['esp32']['readings'] == 2
++    assert stats['esp32']['last_reading_at']
++
++
++def test_dashboard_reads_the_chosen_source():
++    dash = (STATIC / 'dashboard.js').read_text(encoding='utf-8')
++    assert "get('/api/v1/data-source')" in dash
++    assert 'readings?limit=24&source=${panelSource.source}' in dash
++    assert "panelSource.source === 'esp32' && rows.length > 0" in dash  # gauge e ilha seguem a fonte
++    assert "$('live-source')" in dash and 'id="live-source"' in (STATIC / 'index.html').read_text(encoding='utf-8')
++
++
++def test_central_offers_both_sources_and_saves_with_put():
++    html = (STATIC / 'admin.html').read_text(encoding='utf-8')
++    js = (STATIC / 'admin.js').read_text(encoding='utf-8')
++    assert 'value="estacoes"' in html and 'value="esp32"' in html and 'id="source-save"' in html
++    assert "request('/api/v1/admin/data-source',{method:'PUT'" in js
++    assert 'void loadDataSource();' in js
+diff --git a/tests/test_mysql_config.py b/tests/test_mysql_config.py
+index 2ca3cac..e0169f6 100644
+--- a/tests/test_mysql_config.py
++++ b/tests/test_mysql_config.py
+@@ -18,7 +18,7 @@ def test_mysql_url_escapes_special_characters(monkeypatch):
+ 
+ 
+ def test_mysql_schema_can_compile():
+-    assert set(Base.metadata.tables) == {"users", "stations", "readings", "security_events", "audit_findings", "security_triage_actions", "iot_devices"}
++    assert set(Base.metadata.tables) == {"users", "stations", "readings", "security_events", "audit_findings", "security_triage_actions", "iot_devices", "app_settings"}
+     for table in Base.metadata.sorted_tables:
+         ddl = str(CreateTable(table).compile(dialect=mysql.dialect()))
+         assert "CREATE TABLE" in ddl
+-- 
+2.43.0
+

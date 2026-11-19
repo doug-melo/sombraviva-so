@@ -26,6 +26,9 @@
 #OPENAI_API_KEY="sk-..."
 #OPENAI_MODEL="gpt-4.1-mini"
 
+# --- Fonte inicial do painel público (depois troque pela central, em Estações e IoT) ---
+#PANEL_DATA_SOURCE="estacoes"    # estacoes (original) ou esp32
+
 # --- Demonstração ---
 #APP_ENV="vm"
 #SEED_DEMO_DATA="true"

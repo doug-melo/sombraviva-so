@@ -1,0 +1,52 @@
+From d292433e1a40eecc9a422b27572919f5e9cb5083 Mon Sep 17 00:00:00 2001
+From: Douglas Melo <161658032+doug-melo@users.noreply.github.com>
+Date: Wed, 18 Nov 2026 21:16:01 -0300
+Subject: [PATCH] Deixa a pipeline DevSecOps verde
+
+Adiciona o requirements-dev.txt que o workflow devsecops-pipeline.yml instala
+e restringe o download do script de fotos a HTTPS (Bandit B310).
+---
+ requirements-dev.txt                | 3 +++
+ scripts/cache_documentary_photos.py | 7 ++++++-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+ create mode 100644 requirements-dev.txt
+
+diff --git a/requirements-dev.txt b/requirements-dev.txt
+new file mode 100644
+index 0000000..b94ee92
+--- /dev/null
++++ b/requirements-dev.txt
+@@ -0,0 +1,3 @@
++# Dependências do CI (DevSecOps): as da aplicação + ferramentas de teste.
++-r requirements.txt
++pytest>=8,<10
+diff --git a/scripts/cache_documentary_photos.py b/scripts/cache_documentary_photos.py
+index 821cb12..2d733ab 100644
+--- a/scripts/cache_documentary_photos.py
++++ b/scripts/cache_documentary_photos.py
+@@ -10,6 +10,7 @@ podem exigir autorização de reprodução antes de publicação.
+ from __future__ import annotations
+ 
+ from pathlib import Path
++from urllib.parse import urlparse
+ from urllib.request import Request, urlopen
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+@@ -27,9 +28,13 @@ PARK_LOCAL = "/static/assets/parque-piratininga-2010.jpg"
+ def main() -> int:
+     target = ASSETS / "parque-piratininga-2010.jpg"
+     if not target.is_file():
++        # Só HTTPS: impede que uma URL trocada por engano leia arquivos locais (file://).
++        if urlparse(PARK_REMOTE).scheme != "https":
++            raise ValueError("A fotografia só pode ser baixada por HTTPS")
+         request = Request(PARK_REMOTE, headers={"User-Agent": "SombraViva/1.0 (academic study)"})
+         try:
+-            with urlopen(request, timeout=25) as response:
++            # URL fixa e esquema https conferido acima (Bandit B310 revisado).
++            with urlopen(request, timeout=25) as response:  # nosec B310
+                 if response.headers.get_content_type() != "image/jpeg":
+                     raise ValueError("Resposta não é um JPEG")
+                 data = response.read(8 * 1024 * 1024 + 1)
+-- 
+2.43.0
+

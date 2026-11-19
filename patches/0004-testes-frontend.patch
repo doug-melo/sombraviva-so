@@ -1,0 +1,731 @@
+From b327eacb86ca49a8b14f46b466d21c8ae18af2a6 Mon Sep 17 00:00:00 2001
+From: Douglas Melo <161658032+doug-melo@users.noreply.github.com>
+Date: Wed, 18 Nov 2026 21:16:01 -0300
+Subject: [PATCH] Recria a cobertura de testes do frontend para o painel
+ redesenhado
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Os testes do frontend antigo verificavam classes e textos do tema anterior.
+Esta mudança cobre o mesmo terreno na interface nova: estrutura e navegação
+do painel público, abas, login e laboratório PII da central, contraste das
+cores (WCAG AA), fonte local, classes sem estilo, contratos entre a API e as
+telas e o índice de calor do dashboard comparado com a fórmula da NOAA.
+Também estiliza .ops-chart.is-narrow, achado pelo novo teste de classes.
+---
+ static/admin-bundle.css         |   1 +
+ static/sv-admin.css             |   1 +
+ tests/test_ui_admin_page.py     | 171 +++++++++++++++++++++++++++
+ tests/test_ui_data_contracts.py | 140 ++++++++++++++++++++++
+ tests/test_ui_public_page.py    | 200 ++++++++++++++++++++++++++++++++
+ tests/test_ui_visual_system.py  | 141 ++++++++++++++++++++++
+ 6 files changed, 654 insertions(+)
+ create mode 100644 tests/test_ui_admin_page.py
+ create mode 100644 tests/test_ui_data_contracts.py
+ create mode 100644 tests/test_ui_public_page.py
+ create mode 100644 tests/test_ui_visual_system.py
+
+diff --git a/static/admin-bundle.css b/static/admin-bundle.css
+index a1939f1..562026c 100644
+--- a/static/admin-bundle.css
++++ b/static/admin-bundle.css
+@@ -237,6 +237,7 @@ body.admin-authenticated .sv-login { display: none; }
+ .ops-row { display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch; }
+ .ops-row.is-stretch { align-items: stretch; }
+ .ops-chart { display: flex; flex-direction: column; gap: 8px; flex: 1 1 280px; }
++.ops-chart.is-narrow { flex: 1 1 280px; }
+ .ops-chart.is-wide { flex: 1.6 1 420px; }
+ .sv-chart-gauge { height: 240px; }
+ button.sv-kpi { font: inherit; text-align: left; cursor: pointer; }
+diff --git a/static/sv-admin.css b/static/sv-admin.css
+index 2bffb30..af9c7f2 100644
+--- a/static/sv-admin.css
++++ b/static/sv-admin.css
+@@ -57,6 +57,7 @@ body.admin-authenticated .sv-login { display: none; }
+ .ops-row { display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch; }
+ .ops-row.is-stretch { align-items: stretch; }
+ .ops-chart { display: flex; flex-direction: column; gap: 8px; flex: 1 1 280px; }
++.ops-chart.is-narrow { flex: 1 1 280px; }
+ .ops-chart.is-wide { flex: 1.6 1 420px; }
+ .sv-chart-gauge { height: 240px; }
+ button.sv-kpi { font: inherit; text-align: left; cursor: pointer; }
+diff --git a/tests/test_ui_admin_page.py b/tests/test_ui_admin_page.py
+new file mode 100644
+index 0000000..0db8f1a
+--- /dev/null
++++ b/tests/test_ui_admin_page.py
+@@ -0,0 +1,171 @@
++"""Central de segurança (static/admin.html + admin.js): login, abas, laboratório PII e segurança do DOM.
++
++Recupera a cobertura dos testes antigos da interface administrativa (test_soc_ui,
++test_admin_frontend_operational, test_admin_page_route) para a central redesenhada.
++"""
++import re
++import typing
++from html.parser import HTMLParser
++from pathlib import Path
++
++from app.pii import PATTERNS
++from app.schemas import AuditIn
++
++ROOT = Path(__file__).resolve().parents[1]
++STATIC = ROOT / 'static'
++HTML = (STATIC / 'admin.html').read_text(encoding='utf-8')
++JS = (STATIC / 'admin.js').read_text(encoding='utf-8')
++TABS = ['overview', 'alerts', 'events', 'devices', 'lab']
++
++
++class Tree(HTMLParser):
++    def __init__(self):
++        super().__init__()
++        self.tags = []
++
++    def handle_starttag(self, tag, attrs):
++        self.tags.append((tag, dict(attrs)))
++
++    handle_startendtag = handle_starttag
++
++    def find(self, tag=None, **attrs):
++        return [a for t, a in self.tags if (tag is None or t == tag) and all(a.get(k) == v for k, v in attrs.items())]
++
++
++PAGE = Tree()
++PAGE.feed(HTML)
++IDS = [a['id'] for _, a in PAGE.tags if a.get('id')]
++
++
++def schema_sinks():
++    return list(typing.get_args(AuditIn.model_fields['sink'].annotation))
++
++
++def test_admin_route_serves_the_page_without_indexing(client):
++    page = client.get('/admin')
++    assert page.status_code == 200 and 'text/html' in page.headers['content-type']
++    assert 'name="robots" content="noindex"' in page.text
++    assert client.get('/api/v1/admin/overview').status_code == 401
++
++
++def test_login_fields_use_the_right_types_and_autocomplete():
++    email = PAGE.find('input', id='admin-email')[0]
++    password = PAGE.find('input', id='admin-pass')[0]
++    assert email['type'] == 'email' and email['autocomplete'] == 'username' and 'required' in email
++    assert password['type'] == 'password' and password['autocomplete'] == 'current-password' and 'required' in password
++    assert PAGE.find('button', type='submit')
++
++
++def test_login_explains_the_lockout_rule_shown_by_the_api():
++    assert '5 tentativas erradas em um minuto' in HTML and '60 segundos' in HTML
++
++
++def test_operational_area_starts_hidden_until_login():
++    assert PAGE.find('div', id='admin-section')[0]['class'] == 'hidden'
++    assert "$('admin-section').classList.remove('hidden')" in JS
++    assert "document.body.classList.add('admin-authenticated')" in JS
++
++
++def test_each_tab_controls_its_own_panel():
++    tabs = PAGE.find('button', role='tab')
++    assert [t['data-tab'] for t in tabs] == TABS
++    for tab in tabs:
++        panel = PAGE.find('section', id=tab['aria-controls'])
++        assert panel and panel[0]['role'] == 'tabpanel', tab
++        assert tab['id'] == f"tab-{tab['data-tab']}"
++    assert sum(t['aria-selected'] == 'true' for t in tabs) == 1
++
++
++def test_mobile_select_offers_the_same_areas_as_the_tabs():
++    select = HTML.split('id="admin-section-select"')[1].split('</select>')[0]
++    assert re.findall(r'value="([a-z]+)"', select) == TABS
++
++
++def test_shortcuts_only_point_to_existing_tabs():
++    targets = {a['data-go'] for _, a in PAGE.tags if 'data-go' in a}
++    assert targets and targets <= set(TABS)
++    assert "document.querySelectorAll('[data-go]')" in JS
++
++
++def test_keyboard_navigation_between_tabs():
++    for key in ('ArrowRight', 'ArrowLeft', 'Home', 'End'):
++        assert key in JS
++
++
++def test_tab_counters_are_filled_after_loading_operations():
++    for counter in ('tab-count-alerts', 'tab-count-devices'):
++        assert counter in IDS and f"$('{counter}')" in JS
++
++
++def test_session_email_is_shown_and_cleared_on_logout():
++    assert "$('session-email').textContent=$('admin-email').value" in JS
++    assert "$('session-email').textContent='admin'" in JS
++
++
++def test_logout_clears_data_and_restores_the_lab_placeholder():
++    logout = JS.split('function logout(')[1].split('\nfunction ')[0]
++    for cleared in ('event-list', 'soc-dossier', 'finding-list', 'device-list', 'attention-list'):
++        assert cleared in logout
++    assert 'auditPlaceholder();' in logout and "$('admin-pass').value = ''" in logout
++
++
++def test_lab_offers_exactly_the_sinks_accepted_by_the_api():
++    radios = PAGE.find('input', type='radio', name='audit-sink')
++    assert [r['value'] for r in radios] == schema_sinks()
++    assert sum('checked' in r for r in radios) == 1
++    assert "document.querySelector('input[name=\"audit-sink\"]:checked')" in JS
++
++
++def test_lab_labels_unsafe_and_control_sinks():
++    fieldset = HTML.split('class="ops-sinks"')[1].split('</fieldset>')[0]
++    assert fieldset.count('Inseguro') == 3 and fieldset.count('Controle') == 2
++
++
++def test_result_card_names_every_pii_type_the_detector_finds():
++    names = dict(re.findall(r"(\w+):'([^']+)'", JS.split('const PII_NAMES={')[1].split('};')[0]))
++    assert set(PATTERNS) <= set(names)
++
++
++def test_result_card_names_every_sink():
++    names = dict(re.findall(r"(\w+):'([^']+)'", JS.split('const SINKS={')[1].split('};')[0]))
++    assert list(names) == schema_sinks()
++
++
++def test_result_card_shows_flow_severity_action_preview_and_fix():
++    render = JS.split('function renderAudit(result){')[1].split('\n}\n')[0]
++    for part in ("'Entrada'", "'Proteção'", "'Destino'", "'Dados detectados'", "'Gravidade'", "'Ação'",
++                 "'Prévia guardada no servidor'", "'O que fazer'", 'result.redacted_preview', 'result.remediation'):
++        assert part in render, part
++    assert "'O texto original nunca é guardado.'" in render
++
++
++def test_dynamic_content_never_uses_innerhtml():
++    for source in (JS, (STATIC / 'dashboard.js').read_text(encoding='utf-8')):
++        assert 'innerHTML' not in source and 'insertAdjacentHTML' not in source and 'document.write' not in source
++
++
++def test_token_lives_only_in_memory():
++    assert 'localStorage' not in JS and 'sessionStorage' not in JS and 'document.cookie' not in JS
++    assert 'let token = null;' in JS
++
++
++def test_badges_use_sentence_case_instead_of_all_caps():
++    for old in ('EXEMPLO FICTÍCIO', 'CENÁRIO FICTÍCIO', 'COMPROMETIMENTO NÃO CONFIRMADO', 'SIMULAÇÃO'):
++        assert old not in JS
++    assert "badge('Fictício','demo')" in JS
++
++
++def test_resolving_an_event_requires_a_justification():
++    assert "note.length < 8" in JS and 'pelo menos oito caracteres' in JS
++
++
++def test_device_flow_diagram_documents_the_iot_limits():
++    figure = HTML.split('O caminho de uma leitura')[1].split('</svg>')[0]
++    for text in ('401 recusado', '429 bloqueado', 'Após 10 erros em 1 min', '201 · Leitura gravada'):
++        assert text in figure
++
++
++def test_admin_footer_has_the_lab_warning_and_area_links():
++    footer = HTML.split('<footer')[1]
++    assert 'Use só dados inventados no laboratório de privacidade.' in footer
++    assert footer.count('data-go=') == 5
+diff --git a/tests/test_ui_data_contracts.py b/tests/test_ui_data_contracts.py
+new file mode 100644
+index 0000000..3575c83
+--- /dev/null
++++ b/tests/test_ui_data_contracts.py
+@@ -0,0 +1,140 @@
++"""Contratos entre a API e as telas: cada campo que dashboard.js e admin.js leem existe na
++resposta, inclusive nos modos de demonstração, e a origem dos dados é sempre declarada.
++
++Substitui test_ui_climate_provenance, test_history_frontend, test_city_comparison_charts,
++test_territory_data_connections e test_ui_home_and_assets do frontend anterior.
++"""
++import json
++import os
++import shutil
++import subprocess
++from datetime import date, timedelta
++from pathlib import Path
++
++import pytest
++
++ROOT = Path(__file__).resolve().parents[1]
++DASH = (ROOT / 'static' / 'dashboard.js').read_text(encoding='utf-8')
++PUBLIC = (ROOT / 'static' / 'index.html').read_text(encoding='utf-8')
++
++
++def auth(token):
++    return {'Authorization': f'Bearer {token}'}
++
++
++def test_public_page_is_served_with_a_strict_csp(client):
++    page = client.get('/')
++    assert page.status_code == 200 and 'text/html' in page.headers['content-type']
++    csp = page.headers['content-security-policy']
++    assert "frame-src https://www.openstreetmap.org" in csp and "frame-ancestors 'none'" in csp
++
++
++def test_demo_summary_has_both_stations_read_by_the_dashboard(client):
++    data = client.get('/api/v1/demo/summary').json()
++    for code in ('verde-demo', 'centro-demo'):
++        readings = data['readings'][code]
++        assert readings
++        assert {'temperature_c', 'humidity_pct', 'measured_at'} <= set(readings[-1])
++
++
++def test_station_readings_have_the_fields_of_the_comparison_chart(client):
++    summary = client.get('/api/v1/summary').json()
++    assert {'stations', 'readings_total'} <= set(summary)
++    assert {s['code'] for s in summary['stations']} >= {'verde-demo', 'centro-demo'}
++    client.post('/api/v1/stations/centro-demo/readings', json={'temperature_c': 33.1, 'humidity_pct': 50},
++                headers={'X-Device-Key': os.environ['SENSOR_A_KEY']})
++    rows = client.get('/api/v1/stations/centro-demo/readings?limit=24').json()
++    assert rows and {'temperature_c', 'humidity_pct', 'measured_at', 'simulated'} <= set(rows[-1])
++
++
++def test_demo_weather_has_the_fields_of_the_weather_card(client):
++    data = client.get('/api/v1/demo/weather').json()
++    assert {'temperature_c', 'apparent_temperature_c', 'humidity_pct'} <= set(data)
++    assert 'Exemplo fictício' in DASH
++
++
++@pytest.mark.parametrize('period', ['tarde', 'noite'])
++def test_heatmap_periods_return_a_grid_for_both_buttons(client, period):
++    data = client.get(f'/api/v1/heatmap/demo?period={period}').json()
++    points = data['grid']['points']
++    assert points and {'latitude', 'longitude', 'temperature_c'} <= set(points[0])
++    assert data.get('notice')
++
++
++def test_heatmap_rejects_periods_without_a_button(client):
++    assert client.get('/api/v1/heatmap/demo?period=madrugada').status_code == 422
++
++
++def test_demo_city_search_returns_what_the_result_buttons_show(client):
++    data = client.get('/api/v1/demo/places?search=Bar').json()
++    assert data['locations']
++    assert {'name', 'latitude', 'longitude'} <= set(data['locations'][0])
++
++
++def test_demo_history_has_the_series_and_summary_of_the_history_chart(client):
++    end = date.today() - timedelta(days=8)
++    start = end - timedelta(days=29)
++    data = client.get(f'/api/v1/demo/history?latitude=-23.53&longitude=-46.79&start_date={start}&end_date={end}').json()
++    assert len(data['days']) == 30
++    assert {'date', 'temperature_mean_c', 'temperature_min_c', 'temperature_max_c'} <= set(data['days'][0])
++    assert {'mean_temperature_c', 'highest_temperature_c', 'lowest_temperature_c', 'days_mean_above_30c'} <= set(data['summary'])
++
++
++def test_every_source_shown_to_the_user_is_labelled():
++    for label in ('reanálise ERA5', 'hipotética', 'Open-Meteo', 'NOAA', 'EPA', 'simuladas'):
++        assert label in PUBLIC
++    for label in ('Valores fictícios', 'série fictícia', 'SERIE FICTICIA', 'Busca offline'):
++        assert label in DASH
++
++
++def test_esp32_listing_has_the_fields_of_the_table(client):
++    assert client.get('/api/v1/medicoes?limit=60').status_code == 200
++    for field in ('medido_em', 'zona', 'temperatura', 'umidade', 'indice_calor', 'luminosidade', 'nivel_risco'):
++        assert f'r.{field}' in DASH or f'rows[0].{field}' in DASH
++
++
++def test_audit_response_feeds_the_result_card_for_unsafe_and_control_sinks(client, token):
++    for sink, blocked in (('log_bruto', True), ('banco_parametrizado', False)):
++        result = client.post('/api/v1/admin/audit', headers=auth(token),
++                             json={'sample_text': 'CPF: 000.000.000-00; email: exemplo@example.invalid', 'source': 'formulario', 'sink': sink}).json()
++        assert result['blocked'] is blocked and result['sink'] == sink
++        assert {'pii_types', 'severity', 'redacted_preview', 'remediation'} <= set(result)
++        assert '000.000.000-00' not in result['redacted_preview'] and 'exemplo@example.invalid' not in result['redacted_preview']
++
++
++def test_operations_feed_the_station_cards_and_counters(client, token):
++    data = client.get('/api/v1/admin/operations', headers=auth(token)).json()
++    assert {'failed_logins_24h', 'rejected_devices_24h', 'stale_real_stations', 'demo_events', 'demo_findings', 'stations', 'simulated_stations'} <= set(data['counts'])
++    station = data['stations'][0]
++    assert {'name', 'code', 'setting', 'simulated', 'status', 'latest', 'last_seen_at'} <= set(station)
++
++
++def test_alerts_have_every_field_shown_in_the_dossier(client, token):
++    assert client.post('/api/v1/admin/security/demo-scenario', headers=auth(token)).status_code in (200, 201)
++    alerts = client.get('/api/v1/admin/security/alerts?hours=168&status=all&include_demo=true', headers=auth(token)).json()['alerts']
++    assert alerts
++    needed = {'id', 'title', 'severity', 'status', 'category', 'created_at', 'observed', 'summary', 'hypothetical_impact',
++              'affected_asset', 'affected_status', 'next_steps', 'evidence_gaps', 'related_event_count', 'is_demo'}
++    assert needed <= set(alerts[0])
++
++
++def heat_index_js(t, rh):
++    source = DASH.split('function heatIndex(t, rh) {')[1].split('\nconst riskOf')[0]
++    script = ('const num = v => Number.isFinite(Number(v)) ? Number(v) : null;\n'
++              'function heatIndex(t, rh) {' + source + f'\nconsole.log(JSON.stringify(heatIndex({t}, {rh})));')
++    return json.loads(subprocess.run(['node', '-e', script], capture_output=True, text=True, check=True).stdout)
++
++
++def heat_index_py(t, rh):
++    T = t * 9 / 5 + 32
++    hi = 0.5 * (T + 61 + (T - 68) * 1.2 + rh * 0.094)
++    if (hi + T) / 2 >= 80:
++        hi = (-42.379 + 2.04901523 * T + 10.14333127 * rh - .22475541 * T * rh - .00683783 * T * T
++              - .05481717 * rh * rh + .00122874 * T * T * rh + .00085282 * T * rh * rh - .00000199 * T * T * rh * rh)
++    return (hi - 32) * 5 / 9
++
++
++@pytest.mark.skipif(shutil.which('node') is None, reason='Node.js não instalado')
++def test_dashboard_heat_index_matches_the_noaa_formula():
++    for t, rh in ((25.0, 60), (33.9, 48), (36.0, 40)):
++        assert abs(heat_index_js(t, rh) - heat_index_py(t, rh)) < 0.05
+diff --git a/tests/test_ui_public_page.py b/tests/test_ui_public_page.py
+new file mode 100644
+index 0000000..23c60ce
+--- /dev/null
++++ b/tests/test_ui_public_page.py
+@@ -0,0 +1,200 @@
++"""Painel público (static/index.html): estrutura, navegação, acessibilidade e ligação com o dashboard.js.
++
++Substitui os testes do frontend antigo (atlas, sequência da floresta, navegação da home) pela
++mesma cobertura aplicada ao redesenho: cada seção existe, cada número exibido tem um elemento
++com id que o JavaScript preenche e cada imagem e link externo segue as regras de acessibilidade.
++"""
++import re
++from html.parser import HTMLParser
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parents[1]
++STATIC = ROOT / 'static'
++HTML = (STATIC / 'index.html').read_text(encoding='utf-8')
++DASH = (STATIC / 'dashboard.js').read_text(encoding='utf-8')
++
++
++class Tree(HTMLParser):
++    """Guarda cada tag de abertura com seus atributos, na ordem do documento."""
++
++    def __init__(self):
++        super().__init__()
++        self.tags = []
++
++    def handle_starttag(self, tag, attrs):
++        self.tags.append((tag, dict(attrs)))
++
++    handle_startendtag = handle_starttag
++
++    def find(self, tag=None, **attrs):
++        return [a for t, a in self.tags if (tag is None or t == tag) and all(a.get(k) == v for k, v in attrs.items())]
++
++    def ids(self):
++        return [a['id'] for _, a in self.tags if a.get('id')]
++
++
++PAGE = Tree()
++PAGE.feed(HTML)
++IDS = PAGE.ids()
++
++
++def section_order():
++    wanted = ('inicio', 'problema', 'como', 'esp32', 'mapa-calor', 'historico')
++    return [i for i in IDS if i in wanted]
++
++
++def test_sections_follow_the_reading_order_of_the_design():
++    assert section_order() == ['inicio', 'problema', 'como', 'esp32', 'mapa-calor', 'historico']
++
++
++def test_every_section_is_labelled_by_an_existing_heading():
++    sections = PAGE.find('section')
++    assert len(sections) >= 7
++    for attrs in sections:
++        label = attrs.get('aria-labelledby')
++        assert label, f'seção sem aria-labelledby: {attrs}'
++        assert label in IDS
++
++
++def test_page_has_a_single_h1_and_named_h2s():
++    assert HTML.count('<h1') == 1
++    assert len(re.findall(r'<h2[ >]', HTML)) >= 7
++
++
++def test_document_metadata_for_portuguese_and_mobile():
++    assert '<html lang="pt-BR">' in HTML
++    assert 'name="viewport" content="width=device-width, initial-scale=1"' in HTML
++    assert 'name="description"' in HTML and 'Osasco' in HTML
++    assert 'name="theme-color" content="#0F3D3A"' in HTML
++
++
++def test_header_and_footer_navigation_point_to_existing_sections():
++    hrefs = [a['href'] for a in PAGE.find('a') if a.get('href', '').startswith('#')]
++    assert len(hrefs) >= 12
++    for href in hrefs:
++        assert href[1:] in IDS, href
++
++
++def test_header_links_to_the_security_center_and_swagger_is_in_the_footer():
++    links = [a['href'] for a in PAGE.find('a')]
++    assert '/admin' in links and '/docs' in links
++
++
++def test_mobile_menu_button_controls_the_navigation():
++    button = PAGE.find('button', id='menu-toggle')[0]
++    assert button['aria-controls'] == 'site-navigation' and button['aria-expanded'] == 'false'
++    assert 'site-navigation' in IDS
++
++
++def test_live_strip_values_are_filled_by_the_dashboard():
++    for element in ('live-shade', 'live-sun', 'live-delta', 'live-risk', 'live-updated'):
++        assert element in IDS
++        assert f"$('{element}')" in DASH
++
++
++def test_headline_and_problem_numbers_come_from_the_readings():
++    for element in ('hero-delta', 'hero-updated', 'prob-shade', 'prob-sun', 'prob-over', 'temp-delta', 'delta-verdict'):
++        assert element in IDS and f"$('{element}')" in DASH
++    # A contagem de leituras acima do limite usa o mesmo limiar de ilha de calor do firmware.
++    assert 'temperature_c >= 3) over++' in DASH
++
++
++def test_four_steps_explain_the_pipeline_with_described_illustrations():
++    block = HTML.split('class="sv-steps"')[1].split('</ol>')[0]
++    assert block.count('<li>') == 4
++    assert block.count('role="img"') == 4 and block.count('aria-label="') == 4
++    for step in ('Etapa 1', 'Etapa 2', 'Etapa 3', 'Etapa 4'):
++        assert step in block
++
++
++def test_how_to_read_ruler_is_updated_with_the_real_values():
++    for element in ('howto-svg', 'howto-shade', 'howto-sun', 'howto-limit', 'howto-over', 'howto-under', 'howto-bracket', 'howto-verdict'):
++        assert element in IDS
++    assert 'function drawHowto(shade, sun)' in DASH
++    assert 'drawHowto(ls?.temperature_c, lu?.temperature_c)' in DASH
++    assert "x(sh + 3)" in DASH  # o limite fica 3 °C acima da sombra
++
++
++def test_status_cards_have_values_and_explanations():
++    for value, meta in (('weather-temp', 'weather-meta'), ('risk-now', 'risk-now-meta'), ('readings-total', 'readings-meta'), ('esp-total', 'esp-last')):
++        assert value in IDS and meta in IDS
++        assert f"$('{value}')" in DASH and f"$('{meta}')" in DASH
++
++
++def test_esp32_table_has_seven_columns_and_an_empty_state():
++    head = HTML.split('<thead>')[1].split('</thead>')[0]
++    assert head.count('scope="col"') == 7
++    assert 'colspan="7"' in HTML and 'Nenhuma medição do ESP32 ainda' in HTML
++    assert 'id="esp-table-caption"' in HTML and 'aria-describedby="esp-table-caption"' in HTML
++
++
++def test_risk_scale_lists_the_four_noaa_bands_in_order():
++    scale = HTML.split('class="sv-scale"')[1].split('</ul>')[0]
++    assert re.findall(r'class="r-([a-z]+)"', scale) == ['normal', 'atencao', 'alerta', 'perigo']
++
++
++def test_heatmap_period_buttons_are_toggle_buttons():
++    buttons = PAGE.find('button', **{'class': 'sv-chip'})
++    assert [b['data-period'] for b in buttons] == ['tarde', 'noite']
++    assert [b['aria-pressed'] for b in buttons] == ['true', 'false']
++    assert "b.setAttribute('aria-pressed', String(b === btn))" in DASH
++
++
++def test_history_form_fields_are_labelled_and_dates_required():
++    for field in ('city-main', 'city-compare', 'date-start', 'date-end'):
++        assert PAGE.find('label', **{'for': field}), field
++    assert 'required' in PAGE.find('input', id='date-start')[0]
++    assert 'required' in PAGE.find('input', id='date-end')[0]
++    assert 'disabled' in PAGE.find('button', id='export-csv')[0]
++
++
++def test_city_results_list_announces_changes():
++    assert PAGE.find('ul', id='city-results')[0]['aria-live'] == 'polite'
++    assert [b['data-search'] for b in PAGE.find('button') if 'data-search' in b] == ['main', 'compare']
++
++
++def test_sdg_goals_appear_in_the_purpose_section_and_in_the_footer():
++    for goal in ('ODS 3', 'ODS 11', 'ODS 13'):
++        assert goal in HTML
++    assert HTML.count('class="ods-3"') == 2
++
++
++def test_external_links_open_safely_in_a_new_tab():
++    external = [a for a in PAGE.find('a') if a.get('href', '').startswith('http')]
++    assert len(external) >= 4
++    for link in external:
++        assert link.get('target') == '_blank'
++        assert 'noopener' in link.get('rel', '') and 'noreferrer' in link.get('rel', '')
++
++
++def test_map_iframe_is_titled_and_does_not_leak_the_referrer():
++    frame = PAGE.find('iframe')[0]
++    assert frame['title'] and frame['loading'] == 'lazy' and frame['referrerpolicy'] == 'no-referrer'
++    assert frame['src'].startswith('https://www.openstreetmap.org/')
++
++
++def test_every_image_has_alt_text_and_reserved_size():
++    images = PAGE.find('img')
++    assert len(images) == 4
++    for img in images:
++        assert img.get('alt'), img
++        assert img.get('width') and img.get('height'), img
++
++
++def test_images_come_from_the_original_repository_assets(client):
++    for img in PAGE.find('img'):
++        src = img['src']
++        assert src.startswith('/static/assets/')
++        assert (ROOT / src.lstrip('/')).is_file(), src
++        assert client.get(src).status_code == 200
++
++
++def test_footer_states_that_the_readings_are_simulated():
++    footer = HTML.split('<footer')[1]
++    assert 'simuladas' in footer and 'Global Solution FIAP 2026.2' in footer
++    assert 'id="fontes"' in footer
++
++
++def test_skyline_illustration_is_decorative():
++    skyline = HTML.split('class="sv-skyline')[1].split('</svg>')[0]
++    assert 'aria-hidden="true"' in skyline
+diff --git a/tests/test_ui_visual_system.py b/tests/test_ui_visual_system.py
+new file mode 100644
+index 0000000..8f756e3
+--- /dev/null
++++ b/tests/test_ui_visual_system.py
+@@ -0,0 +1,141 @@
++"""Sistema visual (sv-base.css + CSS das páginas): cores com contraste legível, fonte local,
++classes usadas no HTML que existem no CSS e as faixas de risco com cor própria.
++
++Substitui test_ui_colors, test_ui_foundations, test_ui_accessibility e
++test_architectural_frontend, escritos para o tema anterior.
++"""
++import re
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parents[1]
++STATIC = ROOT / 'static'
++BASE = (STATIC / 'sv-base.css').read_text(encoding='utf-8')
++PUBLIC_CSS = (STATIC / 'public-bundle.css').read_text(encoding='utf-8')
++ADMIN_CSS = (STATIC / 'admin-bundle.css').read_text(encoding='utf-8')
++
++
++def token(name):
++    match = re.search(rf'--{name}:\s*(#[0-9A-Fa-f]{{6}})', BASE)
++    assert match, f'token --{name} ausente'
++    return match.group(1)
++
++
++def luminance(hex_color):
++    r, g, b = (int(hex_color[i:i + 2], 16) / 255 for i in (1, 3, 5))
++    lin = [c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4 for c in (r, g, b)]
++    return 0.2126 * lin[0] + 0.7152 * lin[1] + 0.0722 * lin[2]
++
++
++def contrast(a, b):
++    la, lb = sorted((luminance(a), luminance(b)), reverse=True)
++    return (la + 0.05) / (lb + 0.05)
++
++
++def classes_in(html):
++    found = set()
++    for attr in re.findall(r'class="([^"]+)"', html):
++        found.update(attr.split())
++    return found
++
++
++def test_palette_tokens_are_declared_once_in_the_base():
++    for name in ('green', 'brick', 'wine', 'amber', 'violet', 'page', 'paper', 'card', 'ink', 'ink-2', 'ink-3'):
++        token(name)
++
++
++def test_body_text_contrast_meets_wcag_aa():
++    for fg, bg in (('ink', 'page'), ('ink-2', 'page'), ('ink-3', 'card'), ('ink-3', 'page'), ('green', 'page')):
++        assert contrast(token(fg), token(bg)) >= 4.5, (fg, bg)
++
++
++def test_text_on_dark_and_colored_surfaces_meets_wcag_aa():
++    pairs = ((token('on-green'), token('green')), ('#FFFFFF', token('green')), ('#FFFFFF', token('brick')),
++             ('#FFFFFF', token('wine')), ('#FFFFFF', token('green-2')))
++    for fg, bg in pairs:
++        assert contrast(fg, bg) >= 4.5, (fg, bg)
++
++
++def test_secondary_text_on_green_is_at_least_large_text_contrast():
++    assert contrast(token('on-green-2'), token('green')) >= 4.5
++
++
++def test_risk_levels_have_distinct_text_and_pill_colors():
++    for level in ('normal', 'atencao', 'alerta', 'perigo'):
++        assert f'.risk-{level} {{ color:' in BASE
++        assert f'.sv-pill.risk-{level} {{ background:' in BASE
++
++
++def test_risk_scale_markers_use_the_same_four_colors_as_the_gauge():
++    for level in ('normal', 'atencao', 'alerta', 'perigo'):
++        assert f'.sv-scale .r-{level}::before' in PUBLIC_CSS
++
++
++def test_public_sans_is_served_locally_with_its_license(client):
++    faces = re.findall(r'url\("(/static/vendor/fonts/[^"]+)"\)', BASE)
++    assert len(faces) == 4
++    for face in faces:
++        assert (ROOT / face.lstrip('/')).is_file()
++        assert client.get(face).status_code == 200
++    assert (STATIC / 'vendor' / 'fonts' / 'PUBLIC-SANS-LICENSE.txt').is_file()
++    assert 'font-display: swap' in BASE
++
++
++def test_styles_load_nothing_from_other_domains():
++    for css in (PUBLIC_CSS, ADMIN_CSS):
++        assert 'http://' not in css and 'https://' not in css and '@import' not in css
++    for page in ('index.html', 'admin.html'):
++        assert 'fonts.googleapis' not in (STATIC / page).read_text(encoding='utf-8')
++
++
++def test_every_class_in_the_public_page_has_a_style():
++    html = (STATIC / 'index.html').read_text(encoding='utf-8')
++    # Classes que só servem de gancho para estados ou para o JavaScript.
++    hooks = {'skip-link', 'menu-toggle'}
++    missing = sorted(c for c in classes_in(html) - hooks if f'.{c}' not in PUBLIC_CSS)
++    assert not missing, f'classes sem estilo no painel público: {missing}'
++
++
++def test_every_class_in_the_admin_page_has_a_style():
++    html = (STATIC / 'admin.html').read_text(encoding='utf-8')
++    hooks = {'skip-link', 'admin-page'}
++    missing = sorted(c for c in classes_in(html) - hooks if f'.{c}' not in ADMIN_CSS)
++    assert not missing, f'classes sem estilo na central: {missing}'
++
++
++def test_classes_created_by_admin_js_have_a_style():
++    js = (STATIC / 'admin.js').read_text(encoding='utf-8')
++    created = set()
++    for value in re.findall(r"add\('[a-z0-9]+','([a-z][a-z0-9 -]*)'", js):
++        created.update(value.split())
++    hooks = {'resolve', 'is-wide'}
++    missing = sorted(c for c in created - hooks if f'.{c}' not in ADMIN_CSS)
++    assert not missing, f'classes criadas pelo admin.js sem estilo: {missing}'
++
++
++def test_focus_skip_link_and_touch_targets():
++    assert ':focus-visible { outline: 3px solid' in BASE
++    assert '.skip-link:focus' in BASE
++    assert BASE.count('min-height: 48px') >= 2 and 'min-height: 44px' in BASE
++
++
++def test_motion_is_disabled_for_users_who_ask_for_it():
++    block = BASE.split('@media (prefers-reduced-motion: reduce)')[1].split('\n')[0]
++    assert 'scroll-behavior: auto' in block and 'animation: none' in block and 'transition: none' in block
++
++
++def test_layout_adapts_to_small_screens():
++    assert '@media (max-width: 960px)' in BASE and 'body.nav-open .sv-nav { display: flex; }' in BASE
++    assert '@media (max-width: 720px)' in PUBLIC_CSS
++    assert '.mobile-admin-nav { display: flex; }' in ADMIN_CSS
++
++
++def test_chart_tooltips_have_a_color_key_for_every_series():
++    for key in ('c-shade', 'c-sun', 'c-max', 'c-mean', 'c-min', 'c-cmp', 'c-heat'):
++        assert f'.sv-tip .{key}' in BASE
++
++
++def test_dashboard_chart_colors_match_the_palette():
++    dash = (STATIC / 'dashboard.js').read_text(encoding='utf-8')
++    for name, hex_color in (('canopy', token('green')), ('brick', token('brick')), ('leaf', token('green-2'))):
++        assert f"{name}:'{hex_color}'" in dash
++    assert '"Public Sans"' in dash
+-- 
+2.43.0
+

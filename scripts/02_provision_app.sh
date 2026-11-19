@@ -51,12 +51,23 @@ APP_ENV="vm"
 SEED_DEMO_DATA="true"
 NGINX_SERVER_NAME="sombraviva.local _"
 OPENAI_API_KEY=""
+# Mesmas variáveis do .env.example da API: vazias = gerar ou reaproveitar do .env atual
+JWT_SECRET=""
+SENSOR_A_KEY=""
+SENSOR_B_KEY=""
+ESP32_DEVICE_ID=""
+ESP32_DEVICE_TOKEN=""
+DATABASE_URL=""
 # APP_ORIGEM=local: pasta da API já clonada ao lado deste repositório
 APP_FONTE="$(cd "$REPO_DIR/.." && pwd)/Global-Solution---2-semestre---Cyber-Soa"
 load_conf "${APP_CONF:-$REPO_DIR/config/app.conf}"
 # Ajustes da própria VM (fora do Git, não são apagados pelo deploy automático)
 APP_LOCAL_CONF="${APP_LOCAL_CONF:-/etc/sombraviva/app.local.conf}"
-[[ -f "$APP_LOCAL_CONF" ]] && load_conf "$APP_LOCAL_CONF"
+if [[ -f "$APP_LOCAL_CONF" ]]; then
+  load_conf "$APP_LOCAL_CONF"
+  # Senha do admin definida na VM: também vale para o usuário que já existe no banco
+  grep -Eq '^[[:space:]]*ADMIN_PASSWORD=.+' "$APP_LOCAL_CONF" && SINCRONIZAR_SENHA_ADMIN="sim"
+fi
 
 ENV_ARQ="/etc/sombraviva/sombraviva.env"
 UNIT_ARQ="/etc/systemd/system/sombraviva-api.service"
@@ -216,13 +227,16 @@ segredo() {
 escrever_env() {
   log_step "4/8 Arquivo de ambiente ($ENV_ARQ)"
   local jwt admin_pw sensor_a sensor_b esp_id esp_token conteudo
-  jwt="$(segredo JWT_SECRET)"
+  jwt="$(segredo JWT_SECRET "$JWT_SECRET")"
   admin_pw="$(segredo ADMIN_PASSWORD "$ADMIN_PASSWORD")"
-  sensor_a="$(segredo SENSOR_A_KEY)"
-  sensor_b="$(segredo SENSOR_B_KEY)"
+  sensor_a="$(segredo SENSOR_A_KEY "$SENSOR_A_KEY")"
+  sensor_b="$(segredo SENSOR_B_KEY "$SENSOR_B_KEY")"
   # SOMBRAVIVA_DEVICE_TOKENS = "device_id:token" (o mesmo do sketch.ino)
   esp_id="${SOMBRAVIVA_DEVICE_TOKENS%%:*}"
   esp_token="${SOMBRAVIVA_DEVICE_TOKENS#*:}"
+  # ESP32_DEVICE_ID / ESP32_DEVICE_TOKEN (nomes do .env da API) têm prioridade
+  [[ -n "$ESP32_DEVICE_ID" ]] && esp_id="$ESP32_DEVICE_ID"
+  [[ -n "$ESP32_DEVICE_TOKEN" ]] && esp_token="$ESP32_DEVICE_TOKEN"
   [[ -n "$esp_id" && -n "$esp_token" && "$esp_id" != "$esp_token" ]] || die "SOMBRAVIVA_DEVICE_TOKENS deve ter o formato device_id:token"
   conteudo="# SombraViva — gerado por 02_provision_app.sh. NÃO versionar (contém segredos).
 APP_ENV=${APP_ENV}
@@ -242,6 +256,7 @@ ESP32_DEVICE_TOKEN=${esp_token}
 OPENAI_API_KEY=${OPENAI_API_KEY:-$(ler_env OPENAI_API_KEY)}
 OPENAI_MODEL=${OPENAI_MODEL}
 PYTHONUNBUFFERED=1"
+  [[ -n "$DATABASE_URL" ]] && conteudo+=$'\n'"DATABASE_URL=${DATABASE_URL}"
   if escrever_se_mudou "$ENV_ARQ" "$conteudo"; then
     audit "ENV_ATUALIZADO arquivo=$ENV_ARQ"
     log_ok "Arquivo de ambiente gravado"
@@ -272,6 +287,23 @@ migrar_e_popular() {
       run "$APP_DIR/venv/bin/python" -m app.seed
     fi
     log_ok "Esquema do MySQL na revisão: $("$APP_DIR/venv/bin/alembic" current 2>/dev/null | tail -n1)"
+    # O seed só cria o admin na primeira vez. Se a senha foi definida no app.local.conf,
+    # aplica no usuário existente (sem imprimir a senha).
+    if [[ "${SINCRONIZAR_SENHA_ADMIN:-nao}" == "sim" ]]; then
+      "$APP_DIR/venv/bin/python" - >>"$LOG_FILE" 2>&1 <<'PY'
+import os
+from sqlalchemy import select
+from app.auth import hash_password, verify_password
+from app.database import SessionLocal
+from app.models import User
+with SessionLocal() as db, db.begin():
+    user = db.scalar(select(User).where(User.email == os.environ["ADMIN_EMAIL"]))
+    if user is not None and not verify_password(os.environ["ADMIN_PASSWORD"], user.password_hash):
+        user.password_hash = hash_password(os.environ["ADMIN_PASSWORD"])
+        print("Senha do administrador atualizada a partir do app.local.conf")
+PY
+      log_ok "Senha do administrador conferida com o app.local.conf"
+    fi
   )
   chown -R "$USUARIO_APP:$USUARIO_APP" "$APP_DIR"
   audit "ALEMBIC_UPGRADE_HEAD + SEED"

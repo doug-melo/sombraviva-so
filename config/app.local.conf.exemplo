@@ -1,18 +1,33 @@
-# SombraViva — ajustes só desta VM. NÃO versionar com valores reais.
-# Copie para /etc/sombraviva/app.local.conf (sudo) e descomente o que quiser mudar.
-# Ele é lido depois do config/app.conf e sobrescreve qualquer variável de lá.
+# SombraViva — valores do .env da API (repositório do Kraide) só desta VM.
+# NÃO versionar com valores reais. Copie para /etc/sombraviva/app.local.conf (sudo, chmod 600).
+# Use os MESMOS nomes do .env.example da API: dá para colar as linhas do seu .env aqui.
+# Valores com espaço ou caracteres especiais vão entre aspas.
+# Linha comentada ou vazia = o deploy gera ou reaproveita o valor que já está na VM.
 # Depois de editar: sudo ~/sombraviva-so/scripts/07_auto_deploy.sh --force
 
-# Chave da OpenAI para a análise assistida da central (sem ela, usa regras locais)
+# --- Banco (MySQL local da VM) ---
+#DB_NAME="sombraviva"
+#DB_USER="sombraviva"
+#DB_PASSWORD="senha-forte"        # troca também a senha do usuário no MySQL
+#DATABASE_URL="mysql+pymysql://usuario:senha@host:3306/sombraviva?charset=utf8mb4"   # MySQL remoto (prioridade sobre DB_*)
+
+# --- Credenciais da aplicação ---
+#JWT_SECRET="chave-aleatoria-com-32-caracteres-ou-mais"   # trocar derruba as sessões abertas
+#ADMIN_EMAIL="admin@sombraviva.local"
+#ADMIN_PASSWORD="senha-forte-do-admin"                     # também atualiza o admin que já existe
+#SENSOR_A_KEY="chave-do-sensor-a"
+#SENSOR_B_KEY="chave-do-sensor-b"
+
+# --- ESP32 do Wokwi (o mesmo do sketch.ino) ---
+#ESP32_DEVICE_ID="esp32-osasco-calcadao-01"
+#ESP32_DEVICE_TOKEN="token-forte-do-esp32"
+
+# --- OpenAI (opcional: sem chave, a central usa regras locais) ---
 #OPENAI_API_KEY="sk-..."
 #OPENAI_MODEL="gpt-4.1-mini"
 
-# Token do ESP32 no formato device_id:token (o mesmo do sketch.ino no Wokwi)
-#SOMBRAVIVA_DEVICE_TOKENS="esp32-osasco-calcadao-01:troque-por-um-token-forte"
-
-# Dados de demonstração (casos fictícios na central e estações simuladas)
+# --- Demonstração ---
+#APP_ENV="vm"
 #SEED_DEMO_DATA="true"
 
-# E-mail do administrador. Atenção: a senha do admin só é usada quando o usuário
-# é criado pela primeira vez; trocar ADMIN_PASSWORD depois não muda a senha no banco.
-#ADMIN_EMAIL="admin@sombraviva.local"
+# Não se aplicam à VM (só ao Docker Compose): MYSQL_ROOT_PASSWORD, MYSQL_HOST_PORT

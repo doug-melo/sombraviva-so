@@ -87,7 +87,7 @@ O que o `02_provision_app.sh` faz com ela, em ordem: instala Python, MySQL e Ngi
 
 ### Mudar as variáveis de ambiente na VM
 
-O `/etc/sombraviva/sombraviva.env` é regerado a cada deploy a partir do `config/app.conf`, então editar esse arquivo direto não dura. Os ajustes da VM ficam em `/etc/sombraviva/app.local.conf`, fora do Git, lido depois do `app.conf`. Os segredos gerados (JWT, chaves dos sensores, senhas do admin e do banco) continuam reaproveitados do `.env` existente.
+O `/etc/sombraviva/sombraviva.env` é regerado a cada deploy a partir do `config/app.conf`, então editar esse arquivo direto não dura. Os ajustes da VM ficam em `/etc/sombraviva/app.local.conf`, fora do Git, lido depois do `app.conf`, com os mesmos nomes do `.env.example` da API (dá para colar as linhas do seu `.env`). O que não estiver nele continua reaproveitado do `.env` atual (JWT, chaves dos sensores, senhas do admin e do banco). Uma `ADMIN_PASSWORD` definida ali também atualiza o admin que já existe no banco.
 
 ```bash
 sudo cp ~/sombraviva-so/config/app.local.conf.exemplo /etc/sombraviva/app.local.conf

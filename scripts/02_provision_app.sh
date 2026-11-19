@@ -149,8 +149,9 @@ SQL
 }
 
 # Patches sobre a API de SOA: só os que estiverem soltos em patches/ (NNNN-*.patch).
-# Os patches 0001 a 0005 já entraram na main da API (PR #1) e ficam guardados em
+# Os patches 0001 a 0012 já entraram na main da API (PRs #1 e #2) e ficam guardados em
 # patches/aplicados/ como histórico; por isso não são mais aplicados aqui.
+# Se um patch solto já entrou por PR, o commit de mesmo assunto na main faz o script pulá-lo.
 # Cada patch é idempotente: se já estiver no código (git apply -R --check), é pulado.
 aplicar_patch_integracao() {
   local patch nome
@@ -161,9 +162,15 @@ aplicar_patch_integracao() {
     log_info "Nenhum patch pendente: a main da API já tem todas as mudanças"
     return 0
   fi
+  local historico assunto
+  historico="$(git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" log -300 --format=%s 2>/dev/null || true)"
   for patch in "${patches[@]}"; do
     nome=$(basename "$patch")
-    if git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" apply -R --check "$patch" >/dev/null 2>&1; then
+    # Assunto do commit dentro do patch: se um commit igual já está na main, o patch entrou por PR.
+    assunto="$(git mailinfo /dev/null /dev/null <"$patch" 2>/dev/null | sed -n 's/^Subject: //p' | head -n1)"
+    if [[ -n "$assunto" ]] && grep -Fxq -- "$assunto" <<<"$historico"; then
+      log_ok "Patch já está na main (commit \"$assunto\"): $nome"
+    elif git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" apply -R --check "$patch" >/dev/null 2>&1; then
       log_ok "Patch já presente na API: $nome"
     elif git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" apply --check --whitespace=nowarn "$patch" >/dev/null 2>&1; then
       run git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" apply --whitespace=nowarn "$patch"
@@ -187,13 +194,14 @@ implantar_codigo() {
   if [[ "$APP_ORIGEM" == "git" ]]; then
     [[ -n "$APP_GIT_URL" ]] || die "APP_ORIGEM=git exige APP_GIT_URL em config/app.conf"
     if [[ -d "$APP_DIR/repo/.git" ]]; then
-      run git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" fetch --depth 1 origin "$APP_GIT_BRANCH"
+      # Histórico recente (300 commits) para reconhecer patches que já entraram na main por PR
+      run git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" fetch --depth 300 origin "$APP_GIT_BRANCH"
       run git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" reset --hard "origin/$APP_GIT_BRANCH"
       # reset --hard não apaga arquivos soltos; sobras de patches antigos impediriam os novos
       run git -c safe.directory="$APP_DIR/repo" -C "$APP_DIR/repo" clean -ffdx
     else
       rm -rf "$APP_DIR/repo"
-      run git clone --depth 1 --branch "$APP_GIT_BRANCH" "$APP_GIT_URL" "$APP_DIR/repo"
+      run git clone --depth 300 --branch "$APP_GIT_BRANCH" "$APP_GIT_URL" "$APP_DIR/repo"
     fi
     APP_FONTE="$APP_DIR/repo"
     log_ok "Código clonado de $APP_GIT_URL ($APP_GIT_BRANCH)"

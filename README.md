@@ -81,7 +81,7 @@ O código da API **não fica neste repositório**: ele é o entregável de SOA e
 | `GET` | `/api/v1/medicoes/resumo` | Diferença Calçadão × zona arborizada e nível de risco atual |
 | `GET` | `/docs` | Swagger (documentação automática) |
 
-As mudanças da integração ESP32 + VM, do redesenho do painel e da central, dos testes do frontend e da pipeline DevSecOps já estão na `main` da API (PR #1). Os patches usados até o merge ficam em `patches/aplicados/` como histórico. O `02_provision_app.sh` só aplica patches soltos em `patches/`. Hoje há sete, aplicados em ordem: `0006` (volta as fotografias documentais do Calçadão, com créditos), `0007` (corrige as fotos que não carregavam, ajusta o layout e adiciona animações de entrada), `0008` (margens laterais menores, animações e rolagem suave também com "reduzir movimento") `0009` (rolagem suave do menu animada quadro a quadro), `0010` (a central escolhe a fonte do painel: estações cadastradas ou ESP32; migração 005), `0011` (`.env.example` completo e comentado) e `0012` (trocar o token do ESP32 ou as chaves das estações no `.env` passa a valer). Quando eles entrarem na `main` da API, o script percebe e pula os patches.
+As mudanças da integração ESP32 + VM, do redesenho do painel e da central, dos testes do frontend e da pipeline DevSecOps já estão na `main` da API (PR #1). Os patches usados até o merge ficam em `patches/aplicados/` como histórico. O `02_provision_app.sh` só aplica patches soltos em `patches/`. Hoje não há nenhum: de `0001` a `0012`, todos entraram na `main` da API (PRs #1 e #2) e ficam em `patches/aplicados/`. Se um patch novo entrar por PR antes de sair desta pasta, o script reconhece o commit de mesmo assunto na `main` e pula o patch.
 
 O que o `02_provision_app.sh` faz com ela, em ordem: instala Python, MySQL e Nginx → cria banco e usuário com menor privilégio → clona a API e aplica os patches → cria o `venv` → gera `/etc/sombraviva/sombraviva.env` (chmod 600, segredos aleatórios) → `alembic upgrade head` → `python -m app.seed` → serviço systemd → Nginx → health check.
 
@@ -271,7 +271,7 @@ sombraviva-so/
 ├── systemd/     sombraviva-api.service · sombraviva-monitor.service · guard .service/.timer
 ├── nginx/sombraviva.conf  ·  auditd/sombraviva.rules  ·  logrotate/sombraviva
 ├── docs/roteiro_video_os.md     # roteiro do vídeo de 7 min
-├── patches/aplicados/           # histórico: 0001 a 0005 já estão na main da API (PR #1)
+├── patches/aplicados/           # histórico: 0001 a 0012 já estão na main da API (PRs #1 e #2)
 ├── evidencias/                  # prints e logs exportados
 └── prompts.md                   # registro dos prompts de IA (regra da GS)
 ```

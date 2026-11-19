@@ -1,0 +1,986 @@
+2026-11-18 17:09:48 +0000 usuario=ubuntu uid_efetivo=0 host=instance-20261118-1350 script=provision pid=2364 INICIO caminho=./provision.sh sha256=f6ae5dd82621e2dd cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-18 17:09:49 +0000 usuario=ubuntu uid_efetivo=0 host=instance-20261118-1350 script=01_provision_infra pid=2393 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/01_provision_infra.sh sha256=e0cd73d0289843a0 cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-18 17:09:49 +0000 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=2393 ALTERACAO hostname de=instance-20261118-1350 para=sombraviva-srv
+2026-11-18 17:09:49 +0000 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=2393 ALTERACAO /etc/hosts dominio=sombraviva.local ip=10.0.0.241
+2026-11-18 17:09:49 +0000 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=2393 ALTERACAO dns=1.1.1.1 8.8.8.8 fallback=9.9.9.9 8.8.4.4
+2026-11-18 14:10:13 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=2393 ALTERACAO timezone de=Etc/UTC para=America/Sao_Paulo
+2026-11-18 14:10:40 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=2393 FIREWALL ssh=22/tcp portas='80/tcp 8000/tcp'
+2026-11-18 14:10:40 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=2393 USUARIO_CRIADO nome=sombraviva
+2026-11-18 14:10:40 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=2393 FIM status=sucesso codigo=0 duracao=52s
+2026-11-18 14:10:40 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=4215 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=65a35c2adc27b580 cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-18 14:14:13 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=4215 PACOTES_INSTALADOS python3-venv python3-pip mysql-server nginx
+2026-11-18 14:14:21 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=4215 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 14:14:22 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=4215 PATCH_APLICADO 0001-integracao-iot-vm.patch
+2026-11-18 14:15:22 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=4215 ENV_ATUALIZADO arquivo=/etc/sombraviva/sombraviva.env
+2026-11-18 14:15:37 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=4215 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-18 14:15:38 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=4215 SYSTEMD_UNIT_ATUALIZADA /etc/systemd/system/sombraviva-api.service
+2026-11-18 14:15:49 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=4215 NGINX_ATUALIZADO /etc/nginx/sites-available/sombraviva
+2026-11-18 14:15:51 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=4215 HEALTHCHECK ok
+2026-11-18 14:15:51 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=4215 FIM status=sucesso codigo=0 duracao=311s
+2026-11-18 14:15:51 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=04_setup_monitoring pid=8526 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/04_setup_monitoring.sh sha256=5f97dd4c6de9d3ed cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-18 14:15:51 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=04_setup_monitoring pid=8526 MONITOR_CONF_ATUALIZADO /etc/sombraviva/monitor.conf
+2026-11-18 14:15:51 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=04_setup_monitoring pid=8526 SYSTEMD_UNIT_ATUALIZADA /etc/systemd/system/sombraviva-monitor.service
+2026-11-18 14:15:51 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=04_setup_monitoring pid=8526 SYSTEMD_UNIT_ATUALIZADA /etc/systemd/system/sombraviva-monitor-guard.service
+2026-11-18 14:15:51 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=04_setup_monitoring pid=8526 SYSTEMD_UNIT_ATUALIZADA /etc/systemd/system/sombraviva-monitor-guard.timer
+2026-11-18 14:15:54 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=03_monitor pid=8709 INICIO caminho=/opt/sombraviva/scripts/03_monitor.sh sha256=36db21419193be36 cwd=/ args='--loop'
+2026-11-18 14:17:00 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=04_setup_monitoring pid=8526 AUDITD_REGRAS_ATUALIZADAS /etc/audit/rules.d/sombraviva.rules
+2026-11-18 14:17:08 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=04_setup_monitoring pid=8526 FIM status=sucesso codigo=0 duracao=77s
+2026-11-18 14:17:08 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=provision pid=2364 FIM status=sucesso codigo=0 duracao=440s
+2026-11-18 15:29:48 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=20019 INICIO caminho=./scripts/01_provision_infra.sh sha256=0e4d8173849f67a8 cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-18 15:29:57 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=20019 FIREWALL_NUVEM REJECT padrão da imagem removido (ufw passa a controlar a entrada)
+2026-11-18 15:29:57 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=20019 FIREWALL ssh=22/tcp portas='80/tcp 8000/tcp'
+2026-11-18 15:29:58 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=20019 FIM status=sucesso codigo=0 duracao=10s
+2026-11-18 21:22:59 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=71787 INICIO caminho=./scripts/07_auto_deploy.sh sha256=f18a677c23e818b2 cwd=/home/ubuntu/sombraviva-so args='--install'
+2026-11-18 21:23:03 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=71787 AUTO_DEPLOY instalado repo=/home/ubuntu/sombraviva-so branch=main
+2026-11-18 21:23:03 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=71787 FIM status=sucesso codigo=0 duracao=4s
+2026-11-18 21:23:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=71931 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=f18a677c23e818b2 cwd=/ args=''
+2026-11-18 21:23:03 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=71978 INICIO caminho=./scripts/07_auto_deploy.sh sha256=f18a677c23e818b2 cwd=/home/ubuntu/sombraviva-so args='--force'
+2026-11-18 21:23:03 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=71978 FIM status=sucesso codigo=0 duracao=0s
+2026-11-18 21:23:04 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=72032 INICIO caminho=./scripts/07_auto_deploy.sh sha256=f18a677c23e818b2 cwd=/home/ubuntu/sombraviva-so args='--status'
+2026-11-18 21:23:04 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=72032 FIM status=sucesso codigo=0 duracao=0s
+2026-11-18 21:23:05 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=71931 DEPLOY_INICIO so=c9b0622450da api=412146368815
+2026-11-18 21:23:05 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=72097 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=7cc600460277eede cwd=/ args=''
+2026-11-18 21:23:11 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=72097 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 21:23:11 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=72097 FIM status=falha codigo=1 duracao=6s
+2026-11-18 21:23:11 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=71931 DEPLOY_FALHA so=c9b0622450da api=412146368815 rollback=c9b0622450da
+2026-11-18 21:23:11 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=72385 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=7cc600460277eede cwd=/ args=''
+2026-11-18 21:23:17 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=72385 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 21:23:17 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=72385 FIM status=falha codigo=1 duracao=6s
+2026-11-18 21:23:17 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=71931 FIM status=falha codigo=1 duracao=14s
+2026-11-18 21:25:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=72979 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=f18a677c23e818b2 cwd=/ args=''
+2026-11-18 21:25:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=72979 DEPLOY_INICIO so=23db7171cad3 api=412146368815
+2026-11-18 21:25:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=73049 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=ebb918d12f15ef4d cwd=/ args=''
+2026-11-18 21:25:15 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=73049 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 21:25:38 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=73049 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-18 21:25:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=73049 HEALTHCHECK ok
+2026-11-18 21:25:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=73049 FIM status=sucesso codigo=0 duracao=38s
+2026-11-18 21:25:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=72979 DEPLOY_OK so=23db7171cad3 api=412146368815
+2026-11-18 21:25:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=72979 FIM status=sucesso codigo=0 duracao=39s
+2026-11-18 21:27:17 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=74025 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=a00a798dd87d94df cwd=/ args=''
+2026-11-18 21:27:18 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=74025 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 21:29:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=74386 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=a00a798dd87d94df cwd=/ args=''
+2026-11-18 21:29:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=74386 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 21:31:22 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=74749 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=a00a798dd87d94df cwd=/ args=''
+2026-11-18 21:31:23 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=74749 DEPLOY_INICIO so=e89de909c476 api=412146368815
+2026-11-18 21:31:24 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=74819 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=ebb918d12f15ef4d cwd=/ args=''
+2026-11-18 21:31:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=74819 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 21:31:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=74819 PATCH_APLICADO 0006-fotos-documentais.patch
+2026-11-18 21:31:44 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=74819 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-18 21:31:53 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=74819 HEALTHCHECK ok
+2026-11-18 21:31:54 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=74819 FIM status=sucesso codigo=0 duracao=29s
+2026-11-18 21:31:54 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=74749 DEPLOY_OK so=e89de909c476 api=412146368815
+2026-11-18 21:31:54 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=74749 FIM status=sucesso codigo=0 duracao=32s
+2026-11-18 21:33:27 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=75808 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=a00a798dd87d94df cwd=/ args=''
+2026-11-18 21:33:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=75808 FIM status=sucesso codigo=0 duracao=3s
+2026-11-18 21:35:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=76172 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=a00a798dd87d94df cwd=/ args=''
+2026-11-18 21:35:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=76172 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 21:36:52 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=76407 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=a00a798dd87d94df cwd=/home/ubuntu/sombraviva-so args='--force'
+2026-11-18 21:36:53 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=76407 DEPLOY_INICIO so=e89de909c476 api=412146368815
+2026-11-18 21:36:53 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=76508 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=ebb918d12f15ef4d cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-18 21:36:58 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=76508 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 21:37:00 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=76508 FIM status=falha codigo=1 duracao=7s
+2026-11-18 21:37:00 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=76407 DEPLOY_FALHA so=e89de909c476 api=412146368815 sem_rollback
+2026-11-18 21:37:00 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=76407 FIM status=falha codigo=1 duracao=8s
+2026-11-18 21:37:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=76906 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=a00a798dd87d94df cwd=/ args=''
+2026-11-18 21:37:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=76906 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 21:38:34 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=77131 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=a00a798dd87d94df cwd=/home/ubuntu args='--force'
+2026-11-18 21:38:35 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=77131 DEPLOY_INICIO so=23289f583206 api=412146368815
+2026-11-18 21:38:35 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=77194 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=7d3b32e6cdda274e cwd=/home/ubuntu args=''
+2026-11-18 21:38:40 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=77194 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 21:38:41 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=77194 PATCH_APLICADO 0006-fotos-documentais.patch
+2026-11-18 21:38:52 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=77194 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-18 21:39:04 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=77194 HEALTHCHECK ok
+2026-11-18 21:39:04 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=77194 FIM status=sucesso codigo=0 duracao=29s
+2026-11-18 21:39:04 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=77131 DEPLOY_OK so=23289f583206 api=412146368815
+2026-11-18 21:39:04 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=77131 FIM status=sucesso codigo=0 duracao=30s
+2026-11-18 21:39:46 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=78035 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=a00a798dd87d94df cwd=/ args=''
+2026-11-18 21:39:47 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=78035 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 21:41:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=78407 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=a00a798dd87d94df cwd=/ args=''
+2026-11-18 21:41:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=78407 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 21:43:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=78773 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=a00a798dd87d94df cwd=/ args=''
+2026-11-18 21:44:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=78773 FIM status=sucesso codigo=0 duracao=2s
+2026-11-18 21:45:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=79164 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=a00a798dd87d94df cwd=/ args=''
+2026-11-18 21:46:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=79164 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 21:48:07 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=79548 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=a00a798dd87d94df cwd=/ args=''
+2026-11-18 21:48:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=79548 DEPLOY_INICIO so=f21217cebeaa api=412146368815
+2026-11-18 21:48:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=79618 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=ecfbea77b59c3f6c cwd=/ args=''
+2026-11-18 21:48:14 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=79618 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 21:48:15 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=79618 PATCH_APLICADO 0006-fotos-documentais.patch
+2026-11-18 21:48:32 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=79618 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-18 21:48:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=79618 HEALTHCHECK ok
+2026-11-18 21:48:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=79618 FIM status=sucesso codigo=0 duracao=39s
+2026-11-18 21:48:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=79548 DEPLOY_OK so=f21217cebeaa api=412146368815
+2026-11-18 21:48:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=79548 FIM status=sucesso codigo=0 duracao=41s
+2026-11-18 21:50:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=80632 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 21:50:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=80632 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 21:52:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=81017 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 21:52:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=81017 DEPLOY_INICIO so=f2ea5e2941af api=412146368815
+2026-11-18 21:52:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=81082 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=70a8b78d1e2523b8 cwd=/ args=''
+2026-11-18 21:52:35 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=81082 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 21:52:36 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=81082 PATCH_APLICADO 0006-fotos-documentais.patch
+2026-11-18 21:52:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=81082 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-18 21:52:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=81082 HEALTHCHECK ok
+2026-11-18 21:53:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=81082 FIM status=sucesso codigo=0 duracao=30s
+2026-11-18 21:53:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=81017 DEPLOY_OK so=f2ea5e2941af api=412146368815
+2026-11-18 21:53:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=81017 FIM status=sucesso codigo=0 duracao=31s
+2026-11-18 21:54:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=82073 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 21:54:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=82073 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 21:56:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=82437 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 21:56:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=82437 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 21:58:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=82811 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 21:58:57 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=82811 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:00:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=83169 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:01:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=83169 DEPLOY_INICIO so=001d1e5b4102 api=412146368815
+2026-11-18 22:01:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=83241 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=70a8b78d1e2523b8 cwd=/ args=''
+2026-11-18 22:01:05 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=83241 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 22:01:06 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=83241 PATCH_APLICADO 0006-fotos-documentais.patch
+2026-11-18 22:01:06 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=83241 PATCH_APLICADO 0007-fotos-layout-animacoes.patch
+2026-11-18 22:01:18 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=83241 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-18 22:01:28 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=83241 HEALTHCHECK ok
+2026-11-18 22:01:28 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=83241 FIM status=sucesso codigo=0 duracao=28s
+2026-11-18 22:01:28 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=83169 DEPLOY_OK so=001d1e5b4102 api=412146368815
+2026-11-18 22:01:28 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=83169 FIM status=sucesso codigo=0 duracao=30s
+2026-11-18 22:03:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=84259 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:03:11 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=84259 FIM status=sucesso codigo=0 duracao=2s
+2026-11-18 22:05:15 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=84626 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:05:16 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=84626 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:07:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=84989 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:07:21 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=84989 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:09:26 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=85350 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:09:28 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=85350 FIM status=sucesso codigo=0 duracao=2s
+2026-11-18 22:11:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=85713 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:11:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=85713 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:13:37 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=86086 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:13:38 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=86086 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:14:33 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=86297 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/home/ubuntu args='--status'
+2026-11-18 22:14:34 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=86297 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:15:42 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=86498 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:15:43 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=86498 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:17:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=86862 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:17:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=86862 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:19:53 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=87231 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:19:55 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=87231 DEPLOY_INICIO so=8f8f7a31f782 api=412146368815
+2026-11-18 22:19:55 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=87365 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=70a8b78d1e2523b8 cwd=/ args=''
+2026-11-18 22:20:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=87365 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 22:20:01 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=87365 PATCH_APLICADO 0006-fotos-documentais.patch
+2026-11-18 22:20:01 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=87365 PATCH_APLICADO 0007-fotos-layout-animacoes.patch
+2026-11-18 22:20:01 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=87365 PATCH_APLICADO 0008-margens-animacoes-rolagem.patch
+2026-11-18 22:20:13 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=87365 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-18 22:20:23 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=87365 HEALTHCHECK ok
+2026-11-18 22:20:23 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=87365 FIM status=sucesso codigo=0 duracao=28s
+2026-11-18 22:20:23 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=87231 DEPLOY_OK so=8f8f7a31f782 api=412146368815
+2026-11-18 22:20:23 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=87231 FIM status=sucesso codigo=0 duracao=30s
+2026-11-18 22:22:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=88324 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:22:01 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=88324 FIM status=sucesso codigo=0 duracao=2s
+2026-11-18 22:23:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=88681 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:24:01 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=88681 DEPLOY_INICIO so=ba7216569288 api=412146368815
+2026-11-18 22:24:01 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=88754 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=70a8b78d1e2523b8 cwd=/ args=''
+2026-11-18 22:24:06 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=88754 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 22:24:07 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=88754 PATCH_APLICADO 0006-fotos-documentais.patch
+2026-11-18 22:24:07 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=88754 PATCH_APLICADO 0007-fotos-layout-animacoes.patch
+2026-11-18 22:24:07 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=88754 PATCH_APLICADO 0008-margens-animacoes-rolagem.patch
+2026-11-18 22:24:07 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=88754 PATCH_APLICADO 0009-rolagem-suave-menu.patch
+2026-11-18 22:24:18 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=88754 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-18 22:24:27 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=88754 HEALTHCHECK ok
+2026-11-18 22:24:27 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=88754 FIM status=sucesso codigo=0 duracao=26s
+2026-11-18 22:24:27 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=88681 DEPLOY_OK so=ba7216569288 api=412146368815
+2026-11-18 22:24:28 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=88681 FIM status=sucesso codigo=0 duracao=28s
+2026-11-18 22:26:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=89797 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:26:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=89797 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:28:16 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=90165 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:28:18 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=90165 FIM status=sucesso codigo=0 duracao=2s
+2026-11-18 22:30:22 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=90528 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:30:25 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=90528 FIM status=sucesso codigo=0 duracao=3s
+2026-11-18 22:32:27 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=90889 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:32:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=90889 DEPLOY_INICIO so=84ab48134ebe api=412146368815
+2026-11-18 22:32:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=91024 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=37d7b616487d145a cwd=/ args=''
+2026-11-18 22:32:34 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=91024 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 22:32:35 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=91024 PATCH_APLICADO 0006-fotos-documentais.patch
+2026-11-18 22:32:35 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=91024 PATCH_APLICADO 0007-fotos-layout-animacoes.patch
+2026-11-18 22:32:35 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=91024 PATCH_APLICADO 0008-margens-animacoes-rolagem.patch
+2026-11-18 22:32:35 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=91024 PATCH_APLICADO 0009-rolagem-suave-menu.patch
+2026-11-18 22:32:35 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=91024 PATCH_APLICADO 0010-fonte-dos-dados-do-painel.patch
+2026-11-18 22:32:41 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=91024 ENV_ATUALIZADO arquivo=/etc/sombraviva/sombraviva.env
+2026-11-18 22:32:47 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=91024 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-18 22:32:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=91024 HEALTHCHECK ok
+2026-11-18 22:32:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=91024 FIM status=sucesso codigo=0 duracao=27s
+2026-11-18 22:32:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=90889 DEPLOY_OK so=84ab48134ebe api=412146368815
+2026-11-18 22:32:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=90889 FIM status=sucesso codigo=0 duracao=29s
+2026-11-18 22:34:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=92019 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:34:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=92019 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:36:33 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=92379 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:36:34 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=92379 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:38:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=92744 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:38:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=92744 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:40:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=93112 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:40:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=93112 DEPLOY_INICIO so=1b37526a0bf9 api=412146368815
+2026-11-18 22:40:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=93251 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=37d7b616487d145a cwd=/ args=''
+2026-11-18 22:40:55 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=93251 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 22:40:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=93251 PATCH_APLICADO 0006-fotos-documentais.patch
+2026-11-18 22:40:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=93251 PATCH_APLICADO 0007-fotos-layout-animacoes.patch
+2026-11-18 22:40:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=93251 PATCH_APLICADO 0008-margens-animacoes-rolagem.patch
+2026-11-18 22:40:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=93251 PATCH_APLICADO 0009-rolagem-suave-menu.patch
+2026-11-18 22:40:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=93251 PATCH_APLICADO 0010-fonte-dos-dados-do-painel.patch
+2026-11-18 22:40:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=93251 PATCH_APLICADO 0011-env-example-completo.patch
+2026-11-18 22:41:07 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=93251 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-18 22:41:15 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=93251 HEALTHCHECK ok
+2026-11-18 22:41:15 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=93251 FIM status=sucesso codigo=0 duracao=25s
+2026-11-18 22:41:16 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=93112 DEPLOY_OK so=1b37526a0bf9 api=412146368815
+2026-11-18 22:41:16 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=93112 FIM status=sucesso codigo=0 duracao=28s
+2026-11-18 22:42:54 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=94260 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:42:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=94260 FIM status=sucesso codigo=0 duracao=2s
+2026-11-18 22:44:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=94618 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:44:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=94618 DEPLOY_INICIO so=9ef114617a64 api=412146368815
+2026-11-18 22:44:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=94695 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=37d7b616487d145a cwd=/ args=''
+2026-11-18 22:45:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=94695 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 22:45:05 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=94695 PATCH_APLICADO 0006-fotos-documentais.patch
+2026-11-18 22:45:05 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=94695 PATCH_APLICADO 0007-fotos-layout-animacoes.patch
+2026-11-18 22:45:05 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=94695 PATCH_APLICADO 0008-margens-animacoes-rolagem.patch
+2026-11-18 22:45:05 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=94695 PATCH_APLICADO 0009-rolagem-suave-menu.patch
+2026-11-18 22:45:06 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=94695 PATCH_APLICADO 0010-fonte-dos-dados-do-painel.patch
+2026-11-18 22:45:06 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=94695 PATCH_APLICADO 0011-env-example-completo.patch
+2026-11-18 22:45:06 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=94695 PATCH_APLICADO 0012-tokens-iot-do-env.patch
+2026-11-18 22:45:17 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=94695 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-18 22:45:26 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=94695 HEALTHCHECK ok
+2026-11-18 22:45:26 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=94695 FIM status=sucesso codigo=0 duracao=27s
+2026-11-18 22:45:26 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=94618 DEPLOY_OK so=9ef114617a64 api=412146368815
+2026-11-18 22:45:26 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=94618 FIM status=sucesso codigo=0 duracao=28s
+2026-11-18 22:46:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=95779 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:46:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=95779 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:49:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=96138 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:49:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=96138 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:51:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=96503 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:51:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=96503 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:53:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=96862 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:53:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=96862 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:55:06 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=97243 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/home/ubuntu args='--force'
+2026-11-18 22:55:07 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=97243 DEPLOY_INICIO so=9ef114617a64 api=412146368815
+2026-11-18 22:55:07 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=97308 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=37d7b616487d145a cwd=/home/ubuntu args=''
+2026-11-18 22:55:11 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=97308 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 22:55:12 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=97308 PATCH_APLICADO 0006-fotos-documentais.patch
+2026-11-18 22:55:12 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=97308 PATCH_APLICADO 0007-fotos-layout-animacoes.patch
+2026-11-18 22:55:12 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=97308 PATCH_APLICADO 0008-margens-animacoes-rolagem.patch
+2026-11-18 22:55:13 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=97308 PATCH_APLICADO 0009-rolagem-suave-menu.patch
+2026-11-18 22:55:13 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=97308 PATCH_APLICADO 0010-fonte-dos-dados-do-painel.patch
+2026-11-18 22:55:13 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=97308 PATCH_APLICADO 0011-env-example-completo.patch
+2026-11-18 22:55:13 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=97308 PATCH_APLICADO 0012-tokens-iot-do-env.patch
+2026-11-18 22:55:18 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=97308 ENV_ATUALIZADO arquivo=/etc/sombraviva/sombraviva.env
+2026-11-18 22:55:27 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=97308 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-18 22:55:27 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=97789 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:55:27 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=97789 FIM status=sucesso codigo=0 duracao=0s
+2026-11-18 22:55:37 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=97308 HEALTHCHECK ok
+2026-11-18 22:55:37 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=97308 FIM status=sucesso codigo=0 duracao=30s
+2026-11-18 22:55:37 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=97243 DEPLOY_OK so=9ef114617a64 api=412146368815
+2026-11-18 22:55:37 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=97243 FIM status=sucesso codigo=0 duracao=31s
+2026-11-18 22:57:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=98424 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:57:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=98424 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 22:59:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=98793 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 22:59:41 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=98793 FIM status=sucesso codigo=0 duracao=2s
+2026-11-18 23:01:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=99166 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:01:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=99166 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 23:03:25 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=06_tunnel pid=99455 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/06_tunnel.sh sha256=8dd422b0dbdfacea cwd=/home/ubuntu args=''
+2026-11-18 23:03:34 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=06_tunnel pid=99455 PACOTE_INSTALADO cloudflared
+2026-11-18 23:03:42 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=06_tunnel pid=99455 TUNEL_ABERTO url=https://hydrocodone-accept-theatre-slightly.trycloudflare.com alvo=http://localhost:80
+2026-11-18 23:03:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=99671 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:04:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=99671 FIM status=sucesso codigo=0 duracao=3s
+2026-11-18 23:05:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=100025 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:05:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=100025 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 23:07:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=100382 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:08:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=100382 FIM status=sucesso codigo=0 duracao=2s
+2026-11-18 23:10:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=100850 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:10:02 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=100850 FIM status=sucesso codigo=0 duracao=2s
+2026-11-18 23:12:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=101210 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:12:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=101210 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 23:14:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=101574 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:14:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=101574 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 23:16:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=101934 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:16:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=101934 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 23:18:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=102299 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:18:41 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=102299 FIM status=sucesso codigo=0 duracao=2s
+2026-11-18 23:20:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=102682 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:20:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=102682 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 23:22:55 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=103072 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:22:57 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=103072 FIM status=sucesso codigo=0 duracao=2s
+2026-11-18 23:24:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=103422 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:25:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=103422 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 23:27:07 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=103921 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:27:08 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=103921 DEPLOY_INICIO so=9ef114617a64 api=cc3bb8d815e3
+2026-11-18 23:27:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=104046 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=37d7b616487d145a cwd=/ args=''
+2026-11-18 23:27:14 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=104046 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 23:27:15 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=104046 FIM status=falha codigo=1 duracao=7s
+2026-11-18 23:27:15 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=103921 DEPLOY_FALHA so=9ef114617a64 api=cc3bb8d815e3 sem_rollback
+2026-11-18 23:27:15 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=103921 FIM status=falha codigo=1 duracao=8s
+2026-11-18 23:29:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=104575 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:29:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=104575 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 23:31:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=104942 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:31:21 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=104942 FIM status=sucesso codigo=0 duracao=2s
+2026-11-18 23:33:21 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=105301 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:33:23 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=105301 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 23:35:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=105671 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:35:31 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=105671 FIM status=sucesso codigo=0 duracao=2s
+2026-11-18 23:37:35 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=106049 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:37:37 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=106049 FIM status=sucesso codigo=0 duracao=2s
+2026-11-18 23:39:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=106391 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:39:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=106391 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 23:41:42 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=106757 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:41:44 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=106757 FIM status=sucesso codigo=0 duracao=2s
+2026-11-18 23:43:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=107121 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:43:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=107121 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 23:45:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=107488 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:45:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=107488 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 23:47:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=107846 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:48:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=107846 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 23:50:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=108219 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:50:11 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=108219 FIM status=sucesso codigo=0 duracao=2s
+2026-11-18 23:52:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=108568 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:52:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=108568 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 23:54:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=108939 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:54:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=108939 FIM status=sucesso codigo=0 duracao=1s
+2026-11-18 23:56:22 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=109297 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:56:24 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=109297 DEPLOY_INICIO so=9ef114617a64 api=6615b396b0ab
+2026-11-18 23:56:24 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=109365 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=37d7b616487d145a cwd=/ args=''
+2026-11-18 23:56:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=109365 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-18 23:56:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=109365 FIM status=falha codigo=1 duracao=6s
+2026-11-18 23:56:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=109297 DEPLOY_FALHA so=9ef114617a64 api=6615b396b0ab sem_rollback
+2026-11-18 23:56:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=109297 FIM status=falha codigo=1 duracao=8s
+2026-11-18 23:58:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=109959 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-18 23:58:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=109959 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:00:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=110400 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:00:41 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=110400 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 00:00:51 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=provision pid=110539 INICIO caminho=./provision.sh sha256=aaa50f8d36a9556f cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-19 00:00:51 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=110568 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/01_provision_infra.sh sha256=0e4d8173849f67a8 cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-19 00:01:06 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=110568 FIREWALL ssh=22/tcp portas='80/tcp 8000/tcp'
+2026-11-19 00:01:07 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=110568 FIM status=sucesso codigo=0 duracao=16s
+2026-11-19 00:01:07 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=111924 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=37d7b616487d145a cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-19 00:01:13 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=111924 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-19 00:01:14 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=111924 FIM status=falha codigo=1 duracao=7s
+2026-11-19 00:01:14 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=provision pid=110539 FIM status=falha codigo=1 duracao=23s
+2026-11-19 00:01:38 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=provision pid=112306 INICIO caminho=./provision.sh sha256=aaa50f8d36a9556f cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-19 00:01:38 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=112335 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/01_provision_infra.sh sha256=0e4d8173849f67a8 cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-19 00:01:47 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=112335 FIREWALL ssh=22/tcp portas='80/tcp 8000/tcp'
+2026-11-19 00:01:48 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=112335 FIM status=sucesso codigo=0 duracao=10s
+2026-11-19 00:01:48 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=113759 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=37d7b616487d145a cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-19 00:01:55 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=113759 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-19 00:01:56 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=113759 FIM status=falha codigo=1 duracao=8s
+2026-11-19 00:01:56 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=provision pid=112306 FIM status=falha codigo=1 duracao=19s
+2026-11-19 00:02:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=114177 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:02:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=114177 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 00:04:23 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=114503 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/home/ubuntu args='--force'
+2026-11-19 00:04:25 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=114503 DEPLOY_INICIO so=e319f233a424 api=6615b396b0ab
+2026-11-19 00:04:25 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=114568 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=54bc663c3c40f48b cwd=/home/ubuntu args=''
+2026-11-19 00:04:30 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=114568 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-19 00:04:46 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=114568 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-19 00:04:51 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=115058 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:04:53 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=115058 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:04:59 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=114568 HEALTHCHECK ok
+2026-11-19 00:04:59 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=114568 FIM status=sucesso codigo=0 duracao=34s
+2026-11-19 00:04:59 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=114503 DEPLOY_OK so=e319f233a424 api=6615b396b0ab
+2026-11-19 00:04:59 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=114503 FIM status=sucesso codigo=0 duracao=36s
+2026-11-19 00:06:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=115573 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:06:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=115573 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:08:19 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=06_tunnel pid=115946 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/06_tunnel.sh sha256=8dd422b0dbdfacea cwd=/home/ubuntu args=''
+2026-11-19 00:08:26 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=06_tunnel pid=115946 TUNEL_ABERTO url=https://steam-viewers-ira-survive.trycloudflare.com alvo=http://localhost:80
+2026-11-19 00:08:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=116098 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:09:02 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=116098 FIM status=sucesso codigo=0 duracao=3s
+2026-11-19 00:11:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=116468 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:11:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=116468 DEPLOY_INICIO so=e319f233a424 api=991d8763874c
+2026-11-19 00:11:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=116535 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=54bc663c3c40f48b cwd=/ args=''
+2026-11-19 00:11:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=116535 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-19 00:11:50 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=provision pid=116950 INICIO caminho=./provision.sh sha256=aaa50f8d36a9556f cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-19 00:11:50 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=116982 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/01_provision_infra.sh sha256=0e4d8173849f67a8 cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-19 00:11:54 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=116535 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-19 00:12:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=116535 HEALTHCHECK ok
+2026-11-19 00:12:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=116535 FIM status=sucesso codigo=0 duracao=70s
+2026-11-19 00:12:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=116468 DEPLOY_OK so=e319f233a424 api=991d8763874c
+2026-11-19 00:12:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=116468 FIM status=sucesso codigo=0 duracao=71s
+2026-11-19 00:12:25 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=116982 FIREWALL ssh=22/tcp portas='80/tcp 8000/tcp'
+2026-11-19 00:12:26 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=01_provision_infra pid=116982 FIM status=sucesso codigo=0 duracao=36s
+2026-11-19 00:12:26 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=118743 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=54bc663c3c40f48b cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-19 00:12:34 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=118743 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-19 00:13:02 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=118743 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-19 00:13:11 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=119414 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:13:16 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=118743 HEALTHCHECK ok
+2026-11-19 00:13:17 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=118743 FIM status=sucesso codigo=0 duracao=51s
+2026-11-19 00:13:17 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=04_setup_monitoring pid=119584 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/04_setup_monitoring.sh sha256=5f97dd4c6de9d3ed cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-19 00:13:17 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=119414 DEPLOY_INICIO so=e319f233a424 api=b07ae8421748
+2026-11-19 00:13:18 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=119630 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=54bc663c3c40f48b cwd=/ args=''
+2026-11-19 00:13:21 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=03_monitor pid=8709 FIM status=falha codigo=143 duracao=35847s
+2026-11-19 00:13:23 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=03_monitor pid=119779 INICIO caminho=/opt/sombraviva/scripts/03_monitor.sh sha256=36db21419193be36 cwd=/ args='--loop'
+2026-11-19 00:13:34 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=119630 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-19 00:13:40 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=04_setup_monitoring pid=119584 FIM status=sucesso codigo=0 duracao=23s
+2026-11-19 00:13:41 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=provision pid=116950 FIM status=sucesso codigo=0 duracao=111s
+2026-11-19 00:14:05 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=119630 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-19 00:14:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=119630 HEALTHCHECK ok
+2026-11-19 00:14:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=119630 FIM status=sucesso codigo=0 duracao=62s
+2026-11-19 00:14:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=119414 DEPLOY_OK so=e319f233a424 api=b07ae8421748
+2026-11-19 00:14:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=119414 FIM status=sucesso codigo=0 duracao=69s
+2026-11-19 00:15:18 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=121003 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:15:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=121003 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 00:17:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=121393 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:17:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=121393 DEPLOY_INICIO so=e319f233a424 api=95557f7c7bbd
+2026-11-19 00:17:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=121460 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=54bc663c3c40f48b cwd=/ args=''
+2026-11-19 00:17:33 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=121460 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-19 00:18:27 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=121460 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-19 00:18:44 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=121460 HEALTHCHECK ok
+2026-11-19 00:18:45 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=121460 FIM status=sucesso codigo=0 duracao=84s
+2026-11-19 00:18:45 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=121393 DEPLOY_OK so=e319f233a424 api=95557f7c7bbd
+2026-11-19 00:18:45 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=121393 FIM status=sucesso codigo=0 duracao=86s
+2026-11-19 00:19:23 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=122404 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:19:25 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=122404 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 00:21:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=122790 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:21:31 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=122790 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 00:23:36 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=123172 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:23:37 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=123172 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:25:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=123527 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:25:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=123527 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:27:04 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=05_teste_falha pid=123821 INICIO caminho=./scripts/05_teste_falha.sh sha256=1827ce3a920089c5 cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-19 00:27:11 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=05_teste_falha pid=123821 TESTE_FALHA teste=api resultado=PASSOU detalhe='PID 122059 morto, systemd reiniciou como PID 123871 (NRestarts 0 -> 1)'
+2026-11-19 00:27:16 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=05_teste_falha pid=123821 TESTE_FALHA teste=monitor resultado=PASSOU detalhe='PID 119779 morto, systemd reiniciou como PID 123954 (NRestarts 0 -> 1)'
+2026-11-19 00:27:16 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=03_monitor pid=123954 INICIO caminho=/opt/sombraviva/scripts/03_monitor.sh sha256=36db21419193be36 cwd=/ args='--loop'
+2026-11-19 00:27:22 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=03_monitor pid=124091 INICIO caminho=/opt/sombraviva/scripts/03_monitor.sh sha256=36db21419193be36 cwd=/home/ubuntu/sombraviva-so args='--once'
+2026-11-19 00:27:27 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=03_monitor pid=124091 FIM status=sucesso codigo=0 duracao=5s
+2026-11-19 00:27:41 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=05_teste_falha pid=123821 TESTE_FALHA teste=cpu resultado=PASSOU detalhe='alerta de CPU registrado em monitor.log e no syslog'
+2026-11-19 00:27:42 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=03_monitor pid=124230 INICIO caminho=/opt/sombraviva/scripts/03_monitor.sh sha256=36db21419193be36 cwd=/home/ubuntu/sombraviva-so args='--once'
+2026-11-19 00:27:44 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=124267 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:27:44 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=03_monitor pid=124230 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 00:27:45 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=03_monitor pid=124377 INICIO caminho=/opt/sombraviva/scripts/03_monitor.sh sha256=36db21419193be36 cwd=/home/ubuntu/sombraviva-so args='--once'
+2026-11-19 00:27:47 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=03_monitor pid=124377 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 00:27:47 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=124267 FIM status=sucesso codigo=0 duracao=4s
+2026-11-19 00:27:47 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=05_teste_falha pid=123821 TESTE_FALHA teste=disco resultado=PASSOU detalhe='alerta de disco registrado e arquivo temporário removido'
+2026-11-19 00:27:53 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=03_monitor pid=124620 INICIO caminho=/opt/sombraviva/scripts/03_monitor.sh sha256=36db21419193be36 cwd=/home/ubuntu/sombraviva-so args='--once'
+2026-11-19 00:27:55 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=03_monitor pid=124620 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 00:27:59 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=05_teste_falha pid=123821 TESTE_FALHA teste=mysql resultado=PASSOU detalhe='/health foi 503 com o banco parado, alerta CRIT gerado e voltou a 200'
+2026-11-19 00:27:59 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=05_teste_falha pid=123821 FIM status=sucesso codigo=0 duracao=55s
+2026-11-19 00:29:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=125066 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:29:52 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=125066 FIM status=sucesso codigo=0 duracao=3s
+2026-11-19 00:31:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=125430 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:32:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=125430 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:34:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=125791 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:34:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=125791 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:36:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=126156 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:36:05 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=126156 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:38:05 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=126555 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:38:07 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=126555 FIM status=sucesso codigo=0 duracao=3s
+2026-11-19 00:38:36 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=126700 INICIO caminho=./scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/home/ubuntu/sombraviva-so args='--status'
+2026-11-19 00:38:36 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=126700 FIM status=sucesso codigo=0 duracao=0s
+2026-11-19 00:39:51 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=126903 INICIO caminho=./scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/home/ubuntu/sombraviva-so args='--status'
+2026-11-19 00:39:51 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=126903 FIM status=sucesso codigo=0 duracao=0s
+2026-11-19 00:40:05 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=127019 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:40:06 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=127019 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:42:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=127386 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:42:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=127386 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:42:31 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=06_tunnel pid=99455 FIM status=sucesso codigo=0 duracao=5946s
+2026-11-19 00:44:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=127767 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:44:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=127767 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:46:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=128127 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:46:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=128127 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:48:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=128486 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:48:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=128486 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:50:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=128846 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:50:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=128846 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:52:57 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=129217 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:52:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=129217 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:54:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=129560 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:55:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=129560 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:57:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=129918 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:57:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=129918 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 00:59:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=130275 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 00:59:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=130275 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:01:05 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=130648 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:01:06 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=130648 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:03:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=131004 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:03:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=131004 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:05:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=131366 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:05:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=131366 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:07:26 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=131732 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:07:27 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=131732 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:09:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=132088 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:09:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=132088 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:11:33 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=132451 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:11:34 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=132451 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:13:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=132805 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:13:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=132805 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:15:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=133173 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:15:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=133173 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:17:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=133538 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:18:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=133538 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:20:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=133895 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:20:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=133895 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:22:06 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=134257 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:22:08 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=134257 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 01:24:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=134614 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:24:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=134614 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:26:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=134977 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:26:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=134977 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:28:27 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=135382 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:28:28 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=135382 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:30:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=135692 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:30:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=135692 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:32:38 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=136070 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:32:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=136070 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:34:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=136420 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:34:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=136420 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:36:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=136801 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:36:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=136801 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 01:38:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=137146 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:38:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=137146 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:40:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=137508 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:40:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=137508 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:42:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=137869 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:43:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=137869 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:45:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=138231 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:45:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=138231 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:47:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=138592 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:47:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=138592 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:49:12 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=138956 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:49:13 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=138956 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:51:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=139314 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:51:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=139314 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:53:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=139673 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:53:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=139673 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:55:36 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=140048 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:55:37 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=140048 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:57:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=140393 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:57:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=140393 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 01:59:46 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=140766 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 01:59:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=140766 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 02:01:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=141119 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:01:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=141119 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:03:57 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=141490 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:03:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=141490 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 02:05:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=141839 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:06:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=141839 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:08:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=142202 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:08:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=142202 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:10:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=142560 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:10:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=142560 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:12:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=142922 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:12:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=142922 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:14:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=143285 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:14:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=143285 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:16:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=143647 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:16:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=143647 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:18:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=144010 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:18:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=144010 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:20:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=144370 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:20:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=144370 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:22:45 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=144743 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:22:46 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=144743 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:24:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=145088 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:24:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=145088 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:26:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=145460 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:26:57 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=145460 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:28:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=145809 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:29:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=145809 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:31:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=146167 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:31:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=146167 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:33:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=146527 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:33:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=146527 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:35:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=146892 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:35:11 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=146892 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:37:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=147247 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:37:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=147247 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:39:28 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=147624 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:39:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=147624 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:41:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=147971 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:41:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=147971 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:43:38 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=148343 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:43:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=148343 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 02:45:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=148690 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:45:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=148690 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:47:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=149055 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:47:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=149055 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:49:55 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=149425 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:49:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=149425 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 02:51:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=149767 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:52:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=149767 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:54:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=150128 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:54:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=150128 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:56:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=150487 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:56:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=150487 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 02:58:15 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=150853 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 02:58:16 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=150853 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:00:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=151215 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:00:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=151215 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:02:24 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=151575 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:02:25 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=151575 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:04:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=151936 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:04:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=151936 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:06:33 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=152293 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:06:34 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=152293 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:08:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=152652 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:08:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=152652 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:10:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=153022 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:10:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=153022 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:12:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=153372 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:12:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=153372 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:14:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=153735 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:15:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=153735 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:17:01 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=154093 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:17:02 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=154093 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:19:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=154450 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:19:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=154450 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:21:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=154807 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:21:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=154807 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:23:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=155173 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:23:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=155173 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:25:26 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=155547 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:25:27 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=155547 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:27:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=155890 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:27:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=155890 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:29:37 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=156270 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:29:38 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=156270 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:31:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=156617 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:31:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=156617 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:33:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=156997 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:33:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=156997 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:35:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=157347 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:35:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=157347 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:37:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=157712 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:38:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=157712 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:39:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=158074 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:40:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=158074 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:42:01 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=158439 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:42:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=158439 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 03:44:01 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=158804 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:44:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=158804 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 03:46:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=159162 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:46:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=159162 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:48:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=159524 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:48:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=159524 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:50:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=159881 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:50:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=159881 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:52:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=160241 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:52:11 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=160241 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:54:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=160573 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:54:11 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=160573 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 03:56:16 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=160909 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:56:17 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=160909 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 03:58:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=161256 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 03:58:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=161256 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:00:26 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=161637 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:00:28 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=161637 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 04:02:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=161979 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:02:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=161979 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:04:37 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=162350 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:04:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=162350 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 04:06:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=162707 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:06:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=162707 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:08:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=163077 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:08:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=163077 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 04:10:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=163425 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:10:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=163425 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:12:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=163798 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:13:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=163798 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:15:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=164143 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:15:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=164143 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:17:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=164509 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:17:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=164509 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:19:15 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=164871 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:19:16 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=164871 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:21:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=165225 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:21:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=165225 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:23:26 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=165596 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:23:27 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=165596 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:25:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=165942 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:25:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=165942 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:27:37 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=166314 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:27:38 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=166314 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:29:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=166657 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:29:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=166657 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:31:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=167026 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:31:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=167026 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 04:33:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=167373 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:33:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=167373 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:35:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=167749 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:36:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=167749 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 04:37:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=168095 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:38:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=168095 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:40:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=168455 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:40:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=168455 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:42:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=168813 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:42:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=168813 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:44:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=169177 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:44:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=169177 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:46:25 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=169550 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:46:27 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=169550 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 04:48:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=169898 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:48:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=169898 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:50:36 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=170273 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:50:37 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=170273 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:52:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=170623 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:52:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=170623 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:54:47 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=171000 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:54:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=171000 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:56:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=171348 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:56:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=171348 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 04:58:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=171725 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 04:58:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=171725 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:00:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=172082 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:01:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=172082 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:03:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=172446 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:03:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=172446 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:05:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=172814 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:05:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=172814 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:07:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=173179 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:07:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=173179 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:09:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=173541 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:09:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=173541 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:11:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=173905 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:11:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=173905 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:13:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=174268 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:13:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=174268 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:15:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=174632 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:15:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=174632 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:17:36 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=174996 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:17:37 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=174996 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:19:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=175358 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:19:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=175358 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:21:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=175719 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:21:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=175719 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:23:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=176082 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:23:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=176082 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:25:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=176447 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:26:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=176447 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:28:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=176807 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:28:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=176807 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:30:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=177169 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:30:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=177169 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:32:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=177530 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:32:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=177530 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:34:28 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=177903 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:34:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=177903 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:36:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=178262 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:36:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=178262 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:38:32 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=178620 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:38:33 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=178620 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:40:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=178985 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:40:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=178985 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:42:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=179355 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:42:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=179355 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:44:55 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=179724 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:44:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=179724 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 05:46:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=180072 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:47:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=180072 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:49:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=180432 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:49:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=180432 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:51:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=180797 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:51:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=180797 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:53:16 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=181176 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:53:17 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=181176 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:55:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=181534 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:55:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=181534 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:57:27 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=181903 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:57:28 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=181903 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 05:59:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=182264 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 05:59:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=182264 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:01:33 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=182628 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:01:34 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=182628 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:03:33 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=182989 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:03:34 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=182989 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:05:37 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=183363 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:05:38 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=183363 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:07:38 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=183902 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:07:41 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=183902 FIM status=sucesso codigo=0 duracao=3s
+2026-11-19 06:09:38 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=184592 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:09:51 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=184592 FIM status=sucesso codigo=0 duracao=13s
+2026-11-19 06:11:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=185163 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:11:47 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=185163 FIM status=sucesso codigo=0 duracao=8s
+2026-11-19 06:13:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=185466 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:13:46 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=185466 FIM status=sucesso codigo=0 duracao=6s
+2026-11-19 06:15:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=185909 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:15:47 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=185909 FIM status=sucesso codigo=0 duracao=7s
+2026-11-19 06:17:41 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=190993 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:17:55 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=190993 FIM status=sucesso codigo=0 duracao=14s
+2026-11-19 06:19:42 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=196709 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:20:21 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=196709 FIM status=falha codigo=128 duracao=39s
+2026-11-19 06:21:42 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=197190 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:21:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=197190 FIM status=sucesso codigo=0 duracao=5s
+2026-11-19 06:23:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=197569 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:23:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=197569 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:25:55 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=197948 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:25:57 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=197948 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 06:27:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=198310 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:28:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=198310 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:30:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=198672 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:30:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=198672 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:32:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=199035 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:32:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=199035 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:34:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=199396 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:34:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=199396 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:36:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=199761 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:36:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=199761 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:38:37 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=200134 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:38:38 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=200134 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:40:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=200488 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:40:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=200488 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:42:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=200859 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:42:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=200859 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:44:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=201214 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:44:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=201214 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:46:52 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=201580 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:46:54 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=201580 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 06:48:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=201942 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:49:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=201942 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:51:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=202300 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:51:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=202300 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:53:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=202657 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:53:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=202657 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:55:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=203024 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:55:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=203024 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:57:25 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=203392 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:57:26 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=203392 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 06:59:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=203742 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 06:59:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=203742 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:01:33 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=204101 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:01:34 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=204101 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:03:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=204459 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:03:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=204459 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:05:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=204821 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:05:41 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=204821 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:07:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=205178 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:07:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=205178 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:09:57 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=205554 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:09:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=205554 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:11:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=205898 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:12:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=205898 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:14:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=206259 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:14:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=206259 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:16:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=206627 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:16:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=206627 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:18:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=206999 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:18:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=206999 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 07:20:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=207348 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:20:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=207348 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:22:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=207709 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:22:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=207709 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:24:35 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=208079 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:24:36 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=208079 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:26:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=208428 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:26:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=208428 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:28:46 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=208803 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:28:47 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=208803 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:30:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=209145 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:30:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=209145 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:32:57 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=209552 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:32:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=209552 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:34:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=209863 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:35:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=209863 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:37:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=210226 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:37:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=210226 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:39:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=210584 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:39:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=210584 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:41:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=210942 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:41:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=210942 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:43:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=211298 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:43:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=211298 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:45:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=211670 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:45:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=211670 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:47:35 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=212036 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:47:36 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=212036 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:49:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=212396 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:49:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=212396 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:51:46 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=212768 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:51:47 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=212768 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:53:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=213118 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:53:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=213118 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:55:57 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=213495 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:55:58 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=213495 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 07:57:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=213839 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 07:58:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=213839 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:00:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=214212 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:00:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=214212 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:02:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=214568 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:02:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=214568 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:04:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=214943 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:04:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=214943 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 08:06:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=215287 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:06:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=215287 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:08:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=215653 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:08:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=215653 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:10:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=216011 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:10:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=216011 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:12:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=216379 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:12:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=216379 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:14:45 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=216744 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:14:47 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=216744 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 08:16:47 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=217097 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:16:48 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=217097 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:18:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=217456 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:18:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=217456 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:20:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=217817 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:21:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=217817 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:23:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=218174 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:23:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=218174 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:25:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=218535 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:25:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=218535 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:27:17 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=218907 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:27:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=218907 FIM status=sucesso codigo=0 duracao=2s
+2026-11-19 08:29:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=219252 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:29:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=219252 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:31:28 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=219625 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:31:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=219625 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:33:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=219968 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:33:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=219968 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:35:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=220329 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:35:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=220329 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:37:45 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=220696 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:37:46 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=220696 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:39:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=221044 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:39:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=221044 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:41:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=221420 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:41:57 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=221420 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:43:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=221760 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:44:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=221760 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:46:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=222123 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:46:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=222123 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:48:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=222489 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:48:05 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=222489 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:50:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=222857 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:50:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=222857 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:52:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=223217 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:52:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=223217 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:54:28 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=223593 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:54:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=223593 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:56:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=223940 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:56:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=223940 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 08:58:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=224311 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 08:58:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=224311 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 09:00:45 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=224684 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 09:00:46 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=224684 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 09:02:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=225037 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 09:02:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=225037 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 09:04:56 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=225411 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 09:04:57 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=225411 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 09:06:59 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=225765 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 09:07:00 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=225765 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 09:09:03 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=226126 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 09:09:04 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=226126 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 09:11:09 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=226491 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 09:11:10 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=226491 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 09:13:17 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=226868 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 09:13:21 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=226868 DEPLOY_INICIO so=7ef1a7838469 api=95557f7c7bbd
+2026-11-19 09:13:22 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=227005 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/02_provision_app.sh sha256=54bc663c3c40f48b cwd=/ args=''
+2026-11-19 09:13:27 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=227005 MYSQL banco=sombraviva usuario=sombraviva
+2026-11-19 09:13:43 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=227005 ALEMBIC_UPGRADE_HEAD + SEED
+2026-11-19 09:13:53 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=227005 HEALTHCHECK ok
+2026-11-19 09:13:53 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=02_provision_app pid=227005 FIM status=sucesso codigo=0 duracao=31s
+2026-11-19 09:13:53 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=226868 DEPLOY_OK so=7ef1a7838469 api=95557f7c7bbd
+2026-11-19 09:13:54 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=226868 FIM status=sucesso codigo=0 duracao=37s
+2026-11-19 09:15:19 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=227890 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 09:15:20 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=227890 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 09:17:28 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=228259 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 09:17:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=228259 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 09:19:29 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=228623 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 09:19:30 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=228623 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 09:21:33 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=228984 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 09:21:34 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=228984 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 09:23:39 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=229352 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 09:23:40 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=229352 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 09:25:46 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=229721 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 09:25:47 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=229721 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 09:27:49 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=230081 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/ args=''
+2026-11-19 09:27:50 -0300 usuario=root uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=230081 FIM status=sucesso codigo=0 duracao=1s
+2026-11-19 09:29:11 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=08_coletar_evidencias pid=230512 INICIO caminho=./scripts/08_coletar_evidencias.sh sha256=a4911d8c867d11a3 cwd=/home/ubuntu/sombraviva-so args=''
+2026-11-19 09:29:15 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=230741 INICIO caminho=/home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh sha256=8c10675f22d3dae0 cwd=/home/ubuntu/sombraviva-so args='--status'
+2026-11-19 09:29:16 -0300 usuario=ubuntu uid_efetivo=0 host=sombraviva-srv script=07_auto_deploy pid=230741 FIM status=sucesso codigo=0 duracao=1s

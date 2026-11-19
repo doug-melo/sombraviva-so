@@ -1,0 +1,47 @@
+$ hostnamectl
+ Static hostname: sombraviva-srv
+       Icon name: computer-vm
+         Chassis: vm 🖴
+      Machine ID: 3415b87ca88746729f38812d1df08f92
+         Boot ID: d5e6af21747e4747974d8ba94e32a8a9
+  Virtualization: kvm
+Operating System: Ubuntu 24.04.5 LTS
+          Kernel: Linux 7.0.0-1013-oracle
+    Architecture: x86-64
+ Hardware Vendor: QEMU
+  Hardware Model: Standard PC _i440FX + PIIX, 1996_
+Firmware Version: 20260902
+
+$ uname -a
+Linux sombraviva-srv 7.0.0-1013-oracle #13~24.04.1-Ubuntu SMP PREEMPT Fri Sep 25 09:28:21 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+
+$ cat /etc/os-release
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.5 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+
+$ uptime
+ 09:29:12 up 19:31,  1 user,  load average: 0.35, 0.18, 0.17
+
+$ nproc
+2
+
+$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           952Mi       686Mi        24Mi       5.1Mi       274Mi       265Mi
+Swap:             0B          0B          0B
+
+$ df -h /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1        45G  4.0G   41G  10% /
+

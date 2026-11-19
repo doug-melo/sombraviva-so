@@ -1,0 +1,21 @@
+$ curl -s -i http://127.0.0.1/health
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 19 Nov 2026 12:29:14 GMT
+Content-Type: application/json
+Content-Length: 96
+Connection: keep-alive
+x-content-type-options: nosniff
+x-frame-options: DENY
+referrer-policy: no-referrer
+content-security-policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://commons.wikimedia.org https://upload.wikimedia.org https://www.visaooeste.com.br https://www.aeaosasco.org.br https://www.oanhanguera.com.br https://agenciamural.org.br https://jornalcomarcapaulista.com.br; connect-src 'self'; frame-src https://www.openstreetmap.org; frame-ancestors 'none'
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Referrer-Policy: strict-origin-when-cross-origin
+
+{"status":"ok","service":"sombraviva","banco":"ok","horario":"2026-11-19T12:29:14.652728+00:00"}
+$ curl -s http://127.0.0.1/api/v1/resumo
+{"detail":"Not Found"}
+$ curl -s -o /dev/null -w 'Swagger /docs -> HTTP %{http_code}\n' http://127.0.0.1/docs
+Swagger /docs -> HTTP 200
+

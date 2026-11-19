@@ -1,0 +1,89 @@
+$ systemctl is-enabled sombraviva-api sombraviva-monitor nginx mysql auditd
+enabled
+enabled
+enabled
+enabled
+enabled
+
+$ systemctl status sombraviva-api sombraviva-monitor nginx mysql --no-pager -n 5
+● sombraviva-api.service - SombraViva API (FastAPI + Uvicorn)
+     Loaded: loaded (/etc/systemd/system/sombraviva-api.service; enabled; preset: enabled)
+     Active: active (running) since Thu 2026-11-19 09:13:45 -03; 15min ago
+       Docs: https://github.com/doug-melo/sombraviva-so
+   Main PID: 227416 (uvicorn)
+      Tasks: 7 (limit: 486)
+     Memory: 68.5M (peak: 71.0M)
+        CPU: 8.461s
+     CGroup: /system.slice/sombraviva-api.service
+             └─227416 /opt/sombraviva/venv/bin/python3 /opt/sombraviva/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 1 --proxy-headers --forwarded-allow-ips 127.0.0.1
+
+Nov 19 09:13:45 sombraviva-srv systemd[1]: Started sombraviva-api.service - SombraViva API (FastAPI + Uvicorn).
+
+● sombraviva-monitor.service - SombraViva - Monitor de recursos e saude da aplicacao
+     Loaded: loaded (/etc/systemd/system/sombraviva-monitor.service; enabled; preset: enabled)
+     Active: active (running) since Thu 2026-11-19 00:27:16 -03; 9h ago
+       Docs: file:///opt/sombraviva/scripts/03_monitor.sh
+   Main PID: 123954 (bash)
+      Tasks: 2 (limit: 486)
+     Memory: 17.6M (peak: 27.9M)
+        CPU: 5min 37.419s
+     CGroup: /system.slice/sombraviva-monitor.service
+             ├─123954 bash /opt/sombraviva/scripts/03_monitor.sh --loop
+             └─230498 sleep 30
+
+Nov 19 09:29:01 sombraviva-srv sombraviva-monitor[230484]: [INFO] SERVICO nginx ativo
+Nov 19 09:29:01 sombraviva-srv sombraviva-monitor[123954]: 2026-11-19 09:29:01 -0300 [INFO] SERVICO  mysql ativo
+Nov 19 09:29:01 sombraviva-srv sombraviva-monitor[230490]: [INFO] SERVICO mysql ativo
+Nov 19 09:29:01 sombraviva-srv sombraviva-monitor[123954]: 2026-11-19 09:29:01 -0300 [INFO] MYSQL    mysqladmin ping OK
+Nov 19 09:29:01 sombraviva-srv sombraviva-monitor[230495]: [INFO] MYSQL mysqladmin ping OK
+
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: enabled)
+     Active: active (running) since Wed 2026-11-18 14:12:03 -03; 19h ago
+       Docs: man:nginx(8)
+   Main PID: 7280 (nginx)
+      Tasks: 3 (limit: 486)
+     Memory: 4.1M (peak: 7.7M)
+        CPU: 1.509s
+     CGroup: /system.slice/nginx.service
+             ├─7280 "nginx: master process /usr/sbin/nginx -g daemon on; master_process on;"
+             ├─8468 "nginx: worker process"
+             └─8469 "nginx: worker process"
+
+Nov 18 14:12:02 sombraviva-srv systemd[1]: Starting nginx.service - A high performance web server and a reverse proxy server...
+Nov 18 14:12:03 sombraviva-srv systemd[1]: Started nginx.service - A high performance web server and a reverse proxy server.
+Nov 18 14:15:48 sombraviva-srv systemd[1]: Reloading nginx.service - A high performance web server and a reverse proxy server...
+Nov 18 14:15:48 sombraviva-srv nginx[8466]: 2026/11/18 14:15:48 [notice] 8466#8466: signal process started
+Nov 18 14:15:48 sombraviva-srv systemd[1]: Reloaded nginx.service - A high performance web server and a reverse proxy server.
+
+● mysql.service - MySQL Community Server
+     Loaded: loaded (/usr/lib/systemd/system/mysql.service; enabled; preset: enabled)
+     Active: active (running) since Thu 2026-11-19 00:27:59 -03; 9h ago
+   Main PID: 124740 (mysqld)
+     Status: "Server is operational"
+      Tasks: 40 (limit: 486)
+     Memory: 389.3M (peak: 408.8M)
+        CPU: 2min 51.638s
+     CGroup: /system.slice/mysql.service
+             └─124740 /usr/sbin/mysqld
+
+Nov 19 00:27:55 sombraviva-srv systemd[1]: Starting mysql.service - MySQL Community Server...
+Nov 19 00:27:59 sombraviva-srv systemd[1]: Started mysql.service - MySQL Community Server.
+
+$ systemctl list-timers 'sombraviva*' --no-pager
+NEXT                        LEFT LAST                              PASSED UNIT                           ACTIVATES
+Thu 2026-11-19 09:29:49 -03  35s Thu 2026-11-19 09:27:49 -03 1min 24s ago sombraviva-monitor-guard.timer sombraviva-monitor-guard.service
+Thu 2026-11-19 09:29:49 -03  35s Thu 2026-11-19 09:27:49 -03 1min 24s ago sombraviva-deploy.timer        sombraviva-deploy.service
+
+2 timers listed.
+Pass --all to see loaded but inactive timers, too.
+
+$ systemctl show sombraviva-api sombraviva-monitor -p Restart -p RestartUSec -p NRestarts
+Restart=always
+RestartUSec=3s
+NRestarts=0
+
+Restart=always
+RestartUSec=5s
+NRestarts=1
+

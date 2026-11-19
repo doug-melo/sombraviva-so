@@ -32,11 +32,12 @@ SAIDA="$HOME_DONO/evidencias_sombraviva.tar.gz"
 LINHAS_LOG="${LINHAS_LOG:-2000}"
 sv_cleanup() { rm -rf "$DESTINO"; }   # chamado pelo trap EXIT do log.sh
 
-# Mascara segredos: Bearer, variáveis *TOKEN*/*SENHA*/*PASSWORD*/*SECRET*/*KEY*
+# Mascara segredos: Bearer, variáveis *TOKEN*/*SENHA*/*PASSWORD*/*SECRET*/*API_KEY*/*_KEY
+# (o "key=" puro do auditd fica visível: é o nome da regra, não um segredo)
 mascarar() {
   sed -E \
     -e 's/(Bearer )[A-Za-z0-9._~+\/=-]+/\1***OCULTO***/g' \
-    -e 's/(([A-Za-z_]*(TOKEN|SENHA|PASSWORD|SECRET|KEY)[A-Za-z_]*)"?[=:] *"?)[^" ,}]+/\1***OCULTO***/Ig' \
+    -e 's/(([A-Za-z_]*(TOKEN|SENHA|PASSWORD|SECRET|API_?KEY|_KEY)[A-Za-z_]*)"?[=:] *"?)[^" ,}]+/\1***OCULTO***/Ig' \
     -e 's/(sv-dev-)[A-Za-z0-9_-]+/\1***OCULTO***/g'
 }
 

@@ -1,0 +1,57 @@
+$ bash /home/ubuntu/sombraviva-so/scripts/07_auto_deploy.sh --status
+==============================================================
+  🌳 SombraViva | 07 · Situação do deploy automático
+==============================================================
+   SO_COMMIT=7ef1a7838469d2a2d6a8af12b7574592a81816ad
+   API_COMMIT=95557f7c7bbdb1e5fed12dcd8dfb197c508d1965
+   QUANDO=2026-11-19 09:13:53 -0300
+   RESULTADO=sucesso
+NEXT                        LEFT LAST                              PASSED UNIT                    ACTIVATES
+Thu 2026-11-19 09:29:49 -03  33s Thu 2026-11-19 09:27:49 -03 1min 26s ago sombraviva-deploy.timer sombraviva-deploy.service
+
+1 timers listed.
+Pass --all to see loaded but inactive timers, too.
+2026-11-19 09:29:16 -0300 [INFO ] Histórico: journalctl -t sombraviva-audit | grep DEPLOY   ·   log: /var/log/sombraviva/07_auto_deploy.log
+
+$ tail -40 /var/log/sombraviva/07_auto_deploy.log
+------------------------------------------------------------------
+2026-11-19 09:19:29 -0300 [INICIO] 07_auto_deploy executado por root (uid efetivo 0) em sombraviva-srv
+2026-11-19 09:19:29 -0300 [DEBUG] Configuração carregada: /home/ubuntu/sombraviva-so/config/app.conf
+2026-11-19 09:19:29 -0300 [DEBUG] Configuração carregada: /etc/sombraviva/app.local.conf
+2026-11-19 09:19:29 -0300 [DEBUG] $ g fetch --quiet origin main
+2026-11-19 09:19:30 -0300 [INFO ] Sem novidades (sombraviva-so 7ef1a78, API 95557f7)
+
+------------------------------------------------------------------
+2026-11-19 09:21:33 -0300 [INICIO] 07_auto_deploy executado por root (uid efetivo 0) em sombraviva-srv
+2026-11-19 09:21:33 -0300 [DEBUG] Configuração carregada: /home/ubuntu/sombraviva-so/config/app.conf
+2026-11-19 09:21:33 -0300 [DEBUG] Configuração carregada: /etc/sombraviva/app.local.conf
+2026-11-19 09:21:33 -0300 [DEBUG] $ g fetch --quiet origin main
+2026-11-19 09:21:34 -0300 [INFO ] Sem novidades (sombraviva-so 7ef1a78, API 95557f7)
+
+------------------------------------------------------------------
+2026-11-19 09:23:39 -0300 [INICIO] 07_auto_deploy executado por root (uid efetivo 0) em sombraviva-srv
+2026-11-19 09:23:39 -0300 [DEBUG] Configuração carregada: /home/ubuntu/sombraviva-so/config/app.conf
+2026-11-19 09:23:39 -0300 [DEBUG] Configuração carregada: /etc/sombraviva/app.local.conf
+2026-11-19 09:23:39 -0300 [DEBUG] $ g fetch --quiet origin main
+2026-11-19 09:23:40 -0300 [INFO ] Sem novidades (sombraviva-so 7ef1a78, API 95557f7)
+
+------------------------------------------------------------------
+2026-11-19 09:25:46 -0300 [INICIO] 07_auto_deploy executado por root (uid efetivo 0) em sombraviva-srv
+2026-11-19 09:25:46 -0300 [DEBUG] Configuração carregada: /home/ubuntu/sombraviva-so/config/app.conf
+2026-11-19 09:25:46 -0300 [DEBUG] Configuração carregada: /etc/sombraviva/app.local.conf
+2026-11-19 09:25:46 -0300 [DEBUG] $ g fetch --quiet origin main
+2026-11-19 09:25:47 -0300 [INFO ] Sem novidades (sombraviva-so 7ef1a78, API 95557f7)
+
+------------------------------------------------------------------
+2026-11-19 09:27:49 -0300 [INICIO] 07_auto_deploy executado por root (uid efetivo 0) em sombraviva-srv
+2026-11-19 09:27:49 -0300 [DEBUG] Configuração carregada: /home/ubuntu/sombraviva-so/config/app.conf
+2026-11-19 09:27:49 -0300 [DEBUG] Configuração carregada: /etc/sombraviva/app.local.conf
+2026-11-19 09:27:49 -0300 [DEBUG] $ g fetch --quiet origin main
+2026-11-19 09:27:50 -0300 [INFO ] Sem novidades (sombraviva-so 7ef1a78, API 95557f7)
+
+------------------------------------------------------------------
+2026-11-19 09:29:15 -0300 [INICIO] 07_auto_deploy executado por ubuntu (uid efetivo 0) em sombraviva-srv
+2026-11-19 09:29:15 -0300 [DEBUG] Configuração carregada: /home/ubuntu/sombraviva-so/config/app.conf
+2026-11-19 09:29:15 -0300 [DEBUG] Configuração carregada: /etc/sombraviva/app.local.conf
+2026-11-19 09:29:16 -0300 [INFO ] Histórico: journalctl -t sombraviva-audit | grep DEPLOY   ·   log: /var/log/sombraviva/07_auto_deploy.log
+

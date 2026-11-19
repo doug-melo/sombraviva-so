@@ -1,0 +1,301 @@
+
+------------------------------------------------------------------
+2026-11-18 14:15:51 -0300 [INICIO] 04_setup_monitoring executado por ubuntu (uid efetivo 0) em sombraviva-srv
+2026-11-18 14:15:51 -0300 [PASSO] ==> 1/5 Instalando o script de monitoramento
+2026-11-18 14:15:51 -0300 [OK   ] ✔ Limites instalados em /etc/sombraviva/monitor.conf
+2026-11-18 14:15:51 -0300 [OK   ] ✔ Scripts em /opt/sombraviva/scripts
+2026-11-18 14:15:51 -0300 [PASSO] ==> 2/5 Serviço systemd sombraviva-monitor + timer guardião
+2026-11-18 14:15:52 -0300 [DEBUG] $ systemctl daemon-reload
+2026-11-18 14:15:53 -0300 [DEBUG] $ systemctl enable sombraviva-monitor.service sombraviva-monitor-guard.timer
+Created symlink /etc/systemd/system/multi-user.target.wants/sombraviva-monitor.service → /etc/systemd/system/sombraviva-monitor.service.
+Created symlink /etc/systemd/system/timers.target.wants/sombraviva-monitor-guard.timer → /etc/systemd/system/sombraviva-monitor-guard.timer.
+2026-11-18 14:15:54 -0300 [DEBUG] $ systemctl restart sombraviva-monitor.service
+2026-11-18 14:15:54 -0300 [DEBUG] $ systemctl start sombraviva-monitor-guard.timer
+2026-11-18 14:15:57 -0300 [OK   ] ✔ sombraviva-monitor ATIVO (PID 8709)
+2026-11-18 14:15:58 -0300 [INFO ] Política de reinício: Restart=always RestartUSec=5s
+2026-11-18 14:15:58 -0300 [PASSO] ==> 3/5 Auditoria do sistema (auditd)
+2026-11-18 14:15:58 -0300 [DEBUG] $ apt-get update -qq
+2026-11-18 14:16:16 -0300 [DEBUG] $ apt-get install -y -qq auditd
+Selecting previously unselected package libauparse0t64:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 88706 files and directories currently installed.)
+Preparing to unpack .../libauparse0t64_1%3a3.1.2-2.1ubuntu0.1_amd64.deb ...
+Adding 'diversion of /lib/x86_64-linux-gnu/libauparse.so.0 to /lib/x86_64-linux-gnu/libauparse.so.0.usr-is-merged by libauparse0t64'
+Adding 'diversion of /lib/x86_64-linux-gnu/libauparse.so.0.0.0 to /lib/x86_64-linux-gnu/libauparse.so.0.0.0.usr-is-merged by libauparse0t64'
+Unpacking libauparse0t64:amd64 (1:3.1.2-2.1ubuntu0.1) ...
+Selecting previously unselected package auditd.
+Preparing to unpack .../auditd_1%3a3.1.2-2.1ubuntu0.1_amd64.deb ...
+Unpacking auditd (1:3.1.2-2.1ubuntu0.1) ...
+Setting up libauparse0t64:amd64 (1:3.1.2-2.1ubuntu0.1) ...
+Setting up auditd (1:3.1.2-2.1ubuntu0.1) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/auditd.service → /usr/lib/systemd/system/auditd.service.
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.12) ...
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+
+Service restarts being deferred:
+ /etc/needrestart/restart.d/dbus.service
+ systemctl restart getty@tty1.service
+ systemctl restart serial-getty@ttyS0.service
+ systemctl restart systemd-logind.service
+ systemctl restart unattended-upgrades.service
+
+No containers need to be restarted.
+
+User sessions running outdated binaries:
+ ubuntu @ session #1: bash[1934], sshd[1822,1933]
+ ubuntu @ user manager service: systemd[1827]
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-11-18 14:17:00 -0300 [DEBUG] $ systemctl enable --now auditd
+Synchronizing state of auditd.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable auditd
+2026-11-18 14:17:08 -0300 [DEBUG] $ augenrules --load
+No rules
+enabled 1
+failure 1
+pid 9369
+rate_limit 0
+backlog_limit 8192
+lost 0
+backlog 4
+backlog_wait_time 60000
+backlog_wait_time_actual 0
+enabled 1
+failure 1
+pid 9369
+rate_limit 0
+backlog_limit 8192
+lost 0
+backlog 8
+backlog_wait_time 60000
+backlog_wait_time_actual 0
+enabled 1
+failure 1
+pid 9369
+rate_limit 0
+backlog_limit 8192
+lost 0
+backlog 12
+backlog_wait_time 60000
+backlog_wait_time_actual 0
+2026-11-18 14:17:08 -0300 [OK   ] ✔ Regras do auditd carregadas: 13 regras 'sombraviva'
+2026-11-18 14:17:08 -0300 [PASSO] ==> 4/5 Rotação de logs (logrotate)
+2026-11-18 14:17:08 -0300 [DEBUG] $ logrotate -d /etc/logrotate.d/sombraviva
+warning: logrotate in debug mode does nothing except printing debug messages!  Consider using verbose mode (-v) instead if this is not what you want.
+
+reading config file /etc/logrotate.d/sombraviva
+Reading state from file: /var/lib/logrotate/status
+state file /var/lib/logrotate/status does not exist
+Allocating hash table for state file, size 64 entries
+
+Handling 1 logs
+
+rotating pattern: /var/log/sombraviva/*.log  after 1 days (14 rotations)
+empty log files are not rotated, log files >= 20971520 are rotated earlier, old logs are removed
+switching euid from 0 to 0 and egid from 0 to 4 (pid 9745)
+considering log /var/log/sombraviva/01_provision_infra.log
+Creating new state
+  Now: 2026-11-18 14:17
+  Last rotated at 2026-11-18 14:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/02_provision_app.log
+Creating new state
+  Now: 2026-11-18 14:17
+  Last rotated at 2026-11-18 14:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/03_monitor.log
+Creating new state
+  Now: 2026-11-18 14:17
+  Last rotated at 2026-11-18 14:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/04_setup_monitoring.log
+Creating new state
+  Now: 2026-11-18 14:17
+  Last rotated at 2026-11-18 14:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/alertas.log
+Creating new state
+  Now: 2026-11-18 14:17
+  Last rotated at 2026-11-18 14:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/api.log
+Creating new state
+  Now: 2026-11-18 14:17
+  Last rotated at 2026-11-18 14:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/auditoria.log
+Creating new state
+  Now: 2026-11-18 14:17
+  Last rotated at 2026-11-18 14:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/monitor.log
+Creating new state
+  Now: 2026-11-18 14:17
+  Last rotated at 2026-11-18 14:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/provision.log
+Creating new state
+  Now: 2026-11-18 14:17
+  Last rotated at 2026-11-18 14:00
+  log does not need rotating (log has already been rotated)
+switching euid from 0 to 0 and egid from 4 to 0 (pid 9745)
+2026-11-18 14:17:08 -0300 [OK   ] ✔ logrotate configurado: diário, 14 cópias, compactado
+2026-11-18 14:17:08 -0300 [PASSO] ==> 5/5 Evidências
+2026-11-18 14:17:08 -0300 [INFO ] Últimas linhas de /var/log/sombraviva/monitor.log:
+2026-11-18 14:17:08 -0300 [INFO ] Acompanhar ao vivo:  sudo tail -f /var/log/sombraviva/monitor.log
+2026-11-18 14:17:08 -0300 [INFO ] Alertas no syslog:   journalctl -t sombraviva-monitor -p warning
+2026-11-18 14:17:08 -0300 [INFO ] Auditoria:           sudo tail /var/log/sombraviva/auditoria.log  |  journalctl -t sombraviva-audit
+2026-11-18 14:17:08 -0300 [OK   ] ✔ Monitoramento e auditoria configurados. Log: /var/log/sombraviva/04_setup_monitoring.log
+
+------------------------------------------------------------------
+2026-11-19 00:13:17 -0300 [INICIO] 04_setup_monitoring executado por ubuntu (uid efetivo 0) em sombraviva-srv
+2026-11-19 00:13:17 -0300 [PASSO] ==> 1/5 Instalando o script de monitoramento
+2026-11-19 00:13:17 -0300 [OK   ] ✔ monitor.conf já atualizado
+2026-11-19 00:13:17 -0300 [OK   ] ✔ Scripts em /opt/sombraviva/scripts
+2026-11-19 00:13:17 -0300 [PASSO] ==> 2/5 Serviço systemd sombraviva-monitor + timer guardião
+2026-11-19 00:13:18 -0300 [DEBUG] $ systemctl enable sombraviva-monitor.service sombraviva-monitor-guard.timer
+2026-11-19 00:13:21 -0300 [DEBUG] $ systemctl restart sombraviva-monitor.service
+2026-11-19 00:13:22 -0300 [DEBUG] $ systemctl start sombraviva-monitor-guard.timer
+2026-11-19 00:13:27 -0300 [OK   ] ✔ sombraviva-monitor ATIVO (PID 119779)
+2026-11-19 00:13:30 -0300 [INFO ] Política de reinício: Restart=always RestartUSec=5s
+2026-11-19 00:13:30 -0300 [PASSO] ==> 3/5 Auditoria do sistema (auditd)
+2026-11-19 00:13:31 -0300 [DEBUG] $ systemctl enable --now auditd
+Synchronizing state of auditd.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable auditd
+2026-11-19 00:13:39 -0300 [DEBUG] $ augenrules --load
+/usr/sbin/augenrules: No change
+No rules
+enabled 1
+failure 1
+pid 9369
+rate_limit 0
+backlog_limit 8192
+lost 0
+backlog 0
+backlog_wait_time 60000
+backlog_wait_time_actual 0
+enabled 1
+failure 1
+pid 9369
+rate_limit 0
+backlog_limit 8192
+lost 0
+backlog 3
+backlog_wait_time 60000
+backlog_wait_time_actual 0
+enabled 1
+failure 1
+pid 9369
+rate_limit 0
+backlog_limit 8192
+lost 0
+backlog 3
+backlog_wait_time 60000
+backlog_wait_time_actual 0
+2026-11-19 00:13:40 -0300 [OK   ] ✔ Regras do auditd carregadas: 13 regras 'sombraviva'
+2026-11-19 00:13:40 -0300 [PASSO] ==> 4/5 Rotação de logs (logrotate)
+2026-11-19 00:13:40 -0300 [DEBUG] $ logrotate -d /etc/logrotate.d/sombraviva
+warning: logrotate in debug mode does nothing except printing debug messages!  Consider using verbose mode (-v) instead if this is not what you want.
+
+reading config file /etc/logrotate.d/sombraviva
+Reading state from file: /var/lib/logrotate/status
+Allocating hash table for state file, size 64 entries
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+
+Handling 1 logs
+
+rotating pattern: /var/log/sombraviva/*.log  after 1 days (14 rotations)
+empty log files are not rotated, log files >= 20971520 are rotated earlier, old logs are removed
+switching euid from 0 to 0 and egid from 0 to 4 (pid 120299)
+considering log /var/log/sombraviva/01_provision_infra.log
+  Now: 2026-11-19 00:13
+  Last rotated at 2026-11-19 00:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/02_provision_app.log
+  Now: 2026-11-19 00:13
+  Last rotated at 2026-11-19 00:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/03_monitor.log
+  Now: 2026-11-19 00:13
+  Last rotated at 2026-11-19 00:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/04_setup_monitoring.log
+  Now: 2026-11-19 00:13
+  Last rotated at 2026-11-19 00:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/06_tunnel.log
+  Now: 2026-11-19 00:13
+  Last rotated at 2026-11-19 00:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/07_auto_deploy.log
+  Now: 2026-11-19 00:13
+  Last rotated at 2026-11-19 00:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/alertas.log
+  Now: 2026-11-19 00:13
+  Last rotated at 2026-11-19 00:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/api.log
+  Now: 2026-11-19 00:13
+  Last rotated at 2026-11-19 00:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/auditoria.log
+  Now: 2026-11-19 00:13
+  Last rotated at 2026-11-19 00:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/monitor.log
+  Now: 2026-11-19 00:13
+  Last rotated at 2026-11-19 00:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/provision.log
+  Now: 2026-11-19 00:13
+  Last rotated at 2026-11-19 00:00
+  log does not need rotating (log has already been rotated)
+switching euid from 0 to 0 and egid from 4 to 0 (pid 120299)
+2026-11-19 00:13:40 -0300 [OK   ] ✔ logrotate configurado: diário, 14 cópias, compactado
+2026-11-19 00:13:40 -0300 [PASSO] ==> 5/5 Evidências
+2026-11-19 00:13:40 -0300 [INFO ] Últimas linhas de /var/log/sombraviva/monitor.log:
+2026-11-19 00:13:40 -0300 [INFO ] Acompanhar ao vivo:  sudo tail -f /var/log/sombraviva/monitor.log
+2026-11-19 00:13:40 -0300 [INFO ] Alertas no syslog:   journalctl -t sombraviva-monitor -p warning
+2026-11-19 00:13:40 -0300 [INFO ] Auditoria:           sudo tail /var/log/sombraviva/auditoria.log  |  journalctl -t sombraviva-audit
+2026-11-19 00:13:40 -0300 [OK   ] ✔ Monitoramento e auditoria configurados. Log: /var/log/sombraviva/04_setup_monitoring.log

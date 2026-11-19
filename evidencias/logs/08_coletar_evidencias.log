@@ -1,0 +1,13 @@
+
+------------------------------------------------------------------
+2026-11-19 09:29:11 -0300 [INICIO] 08_coletar_evidencias executado por ubuntu (uid efetivo 0) em sombraviva-srv
+2026-11-19 09:29:12 -0300 [OK   ] ✔ 01_sistema.txt
+2026-11-19 09:29:12 -0300 [OK   ] ✔ 02_rede_dns.txt
+2026-11-19 09:29:13 -0300 [OK   ] ✔ 03_firewall.txt
+2026-11-19 09:29:14 -0300 [OK   ] ✔ 04_servicos.txt
+2026-11-19 09:29:14 -0300 [OK   ] ✔ 05_usuarios_permissoes.txt
+2026-11-19 09:29:14 -0300 [OK   ] ✔ 06_aplicacao_health.txt
+2026-11-19 09:29:15 -0300 [OK   ] ✔ 07_journal_alertas.txt
+2026-11-19 09:29:15 -0300 [OK   ] ✔ 08_auditd.txt
+2026-11-19 09:29:15 -0300 [OK   ] ✔ 09_logrotate.txt
+2026-11-19 09:29:16 -0300 [OK   ] ✔ 10_auto_deploy.txt

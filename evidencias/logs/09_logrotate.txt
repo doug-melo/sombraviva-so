@@ -1,0 +1,46 @@
+$ cat /etc/logrotate.d/sombraviva
+# =============================================================================
+#  SombraViva — rotação dos logs (instalado em /etc/logrotate.d/sombraviva)
+#  Testar:  sudo logrotate -d /etc/logrotate.d/sombraviva
+# =============================================================================
+/var/log/sombraviva/*.log {
+    daily
+    rotate 14
+    maxsize 20M
+    missingok
+    notifempty
+    compress
+    delaycompress
+    # copytruncate: os serviços continuam escrevendo no mesmo arquivo sem reinício
+    copytruncate
+    dateext
+    su root adm
+}
+
+$ logrotate -d /etc/logrotate.d/sombraviva 2>&1 | tail -25
+Creating new state
+  Now: 2026-11-19 09:29
+  Last rotated at 2026-11-19 09:00
+  log does not need rotating (log has already been rotated)
+considering log /var/log/sombraviva/alertas.log
+  Now: 2026-11-19 09:29
+  Last rotated at 2026-11-19 00:00
+  log does not need rotating (log has been rotated at 2026-11-19 00:00, which is less than a day ago)
+considering log /var/log/sombraviva/api.log
+  Now: 2026-11-19 09:29
+  Last rotated at 2026-11-19 00:00
+  log does not need rotating (log has been rotated at 2026-11-19 00:00, which is less than a day ago)
+considering log /var/log/sombraviva/auditoria.log
+  Now: 2026-11-19 09:29
+  Last rotated at 2026-11-19 00:00
+  log does not need rotating (log has been rotated at 2026-11-19 00:00, which is less than a day ago)
+considering log /var/log/sombraviva/monitor.log
+  Now: 2026-11-19 09:29
+  Last rotated at 2026-11-19 00:00
+  log does not need rotating (log has been rotated at 2026-11-19 00:00, which is less than a day ago)
+considering log /var/log/sombraviva/provision.log
+  Now: 2026-11-19 09:29
+  Last rotated at 2026-11-19 00:00
+  log does not need rotating (log has been rotated at 2026-11-19 00:00, which is less than a day ago)
+switching euid from 0 to 0 and egid from 4 to 0 (pid 230733)
+
